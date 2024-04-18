@@ -20,20 +20,7 @@ export default async function DashboardPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-  const posts = await db.post.findMany({
-    where: {
-      authorId: user.id,
-    },
-    select: {
-      id: true,
-      title: true,
-      published: true,
-      createdAt: true,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
-  })
+  const posts = []
 
   return (
     <DashboardShell>
@@ -43,9 +30,9 @@ export default async function DashboardPage() {
       <div>
         {posts?.length ? (
           <div className="divide-y divide-border rounded-md border">
-            {posts.map((post) => (
+            {/* {posts.map((post) => (
               <PostItem key={post.id} post={post} />
-            ))}
+            ))} */}
           </div>
         ) : (
           <EmptyPlaceholder>

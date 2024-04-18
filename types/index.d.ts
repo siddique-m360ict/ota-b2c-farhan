@@ -1,12 +1,13 @@
 import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
-
+import { ReactElement } from "react"
 import { Icons } from "@/components/icons"
 
 export type NavItem = {
   title: string
   href: string
   disabled?: boolean
+  icon?: string
 }
 
 export type MainNavItem = NavItem
@@ -44,6 +45,9 @@ export type DocsConfig = {
 }
 
 export type MarketingConfig = {
+  mainNav: MainNavItem[]
+}
+export type HeaderConfig = {
   mainNav: MainNavItem[]
 }
 
