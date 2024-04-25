@@ -14,12 +14,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
+import { PasswordInput } from "../ui/password-input"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  auth?: boolean
+}
 
 type FormData = z.infer<typeof userAuthSchema>
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm({ className, auth, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -29,6 +32,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   })
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
+  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
 
   async function onSubmit(data: FormData) {
@@ -74,6 +78,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               disabled={isLoading || isGitHubLoading}
               {...register("email")}
             />
+            <PasswordInput
+              id="password"
+              placeholder="password"
+              disabled={isLoading || isGitHubLoading}
+              {...register("email")}
+            />
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
@@ -84,7 +94,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            {auth ? "Sign In" : "Register"}
           </button>
         </div>
       </form>
@@ -108,11 +118,27 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         disabled={isLoading || isGitHubLoading}
       >
         {isGitHubLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          <Icons.spinner className="mr-2 size-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.gitHub className="mr-2 size-4" />
         )}{" "}
         Github
+      </button>
+      <button
+        type="button"
+        className={cn(buttonVariants({ variant: "outline" }))}
+        onClick={() => {
+          setIsGoogleLoading(true)
+          signIn("google")
+        }}
+        disabled={isLoading || isGitHubLoading || isGoogleLoading}
+      >
+        {isGoogleLoading ? (
+          <Icons.spinner className="mr-2 size-4 animate-spin" />
+        ) : (
+          <Icons.google className="mr-2 size-4" />
+        )}{" "}
+        Google
       </button>
     </div>
   )

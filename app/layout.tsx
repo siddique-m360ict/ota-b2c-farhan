@@ -1,4 +1,4 @@
-import { Inter as FontSans } from "next/font/google"
+import { Inter as FontSans, Roboto } from "next/font/google"
 import localFont from "next/font/local"
 
 import "@/styles/globals.css"
@@ -8,10 +8,17 @@ import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ReduxProvider } from "@/lib/redux/providers"
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+})
+const fontRoboto = Roboto({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+  weight: "400",
 })
 
 // Font files can be colocated inside of `pages`
@@ -77,16 +84,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-roboto antialiased",
           fontSans.variable,
-          fontHeading.variable
+          fontHeading.variable,
+          fontRoboto.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Analytics />
-          <Toaster />
-          <TailwindIndicator />
+          <ReduxProvider>
+            {children}
+            <Analytics />
+            <Toaster />
+            <TailwindIndicator />
+          </ReduxProvider>
         </ThemeProvider>
       </body>
     </html>

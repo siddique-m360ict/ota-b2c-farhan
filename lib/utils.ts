@@ -1,3 +1,4 @@
+import { env } from "@/env.mjs"
 import { ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -17,5 +18,15 @@ export function formatDate(input: string | number): string {
 }
 // env.NEXT_PUBLIC_APP_URL
 export function absoluteUrl(path: string) {
-  return `${""}${path}`
+  return `${env.NEXT_PUBLIC_BASE_SERVER_URL}${path}`
+}
+export function serverUrl(path: string) {
+  return `${env.NEXT_PUBLIC_BASE_SERVER_URL}${path}`
+}
+
+export const imgHostLink =
+  "https://m360-trabill.s3.ap-south-1.amazonaws.com/booking-expert-storage"
+
+export function hostedImage(path: string) {
+  return `${imgHostLink}${path}`
 }

@@ -1,7 +1,7 @@
 import { Icon } from "@/components/icons"
 import { HeaderConfig } from "types"
 
-export const headerConfig: HeaderConfig = {
+export const headerConfig = {
   mainNav: [
     {
       title: "Flight",
