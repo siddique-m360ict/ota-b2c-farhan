@@ -1,32 +1,47 @@
 import { format } from "date-fns"
 import { IReqFlightSearch } from "../server/flights/SearchFlightListEndpoint"
-type arrObj = {
-  origin?: string
-  destination?: string
-  flightDate?: string
-}
 
 export const RoundWayFormatter = (query: IReqFlightSearch) => {
-  let emptyArr: arrObj[] = []
-  const tripsArr = query?.trips?.split(",") || []
-  const tripsArrLen = tripsArr?.length || 0
+  const formattedQuery = {
+    OriginDestinationInformation: [
+      {
+        RPH: "1",
+        DepartureDateTime: query.departuredate
+          ? format(new Date(query.departuredate), "yyyy-MM-dd'T'HH:mm:ss")
+          : "no date formate",
+        OriginLocation: {
+          LocationCode: query.origin,
+        },
+        DestinationLocation: {
+          LocationCode: query.destination,
+        },
+        TPA_Extensions: {
+          CabinPref: {
+            Cabin: query.class?.toUpperCase(),
+            PreferLevel: "Preferred",
+          },
+        },
+      },
 
-  for (let i = 0; i < tripsArrLen; i += 3) {
-    const origin = tripsArr[i]
-    const destination = tripsArr[i + 1]
-    const flightDate = tripsArr[i + 2]
-
-    const flight = {
-      origin: origin,
-      destination: destination,
-      flightDate: flightDate,
-    }
-
-    emptyArr.push(flight)
-  }
-
-  const formattedQuery: any = {
-    OriginDestinationInformation: [],
+      {
+        RPH: "2",
+        DepartureDateTime: query.returndate
+          ? format(new Date(query.returndate), "yyyy-MM-dd'T'HH:mm:ss")
+          : "no date formate",
+        OriginLocation: {
+          LocationCode: query.destination,
+        },
+        DestinationLocation: {
+          LocationCode: query.origin,
+        },
+        TPA_Extensions: {
+          CabinPref: {
+            Cabin: query.class?.toUpperCase(),
+            PreferLevel: "Preferred",
+          },
+        },
+      },
+    ],
     PassengerTypeQuantity: [
       {
         Code: "ADT",
@@ -34,32 +49,6 @@ export const RoundWayFormatter = (query: IReqFlightSearch) => {
       },
     ],
   }
-
-  emptyArr.forEach((item, index) => {
-    const formattedObj = {
-      RPH: String(index + 1),
-      DepartureDateTime: item.flightDate
-        ? format(new Date(item.flightDate), "YYYY-MM-DDTHH:mm:ss")
-        : "no date formate",
-      OriginLocation: {
-        LocationCode: item.origin,
-      },
-      DestinationLocation: {
-        LocationCode: item.destination,
-      },
-      TPA_Extensions: {
-        CabinPref: {
-          Cabin:
-            (query.class === "Economy" && "Y") ||
-            (query.class === "First Class" && "F") ||
-            (query.class === "Premium Economy" && "S") ||
-            (query.class === "Business Class" && "C"),
-          PreferLevel: "Preferred",
-        },
-      },
-    }
-    formattedQuery.OriginDestinationInformation.push(formattedObj)
-  })
 
   if (Number(query.child || 0) > 0) {
     formattedQuery.PassengerTypeQuantity.push({
@@ -74,5 +63,12 @@ export const RoundWayFormatter = (query: IReqFlightSearch) => {
       Quantity: Number(query.infant),
     })
   }
+  if (Number(query.kids || 0) > 0) {
+    formattedQuery.PassengerTypeQuantity.push({
+      Code: "C05",
+      Quantity: Number(query.kids),
+    })
+  }
+
   return formattedQuery
 }

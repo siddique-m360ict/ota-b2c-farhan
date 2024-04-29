@@ -5,113 +5,125 @@ export interface IFlightSearchList {
 
 export interface Filter {
   total_stoppage?: number[]
-  price_rage: PriceRage
-  airlines: Airline[]
+  price_rage?: PriceRage
+  airlines?: Airline[]
 }
 
 export interface Airline {
-  name: string
-  logo?: string
-  carrier_marketing: string
+  airline_code: string
+  airline_logo: string
+  airline_name: string
+  price: number
 }
 
 export interface PriceRage {
-  max: number
-  min: number
+  max?: number
+  min?: number
 }
 
 export interface Result {
   flight_id?: string
-  totalPrice: number
-  totalTaxAmount?: number
-  currency: string
-  baseFareAmount?: number
-  baseFareCurrency?: string
-  constructionAmount?: number
-  constructionCurrency?: string
-  equivalentAmount?: number
-  equivalentCurrency?: string
-  ticketLastDateTime?: string
-  legDescriptions?: LegDescription[]
+  fare: Fare
+  refundable?: Refundable[]
+  flight_class: FlightClass[]
+  carrier_code?: string
+  carrier_name?: string
+  carrier_logo?: string
+  ticket_last_date?: Date
+  leg_descriptions?: LegDescription[]
   flights: Flight[]
-  passengers?: Passenger[]
+  passengers: Passenger[]
+}
+
+export interface Fare {
+  commission?: number
+  base_fare?: number
+  discount?: number
+  ait?: number
+  payable?: number
+  total_price?: number
+  total_tax?: number
+}
+
+export interface FlightClass {
+  id?: number
+  booking_code?: string
+  cabin_type?: string
 }
 
 export interface Flight {
   stoppage?: number
-  elapsedTime?: number
   id: number
+  elapsed_time?: string
   options: Option[]
-  layoverTime?: string[]
+  layover_time: string[]
 }
 
 export interface Option {
   id?: number
-  eTicketable?: boolean
+  e_ticketable?: boolean
   elapsedTime?: number
-  frequency?: string
   stopCount?: number
-  totalMilesFlown?: number
-  departure_airport?: string
-  departure_city?: string
-  departure_country?: string
-  departure_terminal?: string
-  departure_time?: string
-  arrival_airport?: string
-  arrival_city?: string
-  arrival_country?: string
-  arrival_time?: string
-  carrier_equipment?: CarrierEquipment
-  carrier_marketing?: string
-  carrier_marketingFlightNumber?: number
-  carrier_operating?: string
-  carrier_operatingFlightNumber?: number
-  departureDateTime?: string
-  arrivalDate?: string
-  name?: string
-  logo: string
-  departure_airport_name?: string
-  arrival_airport_name?: string
-  departure_city_name: string
-  arrival_city_name?: string
+  total_miles_flown?: number
+  departure?: Arrival
+  arrival?: Arrival
+  carrier?: Carrier
 }
 
-export interface CarrierEquipment {
-  code?: string
-  typeForFirstLeg?: string
-  typeForLastLeg?: string
+export interface Arrival {
+  airport?: string
+  city?: string
+  airport_code?: string
+  city_code?: string
+  country?: string
+  time?: string
+  terminal?: string
+  date: string
+}
+
+export interface Carrier {
+  carrier_marketing_code?: string
+  carrier_marketing_airline?: string
+  carrier_marketing_logo?: string
+  carrier_marketing_flight_number?: number
+  carrier_operating_code?: string
+  carrier_operating_airline?: string
+  carrier_operating_logo?: string
+  carrier_operating_flight_number?: number
 }
 
 export interface LegDescription {
-  departureDate?: string
+  departureDate?: Date
   departureLocation?: string
   arrivalLocation?: string
 }
 
 export interface Passenger {
-  passengerType?: string
-  passengerNumber?: number
-  nonRefundable?: boolean
-  id?: number
-  weight?: number | string
-  unit?: string
-  bookingCode?: string
-  cabinCode?: string
-  seatsAvailable?: number
-  availabilityBreak?: boolean
-  totalFare?: number
-  totalTaxAmount?: number
-  currency?: string
-  baseFareAmount?: number
-  baseFareCurrency?: string
-  equivalentAmount?: number
-  equivalentCurrency?: string
-  constructionAmount?: number
-  constructionCurrency?: string
-  exchangeRateOne?: number
+  type?: string
+  number?: number
+  non_refundable?: boolean
+  baggage?: Baggage
+  cabin_code?: string
   cabin_type?: string
-  airlineCode?: string
-  provisionType?: string
+  booking_code?: string
+  fare?: PassengerFare
+}
+
+export interface Baggage {
+  id?: number
+  weight?: number
+  unit?: string
+}
+
+export interface PassengerFare {
+  total_fare?: number
+  tax?: number
+  base_fare?: number
+}
+
+export interface Refundable {
+  id?: number
+  refundable?: boolean
 }
 
 /////////////////////////////////////
@@ -164,18 +176,4 @@ export interface OriginDestinationInformation {
     LocationCode: string
     name?: string
   }
-}
-
-// =================== filter type
-export type FilterAirlines = {
-  carrier_operating?: string
-  max_price?: string | number
-  min_price?: string | number
-  refundable?: string
-  stoppage?: string
-  aircraft?: string
-  elapsed_time_min?: string
-  departure_timings?: string
-  arrival_timings?: string
-  type?: "CHEAPEST" | "SHORTEST" | "EARLIEST"
 }

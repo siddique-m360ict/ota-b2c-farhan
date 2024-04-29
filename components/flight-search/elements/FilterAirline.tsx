@@ -4,48 +4,21 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import {
-  selectFilterAirline,
-  setFilterAirline,
-} from "@/lib/redux/slice/filterAirline"
-import { selectFilterItem } from "@/lib/redux/slice/flight_filter"
+  selectFilterOption,
+  setFilterOption,
+} from "@/lib/redux/slice/filterOptions"
 import { hostedImage } from "@/lib/utils"
 import Image from "next/image"
-import { useRouter, useSearchParams } from "next/navigation"
-import React, { useEffect, useState, useTransition } from "react"
+
+import React from "react"
 
 type Props = {
   Airlines: Airline[] | undefined
 }
 const FilterAirline = ({ Airlines }: Props) => {
-  const params = useSearchParams()
-  const queryParams = new URLSearchParams(params?.toString())
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
   const dispatch = useAppDispatch()
-  const filterAirlines = useAppSelector(selectFilterAirline) ?? []
-
-  // get carrier_operating params to query
-  useEffect(() => {
-    const carrierMarketingParam = queryParams.get("carrier_operating")
-    if (carrierMarketingParam) {
-      const selectedAirlines = carrierMarketingParam.split(",")
-      dispatch(setFilterAirline(selectedAirlines))
-    }
-  }, [params])
-
-  // update base URL
-  const updatePageParameter = (url: string, selectedAirlines: string[]) => {
-    const queryString = selectedAirlines.join(",")
-    if (url.includes("&carrier_operating=")) {
-      url = url.replace(
-        /&carrier_operating=[^&]*/,
-        `&carrier_operating=${queryString}`
-      )
-    } else {
-      url += `&carrier_operating=${queryString}`
-    }
-    return url
-  }
+  const filterAirlines =
+    useAppSelector(selectFilterOption)?.carrier_operating ?? []
 
   // handle airline filter
   const handleCheckboxChange = (code: string, event: string | boolean) => {
@@ -55,43 +28,37 @@ const FilterAirline = ({ Airlines }: Props) => {
     } else {
       updatedAirlines = [...filterAirlines, code]
     }
-    dispatch(setFilterAirline(updatedAirlines))
-    if (window !== undefined) {
-      let baseURL = `${window.location.pathname}?${queryParams.toString()}`
-      const newBaseURL = updatePageParameter(baseURL, updatedAirlines)
-      router.replace(newBaseURL)
-    }
+
+    dispatch(setFilterOption({ carrier_operating: updatedAirlines }))
   }
 
   return (
     <section>
       <h3 className="mb-2 font-bold text-secondary">Airlines</h3>
-      <Separator orientation="horizontal" className="mb-4 h-[1px] w-full" />
+      <Separator orientation="horizontal" className="my-3 h-[1px] w-full" />
       {Airlines?.map((airline, index) => (
         <div className="mb-3 flex items-center space-x-2" key={index}>
           <Checkbox
-            id={airline.carrier_marketing}
+            id={airline.airline_code}
             className="border-2 border-destructive"
-            checked={filterAirlines.includes(airline.carrier_marketing)}
+            checked={filterAirlines.includes(airline.airline_code)}
             onCheckedChange={(event) =>
-              startTransition(() =>
-                handleCheckboxChange(airline.carrier_marketing, event)
-              )
+              handleCheckboxChange(airline.airline_code, event)
             }
           />
           <Label
-            htmlFor={airline.carrier_marketing}
+            htmlFor={airline.airline_code}
             className="flex cursor-pointer items-center gap-2"
           >
             <Image
-              src={hostedImage(`/${airline.logo}`)}
-              alt={airline.name}
+              src={hostedImage(`/${airline.airline_logo}`)}
+              alt={airline.airline_name}
               height={20}
               width={20}
               objectFit="cover"
               objectPosition="center"
             />
-            {airline.name}
+            {airline.airline_name}
           </Label>
         </div>
       ))}

@@ -1,7 +1,7 @@
 "use server"
 import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
 import { HTTPResponse } from "@/lib/commonTypes"
-import { MultiWayFormatter } from "@/lib/formatter/multiwayWayFormatter"
+import { MultiWayFormatter } from "@/lib/formatter/MultiWayFormatter"
 import { OneWayFormatter } from "@/lib/formatter/oneWayFormatter"
 import { RoundWayFormatter } from "@/lib/formatter/roundWayFormatter"
 import { serverUrl } from "@/lib/utils"
@@ -15,6 +15,7 @@ export interface IReqFlightSearch {
   max?: string | null
   child?: string | null
   infant?: string | null
+  kids?: string | null
   route?: "oneway" | "roundway" | "multiway" | string | null
   class?:
     | "Economy"
@@ -70,7 +71,7 @@ const sanitizeSearchParams = (searchParams) => {
 export default async function GetFlightList_V1(
   params: IReqFlightSearch
 ): Promise<HTTPResponse<IFlightSearchList>> {
-  const apiUrl = serverUrl("/booking/flight/search?page=20")
+  const apiUrl = serverUrl("/booking/flight/search/v2?page=1&size=20")
   let myHeaders = new Headers()
   myHeaders.append("Content-Type", "application/json")
   const sanitizeParams = sanitizeSearchParams(params)
@@ -80,9 +81,9 @@ export default async function GetFlightList_V1(
   if (params.route === "oneway") {
     requestBody = OneWayFormatter(sanitizeParams)
   } else if (params.route === "roundway") {
-    requestBody = MultiWayFormatter(sanitizeParams)
-  } else if (params.route === "multiway") {
     requestBody = RoundWayFormatter(sanitizeParams)
+  } else if (params.route === "multiway") {
+    requestBody = MultiWayFormatter(sanitizeParams)
   }
 
   const response = await fetch(apiUrl, {
@@ -90,6 +91,8 @@ export default async function GetFlightList_V1(
     headers: myHeaders,
     body: JSON.stringify(requestBody),
   })
+
+  console.log(JSON.stringify(requestBody))
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`)

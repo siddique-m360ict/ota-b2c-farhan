@@ -14,26 +14,29 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser()
+  // const user = await getCurrentUser()
 
-  if (!user) {
-    return notFound()
-  }
+  // if (!user) {
+  //   return notFound()
+  // }
 
   return (
-    <div className="flex min-h-screen flex-col space-y-6">
-      <header className="sticky top-0 z-40 border-b bg-background">
-        <div className="container flex h-16 items-center justify-between py-4">
-          <MainNav items={dashboardConfig.mainNav} />
-          <UserAccountNav
-            user={{
-              name: user.name,
-              image: user.image,
-              email: user.email,
-            }}
-          />
+    <div className="flex min-h-screen flex-col space-y-6 bg-secondaryBg">
+      <header
+        className="relative w-full pb-10"
+        style={{
+          backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
+        }}
+      >
+        <div className=" flex h-16 space-x-4 px-6  sm:justify-between sm:space-x-0">
+          <MainNav />
         </div>
+        <div
+          className="absolute bottom-[-11px] z-0  h-10 w-full bg-secondaryBg"
+          style={{ borderRadius: "24px 24px 0 0" }}
+        ></div>
       </header>
+
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">
           <DashboardNav items={dashboardConfig.sidebarNav} />

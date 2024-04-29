@@ -24,7 +24,7 @@ import { Icons } from "@/components/icons"
 
 type Props = {
   setDate: (date: Date) => void
-  date: Date | undefined
+  date: Date | undefined | null
 }
 
 function DatePicker({ date, setDate }: Props) {
@@ -61,7 +61,7 @@ function DatePicker({ date, setDate }: Props) {
           </Select>
         </div>
         <div className="w-full rounded-md border">
-          <Calendar mode="single" selected={date} onSelect={setDate} />
+          <Calendar mode="single" selected={date!} onSelect={setDate} />
         </div>
         <div className=" flex w-full justify-end">
           <PopoverClose className="w-full">

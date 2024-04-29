@@ -25,20 +25,6 @@ export async function PATCH(
       return new Response(null, { status: 403 })
     }
 
-    // Get the request body and validate it.
-    const body = await req.json()
-    const payload = userNameSchema.parse(body)
-
-    // Update the user.
-    await db.user.update({
-      where: {
-        id: session.user.id,
-      },
-      data: {
-        name: payload.name,
-      },
-    })
-
     return new Response(null, { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {

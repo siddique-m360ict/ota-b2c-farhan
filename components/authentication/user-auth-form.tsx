@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-
+import { setCookie } from "cookies-next"
 import { cn } from "@/lib/utils"
 import { userAuthSchema } from "@/lib/validations/auth"
 import { buttonVariants } from "@/components/ui/button"
@@ -15,14 +15,15 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { PasswordInput } from "../ui/password-input"
+import { postLogin } from "@/lib/server/auth/PostLoginEndpoints"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import { user } from "@/lib/redux/slice/user_slice"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  auth?: boolean
-}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof userAuthSchema>
 
-export function UserAuthForm({ className, auth, ...props }: UserAuthFormProps) {
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -34,30 +35,33 @@ export function UserAuthForm({ className, auth, ...props }: UserAuthFormProps) {
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
+  const dispatch = useAppDispatch()
+  const router = useRouter()
 
   async function onSubmit(data: FormData) {
     setIsLoading(true)
-
-    const signInResult = await signIn("email", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    })
-
-    setIsLoading(false)
-
-    if (!signInResult?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
-        variant: "destructive",
-      })
+    try {
+      const res = await postLogin(data)
+      if (!res.success) {
+        setIsLoading(false)
+        return toast({
+          title: res.message,
+          description: "Your sign in request failed. Please try again.",
+          variant: "destructive",
+          className: "bg-[#ff0000]",
+        })
+      } else {
+        dispatch(user(res))
+        localStorage.setItem("b_token", res?.token as string)
+        setCookie("b_token", res?.token)
+        router.replace(searchParams?.get("from") || "/")
+      }
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    } finally {
+      setIsLoading(false)
     }
-
-    return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
-    })
   }
 
   return (
@@ -82,7 +86,7 @@ export function UserAuthForm({ className, auth, ...props }: UserAuthFormProps) {
               id="password"
               placeholder="password"
               disabled={isLoading || isGitHubLoading}
-              {...register("email")}
+              {...register("password")}
             />
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
@@ -94,7 +98,7 @@ export function UserAuthForm({ className, auth, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {auth ? "Sign In" : "Register"}
+            Sign In
           </button>
         </div>
       </form>

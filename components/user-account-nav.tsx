@@ -1,7 +1,5 @@
 "use client"
-
 import Link from "next/link"
-import { User } from "next-auth"
 import { signOut } from "next-auth/react"
 
 import {
@@ -12,25 +10,37 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { UserAvatar } from "@/components/user-avatar"
+import { UserType } from "@/types"
+import { LoginResData } from "@/lib/server/auth/PostLoginEndpoints"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import { logout } from "@/lib/redux/slice/user_slice"
+import { useRouter } from "next/navigation"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: Pick<User, "name" | "image" | "email">
+  user: LoginResData | undefined
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const handleLogout = () => {
+    dispatch(logout())
+    router.replace(`${window.location.origin}/login`)
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user.name || null, image: user.image || null }}
-          className="h-8 w-8 "
+          user={{ name: user?.username || null, image: user?.photo || null }}
+          className="h-9 w-9 "
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            {user.name && <p className="font-medium">{user.name}</p>}
-            {user.email && (
+            {user?.username && <p className="font-medium">{user.username}</p>}
+            {user?.email && (
               <p className="w-[200px] truncate text-sm text-muted-foreground">
                 {user.email}
               </p>
@@ -38,13 +48,13 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild disabled>
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild disabled>
           <Link href="/dashboard/billing">Billing</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className="cursor-pointer">
           <Link href="/dashboard/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -52,9 +62,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           className="cursor-pointer"
           onSelect={(event) => {
             event.preventDefault()
-            signOut({
-              callbackUrl: `${window.location.origin}/login`,
-            })
+            handleLogout()
           }}
         >
           Sign out

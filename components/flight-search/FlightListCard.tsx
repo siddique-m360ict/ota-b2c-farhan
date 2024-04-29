@@ -2,44 +2,53 @@
 import { hostedImage, imgHostLink } from "@/lib/utils"
 import Image from "next/image"
 import React from "react"
-import { Result } from "../home/elements/types/flightSearchType"
+import { Fare, Result } from "../home/elements/types/flightSearchType"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion"
+import { Card, CardContent } from "../ui/card"
 import FlightCard from "./elements/FlightCard"
+import FlightContent from "./elements/FlightContent"
+import FlightContentExtraInfo from "./elements/FlightContentExtraInfo"
 
 type Props = {
   flight: Result
 }
-export type pricingInfo = {
-  totalPrice: number
-  currency: string
-}
+
 const FlightListCard = ({ flight }: Props) => {
-  const pricingInfo: pricingInfo = {
-    totalPrice: flight.totalPrice,
-    currency: flight.currency,
-  }
   return (
     <div>
       <Accordion type="single" collapsible>
-        {flight?.flights?.map((flights, index) => (
-          <AccordionItem
-            value={flights?.id?.toString() as string}
-            className="border-0"
-            key={index}
-          >
-            <AccordionTrigger className="top-0 py-1 hover:no-underline  [&>svg]:absolute [&>svg]:bottom-[10px] [&>svg]:right-[5px]">
-              <FlightCard flights={flights} pricingInfo={pricingInfo} />
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </AccordionContent>
-          </AccordionItem>
-        ))}
+        <AccordionItem
+          value={flight.carrier_code as string}
+          className="border-0"
+        >
+          <Card className="shadow-2xlo my-1 w-full rounded-none border-none">
+            <CardContent className="px-5 py-0">
+              <FlightCard flights={flight} fare={flight.fare} />
+            </CardContent>
+          </Card>
+
+          <AccordionContent>
+            <div className="justify-between md:flex">
+              <div className="mt-2 basis-3/4 items-center justify-center border-r">
+                <h3 className="mb-2 text-center text-lg font-bold">
+                  Flight Details
+                </h3>
+                <FlightContent flights={flight} />
+              </div>
+              <div className="flex-1 p-2">
+                <FlightContentExtraInfo
+                  fare={flight.fare}
+                  passengers={flight.passengers}
+                />
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
       </Accordion>
     </div>
   )

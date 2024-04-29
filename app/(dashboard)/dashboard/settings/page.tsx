@@ -11,21 +11,21 @@ export const metadata = {
   description: "Manage account and website settings.",
 }
 
-export default async function SettingsPage() {
-  const user = await getCurrentUser()
+export default async function page() {
+  // const user = await getCurrentUser()
 
-  if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
-  }
+  // if (!user) {
+  //   redirect(authOptions?.pages?.signIn || "/login")
+  // }
 
   return (
     <DashboardShell>
       <DashboardHeader
         heading="Settings"
-        text="Manage account and website settings."
+        text="Manage account and update settings."
       />
       <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id, name: user.name || "" }} />
+        <UserNameForm />
       </div>
     </DashboardShell>
   )

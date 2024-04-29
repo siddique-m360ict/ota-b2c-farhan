@@ -24,6 +24,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   )
   const [toAirport, setToAirport] = React.useState<IAirportList | null>(null)
   const [date, setDate] = React.useState<Date>()
+
   const [rotation, setRotation] = useState(0)
   const router = useRouter()
   const swapRoute = () => {

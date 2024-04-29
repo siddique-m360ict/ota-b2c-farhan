@@ -1,8 +1,6 @@
-import {
-  FilterAirlines,
-  IFlightSearchList,
-} from "@/components/home/elements/types/flightSearchType"
+import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
 import { HTTPResponse } from "@/lib/commonTypes"
+import { FilterAirlines } from "@/lib/redux/slice/filterOptions"
 import { serverUrl } from "@/lib/utils"
 
 export async function filterFlightList(
@@ -10,11 +8,14 @@ export async function filterFlightList(
   page: number
 ): Promise<HTTPResponse<IFlightSearchList>> {
   // Structuring URL
-  let apiUrl = serverUrl(`/booking/flight/filter?page=${page}&size=20`)
+  let apiUrl = serverUrl(`/booking/flight/filter/v2?page=${page}&size=20`)
 
-  if (filter.carrier_operating) {
-    apiUrl += `&carrier_operating=${filter.carrier_operating}`
+  if (Array.isArray(filter?.carrier_operating)) {
+    if (filter?.carrier_operating.length > 0) {
+      apiUrl += `&carrier_operating=${filter.carrier_operating}`
+    }
   }
+
   if (filter.min_price) {
     apiUrl += `&min_price=${filter.min_price}`
   }
@@ -24,9 +25,13 @@ export async function filterFlightList(
   if (filter.refundable) {
     apiUrl += `&refundable=${filter.refundable}`
   }
-  if (filter.stoppage) {
-    apiUrl += `&stoppage=${filter.stoppage}`
+
+  if (Array.isArray(filter?.stoppage)) {
+    if (filter?.stoppage.length > 0) {
+      apiUrl += `&stoppage=${filter.stoppage}`
+    }
   }
+
   if (filter.aircraft) {
     apiUrl += `&aircraft=${filter.aircraft}`
   }

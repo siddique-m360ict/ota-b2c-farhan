@@ -11,11 +11,8 @@ import { UserAccountNav } from "@/components/user-account-nav"
 import Image from "next/image"
 import ToggleGroup from "@/components/ui/toggleGroup"
 import HomeSearch from "@/components/home/HomeSearch"
-import { User } from "@/types"
 
 export default async function IndexPage() {
-  const user = await getCurrentUser()
-
   return (
     <div
       className="bg-center bg-no-repeat sm:bg-white sm:bg-cover"
@@ -28,7 +25,7 @@ export default async function IndexPage() {
       <div>
         <header className="container z-40">
           <div className="flex h-[8vh] justify-between pt-5 ">
-            <MainNav home={true} user={user} />
+            <MainNav home={true} />
           </div>
         </header>
 

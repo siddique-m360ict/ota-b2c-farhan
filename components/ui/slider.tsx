@@ -4,6 +4,9 @@ import * as SliderPrimitive from "@radix-ui/react-slider"
 import { cn } from "@/lib/utils"
 type SliderProps = {
   className?: string
+  rangClassName?: string
+  trackClassName?: string
+  thumbClassName?: string
   min: number
   max: number
   minStepsBetweenThumbs: number
@@ -11,18 +14,24 @@ type SliderProps = {
   formatLabel?: (value: number) => string
   value?: number[] | readonly number[]
   onValueChange?: (values: number[]) => void
+  handleAfterSliderChange?: (values: number[]) => void
 }
 
 const Slider = React.forwardRef(
   (
     {
       className,
+      rangClassName,
+      trackClassName,
+      thumbClassName,
+
       min,
       max,
       step,
       formatLabel,
       value,
       onValueChange,
+      handleAfterSliderChange,
       ...props
     }: SliderProps,
     ref
@@ -50,14 +59,22 @@ const Slider = React.forwardRef(
         step={step}
         value={localValues}
         onValueChange={handleValueChange}
+        onValueCommit={handleAfterSliderChange}
         className={cn(
           "relative mb-6 flex w-full touch-none select-none items-center",
           className
         )}
         {...props}
       >
-        <SliderPrimitive.Track className="bg-primary/20 relative h-1.5 w-full grow overflow-hidden rounded-full">
-          <SliderPrimitive.Range className="absolute h-full bg-primary" />
+        <SliderPrimitive.Track
+          className={cn(
+            "bg-primary/20 relative h-1 w-full grow overflow-hidden rounded-full",
+            trackClassName
+          )}
+        >
+          <SliderPrimitive.Range
+            className={cn("absolute h-full bg-primary", rangClassName)}
+          />
         </SliderPrimitive.Track>
         {localValues.map((value, index) => (
           <React.Fragment key={index}>
@@ -72,7 +89,12 @@ const Slider = React.forwardRef(
                 {formatLabel ? formatLabel(value) : value}
               </span>
             </div>
-            <SliderPrimitive.Thumb className="border-primary/50 block h-4 w-4 rounded-full border bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+            <SliderPrimitive.Thumb
+              className={cn(
+                "block h-3 w-3 rounded-full border border-primary bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                thumbClassName
+              )}
+            />
           </React.Fragment>
         ))}
       </SliderPrimitive.Root>

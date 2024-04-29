@@ -12,7 +12,9 @@ import {
 } from "../ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import MultiCity from "./elements/MultiCity"
 import OneWay from "./elements/OneWay"
+import RoundWay from "./elements/RoundWay"
 import SelectClass from "./elements/SelectClass"
 import SelectPassenger from "./elements/SelectPassenger"
 import SelectRoute from "./elements/SelectRoute"
@@ -42,8 +44,14 @@ const FlightSearch = ({ home }: Props) => {
       id: "oneway",
       element: <OneWay cabinClass={cabinClass} passenger={passenger} />,
     },
-    { id: "roundtrip", element: <>Round Trip</> },
-    { id: "multicity", element: <>Multi City</> },
+    {
+      id: "roundtrip",
+      element: <RoundWay cabinClass={cabinClass} passenger={passenger} />,
+    },
+    {
+      id: "multicity",
+      element: <MultiCity cabinClass={cabinClass} passenger={passenger} />,
+    },
   ]
 
   return (

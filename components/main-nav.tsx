@@ -4,24 +4,28 @@ import * as React from "react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
 
-import { MainNavItem, User } from "types"
+import { MainNavItem } from "types"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
 import { UserAccountNav } from "./user-account-nav"
 import { buttonVariants } from "./ui/button"
+import { useAppSelector } from "@/lib/redux/hooks"
+import { getCookies } from "cookies-next"
 
 interface MainNavProps {
   items?: MainNavItem[]
   children?: React.ReactNode
   home?: boolean
-  user?: any
 }
 
-export function MainNav({ items, children, home, user }: MainNavProps) {
+export function MainNav({ items, children, home }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+  const user = useAppSelector((state) => state.user)
+  const isLogin = getCookies().b_token
+  const isEmailVerified = user?.data?.is_verified
 
   const headerItems = [
     {
@@ -107,14 +111,8 @@ export function MainNav({ items, children, home, user }: MainNavProps) {
           <MobileNav items={items}>{children}</MobileNav>
         )}
       </div>
-      {user ? (
-        <UserAccountNav
-          user={{
-            name: user.name,
-            image: user.image,
-            email: user.email,
-          }}
-        />
+      {isLogin && user?.success ? (
+        <UserAccountNav user={user?.data} />
       ) : (
         <nav className="flex gap-3">
           <Link

@@ -43,6 +43,11 @@ export const OneWayFormatter = (query: IReqFlightSearch) => {
       Quantity: Number(query.infant),
     })
   }
-
+  if (Number(query.kids || 0) > 0) {
+    formattedQuery.PassengerTypeQuantity.push({
+      Code: "C05",
+      Quantity: Number(query.kids),
+    })
+  }
   return formattedQuery
 }

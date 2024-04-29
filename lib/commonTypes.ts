@@ -3,6 +3,7 @@ export interface HTTPResponse<T> {
   count: number
   data?: T
   message?: string
+  token?: string
 }
 
 export interface AirplaneSearch {

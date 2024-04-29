@@ -17,8 +17,6 @@ interface FlightLayoutProps {
 }
 
 export default async function FlightLayout({ children }: FlightLayoutProps) {
-  const user = await getCurrentUser()
-
   return (
     <div className="flex min-h-screen flex-col ">
       <header
@@ -28,7 +26,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
         }}
       >
         <div className=" flex h-16 space-x-4 px-6  sm:justify-between sm:space-x-0">
-          <MainNav user={user} />
+          <MainNav />
         </div>
         <div
           className="absolute bottom-[-11px] z-0  h-10 w-full bg-background"
