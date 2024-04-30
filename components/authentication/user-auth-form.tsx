@@ -124,10 +124,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGitHubLoading(true)
-          signIn("github")
-        }}
         disabled={isLoading || isGitHubLoading}
       >
         {isGitHubLoading ? (
@@ -140,10 +136,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGoogleLoading(true)
-          signIn("google")
-        }}
         disabled={isLoading || isGitHubLoading || isGoogleLoading}
       >
         {isGoogleLoading ? (

@@ -119,7 +119,7 @@ export function MainNav({ items, children, home }: MainNavProps) {
         <nav className="flex gap-3">
           <ModeToggle />
           <Link
-            href="/register"
+            href="/signup"
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
               " px-4 "
@@ -128,7 +128,7 @@ export function MainNav({ items, children, home }: MainNavProps) {
             Register
           </Link>
           <Link
-            href="/login"
+            href="/signin"
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
               "bg-white px-4 text-black"
