@@ -7,12 +7,6 @@ import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 
 export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
-  pages: {
-    // signIn: "/login",
-  },
   providers: [
     env.GITHUB_CLIENT_ID &&
       env.GITHUB_CLIENT_SECRET &&
@@ -37,5 +31,8 @@ export const authOptions: NextAuthOptions = {
       }
       return session
     },
+  },
+  pages: {
+    signIn: "/malik",
   },
 }
