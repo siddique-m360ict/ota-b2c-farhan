@@ -62,7 +62,7 @@ const MobileHome = () => {
     },
   ]
   return (
-    <div className="h-full">
+    <div className="h-full bg-secondaryBg">
       <HomeMobileHeader home={true} />
       <section className="px-6">
         <div className="w-full pt-4 ">

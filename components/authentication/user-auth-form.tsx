@@ -18,6 +18,7 @@ import { PasswordInput } from "../ui/password-input"
 import { postLogin } from "@/lib/server/auth/PostLoginEndpoints"
 import { useAppDispatch } from "@/lib/redux/hooks"
 import { user } from "@/lib/redux/slice/user_slice"
+import Link from "next/link"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -94,14 +95,22 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
+
           <button className={cn(buttonVariants())} disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
             Sign In
           </button>
+          <Link
+            href={"/forgot-password"}
+            className="text-right text-xs text-primary"
+          >
+            Forget password?
+          </Link>
         </div>
       </form>
+
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
