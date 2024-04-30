@@ -13,6 +13,7 @@ import { UserAccountNav } from "./user-account-nav"
 import { buttonVariants } from "./ui/button"
 import { useAppSelector } from "@/lib/redux/hooks"
 import { getCookies } from "cookies-next"
+import { ModeToggle } from "./mode-toggle"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -111,10 +112,12 @@ export function MainNav({ items, children, home }: MainNavProps) {
           ) : null}
         </div>
       </div>
+
       {isLogin && user?.success ? (
         <UserAccountNav user={user?.data} />
       ) : (
         <nav className="flex gap-3">
+          <ModeToggle />
           <Link
             href="/register"
             className={cn(
