@@ -11,7 +11,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/login",
+    // signIn: "/login",
   },
   providers: [
     env.GITHUB_CLIENT_ID &&
