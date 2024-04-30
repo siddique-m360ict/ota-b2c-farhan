@@ -34,7 +34,7 @@ export default async function IndexPage() {
           <section className="space-y-6 pb-8 pt-6  md:pb-12 md:pt-10 lg:pb-7 lg:pt-24 ">
             <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
               <h2 className="leading-2 mb-1 font-roboto  text-3xl font-bold tracking-wide	  text-white sm:text-5xl md:text-6xl lg:text-[35px]">
-                Your Trip Starts Here 08
+                Your Trip Starts Here 9
               </h2>
               <div className="flex gap-6">
                 <div className="box relative flex gap-2 text-[14px] font-[400] text-white">
