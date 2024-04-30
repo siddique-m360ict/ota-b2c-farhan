@@ -18,7 +18,7 @@ export default async function MarketingLayout({
         <div className="flex h-20 items-center justify-between py-6">
           <nav>
             <Link
-              href="/login"
+              href="/signin"
               className={cn(
                 buttonVariants({ variant: "secondary", size: "sm" }),
                 "px-4"
