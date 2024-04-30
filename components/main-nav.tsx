@@ -31,14 +31,14 @@ export function MainNav({ items, children, home }: MainNavProps) {
     {
       id: "Hotels",
       label: "Hotels",
-      icon: <Icons.Home className="text-[3px]" />,
+      icon: <Icons.Home className="size-[22px]" />,
       href: "/d",
     },
     {
       id: "Flights",
       label: "Flights",
       icon: <Icons.Plane size={20} />,
-      href: "/",
+      href: "/flights",
     },
 
     {
@@ -47,18 +47,28 @@ export function MainNav({ items, children, home }: MainNavProps) {
       icon: <Icons.TramFront />,
       href: "/d",
     },
-    { id: "Cars", label: "Cars", icon: <Icons.CarFront />, href: "/d" },
+    {
+      id: "Cars",
+      label: "Cars",
+      icon: <Icons.CarFront className="size-[20px]" />,
+      href: "/d",
+    },
     {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
-      icon: <Icons.Attractions />,
+      icon: <Icons.Attractions className="size-[20px]" />,
       href: "/d",
     },
-    { id: "Visa", label: "Visa", icon: <Icons.Bundle />, href: "/d" },
+    {
+      id: "Visa",
+      label: "Visa",
+      icon: <Icons.Bundle className="size-[22px]" />,
+      href: "/d",
+    },
   ]
 
   return (
-    <div className="flex w-full items-center justify-between">
+    <div className="z-50 flex w-full items-center justify-between">
       <div
         className={cn(
           "",
@@ -68,7 +78,7 @@ export function MainNav({ items, children, home }: MainNavProps) {
         <Link
           href="/"
           className={cn(
-            "hidden items-center space-x-2 text-[1.2vw] text-white md:flex"
+            " hidden items-center space-x-2 text-[1.2vw] text-white md:flex"
           )}
         >
           <Icons.logo />
@@ -100,16 +110,6 @@ export function MainNav({ items, children, home }: MainNavProps) {
             </nav>
           ) : null}
         </div>
-        <button
-          className="flex items-center space-x-2 md:hidden"
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-        >
-          {showMobileMenu ? <Icons.close /> : <Icons.logo />}
-          <span className="font-bold">Menu</span>
-        </button>
-        {showMobileMenu && items && (
-          <MobileNav items={items}>{children}</MobileNav>
-        )}
       </div>
       {isLogin && user?.success ? (
         <UserAccountNav user={user?.data} />

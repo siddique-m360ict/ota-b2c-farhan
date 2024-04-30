@@ -49,7 +49,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
 
   return (
     <>
-      <div className="relative flex gap-2">
+      <div className="relative  flex flex-col gap-3 md:flex-row ">
         <SelectAirport
           airport={fromAirport}
           setAirport={setFromAirport}

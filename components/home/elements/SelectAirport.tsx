@@ -51,8 +51,8 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger className="w-full">
-          <Card className="  flex h-[5.5vh] cursor-pointer items-center rounded px-4  py-1 text-start">
-            <CardContent className="p-0">
+          <Card className=" flex h-[5.5vh] cursor-pointer items-center rounded px-4  py-1 text-start">
+            <CardContent className="w-full p-0">
               {airport ? (
                 <p className="leading-5">
                   {airport.iata_code} <br />
@@ -80,9 +80,18 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="w-[150px] justify-start">
-          {airport ? <>{airport.iata_code}</> : `${name} Airport`}
-        </Button>
+        <Card className=" flex h-[5.5vh] cursor-pointer items-center rounded px-4  py-1 text-start">
+          <CardContent className="w-full p-0">
+            {airport ? (
+              <p className="leading-5">
+                {airport.iata_code} <br />
+                <small className="text-xs">{airport.name}</small>
+              </p>
+            ) : (
+              <p className="text-sm"> {name} Airport</p>
+            )}
+          </CardContent>
+        </Card>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mt-4 border-t">

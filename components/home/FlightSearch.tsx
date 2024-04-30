@@ -28,8 +28,9 @@ export interface Passenger {
 
 type Props = {
   home?: boolean
+  className?: string
 }
-const FlightSearch = ({ home }: Props) => {
+const FlightSearch = ({ home, className }: Props) => {
   const [passenger, setPassenger] = useState<Passenger>({
     adult: 1,
     kids: 0,
@@ -55,9 +56,11 @@ const FlightSearch = ({ home }: Props) => {
   ]
 
   return (
-    <Card className={cn(!home && "shadow-xl")}>
-      <CardContent className={cn("pt-12 text-start", !home && "pt-4")}>
-        <div className="mb-3 mt-1 flex items-center gap-5">
+    <Card className={cn(!home && "shadow-xl", className)}>
+      <CardContent
+        className={cn("px-4 pt-12 text-start md:px-6", !home && "pt-4")}
+      >
+        <div className="mb-3 mt-1 flex items-center gap-3 md:gap-5">
           <SelectRoute
             activeRoute={activeRoute}
             setActiveRoute={setActiveRoute}

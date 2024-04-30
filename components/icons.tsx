@@ -35,6 +35,7 @@ import {
   UserCheck,
   ChevronDown,
   Armchair,
+  AlignJustify,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -44,7 +45,7 @@ export const Icons = {
   logo: Command,
   Plane: Plane,
   close: X,
-
+  menu: AlignJustify,
   UserCheck: UserCheck,
   ChevronDown: ChevronDown,
   PersonStanding: PersonStanding,
@@ -157,8 +158,6 @@ export const Icons = {
   Home: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -177,8 +176,6 @@ export const Icons = {
   Bundle: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -195,8 +192,6 @@ export const Icons = {
   Attractions: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -241,8 +236,6 @@ export const Icons = {
   CarFront: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
