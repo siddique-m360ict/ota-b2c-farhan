@@ -1,7 +1,6 @@
 import React from "react"
 import dynamic from "next/dynamic"
 import BoxLoader from "@/components/flight-search/elements/BoxLoader"
-
 import { HTTPResponse } from "@/lib/commonTypes"
 import { serverUrl } from "@/lib/utils"
 import { OneWayFormatter } from "@/lib/formatter/oneWayFormatter"
@@ -42,6 +41,7 @@ async function Page({ params, searchParams }) {
     size?: number | string | null
   }
 
+  // Your sanitizeSearchParams function here
   const sanitizeSearchParams = (searchParams) => {
     const sanitizeParams: { [key: string]: string } = {}
     function addIfNotNull(
@@ -100,6 +100,8 @@ async function Page({ params, searchParams }) {
       body: JSON.stringify(requestBody),
     })
 
+    console.log(JSON.stringify(requestBody))
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
@@ -107,7 +109,13 @@ async function Page({ params, searchParams }) {
     return response.json()
   }
 
-  const res = await GetFlightList_V1(searchParams)
-  return <FlightView flights={res?.data} count={res.count} />
+  try {
+    const res = await GetFlightList_V1(searchParams)
+    return <FlightView flights={res?.data} count={res.count} />
+  } catch (error) {
+    // Handle errors
+    return <div>Error: {error.message}</div>
+  }
 }
+
 export default Page
