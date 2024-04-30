@@ -8,7 +8,7 @@ const nextConfig = {
     domains: ["m360-trabill.s3.ap-south-1.amazonaws.com"],
   },
   experimental: {
-    serverActions: true,
+    appDir: true,
   },
 }
 
