@@ -20,7 +20,7 @@ const HomeMobileHeader = ({ home }: Props) => {
       id: "Hotels",
       label: "Hotels",
       icon: <Icons.Home className="size-[22px]" />,
-      href: "/d",
+      href: "/",
     },
     {
       id: "Flights",
@@ -33,25 +33,25 @@ const HomeMobileHeader = ({ home }: Props) => {
       id: "Trains",
       label: "Trains",
       icon: <Icons.TramFront />,
-      href: "/d",
+      href: "/",
     },
     {
       id: "Cars",
       label: "Cars",
       icon: <Icons.CarFront className="size-[20px]" />,
-      href: "/d",
+      href: "/",
     },
     {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
-      href: "/d",
+      href: "/",
     },
     {
       id: "Visa",
       label: "Visa",
       icon: <Icons.Bundle className="size-[22px]" />,
-      href: "/d",
+      href: "/",
     },
   ]
 
