@@ -26,21 +26,17 @@ const isFilterNotEmpty = (filter: any) => {
   return Object.values(filter).some((value) => value !== null)
 }
 
-const FlightListView = ({ flights, count }: Props) => {
+const FlightListView = () => {
   const dispatch = useAppDispatch()
   const { ref, inView } = useInView()
   const filterOption = useAppSelector(selectFilterOption) as FilterAirlines
   const [filterDataList, setFilterDataList] = useState<
     Result[] | undefined | {} | any
-  >(flights?.results)
+  >()
   const [filterCount, setFilterCount] = useState<number>()
   const [page, setPage] = useState<number>(1)
 
-  if (flights?.filter) {
-    dispatch(setFilterData(flights.filter))
-  }
-
-  const totalPage = Math.ceil(((filterCount && filterCount) || count || 0) / 20)
+  const totalPage = Math.ceil(((filterCount && filterCount) || 0) / 20)
 
   // handle filtering
   useEffect(() => {
@@ -84,18 +80,11 @@ const FlightListView = ({ flights, count }: Props) => {
   //     pagination: Math.ceil(((filterCount && filterCount) || count || 0) / 20),
   //   }
   // )
-  console.log(flights)
+  // console.log(flights)
 
   return (
     <div>
-      <FlightTopHeader
-        totalFlight={filterCount || filterCount == 0 ? filterCount : count}
-        arrivalCity={
-          flights?.results[0]?.flights[0]?.options?.[
-            flights.results[0]?.flights[0]?.options?.length - 1
-          ].arrival?.city
-        }
-      />
+      <FlightTopHeader totalFlight={filterCount!} arrivalCity={"10"} />
       <FlightTopFilter />
       {filterDataList && (
         <div>
