@@ -84,7 +84,7 @@ const FlightListView = ({ flights, count }: Props) => {
   //     pagination: Math.ceil(((filterCount && filterCount) || count || 0) / 20),
   //   }
   // )
-  // console.log(filterDataList)
+  console.log(flights)
 
   return (
     <div>
