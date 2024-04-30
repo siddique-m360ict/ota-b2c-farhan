@@ -12,7 +12,7 @@ const MobileHome = () => {
       id: "Hotels",
       label: "Hotels",
       icon: "/images/home/mobile/5.png",
-      href: "/d",
+      href: "/",
     },
     {
       id: "Flights",
@@ -25,13 +25,13 @@ const MobileHome = () => {
       id: "Trains",
       label: "Trains",
       icon: "/images/home/mobile/7.png",
-      href: "/d",
+      href: "/",
     },
     {
       id: "Cars",
       label: "Car Rentals",
       icon: "/images/home/mobile/8.png",
-      href: "/d",
+      href: "/",
     },
   ]
 
@@ -40,25 +40,25 @@ const MobileHome = () => {
       id: "AirTransport",
       label: "Airport Transfers",
       icon: "/images/home/mobile/1.png",
-      href: "/d",
+      href: "/",
     },
     {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: "/images/home/mobile/2.png",
-      href: "/d",
+      href: "/",
     },
     {
       id: "Destinations",
       label: "Destinations",
       icon: "/images/home/mobile/3.webp",
-      href: "/d",
+      href: "/",
     },
     {
       id: "Visa",
       label: "Visa",
       icon: "/images/home/mobile/4.png",
-      href: "/d",
+      href: "/",
     },
   ]
   return (
