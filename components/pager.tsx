@@ -1,47 +1,14 @@
 import Link from "next/link"
-import { Doc } from "contentlayer/generated"
-
 import { docsConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
-interface DocsPagerProps {
-  doc: Doc
+export function DocsPager({ doc }: any) {
+  return <div className="flex flex-row items-center justify-between">hello</div>
 }
 
-export function DocsPager({ doc }: DocsPagerProps) {
-  const pager = getPagerForDoc(doc)
-
-  if (!pager) {
-    return null
-  }
-
-  return (
-    <div className="flex flex-row items-center justify-between">
-      {pager?.prev && (
-        <Link
-          href={pager.prev.href}
-          className={cn(buttonVariants({ variant: "ghost" }))}
-        >
-          <Icons.chevronLeft className="mr-2 h-4 w-4" />
-          {pager.prev.title}
-        </Link>
-      )}
-      {pager?.next && (
-        <Link
-          href={pager.next.href}
-          className={cn(buttonVariants({ variant: "ghost" }), "ml-auto")}
-        >
-          {pager.next.title}
-          <Icons.chevronRight className="ml-2 h-4 w-4" />
-        </Link>
-      )}
-    </div>
-  )
-}
-
-export function getPagerForDoc(doc: Doc) {
+export function getPagerForDoc(doc: any) {
   const flattenedLinks = [null, ...flatten(docsConfig.sidebarNav), null]
   const activeIndex = flattenedLinks.findIndex(
     (link) => doc.slug === link?.href

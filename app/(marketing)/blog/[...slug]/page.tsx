@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation"
-import { allAuthors, allPosts } from "contentlayer/generated"
 
 import { Mdx } from "@/components/mdx-components"
 
@@ -17,17 +16,6 @@ interface PostPageProps {
   params: {
     slug: string[]
   }
-}
-
-async function getPostFromParams(params) {
-  const slug = params?.slug?.join("/")
-  const post = allPosts.find((post) => post.slugAsParams === slug)
-
-  if (!post) {
-    null
-  }
-
-  return post
 }
 
 // export async function generateMetadata({
@@ -75,25 +63,7 @@ async function getPostFromParams(params) {
 //   }
 // }
 
-export async function generateStaticParams(): Promise<
-  PostPageProps["params"][]
-> {
-  return allPosts.map((post) => ({
-    slug: post.slugAsParams.split("/"),
-  }))
-}
-
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params)
-
-  if (!post) {
-    notFound()
-  }
-
-  const authors = post.authors.map((author) =>
-    allAuthors.find(({ slug }) => slug === `/authors/${author}`)
-  )
-
   return (
     <article className="container relative max-w-3xl py-6 lg:py-10">
       {/* <Link
@@ -107,16 +77,8 @@ export default async function PostPage({ params }: PostPageProps) {
         See all posts
       </Link> */}
       <div>
-        {post.date && (
-          <time
-            dateTime={post.date}
-            className="block text-sm text-muted-foreground"
-          >
-            Published on {formatDate(post.date)}
-          </time>
-        )}
         <h1 className="mt-2 inline-block font-heading text-4xl leading-tight lg:text-5xl">
-          {post.title}
+          hello
         </h1>
         {/* {authors?.length ? (
           <div className="mt-4 flex space-x-4">

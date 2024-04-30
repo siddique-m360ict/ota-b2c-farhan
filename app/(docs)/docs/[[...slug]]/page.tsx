@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation"
-import { allDocs } from "contentlayer/generated"
 
 import { getTableOfContents } from "@/lib/toc"
 import { Mdx } from "@/components/mdx-components"
@@ -17,17 +16,6 @@ interface DocPageProps {
   params: {
     slug: string[]
   }
-}
-
-async function getDocFromParams(params) {
-  const slug = params.slug?.join("/") || ""
-  const doc = allDocs.find((doc) => doc.slugAsParams === slug)
-
-  if (!doc) {
-    null
-  }
-
-  return doc
 }
 
 // export async function generateMetadata({
@@ -72,23 +60,7 @@ async function getDocFromParams(params) {
 //   }
 // }
 
-export async function generateStaticParams(): Promise<
-  DocPageProps["params"][]
-> {
-  return allDocs.map((doc) => ({
-    slug: doc.slugAsParams.split("/"),
-  }))
-}
-
 export default async function DocPage({ params }: DocPageProps) {
-  const doc = await getDocFromParams(params)
-
-  if (!doc) {
-    notFound()
-  }
-
-  const toc = await getTableOfContents(doc.body.raw)
-
   return (
     <main className="relative py-6 lg:gap-10 lg:py-10 xl:grid xl:grid-cols-[1fr_300px]">
       {/* <div className="mx-auto w-full min-w-0">

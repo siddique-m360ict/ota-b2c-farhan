@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { allGuides } from "contentlayer/generated"
 
 import { getTableOfContents } from "@/lib/toc"
 import { Icons } from "@/components/icons"
@@ -19,17 +18,6 @@ interface GuidePageProps {
   params: {
     slug: string[]
   }
-}
-
-async function getGuideFromParams(params) {
-  const slug = params?.slug?.join("/")
-  const guide = allGuides.find((guide) => guide.slugAsParams === slug)
-
-  if (!guide) {
-    null
-  }
-
-  return guide
 }
 
 // export async function generateMetadata({
@@ -74,23 +62,7 @@ async function getGuideFromParams(params) {
 //   }
 // }
 
-export async function generateStaticParams(): Promise<
-  GuidePageProps["params"][]
-> {
-  return allGuides.map((guide) => ({
-    slug: guide.slugAsParams.split("/"),
-  }))
-}
-
 export default async function GuidePage({ params }: GuidePageProps) {
-  const guide = await getGuideFromParams(params)
-
-  if (!guide) {
-    notFound()
-  }
-
-  const toc = await getTableOfContents(guide.body.raw)
-
   return (
     <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
       {/* <div>

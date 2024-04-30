@@ -1,5 +1,3 @@
-import { withContentlayer } from "next-contentlayer"
-
 import "./env.mjs"
 
 /** @type {import('next').NextConfig} */
@@ -10,9 +8,8 @@ const nextConfig = {
     domains: ["m360-trabill.s3.ap-south-1.amazonaws.com"],
   },
   experimental: {
-    appDir: true,
-    serverComponentsExternalPackages: ["@prisma/client"],
+    serverActions: true,
   },
 }
 
-export default withContentlayer(nextConfig)
+export default nextConfig
