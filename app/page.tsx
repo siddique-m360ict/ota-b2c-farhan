@@ -17,7 +17,7 @@ import FlightListView from "@/components/flight-search/FlightListView"
 import { getAllFlights } from "./actions"
 
 export default async function IndexPage() {
-  const res = await getAllFlights()
+  // const res = await getAllFlights()
 
   return (
     <>
@@ -95,7 +95,7 @@ export default async function IndexPage() {
           </section>
         </div>
       </div>
-      flights: {res?.message}
+      {/* flights: {res?.message} */}
       <div className="block md:hidden">
         <MobileHome />
       </div>
