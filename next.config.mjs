@@ -7,9 +7,6 @@ const nextConfig = {
     domains: ["avatars.githubusercontent.com"],
     domains: ["m360-trabill.s3.ap-south-1.amazonaws.com"],
   },
-  experimental: {
-    appDir: true,
-  },
 }
 
 export default nextConfig

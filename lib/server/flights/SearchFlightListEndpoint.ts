@@ -1,4 +1,3 @@
-"use server"
 import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
 import { HTTPResponse } from "@/lib/commonTypes"
 import { MultiWayFormatter } from "@/lib/formatter/MultiWayFormatter"

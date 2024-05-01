@@ -1,5 +1,3 @@
-"use server"
-
 export const getAllFlights = async () => {
   try {
     const apiUrl =
