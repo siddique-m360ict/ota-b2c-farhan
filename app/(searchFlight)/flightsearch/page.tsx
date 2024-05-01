@@ -5,18 +5,10 @@ import dynamic from "next/dynamic"
 import BoxLoader from "@/components/flight-search/elements/BoxLoader"
 import GetFlightList_V2 from "./actions"
 
-const FlightView = dynamic(
-  () => import("../../../components/flight-search/FlightListView"),
-  {
-    ssr: false,
-    loading: () => <BoxLoader message="Loading UI..." />,
-  }
-)
-
 const page = async ({ params, searchParams }) => {
   const res = await GetFlightList_V2(searchParams)
   console.log(res)
-  return <FlightView flights={res?.data} count={res.count} />
+  return <FlightListView flights={res?.data} count={res.count} />
 }
 
 export default page
