@@ -3,7 +3,7 @@ import FlightListView from "@/components/flight-search/FlightListView"
 import React from "react"
 
 const page = async ({ params, searchParams }) => {
-  const res = await getAllFlights(searchParams)
+  const res = await getAllFlights()
   console.log(res)
   return (
     <div>
