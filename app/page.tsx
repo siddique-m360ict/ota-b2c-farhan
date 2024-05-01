@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { cn, serverUrl } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
@@ -14,11 +14,25 @@ import HomeSearch from "@/components/home/HomeSearch"
 import MobileHome from "@/components/homeMobile/MobileHome"
 import FlightListCard from "@/components/flight-search/FlightListCard"
 import FlightListView from "@/components/flight-search/FlightListView"
-import { getAllFlights } from "./actions"
+
+async function fetchAirportData() {
+  try {
+    const apiUrl = serverUrl("/common/airport?skip=0&limit=20")
+    const res = await fetch(apiUrl)
+    if (!res.ok) {
+      throw new Error("Failed to fetch airport data")
+    }
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.error("Error fetching airport data:", error)
+    throw error
+  }
+}
 
 export default async function IndexPage({ params, searchParams }) {
-  const res = await getAllFlights(searchParams)
-  console.log(res.count)
+  const airport = await fetchAirportData()
+  console.log(airport)
 
   return (
     <>
@@ -97,8 +111,9 @@ export default async function IndexPage({ params, searchParams }) {
           </section>
         </div>
       </div>
-      <FlightListView flights={res?.data} count={res.count} />
-      page {res?.message}
+      total Airport : {airport?.success ? "true" : "false"}
+      {" | "}
+      {airport?.data?.length} Airports
       <div className="block md:hidden">
         <MobileHome />
       </div>
