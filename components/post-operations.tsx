@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Post } from "@prisma/client"
 
 import {
   AlertDialog,
@@ -25,27 +24,13 @@ import {
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
-async function deletePost(postId: string) {
-  const response = await fetch(`/api/posts/${postId}`, {
-    method: "DELETE",
-  })
-
-  if (!response?.ok) {
-    toast({
-      title: "Something went wrong.",
-      description: "Your post was not deleted. Please try again.",
-      variant: "destructive",
-    })
-  }
-
-  return true
-}
+async function deletePost(postId: string) {}
 
 interface PostOperationsProps {
-  post: Pick<Post, "id" | "title">
+  post: string
 }
 
-export function PostOperations({ post }: PostOperationsProps) {
+export function PostOperations() {
   const router = useRouter()
   const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false)
   const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false)
@@ -59,7 +44,7 @@ export function PostOperations({ post }: PostOperationsProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem>
-            <Link href={`/editor/${post.id}`} className="flex w-full">
+            <Link href={`/editor/1`} className="flex w-full">
               Edit
             </Link>
           </DropdownMenuItem>
@@ -89,13 +74,13 @@ export function PostOperations({ post }: PostOperationsProps) {
                 event.preventDefault()
                 setIsDeleteLoading(true)
 
-                const deleted = await deletePost(post.id)
+                const deleted = await deletePost("1")
 
-                if (deleted) {
-                  setIsDeleteLoading(false)
-                  setShowDeleteAlert(false)
-                  router.refresh()
-                }
+                // if (deleted) {
+                //   setIsDeleteLoading(false)
+                //   setShowDeleteAlert(false)
+                //   router.refresh()
+                // }
               }}
               className="bg-red-600 focus:ring-red-600"
             >

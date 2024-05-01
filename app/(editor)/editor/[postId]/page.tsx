@@ -7,14 +7,5 @@ interface EditorPageProps {
 }
 
 export default async function EditorPage({ params }: EditorPageProps) {
-  return (
-    <Editor
-      post={{
-        id: "1",
-        title: "post.title",
-        content: "post.content",
-        published: true,
-      }}
-    />
-  )
+  return <Editor />
 }

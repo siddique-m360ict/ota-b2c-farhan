@@ -78,7 +78,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             "rounded px-4"
           )}
           onClick={() =>
-            startTransition(() => changeRoute(`flight-search?${queryParams}`))
+            startTransition(() => changeRoute(`flightsearch?${queryParams}`))
           }
         >
           {isPending ? "load.." : "Search"}
