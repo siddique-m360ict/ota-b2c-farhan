@@ -78,14 +78,6 @@ const FlightListView = ({ flights, count }: Props) => {
     }
   }, [inView])
 
-  // console.log(
-  //   { totalPage, page },
-  //   {
-  //     pagination: Math.ceil(((filterCount && filterCount) || count || 0) / 20),
-  //   }
-  // )
-  // console.log(filterDataList)
-
   return (
     <div>
       <FlightTopHeader
