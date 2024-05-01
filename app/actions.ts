@@ -25,7 +25,6 @@ export const getAllFlights = async () => {
       headers: myHeaders,
       body: JSON.stringify(body),
     })
-    console.log(JSON.stringify(body))
 
     return response.json()
   } catch (error) {
