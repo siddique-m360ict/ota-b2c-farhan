@@ -4,9 +4,11 @@ import React, { Suspense } from "react"
 import dynamic from "next/dynamic"
 
 const page = async ({ params, searchParams }) => {
+  console.log(searchParams)
+
   return (
     <Suspense fallback={<>loading...................</>}>
-      <div>searchParams date is: {searchParams?.departuredate}</div>
+      <div>searchParams date is: </div>
     </Suspense>
   )
 }
