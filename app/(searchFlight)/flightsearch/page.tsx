@@ -5,13 +5,15 @@ import dynamic from "next/dynamic"
 import BoxLoader from "@/components/flight-search/elements/BoxLoader"
 
 const page = async ({ params, searchParams }) => {
-  let response
   if (Object.keys(searchParams).length !== 0) {
-    response = await getAllFlights(searchParams)
+    console.log({ searchParams })
   }
-  console.log(response)
+  console.log({
+    p: "dhbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfs",
+    condition: Object.keys(searchParams).length !== 0,
+  })
 
-  return <div>response: {response?.message}</div>
+  return <div>response: </div>
 }
 
 export default page
