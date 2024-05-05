@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import Providers from './Providers';
-import { Footer } from '../components/common/Footer';
+ 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 
 import '../styles/globals.css';
+ 
 
 export const metadata: Metadata = {
   title: 'Ecommerce Template',
@@ -28,7 +29,7 @@ export default async function RootLayout({
             <Analytics />
             <SpeedInsights />
           </main>
-          <Footer />
+ 
         </body>
       </Providers>
     </html>

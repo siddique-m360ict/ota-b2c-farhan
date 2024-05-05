@@ -1,13 +1,14 @@
-import { Suspense } from 'react';
 
-import { getAllFlights } from './actions';
-import ProductSkeleton from '@/components/skeletons/ProductSkeleton';
+
+import { Suspense } from 'react';
+import {getAllFlights} from "./actions"
+ 
 
 const Home = async ({ params, searchParams }: any) => {
   return (
     <section className='pt-14'>
       <Suspense
-        fallback={<ProductSkeleton extraClassname='' numberProducts={18} />}
+        fallback={<>loading..................</>}
       >
         <AllProducts searchParams={searchParams} />
       </Suspense>
@@ -16,7 +17,7 @@ const Home = async ({ params, searchParams }: any) => {
 };
 
 const AllProducts = async ({ searchParams }: any) => {
-  return <div>{searchParams?.departuredate || 'Hello!'}</div>;
+  return <div className='container'>{searchParams?.departuredate || 'Hello!'}</div>;
 };
 
 export default Home;

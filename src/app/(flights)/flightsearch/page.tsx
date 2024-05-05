@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
-import ProductSkeleton from '@/components/skeletons/ProductSkeleton';
+
 
 const Home = async ({ params, searchParams }: any) => {
   return (
     <section className='pt-14'>
       <Suspense
-        fallback={<ProductSkeleton extraClassname='' numberProducts={18} />}
+        fallback={<>loading.....................</>}
       >
         <AllProducts searchParams={searchParams} />
       </Suspense>

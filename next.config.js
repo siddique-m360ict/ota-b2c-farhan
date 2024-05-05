@@ -1,8 +1,6 @@
 const nextConfig = {
 	images: {
-		domains: [
-			"res.cloudinary.com"
-		],
+		domains: ["m360-trabill.s3.ap-south-1.amazonaws.com"],
 	},
 };
 

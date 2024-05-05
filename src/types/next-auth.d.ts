@@ -1,5 +1,5 @@
 import { Session } from "next-auth";
-import { UserDocument } from "./types";
+import { UserDocument } from ".";
 
 declare module "next-auth" {
     interface Session {
