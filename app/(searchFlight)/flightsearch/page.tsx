@@ -10,5 +10,9 @@ export default function Page({
   params: { slug: string }
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  return <h1>{searchParams?.departuredate || "Hello!"}</h1>
+  return (
+    <Suspense fallback={<>loading.........</>}>
+      <h1>{searchParams?.departuredate || "Hello!"}</h1>
+    </Suspense>
+  )
 }
