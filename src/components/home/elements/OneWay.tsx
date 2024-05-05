@@ -44,7 +44,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=oneway`
 
   const changeRoute = (url: string | undefined) => {
-    router.push(url as string)
+    router.push(url as string, { shallow: true })
   }
 
   return (

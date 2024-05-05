@@ -1,36 +1,32 @@
-// import { Suspense } from "react"
-// import { getAllFlights } from "../actions"
-// import FlightListView from "@/components/flight-search/FlightListView"
-
+import { Suspense } from "react"
 import { getAllFlights } from "../actions"
+import FlightListView from "@/components/flight-search/FlightListView"
+import dynamic from "next/dynamic"
 
-// const FlightSearchPage = async ({ params, searchParams }: any) => {
-//   return (
-//     <section>
-//       <Suspense fallback={<>Page Loading........</>}>
-//         <AllFlights searchParams={searchParams} />
-//       </Suspense>
-//     </section>
-//   )
-// }
+const DynamicHeader = dynamic(
+  () => import("../../../components/flight-search/FlightListView"),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+)
 
-// const AllFlights = async ({ searchParams }: any) => {
-//   if (Object.keys(searchParams).length === 0) {
-//     return "search again"
-//   }
-//   const res = await getAllFlights(searchParams)
-//   return <FlightListView flights={res?.data} count={res.count} />
-// }
+const FlightSearchPage = async ({ params, searchParams }) => {
+  return (
+    <Suspense fallback={<>Page loading............</>}>
+      <AllFlights searchParams={searchParams} />
+    </Suspense>
+  )
+}
 
-// export default FlightSearchPage
-
-export default async function ProductPage(props: any) {
+const AllFlights = async (props: any) => {
   const res = await getAllFlights(props?.searchParams)
   return (
     <div>
-      Home
+      <DynamicHeader flights={res?.data} count={res?.count} />
       <pre>{JSON.stringify(props, null, 2)}</pre>
       <pre>{res?.count || res?.message}</pre>
     </div>
   )
 }
+
+export default FlightSearchPage
