@@ -1,12 +1,20 @@
 import { Suspense } from 'react';
-
 import ProductSkeleton from '@/components/skeletons/ProductSkeleton';
-import { getAllFlights } from '../../actions';
 
 const Home = async ({ params, searchParams }: any) => {
-  console.log(searchParams);
+  return (
+    <section className='pt-14'>
+      <Suspense
+        fallback={<ProductSkeleton extraClassname='' numberProducts={18} />}
+      >
+        <AllProducts searchParams={searchParams} />
+      </Suspense>
+    </section>
+  );
+};
 
-  return <section className='pt-14'>hellol</section>;
+const AllProducts = async ({ searchParams }: any) => {
+  return <div>{searchParams?.departuredate || 'Hello!'}</div>;
 };
 
 export default Home;
