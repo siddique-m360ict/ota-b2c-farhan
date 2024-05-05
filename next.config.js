@@ -1,6 +1,13 @@
 const nextConfig = {
 	images: {
-		domains: ["m360-trabill.s3.ap-south-1.amazonaws.com"],
+	 
+		remotePatterns: [
+			{
+			  protocol: 'https',
+			  hostname: 'm360-trabill.s3.ap-south-1.amazonaws.com',
+			  pathname: '/**',
+			},
+		  ],
 	},
 };
 

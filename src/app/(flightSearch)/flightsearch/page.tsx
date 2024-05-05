@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
-
+ 
+ 
 
 const Home = async ({ params, searchParams }: any) => {
   return (
     <section className='pt-14'>
       <Suspense
-        fallback={<>loading.....................</>}
+        fallback={<>Page Loading........</>}
       >
         <AllProducts searchParams={searchParams} />
       </Suspense>
@@ -14,7 +15,7 @@ const Home = async ({ params, searchParams }: any) => {
 };
 
 const AllProducts = async ({ searchParams }: any) => {
-  return <div>{searchParams?.departuredate || 'Hello!'}</div>;
+  return  <div>{searchParams?.departuredate || "Hello!"}</div>
 };
 
 export default Home;

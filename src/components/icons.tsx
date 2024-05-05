@@ -36,7 +36,7 @@ import {
   ChevronDown,
   Armchair,
   AlignJustify,
-    LucideIcon,
+  LucideIcon,
 } from "lucide-react"
 
 export type Icon =  LucideIcon
