@@ -13,6 +13,7 @@ import { format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
 import { useRouter } from "next/navigation"
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 
 type Props = {
   cabinClass: string
@@ -44,7 +45,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=oneway`
 
   const changeRoute = (url: string | undefined) => {
-    router.push(url as string, { shallow: true })
+    router.push(url as string)
   }
 
   return (
@@ -84,6 +85,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           {isPending ? "load.." : "Search"}
         </Button>
       </div>
+      {isPending && <LoadingIndicator />}
     </>
   )
 }
