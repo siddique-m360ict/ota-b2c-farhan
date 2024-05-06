@@ -54,7 +54,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       newParams.set("infant", passenger.infant.toString())
     newParams.set("class", cabinClass)
     newParams.set("route", "oneway")
-    router.push(createUrl("/flightsearch", newParams))
+    router.push(createUrl("/stream", newParams))
   }
 
   return (
