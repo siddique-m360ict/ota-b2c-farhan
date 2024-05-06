@@ -45,7 +45,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=oneway`
 
   const changeRoute = (url: string | undefined) => {
-    router.push(url as string)
+    router.push(url as string, { shallow: true })
   }
 
   return (
@@ -79,7 +79,9 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             buttonVariants({ variant: "default", size: "xl" }),
             "rounded px-4"
           )}
-          onClick={() => changeRoute(`flightsearch?${queryParams}`)}
+          onClick={() =>
+            startTransition(() => changeRoute(`flightsearch?${queryParams}`))
+          }
         >
           Search
         </Button>
