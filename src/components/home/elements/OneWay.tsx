@@ -44,7 +44,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=oneway`
 
   // ==================================
-  const { replace } = useRouter()
+  const { push } = useRouter()
   const searchParams = useSearchParams()
   const changeRoute = () => {
     const params = new URLSearchParams(searchParams)
@@ -61,7 +61,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     params.set("class", cabinClass)
     params.set("route", "oneway")
 
-    replace(`flightsearch?${params.toString()}`)
+    push(`flightsearch?${params.toString()}`)
   }
 
   return (
