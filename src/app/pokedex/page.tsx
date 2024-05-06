@@ -33,7 +33,7 @@ export default function Page(props: {
 
       {props.searchParams?.search &&
         (isSSR() ? (
-          <PokemonList name={props.searchParams?.search} wait={false} />
+          "ssr page"
         ) : (
           <React.Suspense
             key={keyString}

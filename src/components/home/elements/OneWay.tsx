@@ -34,9 +34,11 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }
   const [isPending, startTransition] = useTransition()
 
+  // make url and change route
   // ==================================
   const router = useRouter()
   const searchParams = useSearchParams()
+
   const changeRoute = () => {
     const newParams = new URLSearchParams(searchParams.toString())
     newParams.set("origin", fromAirport?.iata_code)
@@ -52,7 +54,6 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       newParams.set("infant", passenger.infant.toString())
     newParams.set("class", cabinClass)
     newParams.set("route", "oneway")
-    console.log(createUrl("/flightsearch", newParams))
     router.push(createUrl("/flightsearch", newParams))
   }
 
