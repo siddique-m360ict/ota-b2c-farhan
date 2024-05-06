@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
+import { cn, createUrl } from "@/lib/utils"
 import { Search } from "lucide-react"
 import Link from "next/link"
 import React, { useEffect, useState, useTransition } from "react"
@@ -34,33 +34,26 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }
   const [isPending, startTransition] = useTransition()
 
-  // Make url
-  const queryParams = `origin=${fromAirport?.iata_code}&destination=${
-    toAirport?.iata_code
-  }&departuredate=${date ? format(new Date(date), "yyyy-MM-dd") : ""}&adults=${
-    passenger.adult
-  }${passenger.children !== 0 ? `&child=${passenger.children}` : ""}${
-    passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""
-  }&class=${cabinClass}&route=oneway`
-
   // ==================================
-  const { replace } = useRouter()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const changeRoute = () => {
-    const params = new URLSearchParams(searchParams)
-    params.set("origin", fromAirport?.iata_code)
-    params.set("destination", toAirport?.iata_code)
-    params.set(
+    const newParams = new URLSearchParams(searchParams.toString())
+    newParams.set("origin", fromAirport?.iata_code)
+    newParams.set("destination", toAirport?.iata_code)
+    newParams.set(
       "departuredate",
       date ? format(new Date(date), "yyyy-MM-dd") : ""
     )
-    params.set("adults", passenger.adult.toString())
+    newParams.set("adults", passenger.adult.toString())
     passenger.children !== 0 &&
-      params.set("child", passenger.children.toString())
-    passenger.infant !== 0 && params.set("infant", passenger.infant.toString())
-    params.set("class", cabinClass)
-    params.set("route", "oneway")
-    replace(`flightsearch?${params.toString()}`)
+      newParams.set("child", passenger.children.toString())
+    passenger.infant !== 0 &&
+      newParams.set("infant", passenger.infant.toString())
+    newParams.set("class", cabinClass)
+    newParams.set("route", "oneway")
+    console.log(createUrl("/flightsearch", newParams))
+    router.push(createUrl("/flightsearch", newParams))
   }
 
   return (

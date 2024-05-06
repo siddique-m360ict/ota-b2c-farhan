@@ -1,9 +1,8 @@
 import { Suspense } from "react"
-import { getAllFlights } from "../actions"
+import { GetFlightList_V2, getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
 import CardLoader from "@/components/flight-search/elements/CardLoader"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
-import { unstable_noStore } from "next/cache"
 import { HTTPResponse } from "@/lib/commonTypes"
 import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
 
@@ -23,8 +22,7 @@ const FlightSearchPage = async ({ params, searchParams }) => {
 }
 
 const AllFlights = async (props: any) => {
-  unstable_noStore()
-  const res = await getAllFlights(props?.searchParams)
+  const res = await GetFlightList_V2(props?.searchParams)
   return (
     <div>
       <FlightListView flights={res?.data} count={res?.count} />

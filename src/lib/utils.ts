@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import { ReadonlyURLSearchParams } from "next/navigation"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -13,7 +14,7 @@ export function formatDate(input: string | number): string {
     year: "numeric",
   })
 }
- 
+
 export function serverUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_BASE_SERVER_URL}${path}`
 }
@@ -23,4 +24,14 @@ export const imgHostLink =
 
 export function hostedImage(path: string) {
   return `${imgHostLink}${path}`
+}
+
+export const createUrl = (
+  pathname: string,
+  params: URLSearchParams | ReadonlyURLSearchParams
+) => {
+  const paramsString = params.toString()
+  const queryString = `${paramsString.length ? "?" : ""}${paramsString}`
+
+  return `${pathname}${queryString}`
 }
