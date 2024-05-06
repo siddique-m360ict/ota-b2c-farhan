@@ -1,18 +1,13 @@
 import { Suspense } from "react"
 import { getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
-import dynamic from "next/dynamic"
-
-const DynamicHeader = dynamic(
-  () => import("../../../components/flight-search/FlightListView"),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-)
+import CardLoader from "@/components/flight-search/elements/CardLoader"
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 
 const FlightSearchPage = async ({ params, searchParams }) => {
+  const keyString = JSON.stringify(searchParams)
   return (
-    <Suspense fallback={<>Page loading............</>}>
+    <Suspense key={keyString} fallback={<CardLoader numberFlight={8} />}>
       <AllFlights searchParams={searchParams} />
     </Suspense>
   )
@@ -22,9 +17,9 @@ const AllFlights = async (props: any) => {
   const res = await getAllFlights(props?.searchParams)
   return (
     <div>
-      <DynamicHeader flights={res?.data} count={res?.count} />
-      <pre>{JSON.stringify(props, null, 2)}</pre>
-      <pre>{res?.count || res?.message}</pre>
+      <FlightListView flights={res?.data} count={res?.count} />
+      {/* <pre>{JSON.stringify(props, null, 2)}</pre>
+      <pre>{res?.count || res?.message}</pre> */}
     </div>
   )
 }

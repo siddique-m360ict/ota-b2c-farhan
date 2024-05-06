@@ -6,13 +6,13 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { Search } from "lucide-react"
 import Link from "next/link"
-import React, { useState, useTransition } from "react"
+import React, { useEffect, useState, useTransition } from "react"
 import { Passenger } from "../FlightSearch"
 import DatePicker from "./DatePicker"
 import { format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 
 type Props = {
@@ -45,7 +45,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=oneway`
 
   const changeRoute = (url: string | undefined) => {
-    router.push(url as string)
+    router.push(url as string, { shallow: true })
   }
 
   return (
@@ -64,7 +64,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             border: "3px solid white",
             boxShadow: "0px 0px 0px 1px #E2E8F0",
           }}
-          className="absolute left-[29%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white md:block"
+          className="absolute left-[29%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:block"
         />
         <SelectAirport
           airport={toAirport}
@@ -74,6 +74,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
 
         <DatePicker setDate={setDate} date={date} />
         <Button
+          disabled={isPending}
           className={cn(
             buttonVariants({ variant: "default", size: "xl" }),
             "rounded px-4"
@@ -82,10 +83,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             startTransition(() => changeRoute(`flightsearch?${queryParams}`))
           }
         >
-          {isPending ? "load.." : "Search"}
+          Search
         </Button>
       </div>
-      {isPending && <LoadingIndicator />}
+      {/* {isPending && <LoadingIndicator />} */}
     </>
   )
 }

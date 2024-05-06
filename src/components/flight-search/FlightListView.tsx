@@ -14,7 +14,7 @@ import {
   FilterAirlines,
   selectFilterOption,
 } from "@/lib/redux/slice/filterOptions"
-import { filterFlightList } from "@/lib/server/flights/FilterFlightListEndpoint"
+import { filterFlightList } from "@/app/(flightSearch)/actions"
 
 type Props = {
   flights: IFlightSearchList | undefined

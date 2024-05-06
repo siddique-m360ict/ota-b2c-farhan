@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import "@/styles/loader.css"
 const Loading = () => {
   return (
@@ -16,10 +17,16 @@ export const loadingIndicator = (
   </div>
 )
 
-export default function LoadingIndicator() {
+type Props = {
+  className?: string
+}
+export default function LoadingIndicator({ className }: Props) {
   return (
     <div
-      className="w-calc(100vw - 8%) fixed left-1/2 top-1/2 z-50 flex h-screen -translate-x-1/2 -translate-y-1/2 transform items-center justify-center"
+      className={cn(
+        "w-calc(100vw - 8%) fixed left-1/2 top-1/2 z-50 flex h-screen -translate-x-1/2 -translate-y-1/2 transform items-center justify-center",
+        className
+      )}
       id="loader"
     >
       <div className="loader" id="preloader">
