@@ -8,7 +8,6 @@ function LoadingLocal() {
 }
 
 export default async function Home() {
-  await new Promise((res) => setTimeout(res, 200))
   return (
     <main>
       Stream below
