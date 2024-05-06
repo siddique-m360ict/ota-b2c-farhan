@@ -20,12 +20,12 @@ const FlightSearchPage = async ({ params, searchParams }) => {
 }
 
 const AllFlights = async (props: any) => {
-  const res = await getAllFlights(props?.searchParams)
+  // const res = await getAllFlights(props?.searchParams)
   return (
     <div>
-      <FlightListView flights={res?.data} count={res?.count} />
-      {/* <pre>{JSON.stringify(props, null, 2)}</pre>
-      <pre>{res?.count || res?.message}</pre> */}
+      {/* <FlightListView flights={res?.data} count={res?.count} /> */}
+      <pre>{JSON.stringify(props, null, 2)}</pre>
+      {/* <pre>{res?.count || res?.message}</pre> */}
     </div>
   )
 }
