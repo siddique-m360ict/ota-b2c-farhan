@@ -24,7 +24,9 @@ const AllFlights = async (props: any) => {
   return (
     <div>
       {/* <FlightListView flights={res?.data} count={res?.count} /> */}
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+      <Suspense fallback={<CardLoader numberFlight={8} />}>
+        <pre>{JSON.stringify(props, null, 2)}</pre>
+      </Suspense>
       {/* <pre>{res?.count || res?.message}</pre> */}
     </div>
   )
