@@ -54,7 +54,8 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       newParams.set("infant", passenger.infant.toString())
     newParams.set("class", cabinClass)
     newParams.set("route", "oneway")
-    router.push(createUrl("/stream", newParams))
+    return createUrl("/stream", newParams)
+    // router.push(createUrl("/stream", newParams))
   }
 
   return (
@@ -82,16 +83,16 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         />
 
         <DatePicker setDate={setDate} date={date} />
-        <Button
-          disabled={isPending}
+        <Link
+          href={changeRoute()}
           className={cn(
             buttonVariants({ variant: "default", size: "xl" }),
             "rounded px-4"
           )}
-          onClick={() => startTransition(() => changeRoute())}
+          // onClick={() => startTransition(() => changeRoute())}
         >
           Search
-        </Button>
+        </Link>
       </div>
       {isPending && <LoadingIndicator />}
     </>
