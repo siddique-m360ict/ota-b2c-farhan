@@ -117,37 +117,6 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
   }
 }
 
-export async function GetFlightList_V2(
-  params: IReqFlightSearch
-): Promise<HTTPResponse<IFlightSearchList>> {
-  const apiUrl = serverUrl("/booking/flight/search/v2")
-  let myHeaders = new Headers()
-  myHeaders.append("Content-Type", "application/json")
-  const sanitizeParams = sanitizeSearchParams(params)
-
-  let requestBody
-
-  if (params.route === "oneway") {
-    requestBody = OneWayFormatter(sanitizeParams)
-  } else if (params.route === "roundway") {
-    requestBody = RoundWayFormatter(sanitizeParams)
-  } else if (params.route === "multiway") {
-    requestBody = MultiWayFormatter(sanitizeParams)
-  }
-
-  const response = await fetch(apiUrl, {
-    method: "POST",
-    headers: myHeaders,
-    body: JSON.stringify(requestBody),
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`)
-  }
-
-  return response.json()
-}
-
 // flight filter
 // =================================================
 export async function filterFlightList(

@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { GetFlightList_V2, getAllFlights } from "../actions"
+import { getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
 import CardLoader from "@/components/flight-search/elements/CardLoader"
 
@@ -20,7 +20,7 @@ const FlightSearchPage = async ({ params, searchParams }) => {
 }
 
 const AllFlights = async (props: any) => {
-  const res = await GetFlightList_V2(props?.searchParams)
+  const res = await getAllFlights(props?.searchParams)
   return (
     <div>
       <FlightListView flights={res?.data} count={res?.count} />
