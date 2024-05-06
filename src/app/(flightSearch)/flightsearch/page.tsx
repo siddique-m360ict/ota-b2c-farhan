@@ -3,12 +3,9 @@ import { getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
 import CardLoader from "@/components/flight-search/elements/CardLoader"
 
-export const dynamic = "force-dynamic"
-const FlightSearchPage = async ({ params, searchParams }) => {
-  const origin = searchParams.origin ?? "0"
-
+export default async function FlightSearchPage({ params, searchParams }) {
   return (
-    <Suspense key={origin} fallback={<>Suspense Loading......</>}>
+    <Suspense fallback={<>Suspense Loading......</>}>
       <AllFlights searchParams={searchParams} />
     </Suspense>
   )
@@ -23,4 +20,4 @@ const AllFlights = async (props: any) => {
   )
 }
 
-export default FlightSearchPage
+export const dynamic = "force-dynamic"
