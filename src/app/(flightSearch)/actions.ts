@@ -104,6 +104,7 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(requestBody),
+      cache: "no-store",
     })
     if (!response.ok) {
       throw new Error("Failed to fetch data")
