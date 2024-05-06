@@ -10,18 +10,7 @@ type Pokemon = {
   id: number
 }
 
-function isSSR() {
-  return headers().get("accept")?.includes("text/html") // for RSC navigations, it uses either `Accept: text/x-component` or `Accept: */*`, for SSR browsers and other client use `Accept: text/html`
-}
-
-export function generateMetadata(props: {
-  searchParams?: Record<string, string | undefined>
-}) {
-  const query = props.searchParams?.search
-  return {
-    title: query ? `Searching for ${query}` : "Search page",
-  }
-}
+export const dynamic = "force-dynamic"
 
 export default function Page(props: {
   searchParams?: Record<string, string | undefined>
@@ -31,27 +20,24 @@ export default function Page(props: {
     <section className="flex flex-col">
       <SearchInput />
 
-      {props.searchParams?.search &&
-        (isSSR() ? (
-          "ssr page"
-        ) : (
-          <React.Suspense
-            key={keyString}
-            fallback={
-              <ul className="grid place-items-stretch gap-4 py-4 pb-52 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-                <PokemonCardSkeleton />
-                <PokemonCardSkeleton />
-                <PokemonCardSkeleton />
-                <PokemonCardSkeleton />
-              </ul>
-            }
-          >
-            <PokemonList
-              name={props.searchParams?.search}
-              wait={props.searchParams?.wait === "on"}
-            />
-          </React.Suspense>
-        ))}
+      {props.searchParams?.search && (
+        <React.Suspense
+          key={keyString}
+          fallback={
+            <ul className="grid place-items-stretch gap-4 py-4 pb-52 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+              <PokemonCardSkeleton />
+              <PokemonCardSkeleton />
+              <PokemonCardSkeleton />
+              <PokemonCardSkeleton />
+            </ul>
+          }
+        >
+          <PokemonList
+            name={props.searchParams?.search}
+            wait={props.searchParams?.wait === "on"}
+          />
+        </React.Suspense>
+      )}
     </section>
   )
 }
