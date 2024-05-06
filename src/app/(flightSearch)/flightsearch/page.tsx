@@ -2,11 +2,8 @@ import { Suspense } from "react"
 import { GetFlightList_V2, getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
 import CardLoader from "@/components/flight-search/elements/CardLoader"
-import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
-import { HTTPResponse } from "@/lib/commonTypes"
-import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
-import dynamic from "next/dynamic"
 
+export const dynamic = "force-dynamic"
 const FlightSearchPage = async ({ params, searchParams }) => {
   const origin = searchParams.origin ?? "0"
   const destination = searchParams.destination ?? "0"
