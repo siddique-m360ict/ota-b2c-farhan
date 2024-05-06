@@ -6,6 +6,7 @@ import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { unstable_noStore } from "next/cache"
 import { HTTPResponse } from "@/lib/commonTypes"
 import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
+import AllFlights from "@/app/_flights/AllFlights"
 
 const FlightSearchPage = async ({ params, searchParams }) => {
   const origin = searchParams.origin ?? "0"
@@ -22,18 +23,6 @@ const FlightSearchPage = async ({ params, searchParams }) => {
     >
       <AllFlights searchParams={searchParams} />
     </Suspense>
-  )
-}
-
-const AllFlights = async (props: any) => {
-  unstable_noStore()
-  const res = await getAllFlights(props?.searchParams)
-  return (
-    <div>
-      <FlightListView flights={res?.data} count={res?.count} />
-      {/* <pre>{JSON.stringify(props, null, 2)}</pre>
-      <pre>{res?.count || res?.message}</pre> */}
-    </div>
   )
 }
 
