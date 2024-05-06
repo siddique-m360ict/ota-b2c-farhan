@@ -86,7 +86,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           Search
         </Button>
       </div>
-      {/* {isPending && <LoadingIndicator />} */}
+      {isPending && <LoadingIndicator />}
     </>
   )
 }

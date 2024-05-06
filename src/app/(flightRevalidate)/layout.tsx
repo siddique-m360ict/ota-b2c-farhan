@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 import { getCookies } from "@/lib/token/getCookies"
-import { MainNav } from '@/components/common/main-nav'
-import { SiteFooter } from '@/components/common/site-footer'
+import { MainNav } from "@/components/common/main-nav"
+import { SiteFooter } from "@/components/common/site-footer"
 
 interface FlightLayoutProps {
   children: React.ReactNode
@@ -32,7 +32,6 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
       </header>
 
       <div className="mt-2 flex-1 bg-secondaryBg">{children}</div>
-
       <SiteFooter className="border-t" />
     </div>
   )
