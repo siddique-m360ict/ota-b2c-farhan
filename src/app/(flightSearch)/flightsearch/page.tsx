@@ -8,12 +8,12 @@ import { HTTPResponse } from "@/lib/commonTypes"
 import { IFlightSearchList } from "@/components/home/elements/types/flightSearchType"
 
 const FlightSearchPage = async ({ params, searchParams }) => {
-  const origin = searchParams.origin
-  const destination = searchParams.destination
-  const departuredate = searchParams.departuredate
-  const adults = searchParams.adults
-  const cabin = searchParams.class
-  const route = searchParams.route
+  const origin = searchParams.origin ?? "0"
+  const destination = searchParams.destination ?? "0"
+  const departuredate = searchParams.departuredate ?? "0"
+  const adults = searchParams.adults ?? "0"
+  const cabin = searchParams.class ?? "0"
+  const route = searchParams.route ?? "0"
 
   return (
     <Suspense

@@ -12,7 +12,7 @@ import DatePicker from "./DatePicker"
 import { format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
-import { useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 
 type Props = {
@@ -27,7 +27,6 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   const [date, setDate] = React.useState<Date>()
 
   const [rotation, setRotation] = useState(0)
-  const router = useRouter()
   const swapRoute = () => {
     setRotation(rotation === 0 ? -180 : 0)
     setFromAirport(toAirport)
@@ -44,8 +43,25 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""
   }&class=${cabinClass}&route=oneway`
 
-  const changeRoute = (url: string | undefined) => {
-    router.push(url as string, { shallow: true })
+  // ==================================
+  const { replace } = useRouter()
+  const searchParams = useSearchParams()
+  const changeRoute = () => {
+    const params = new URLSearchParams(searchParams)
+    params.set("origin", fromAirport?.iata_code)
+    params.set("destination", toAirport?.iata_code)
+    params.set(
+      "departuredate",
+      date ? format(new Date(date), "yyyy-MM-dd") : ""
+    )
+    params.set("adults", passenger.adult.toString())
+    passenger.children !== 0 &&
+      params.set("child", passenger.children.toString())
+    passenger.infant !== 0 && params.set("infant", passenger.infant.toString())
+    params.set("class", cabinClass)
+    params.set("route", "oneway")
+
+    replace(`flightsearch?${params.toString()}`)
   }
 
   return (
@@ -79,9 +95,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             buttonVariants({ variant: "default", size: "xl" }),
             "rounded px-4"
           )}
-          onClick={() =>
-            startTransition(() => changeRoute(`flightsearch?${queryParams}`))
-          }
+          onClick={() => startTransition(() => changeRoute())}
         >
           Search
         </Button>
