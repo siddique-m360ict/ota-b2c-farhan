@@ -12,7 +12,13 @@ import DatePicker from "./DatePicker"
 import { format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+  useSelectedLayoutSegment,
+} from "next/navigation"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 
 type Props = {
@@ -33,29 +39,23 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     setToAirport(fromAirport)
   }
   const [isPending, startTransition] = useTransition()
-
-  // make url and change route
-  // ==================================
-  const router = useRouter()
+  const segment = useSelectedLayoutSegment()
   const searchParams = useSearchParams()
 
+  // make url and change route ---------------------------------------
+  const router = useRouter()
+  const queryParams = `origin=${fromAirport?.iata_code}&destination=${
+    toAirport?.iata_code
+  }&departuredate=${
+    date ? format(new Date(date), "yyyy-MM-dd") : ""
+  }&adults=${passenger.adult.toString()}${
+    passenger.children !== 0 ? `&child=${passenger.children.toString()}` : ""
+  }${
+    passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
+  }&class=${cabinClass}&route=oneway`
+
   const changeRoute = () => {
-    const newParams = new URLSearchParams(searchParams.toString())
-    newParams.set("origin", fromAirport?.iata_code)
-    newParams.set("destination", toAirport?.iata_code)
-    newParams.set(
-      "departuredate",
-      date ? format(new Date(date), "yyyy-MM-dd") : ""
-    )
-    newParams.set("adults", passenger.adult.toString())
-    passenger.children !== 0 &&
-      newParams.set("child", passenger.children.toString())
-    passenger.infant !== 0 &&
-      newParams.set("infant", passenger.infant.toString())
-    newParams.set("class", cabinClass)
-    newParams.set("route", "oneway")
-    return createUrl("/flightsearch", newParams)
-    // router.push(createUrl("/stream", newParams))
+    router.push(`/flightsearch?${queryParams}`)
   }
 
   return (
@@ -83,16 +83,28 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         />
 
         <DatePicker setDate={setDate} date={date} />
-        <Link
-          href={changeRoute()}
-          className={cn(
-            buttonVariants({ variant: "default", size: "xl" }),
-            "rounded px-4"
-          )}
-          // onClick={() => startTransition(() => changeRoute())}
-        >
-          Search
-        </Link>
+        {segment !== "flightsearch" ? (
+          <Link
+            href={`/flightsearch?${queryParams}`}
+            className={cn(
+              buttonVariants({ variant: "default", size: "xl" }),
+              "rounded px-4"
+            )}
+          >
+            Search
+          </Link>
+        ) : (
+          <Button
+            disabled={isPending}
+            className={cn(
+              buttonVariants({ variant: "default", size: "xl" }),
+              "rounded px-4"
+            )}
+            onClick={() => startTransition(() => changeRoute())}
+          >
+            Search
+          </Button>
+        )}
       </div>
       {isPending && <LoadingIndicator />}
     </>
