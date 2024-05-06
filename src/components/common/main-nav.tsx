@@ -19,7 +19,7 @@ interface MainNavProps {
   home?: boolean
 }
 
-export function MainNav({  home }: MainNavProps) {
+export function MainNav({ home }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   const user = useAppSelector((state) => state.user)
@@ -56,7 +56,7 @@ export function MainNav({  home }: MainNavProps) {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
-      href: "/",
+      href: "/stream",
     },
     {
       id: "Visa",
