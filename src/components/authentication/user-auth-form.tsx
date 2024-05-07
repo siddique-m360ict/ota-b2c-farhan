@@ -15,10 +15,10 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { PasswordInput } from "../ui/password-input"
-import { postLogin } from "@/lib/server/auth/PostLoginEndpoints"
 import { useAppDispatch } from "@/lib/redux/hooks"
 import { user } from "@/lib/redux/slice/user_slice"
 import Link from "next/link"
+import { postLogin } from "@/app/(auth)/actions"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -52,6 +52,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           className: "bg-[#ff0000]",
         })
       } else {
+        toast({
+          title: res.message,
+        })
         dispatch(user(res))
         localStorage.setItem("b_token", res?.token as string)
         setCookie("b_token", res?.token)

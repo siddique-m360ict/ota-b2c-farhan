@@ -5,7 +5,7 @@ import CardLoader from "@/components/flight-search/elements/CardLoader"
 
 export default async function FlightSearchPage({ params, searchParams }) {
   return (
-    <Suspense fallback={<>Suspense Loading......</>}>
+    <Suspense fallback={<CardLoader numberFlight={8} />}>
       <AllFlights searchParams={searchParams} />
     </Suspense>
   )

@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { setCookie } from "cookies-next"
 import { cn } from "@/lib/utils"
-
 import { useAppDispatch } from "@/lib/redux/hooks"
 import { user } from "@/lib/redux/slice/user_slice"
 import { Input } from "@/components/ui/input"
@@ -19,7 +18,7 @@ import { registerAuthSchema } from "@/lib/validations/auth"
 import { useRouter, useSearchParams } from "next/navigation"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Image from "next/image"
-import { registerUser } from "@/lib/server/auth/RegisterEndpoints"
+import { registerUser } from "@/app/(auth)/actions"
 
 const UserRegisterForm = () => {
   const router = useRouter()

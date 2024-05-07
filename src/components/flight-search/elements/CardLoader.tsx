@@ -8,7 +8,7 @@ const CardLoader = ({ numberFlight }: { numberFlight: number }) => {
       {Array.from({ length: numberFlight }, (_, index) => (
         <Skeleton key={index} className="h-[90px] w-full rounded-xl" />
       ))}
-      <LoadingIndicator className="left-[58%] top-[60%]" />
+      <LoadingIndicator />
     </div>
   )
 }
