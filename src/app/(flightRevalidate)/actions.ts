@@ -122,6 +122,7 @@ export async function ReValidateFlightV2(
   const response = await fetch(apiUrl, {
     method: "GET",
     headers: customHeaders,
+    cache: "no-store",
   })
 
   if (!response?.ok) {

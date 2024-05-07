@@ -109,7 +109,7 @@ const FlightCard = ({ flights, fare }: Props) => {
             <p className="text-sm"> {fare?.payable} </p>
           </div>
           <Link
-            href={`/flight-revalidate?flight=${flights.flight_id}`}
+            href={`/flight-revalidate/${flights.flight_id}`}
             className={cn(
               buttonVariants({ variant: "default", size: "sm" }),
               "mt-1 h-7 w-full  rounded text-white"

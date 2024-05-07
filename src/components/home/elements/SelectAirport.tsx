@@ -43,8 +43,8 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   }
 
   useEffect(() => {
-    fetchAirportData(debouncedQuery)
-  }, [debouncedQuery])
+    fetchAirportData(searchTerm)
+  }, [searchTerm])
 
   if (isDesktop) {
     return (
