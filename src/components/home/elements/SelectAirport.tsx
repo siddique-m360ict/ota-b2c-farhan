@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { IAirportList } from "./types/flightSearchType"
 import { Card, CardContent } from "@/components/ui/card"
-import { serverUrl } from '@/lib/utils'
+import { serverUrl } from "@/lib/utils"
+import { useDebounce } from "@/hooks/use-debounce"
 type Props = {
   airport: IAirportList | null
   setAirport: (airport: IAirportList | null) => void
@@ -23,11 +24,13 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   const isDesktop = useMediaQuery("(min-width: 768px)")
   const [airportList, setAirportList] = useState<IAirportList[]>()
   const [searchTerm, setSearchTerm] = useState("")
-
+  const debouncedQuery = useDebounce(searchTerm, 400)
   async function fetchAirportData(arg: string) {
     try {
-      const api = serverUrl(`/common/airport?skip=0&limit=20&name=${arg?.toLocaleUpperCase()}`)
-      const res = await fetch( api )
+      const api = serverUrl(
+        `/common/airport?skip=0&limit=20&name=${arg?.toLocaleUpperCase()}`
+      )
+      const res = await fetch(api)
       if (!res.ok) {
         throw new Error("Failed to fetch airport data")
       }
@@ -40,8 +43,8 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   }
 
   useEffect(() => {
-    fetchAirportData(searchTerm)
-  }, [searchTerm])
+    fetchAirportData(debouncedQuery)
+  }, [debouncedQuery])
 
   if (isDesktop) {
     return (
