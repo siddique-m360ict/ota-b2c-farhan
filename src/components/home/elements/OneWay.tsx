@@ -103,27 +103,17 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         />
 
         <DatePicker setDate={setDate} date={date} />
-        {segment !== "flightsearchss" ? (
-          // <Link
-          //   href={`/flightsearch?${queryParams}`}
-          //   className={cn(
-          //     buttonVariants({ variant: "default", size: "xl" }),
-          //     "rounded px-4"
-          //   )}
-          //   onClick={() => removeFilter()}
-          // >
-          //   Search
-          // </Link>
-          <Button
-            disabled={isPending}
+        {segment !== "flightsearch" ? (
+          <Link
+            href={`/flightsearch?${queryParams}`}
             className={cn(
               buttonVariants({ variant: "default", size: "xl" }),
               "rounded px-4"
             )}
-            onClick={() => startTransition(() => changeRoute())}
+            onClick={() => removeFilter()}
           >
             Search
-          </Button>
+          </Link>
         ) : (
           <Button
             disabled={isPending}
