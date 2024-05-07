@@ -53,17 +53,17 @@ const FlightRevalidate = ({ flights }: Props) => {
 
   return (
     <div className="pb-40">
-      <div className="container mx-auto py-5">
-        <div className="mt-5 flex flex-col gap-5 md:flex-row">
+      <div className="mx-auto md:container md:py-5">
+        <div className="flex flex-col gap-5 md:mt-5 md:flex-row">
           {/* PaymentSidebar */}
-          <div className="order-1 md:order-2 md:flex-1">
+          <div className="order-2 md:order-2 md:flex-1">
             <RevalidatePriceBox
               passengers={flights.passengers}
               fare={flights.fare}
             />
           </div>
 
-          <div className="order-2 flex-[2.5] space-y-5 md:order-1">
+          <div className="order-1 flex-[2.5] space-y-5 md:order-1">
             <FlightRevalidateDetails
               data={revalidateData}
               legDescriptions={flights?.leg_descriptions}

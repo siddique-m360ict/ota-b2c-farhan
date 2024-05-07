@@ -12,7 +12,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col ">
       <header
-        className="relative w-full pb-20"
+        className="relative w-full pb-8 md:pb-20"
         style={{
           backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
         }}
@@ -24,7 +24,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           <HomeMobileHeader />
         </div>
         <div
-          className="absolute bottom-[-11px] z-0  h-10 w-full bg-background"
+          className="absolute bottom-[-11px] z-0  h-8 w-full bg-background md:h-10"
           style={{ borderRadius: "24px 24px 0 0" }}
         ></div>
       </header>
@@ -33,7 +33,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           <FlightSearch />
         </div>
       </section>
-      <div className="container mt-2 flex-1">{children}</div>
+      <div className="mt-2 flex-1 md:container">{children}</div>
       <SiteFooter className="border-t" />
     </div>
   )

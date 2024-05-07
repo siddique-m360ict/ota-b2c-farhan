@@ -8,17 +8,19 @@ import React from "react"
 const FlightTopFilter = () => {
   return (
     <Card className="mt-[4px] ">
-      <CardContent className="p-4 px-6">
-        <div className="flex items-center gap-6">
+      <CardContent className="overflow-hidden whitespace-nowrap p-4 px-6  md:overflow-auto  md:whitespace-normal ">
+        <div className="flex items-center gap-6 overflow-y-hidden overflow-x-scroll md:overflow-x-hidden md:overflow-y-hidden">
           <div className="relative flex basis-full cursor-pointer items-center text-center">
-            <h2 className="text-sm font-bold text-secondary">Recommended</h2>
+            <h2 className="pe-4 text-sm font-bold text-secondary md:pe-0">
+              Recommended
+            </h2>
             <Separator
               orientation="vertical"
               className=" absolute right-0 top-[-8px] h-[4vh] w-[1px]"
             />
           </div>
           <div className="relative flex basis-full cursor-pointer">
-            <p className="w-full text-center text-sm font-bold text-secondary">
+            <p className="w-full pe-4 text-center  text-sm font-bold text-secondary md:pe-0">
               Lowest Price
             </p>
             <Separator
@@ -27,7 +29,7 @@ const FlightTopFilter = () => {
             />
           </div>
           <div className="relative flex basis-full cursor-pointer">
-            <p className="w-full text-center text-sm font-bold text-secondary">
+            <p className="w-full pe-4 text-center  text-sm font-bold text-secondary md:pe-0">
               Shortest Duration
             </p>
             <Separator

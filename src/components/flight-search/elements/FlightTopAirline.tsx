@@ -43,14 +43,14 @@ const FlightTopAirline = () => {
   }
 
   return (
-    <Card className="mb-6 border-none shadow-md">
+    <Card className="mb-3 border-none shadow-md md:mb-6">
       <CardContent className="pb-0">
         <Carousel>
           <CarouselContent>
             {filterItem?.airlines &&
               filterItem?.airlines.map((airline) => (
                 <CarouselItem
-                  className="m-1 flex w-full basis-36 justify-between  py-2"
+                  className="m-1 flex w-full basis-28 justify-between py-2  md:basis-36"
                   key={airline.airline_code}
                 >
                   <button
@@ -88,8 +88,8 @@ const FlightTopAirline = () => {
                 </CarouselItem>
               ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
         </Carousel>
       </CardContent>
     </Card>

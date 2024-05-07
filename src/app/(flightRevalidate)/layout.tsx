@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import { getCookies } from "@/lib/token/getCookies"
 import { MainNav } from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
+import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 
 interface FlightLayoutProps {
   children: React.ReactNode
@@ -22,8 +23,11 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
         }}
       >
-        <div className=" flex h-16 space-x-4 px-6  sm:justify-between sm:space-x-0">
+        <div className=" hidden h-16 space-x-4 px-6 sm:justify-between  sm:space-x-0 md:flex">
           <MainNav />
+        </div>
+        <div className="block md:hidden">
+          <HomeMobileHeader />
         </div>
         <div
           className="absolute bottom-[-11px] z-0  h-10 w-full bg-secondaryBg"
