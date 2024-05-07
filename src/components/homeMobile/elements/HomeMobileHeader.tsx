@@ -72,8 +72,7 @@ const HomeMobileHeader = ({ home }: Props) => {
           </p>
         </Link>
         <div className="z-50 flex justify-between gap-5">
-          <ModeToggle />
-
+          {/* <ModeToggle /> */}
           <p className={cn("", !home && "text-white")}>
             <Link href={"/login"}>
               <Icons.User size={22} />
