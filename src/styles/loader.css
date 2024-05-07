@@ -9,7 +9,7 @@
     height: 100%;
     left: 0;
     top: 0;
-    background-color: var(--bd-white);
+    background-color: white;
     z-index: 99999;
     text-align: center;
 }

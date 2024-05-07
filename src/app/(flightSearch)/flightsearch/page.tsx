@@ -13,11 +13,7 @@ export default async function FlightSearchPage({ params, searchParams }) {
 
 const AllFlights = async (props: any) => {
   const res = await getAllFlights(props?.searchParams)
-  return (
-    <Suspense fallback={<>Suspense Loading 22222......</>}>
-      <FlightListView flights={res?.data} count={res?.count} />
-    </Suspense>
-  )
+  return <FlightListView flights={res?.data} count={res?.count} />
 }
 
 export const dynamic = "force-dynamic"

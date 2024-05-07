@@ -20,6 +20,15 @@ import {
   useSelectedLayoutSegment,
 } from "next/navigation"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import {
+  setFilterCount,
+  setFilterDataList,
+} from "@/lib/redux/slice/filterDataList"
+import {
+  removeFilterOption,
+  setFilterOption,
+} from "@/lib/redux/slice/filterOptions"
 
 type Props = {
   cabinClass: string
@@ -32,12 +41,15 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   const [toAirport, setToAirport] = React.useState<IAirportList | null>(null)
   const [date, setDate] = React.useState<Date>()
 
+  // swap icon rotate
   const [rotation, setRotation] = useState(0)
   const swapRoute = () => {
     setRotation(rotation === 0 ? -180 : 0)
     setFromAirport(toAirport)
     setToAirport(fromAirport)
   }
+
+  // react hook
   const [isPending, startTransition] = useTransition()
   const segment = useSelectedLayoutSegment()
   const searchParams = useSearchParams()
@@ -54,8 +66,16 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
   }&class=${cabinClass}&route=oneway`
 
+  const removeFilter = () => {
+    dispatch(setFilterDataList(undefined))
+    dispatch(setFilterCount(undefined))
+    dispatch(removeFilterOption())
+  }
+  // change route for flight
+  const dispatch = useAppDispatch()
   const changeRoute = () => {
     router.push(`/flightsearch?${queryParams}`)
+    removeFilter()
   }
 
   return (
@@ -90,6 +110,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
               buttonVariants({ variant: "default", size: "xl" }),
               "rounded px-4"
             )}
+            onClick={() => removeFilter()}
           >
             Search
           </Link>

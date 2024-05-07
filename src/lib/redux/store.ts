@@ -4,6 +4,8 @@ import storage from "redux-persist/lib/storage"
 import filterReducer from "./slice/flight_filter"
 import userReducer from "./slice/user_slice"
 import filterOptionsReducer from "./slice/filterOptions"
+import filterDataReducer from "./slice/filterDataList"
+
 const persistConfig = {
   key: "root",
   version: 1,
@@ -15,6 +17,7 @@ const rootReducer = combineReducers({
   filterItems: filterReducer,
   filterOption: filterOptionsReducer,
   user: userReducer,
+  filter: filterDataReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

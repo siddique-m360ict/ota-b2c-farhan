@@ -170,6 +170,7 @@ export async function filterFlightList(
   const response = await fetch(apiUrl, {
     method: "GET",
     headers: myHeaders,
+    cache: "no-store",
   })
 
   if (!response.ok) {

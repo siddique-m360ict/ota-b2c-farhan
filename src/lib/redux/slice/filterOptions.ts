@@ -37,9 +37,12 @@ const filterOptionSlice = createSlice({
         ...action.payload,
       }
     },
+    removeFilterOption: () => {
+      return initialState
+    },
   },
 })
 
-export const { setFilterOption } = filterOptionSlice.actions
+export const { setFilterOption, removeFilterOption } = filterOptionSlice.actions
 export const selectFilterOption = (state: RootState) => state.filterOption
 export default filterOptionSlice.reducer

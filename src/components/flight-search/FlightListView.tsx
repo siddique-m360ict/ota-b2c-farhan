@@ -15,6 +15,12 @@ import {
   selectFilterOption,
 } from "@/lib/redux/slice/filterOptions"
 import { filterFlightList } from "@/app/(flightSearch)/actions"
+import {
+  selectFilterDataCount,
+  selectFilterDataList,
+  setFilterCount,
+  setFilterDataList,
+} from "@/lib/redux/slice/filterDataList"
 
 type Props = {
   flights: IFlightSearchList | undefined
@@ -26,10 +32,8 @@ const isFilterNotEmpty = (filter: any) => {
 const FlightListView = ({ flights, count }: Props) => {
   const dispatch = useAppDispatch()
   const filterOption = useAppSelector(selectFilterOption) as FilterAirlines
-  const [filterDataList, setFilterDataList] = useState<
-    Result[] | undefined | {} | any
-  >()
-  const [filterCount, setFilterCount] = useState<number>()
+  const filterCount = useAppSelector(selectFilterDataCount)
+  const filterDataList = useAppSelector(selectFilterDataList)
 
   if (flights?.filter) {
     dispatch(setFilterData(flights.filter))
@@ -41,8 +45,8 @@ const FlightListView = ({ flights, count }: Props) => {
       const filterApi = async () => {
         try {
           const res = await filterFlightList(filterOption, 1)
-          setFilterDataList(res?.data?.results)
-          setFilterCount(res.count)
+          dispatch(setFilterDataList(res?.data?.results))
+          dispatch(setFilterCount(res.count))
         } catch (error) {
           throw new Error(`Something wrong in filter`)
         }

@@ -3,7 +3,7 @@ import { HTTPResponse } from "@/lib/commonTypes"
 import { FilterAirlines } from "@/lib/redux/slice/filterOptions"
 import { serverUrl } from "@/lib/utils"
 
-export async function filterFlightList(
+export async function filterFlightListV2(
   filter: FilterAirlines,
   page: number
 ): Promise<HTTPResponse<IFlightSearchList>> {
