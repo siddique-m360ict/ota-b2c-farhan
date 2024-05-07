@@ -34,7 +34,6 @@ const FlightListView = ({ flights, count }: Props) => {
   const filterOption = useAppSelector(selectFilterOption) as FilterAirlines
   const filterCount = useAppSelector(selectFilterDataCount)
   const filterDataList = useAppSelector(selectFilterDataList)
-
   if (flights?.filter) {
     dispatch(setFilterData(flights.filter))
   }
@@ -66,7 +65,6 @@ const FlightListView = ({ flights, count }: Props) => {
         }
       />
       <FlightTopFilter />
-
       <div>
         {filterDataList
           ? filterDataList.map((flight: any, index: number) => (
