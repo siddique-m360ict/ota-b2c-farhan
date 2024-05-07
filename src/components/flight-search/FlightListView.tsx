@@ -64,7 +64,6 @@ const FlightListView = ({ flights, count }: Props) => {
           ].arrival?.city
         }
       />
-
       <FlightTopFilter />
       <div>
         {filterDataList

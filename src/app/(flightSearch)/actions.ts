@@ -95,9 +95,9 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
     if (sanitizeParams.route === "oneway") {
       requestBody = OneWayFormatter(sanitizeParams)
     } else if (sanitizeParams.route === "roundway") {
-      requestBody = MultiWayFormatter(sanitizeParams)
-    } else if (sanitizeParams.route === "multiway") {
       requestBody = RoundWayFormatter(sanitizeParams)
+    } else if (sanitizeParams.route === "multiway") {
+      requestBody = MultiWayFormatter(sanitizeParams)
     }
 
     const response = await fetch(apiUrl, {

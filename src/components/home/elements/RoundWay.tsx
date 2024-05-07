@@ -9,8 +9,21 @@ import SelectAirport from "./SelectAirport"
 import { Icons } from "@/components/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
+import {
+  useRouter,
+  useSearchParams,
+  useSelectedLayoutSegment,
+} from "next/navigation"
 import { Passenger } from "../FlightSearch"
+import Link from "next/link"
+import {
+  setFilterCount,
+  setFilterDataList,
+} from "@/lib/redux/slice/filterDataList"
+import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 type Props = {
   cabinClass: string
@@ -26,7 +39,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     from: addDays(new Date(), 1),
     to: addDays(new Date(), 3),
   })
-  const [isPending, startTransition] = useTransition()
+
   const [rotation, setRotation] = useState(0)
   const router = useRouter()
   const swapRoute = () => {
@@ -34,6 +47,11 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     setFromAirport(toAirport)
     setToAirport(fromAirport)
   }
+
+  // react hook
+  const [isPending, startTransition] = useTransition()
+  const segment = useSelectedLayoutSegment()
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   // Make url
   const queryParams = `origin=${fromAirport?.iata_code}&destination=${
@@ -48,49 +66,79 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""
   }&class=${cabinClass}&route=roundway`
 
-  const changeRoute = (url: string | undefined) => {
-    router.push(url as string)
+  const removeFilter = () => {
+    dispatch(setFilterDataList(undefined))
+    dispatch(setFilterCount(undefined))
+    dispatch(removeFilterOption())
   }
-
+  // change route for flight
+  const dispatch = useAppDispatch()
+  const changeRoute = () => {
+    router.push(`/flightsearch?${queryParams}`)
+    removeFilter()
+  }
   return (
-    <div className="flex gap-2">
-      <div className="relative flex w-full gap-2">
-        <SelectAirport
-          airport={fromAirport}
-          setAirport={setFromAirport}
-          name="From"
-        />
-        {/* Swap Route */}
-        <Icons.Repeat
-          onClick={swapRoute}
-          style={{
-            transform: `rotate(${rotation}deg)`,
-            border: "3px solid white",
-            boxShadow: "0px 0px 0px 1px #E2E8F0",
-          }}
-          className="absolute left-[47.5%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white md:block"
-        />
-        <SelectAirport
-          airport={toAirport}
-          setAirport={setToAirport}
-          name="To"
-        />
-      </div>
-      <div className="flex w-full justify-between gap-3">
-        <DatePickerRange date={date} setDate={setDate} />
-        <Button
-          className={cn(
-            buttonVariants({ variant: "default", size: "xl" }),
-            "h-13 rounded px-4"
+    <>
+      <div className="gap-2  md:flex">
+        <div className="relative flex w-full gap-2">
+          <SelectAirport
+            airport={fromAirport}
+            setAirport={setFromAirport}
+            name="From"
+          />
+          {/* Swap Route */}
+          <Icons.Repeat
+            onClick={swapRoute}
+            style={{
+              transform: `rotate(${rotation}deg)`,
+              border: "3px solid white",
+              boxShadow: "0px 0px 0px 1px #E2E8F0",
+            }}
+            className="absolute left-[47.5%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white md:block"
+          />
+          <SelectAirport
+            airport={toAirport}
+            setAirport={setToAirport}
+            name="To"
+          />
+        </div>
+        <div className="w-full justify-between gap-3 md:flex">
+          <div className="mb-4 mt-2 w-full md:mb-0 md:mt-0">
+            <DatePickerRange date={date} setDate={setDate} />
+          </div>
+          {segment !== "flightsearch" ? (
+            <Link
+              href={`/flightsearch?${queryParams}`}
+              className={cn(
+                buttonVariants({
+                  variant: "default",
+                  size: isDesktop ? "xl" : "sm",
+                }),
+                "w-full rounded px-4 md:h-12 md:w-auto"
+              )}
+              onClick={() => removeFilter()}
+            >
+              Search
+            </Link>
+          ) : (
+            <Button
+              disabled={isPending}
+              className={cn(
+                buttonVariants({
+                  variant: "default",
+                  size: isDesktop ? "xl" : "sm",
+                }),
+                "w-full rounded px-4  md:h-12 md:w-auto"
+              )}
+              onClick={() => startTransition(() => changeRoute())}
+            >
+              Search
+            </Button>
           )}
-          onClick={() =>
-            startTransition(() => changeRoute(`flight-search?${queryParams}`))
-          }
-        >
-          {isPending ? "load.." : "Search"}
-        </Button>
+        </div>
       </div>
-    </div>
+      {isPending && <LoadingIndicator />}
+    </>
   )
 }
 

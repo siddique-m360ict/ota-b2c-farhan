@@ -29,6 +29,7 @@ import {
   removeFilterOption,
   setFilterOption,
 } from "@/lib/redux/slice/filterOptions"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 type Props = {
   cabinClass: string
@@ -52,7 +53,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   // react hook
   const [isPending, startTransition] = useTransition()
   const segment = useSelectedLayoutSegment()
-  const searchParams = useSearchParams()
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   // make url and change route ---------------------------------------
   const router = useRouter()
@@ -66,6 +67,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
   }&class=${cabinClass}&route=oneway`
 
+  // remove all flight filter because new filter add when search button click
   const removeFilter = () => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
@@ -80,7 +82,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
 
   return (
     <>
-      <div className="relative  flex flex-col gap-3 md:flex-row ">
+      <div className="relative  flex flex-col gap-3 md:flex-row">
         <SelectAirport
           airport={fromAirport}
           setAirport={setFromAirport}
@@ -107,7 +109,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           <Link
             href={`/flightsearch?${queryParams}`}
             className={cn(
-              buttonVariants({ variant: "default", size: "xl" }),
+              buttonVariants({
+                variant: "default",
+                size: isDesktop ? "xl" : "sm",
+              }),
               "rounded px-4"
             )}
             onClick={() => removeFilter()}
@@ -118,7 +123,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           <Button
             disabled={isPending}
             className={cn(
-              buttonVariants({ variant: "default", size: "xl" }),
+              buttonVariants({
+                variant: "default",
+                size: isDesktop ? "xl" : "sm",
+              }),
               "rounded px-4"
             )}
             onClick={() => startTransition(() => changeRoute())}

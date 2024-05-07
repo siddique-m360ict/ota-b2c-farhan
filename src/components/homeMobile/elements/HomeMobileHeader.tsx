@@ -7,6 +7,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useSelectedLayoutSegment } from "next/navigation"
+import { ModeToggle } from "@/components/common/mode-toggle"
 
 type Props = {
   home?: boolean
@@ -71,6 +72,8 @@ const HomeMobileHeader = ({ home }: Props) => {
           </p>
         </Link>
         <div className="z-50 flex justify-between gap-5">
+          <ModeToggle />
+
           <p className={cn("", !home && "text-white")}>
             <Link href={"/login"}>
               <Icons.User size={22} />

@@ -79,12 +79,12 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Card className=" flex h-[5.5vh] cursor-pointer items-center rounded px-4  py-1 text-start">
+        <Card className="flex h-[5vh]  w-full cursor-pointer items-center rounded px-4  py-1 text-start">
           <CardContent className="w-full p-0">
             {airport ? (
-              <p className="leading-5">
+              <p className="text-sm leading-4">
                 {airport.iata_code} <br />
-                <small className="text-xs">{airport.name}</small>
+                <small className="text-xs">{airport.country}</small>
               </p>
             ) : (
               <p className="text-sm"> {name} Airport</p>

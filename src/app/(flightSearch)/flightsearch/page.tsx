@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import { getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"
 import CardLoader from "@/components/flight-search/elements/CardLoader"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default async function FlightSearchPage({ params, searchParams }) {
   return (
