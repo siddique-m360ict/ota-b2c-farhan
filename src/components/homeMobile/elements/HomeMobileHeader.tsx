@@ -9,13 +9,16 @@ import { cn } from "@/lib/utils"
 import { useSelectedLayoutSegment } from "next/navigation"
 import { ModeToggle } from "@/components/common/mode-toggle"
 
+import { UserAccountNav } from "@/components/common/user-account-nav"
+import { getCookies } from "cookies-next"
+
 type Props = {
   home?: boolean
 }
 const HomeMobileHeader = ({ home }: Props) => {
   const [open, setOpen] = React.useState(false)
   const segment = useSelectedLayoutSegment()
-
+  const isLogin = getCookies().b_token
   const headerItems = [
     {
       id: "Hotels",
@@ -73,11 +76,17 @@ const HomeMobileHeader = ({ home }: Props) => {
         </Link>
         <div className="z-50 flex justify-between gap-5">
           {/* <ModeToggle /> */}
-          <p className={cn("", !home && "text-white")}>
-            <Link href={"/login"}>
-              <Icons.User size={22} />
-            </Link>
-          </p>
+          {!isLogin ? (
+            <p className={cn("", !home && "text-white")}>
+              <Link href={"/login"}>
+                <Icons.User size={22} />
+              </Link>
+            </p>
+          ) : (
+            <div>
+              <UserAccountNav className="h-6 w-6" />
+            </div>
+          )}
 
           <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>

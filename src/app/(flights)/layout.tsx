@@ -20,7 +20,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
             className="object-contain object-left-top md:object-cover"
           />
           <div
-            className="absolute top-[29.3%] block h-[48px] w-full md:hidden"
+            className="absolute top-[31.5%] block h-[48px] w-full md:hidden"
             style={{ background: "linear-gradient(hsla(0,0%,100%,0),#f0f2f5)" }}
           ></div>
         </div>

@@ -24,6 +24,7 @@ import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
 import { useAppDispatch } from "@/lib/redux/hooks"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/components/ui/use-toast"
 
 type Props = {
   cabinClass: string
@@ -74,6 +75,14 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
   // change route for flight
   const dispatch = useAppDispatch()
   const changeRoute = () => {
+    if (!fromAirport || !toAirport || !date?.from || !date?.to) {
+      toast({
+        title: "Please fill all fields",
+        description: "",
+      })
+      return
+    }
+
     router.push(`/flightsearch?${queryParams}`)
     removeFilter()
   }
@@ -108,7 +117,11 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
           </div>
           {segment !== "flightsearch" ? (
             <Link
-              href={`/flightsearch?${queryParams}`}
+              href={
+                fromAirport && toAirport && date?.from && date?.to
+                  ? `/flightsearch?${queryParams}`
+                  : "#"
+              }
               className={cn(
                 buttonVariants({
                   variant: "default",
@@ -116,7 +129,16 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                 }),
                 "w-full rounded px-4 md:h-12 md:w-auto"
               )}
-              onClick={() => removeFilter()}
+              onClick={(e) => {
+                if (!fromAirport || !toAirport || !date?.from || !date?.to) {
+                  e.preventDefault()
+                  toast({
+                    title: "Please fill all fields",
+                  })
+                } else {
+                  removeFilter()
+                }
+              }}
             >
               Search
             </Link>

@@ -12,20 +12,24 @@ import {
 import { UserAvatar } from "./user-avatar"
 import { UserType } from "@/types"
 import { LoginResData } from "@/lib/server/auth/PostLoginEndpoints"
-import { useAppDispatch } from "@/lib/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import { logout } from "@/lib/redux/slice/user_slice"
 import { useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: LoginResData | undefined
+  className?: string
 }
 
-export function UserAccountNav({ user }: UserAccountNavProps) {
+export function UserAccountNav({ className }: UserAccountNavProps) {
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const data = useAppSelector((state) => state.user)
+  const user = data?.data
+
   const handleLogout = () => {
     dispatch(logout())
-    // router.replace(`${window.location.origin}/login`)
+    router.refresh()
   }
 
   return (
@@ -33,7 +37,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
       <DropdownMenuTrigger>
         <UserAvatar
           user={{ name: user?.username || null, image: user?.photo || null }}
-          className="h-10 w-10 "
+          className={cn("h-10 w-10 ", className)}
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

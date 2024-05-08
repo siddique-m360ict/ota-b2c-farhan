@@ -9,8 +9,8 @@ const FlightTopFilter = () => {
   return (
     <Card className="mt-[4px] ">
       <CardContent className="overflow-hidden whitespace-nowrap p-4 px-6  md:overflow-auto  md:whitespace-normal ">
-        <div className="flex items-center gap-6 overflow-y-hidden overflow-x-scroll md:overflow-x-hidden md:overflow-y-hidden">
-          <div className="relative flex basis-full cursor-pointer items-center text-center">
+        <div className="flex items-center gap-4 overflow-y-hidden overflow-x-scroll md:gap-6 md:overflow-x-hidden md:overflow-y-hidden">
+          <div className="relative hidden basis-full cursor-pointer items-center text-center md:flex">
             <h2 className="pe-4 text-sm font-bold text-secondary md:pe-0">
               Recommended
             </h2>

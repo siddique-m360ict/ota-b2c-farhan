@@ -1,10 +1,5 @@
-"use client"
 import * as React from "react"
-import {
-  useRouter,
-  useSearchParams,
-  useSelectedLayoutSegment,
-} from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -23,7 +18,7 @@ import Link from "next/link"
 import { postLogin } from "@/app/(auth)/actions"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenModal?: any
 }
 
 type FormData = z.infer<typeof userAuthSchema>
@@ -46,8 +41,11 @@ export function UserAuthForm({
   const searchParams = useSearchParams()
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const segment = useSelectedLayoutSegment()
-  const loginPage = segment === "login"
+  const pathName = usePathname()
+  const loginPage = pathName === "/login"
+
+  console.log(searchParams?.get("from"))
+
   async function onSubmit(data) {
     setIsLoading(true)
     try {
@@ -67,8 +65,9 @@ export function UserAuthForm({
         dispatch(user(res))
         localStorage.setItem("b_token", res?.token as string)
         setCookie("b_token", res?.token)
-        setOpenModal(false)
-        loginPage && router.replace(searchParams?.get("from") || "/")
+        setOpenModal && setOpenModal(false)
+        router.refresh()
+        loginPage && router.push(searchParams?.get("from") || "/")
       }
     } catch (error) {
       console.log(error)

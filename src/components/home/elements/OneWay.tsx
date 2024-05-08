@@ -30,6 +30,7 @@ import {
   setFilterOption,
 } from "@/lib/redux/slice/filterOptions"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/components/ui/use-toast"
 
 type Props = {
   cabinClass: string
@@ -76,6 +77,13 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   // change route for flight
   const dispatch = useAppDispatch()
   const changeRoute = () => {
+    if (!fromAirport || !toAirport || !date) {
+      toast({
+        title: "Please fill all fields",
+        description: "",
+      })
+      return
+    }
     router.push(`/flightsearch?${queryParams}`)
     removeFilter()
   }
@@ -107,7 +115,11 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         <DatePicker setDate={setDate} date={date} />
         {segment !== "flightsearch" ? (
           <Link
-            href={`/flightsearch?${queryParams}`}
+            href={
+              fromAirport && toAirport && date
+                ? `/flightsearch?${queryParams}`
+                : "#"
+            }
             className={cn(
               buttonVariants({
                 variant: "default",
@@ -115,7 +127,16 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
               }),
               "rounded px-4"
             )}
-            onClick={() => removeFilter()}
+            onClick={(e) => {
+              if (!fromAirport || !toAirport || !date) {
+                e.preventDefault()
+                toast({
+                  title: "Please fill all fields",
+                })
+              } else {
+                removeFilter()
+              }
+            }}
           >
             Search
           </Link>

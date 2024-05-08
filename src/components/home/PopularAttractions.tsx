@@ -60,7 +60,7 @@ const PopularAttractions = () => {
             "url(/images/home/popular.png) no-repeat right 24px top 4px,radial-gradient(ellipse 30% 26% at 80% 0,rgba(122,226,211,.28),transparent),radial-gradient(ellipse 30% 26% at bottom left,rgba(122,226,211,.28),transparent),#f7fafc",
         }}
       >
-        <CardHeader className="p-4 pb-2 md:p-6">
+        <CardHeader className="p-4 pb-2 md:p-6 md:pb-0">
           <h1 className="font-heading text-secondary md:text-[26px]">
             Featured Properties
           </h1>

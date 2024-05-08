@@ -3,12 +3,22 @@ import React, { useState, useTransition } from "react"
 import SelectAirport from "./SelectAirport"
 import DatePicker from "./DatePicker" // Import your DatePicker component
 import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { IAirportList } from "./types/flightSearchType"
 import { useToast } from "@/components/ui/use-toast"
 import { Passenger } from "../FlightSearch"
 import { format } from "date-fns"
-import { useRouter } from "next/navigation"
+import { useRouter, useSelectedLayoutSegment } from "next/navigation"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import {
+  setFilterCount,
+  setFilterDataList,
+} from "@/lib/redux/slice/filterDataList"
+import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 type cityData = {
   key: number
   from: IAirportList | null
@@ -50,25 +60,31 @@ const MultiCity = ({ cabinClass, passenger }) => {
     updatedCityData[index].to = temp
     setCityData(updatedCityData)
   }
-
+  const segment = useSelectedLayoutSegment()
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const dispatch = useAppDispatch()
+  const removeFilter = () => {
+    dispatch(setFilterDataList(undefined))
+    dispatch(setFilterCount(undefined))
+    dispatch(removeFilterOption())
+  }
+  const isEmpty = cityData.some(({ from, to, date }) => !from || !to || !date)
+  const formattedParams = cityData
+    .map(({ from, to, date }) => {
+      const formattedDate = date ? format(new Date(date), "yyyy-MM-dd") : ""
+      return `${from?.iata_code},${to?.iata_code},${formattedDate}`
+    })
+    .join(",")
+  const queryParams = `trips=${formattedParams}&adults=${passenger.adult}&child=${passenger.children}&infant=${passenger.infant}&kids=${passenger.kids}&class=${cabinClass}&route=multiway`
   const handleSearch = () => {
-    const isEmpty = cityData.some(({ from, to, date }) => !from || !to || !date)
     if (isEmpty) {
       toast({
         title: "Please add city and date for all cities",
         description: "",
       })
     } else {
-      const formattedParams = cityData
-        .map(({ from, to, date }) => {
-          const formattedDate = date ? format(new Date(date), "yyyy-MM-dd") : ""
-          return `${from?.iata_code},${to?.iata_code},${formattedDate}`
-        })
-        .join(",")
-
-      const queryParams = `trips=${formattedParams}&adults=${passenger.adult}&child=${passenger.children}&infant=${passenger.infant}&kids=${passenger.kids}&class=${cabinClass}&route=multiway`
       startTransition(() => {
-        router.push(`flight-search?${queryParams}`)
+        router.push(`flightsearch?${queryParams}`)
       })
     }
   }
@@ -121,10 +137,46 @@ const MultiCity = ({ cabinClass, passenger }) => {
       ))}
       <div className="mt-4 flex justify-between">
         <Button onClick={addCity}>Add another city</Button>
-        <Button onClick={handleSearch} className="rounded px-4">
-          {isPending ? "load.." : "Search"}
-        </Button>
+        {segment !== "flightsearch" ? (
+          <Link
+            href={!isEmpty ? `/flightsearch?${queryParams}` : "#"}
+            className={cn(
+              buttonVariants({
+                variant: "default",
+                size: isDesktop ? "xl" : "sm",
+              }),
+              "w-full rounded px-4 md:h-12 md:w-auto"
+            )}
+            onClick={(e) => {
+              if (isEmpty) {
+                e.preventDefault()
+                toast({
+                  title: "Please fill all fields",
+                })
+              } else {
+                removeFilter()
+              }
+            }}
+          >
+            Search
+          </Link>
+        ) : (
+          <Button
+            disabled={isPending}
+            className={cn(
+              buttonVariants({
+                variant: "default",
+                size: isDesktop ? "xl" : "sm",
+              }),
+              "w-full rounded px-4  md:h-12 md:w-auto"
+            )}
+            onClick={() => startTransition(() => handleSearch())}
+          >
+            Search
+          </Button>
+        )}
       </div>
+      {isPending && <LoadingIndicator />}
     </div>
   )
 }

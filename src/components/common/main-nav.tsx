@@ -114,7 +114,7 @@ export function MainNav({ home }: MainNavProps) {
       {isLogin && user?.success ? (
         <div className="flex items-center gap-6">
           <ModeToggle />
-          <UserAccountNav user={user?.data} />
+          <UserAccountNav />
         </div>
       ) : (
         <nav className="flex gap-3">
