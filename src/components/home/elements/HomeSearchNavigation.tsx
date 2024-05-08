@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from "react"
-import { Icons } from "../icons"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
-import FlightSearch from "./FlightSearch"
+import { Icons } from "../../icons"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
+import FlightSearch from "../FlightSearch"
 
-const HomeSearch = () => {
+const HomeSearchNavigation = () => {
   const [activeTab, setActiveTab] = useState("Flights")
   const tabs = [
     {
@@ -17,7 +17,7 @@ const HomeSearch = () => {
     {
       id: "Hotels",
       label: "Hotels",
-      icon: <Icons.Home className="text-[4px]" />,
+      icon: <Icons.Home className="size-[22px]" />,
       element: <>Hotels</>,
     },
 
@@ -27,14 +27,24 @@ const HomeSearch = () => {
       icon: <Icons.TramFront />,
       element: <>Trains</>,
     },
-    { id: "Cars", label: "Cars", icon: <Icons.CarFront />, element: <>Cars</> },
+    {
+      id: "Cars",
+      label: "Cars",
+      icon: <Icons.CarFront className="size-[20px]" />,
+      element: <>Cars</>,
+    },
     {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
-      icon: <Icons.Attractions />,
+      icon: <Icons.Attractions className="size-[20px]" />,
       element: <>Attractions & Tours</>,
     },
-    { id: "Visa", label: "Visa", icon: <Icons.Bundle />, element: <>Visa</> },
+    {
+      id: "Visa",
+      label: "Visa",
+      icon: <Icons.Bundle className="size-[22px]" />,
+      element: <>Visa</>,
+    },
   ]
 
   const handleTabChange = (tabId) => {
@@ -45,17 +55,17 @@ const HomeSearch = () => {
     <div className="relative text-center">
       <Tabs defaultValue={activeTab}>
         <TabsList
-          className="absolute right-[21%] top-[-12%]  rounded-full bg-[rgba(15,41,77,.8)] py-[23px] backdrop-blur"
-          aria-label="Manage your account"
+          className="absolute top-[-12%] rounded-full bg-[rgba(15,41,77,.8)] py-[23px]  backdrop-blur-[6px] md:right-[4%]  lg:right-[10%] xl:right-[19%] 2xl:right-[21%]  "
+          aria-label="Select Your Services"
         >
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.id}
               value={tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className="mx-3 rounded-full text-white"
+              className="mx-3 rounded-full px-3 text-white"
             >
-              <p className="flex items-center gap-1 text-[14px] font-bold">
+              <p className="flex items-center gap-1 text-[16px] font-bold">
                 {tab?.icon}
                 {tab.label}
               </p>
@@ -73,4 +83,4 @@ const HomeSearch = () => {
   )
 }
 
-export default HomeSearch
+export default HomeSearchNavigation

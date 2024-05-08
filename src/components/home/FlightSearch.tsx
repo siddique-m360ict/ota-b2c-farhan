@@ -1,17 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils"
 import React, { useState } from "react"
-import { Icons } from "../icons"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import { Card, CardContent } from "../ui/card"
 import MultiCity from "./elements/MultiCity"
 import OneWay from "./elements/OneWay"
 import RoundWay from "./elements/RoundWay"
@@ -57,7 +47,7 @@ const FlightSearch = ({ home, className }: Props) => {
   return (
     <Card className={cn(!home && "shadow-xl", className)}>
       <CardContent
-        className={cn("px-4 pt-12 text-start md:px-6", !home && "pt-4")}
+        className={cn("px-4 pt-11 text-start md:px-6", !home && "pt-4")}
       >
         <div className="mb-3 mt-1 flex items-center gap-3 md:gap-5">
           <SelectRoute

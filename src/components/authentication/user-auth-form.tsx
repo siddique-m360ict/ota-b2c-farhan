@@ -1,9 +1,11 @@
 "use client"
-
 import * as React from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import {
+  useRouter,
+  useSearchParams,
+  useSelectedLayoutSegment,
+} from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { setCookie } from "cookies-next"
@@ -20,11 +22,17 @@ import { user } from "@/lib/redux/slice/user_slice"
 import Link from "next/link"
 import { postLogin } from "@/app/(auth)/actions"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 type FormData = z.infer<typeof userAuthSchema>
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm({
+  className,
+  setOpenModal,
+  ...props
+}: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -38,7 +46,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const searchParams = useSearchParams()
   const dispatch = useAppDispatch()
   const router = useRouter()
-
+  const segment = useSelectedLayoutSegment()
+  const loginPage = segment === "login"
   async function onSubmit(data) {
     setIsLoading(true)
     try {
@@ -58,7 +67,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         dispatch(user(res))
         localStorage.setItem("b_token", res?.token as string)
         setCookie("b_token", res?.token)
-        router.replace(searchParams?.get("from") || "/")
+        setOpenModal(false)
+        loginPage && router.replace(searchParams?.get("from") || "/")
       }
     } catch (error) {
       console.log(error)
@@ -113,41 +123,44 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </Link>
         </div>
       </form>
-
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
+      {loginPage && (
+        <div className="grid gap-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
+          </div>
+          <button
+            type="button"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            disabled={isLoading || isGitHubLoading}
+          >
+            {isGitHubLoading ? (
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            ) : (
+              <Icons.gitHub className="mr-2 size-4" />
+            )}{" "}
+            Github
+          </button>
+          <button
+            type="button"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            disabled={isLoading || isGitHubLoading || isGoogleLoading}
+          >
+            {isGoogleLoading ? (
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            ) : (
+              <Icons.google className="mr-2 size-4" />
+            )}{" "}
+            Google
+          </button>
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      <button
-        type="button"
-        className={cn(buttonVariants({ variant: "outline" }))}
-        disabled={isLoading || isGitHubLoading}
-      >
-        {isGitHubLoading ? (
-          <Icons.spinner className="mr-2 size-4 animate-spin" />
-        ) : (
-          <Icons.gitHub className="mr-2 size-4" />
-        )}{" "}
-        Github
-      </button>
-      <button
-        type="button"
-        className={cn(buttonVariants({ variant: "outline" }))}
-        disabled={isLoading || isGitHubLoading || isGoogleLoading}
-      >
-        {isGoogleLoading ? (
-          <Icons.spinner className="mr-2 size-4 animate-spin" />
-        ) : (
-          <Icons.google className="mr-2 size-4" />
-        )}{" "}
-        Google
-      </button>
+      )}
     </div>
   )
 }

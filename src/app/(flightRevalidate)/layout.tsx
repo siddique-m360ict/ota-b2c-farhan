@@ -9,11 +9,10 @@ interface FlightLayoutProps {
 }
 
 export default async function FlightLayout({ children }: FlightLayoutProps) {
-  const token = await getCookies()
-
-  if (!token) {
-    redirect("/login")
-  }
+  // const token = await getCookies()
+  // if (!token) {
+  //   redirect("/login")
+  // }
 
   return (
     <div className="flex flex-col">

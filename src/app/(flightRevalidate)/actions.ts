@@ -117,7 +117,6 @@ export async function ReValidateFlightV2(
 
   const customHeaders = new Headers()
   customHeaders.append("Content-Type", "application/json")
-  customHeaders.append("Authorization", `${getCookies()}`)
 
   const response = await fetch(apiUrl, {
     method: "GET",

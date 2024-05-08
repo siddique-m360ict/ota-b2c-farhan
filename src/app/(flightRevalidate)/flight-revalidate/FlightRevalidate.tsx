@@ -1,9 +1,11 @@
+import LoginModal from "@/components/flight-revalidate/elements/LoginModal"
 import RevalidatePriceBox from "@/components/flight-revalidate/elements/RevalidatePriceBox"
 import FlightRevalidateDetails from "@/components/flight-revalidate/FlightRevalidateDetails"
 import {
   IRevalidated,
   Option,
 } from "@/lib/server/flights/RevalidateFlightEndpoint"
+import { getCookies } from "@/lib/token/getCookies"
 import React from "react"
 
 type Props = {
@@ -20,7 +22,9 @@ export interface FormattedData {
   content: Option[]
 }
 
-const FlightRevalidate = ({ flights }: Props) => {
+const FlightRevalidate = async ({ flights }: Props) => {
+  const token = await getCookies()
+
   // make data
   let revalidateData: FormattedData[] = []
   flights?.flights?.length &&
@@ -52,28 +56,31 @@ const FlightRevalidate = ({ flights }: Props) => {
     })
 
   return (
-    <div className="pb-40">
-      <div className="mx-auto md:container md:py-5">
-        <div className="flex flex-col gap-5 md:mt-5 md:flex-row">
-          {/* PaymentSidebar */}
-          <div className="order-2 md:order-2 md:flex-1">
-            <RevalidatePriceBox
-              passengers={flights.passengers}
-              fare={flights.fare}
-            />
-          </div>
+    <>
+      <div className="pb-40">
+        <div className="mx-auto md:container md:py-5">
+          <div className="flex flex-col gap-5 md:mt-5 md:flex-row">
+            {/* PaymentSidebar */}
+            <div className="order-2 md:order-2 md:flex-1">
+              <RevalidatePriceBox
+                passengers={flights.passengers}
+                fare={flights.fare}
+              />
+            </div>
 
-          <div className="order-1 flex-[2.5] space-y-5 md:order-1">
-            <FlightRevalidateDetails
-              data={revalidateData}
-              legDescriptions={flights?.leg_descriptions}
-              fare={flights.fare}
-              passengers={flights?.passengers}
-            />
+            <div className="order-1 flex-[2.5] space-y-5 md:order-1">
+              <FlightRevalidateDetails
+                data={revalidateData}
+                legDescriptions={flights?.leg_descriptions}
+                fare={flights.fare}
+                passengers={flights?.passengers}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <LoginModal token={token} />
+    </>
   )
 }
 

@@ -25,7 +25,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
   const router = useRouter()
   const handleLogout = () => {
     dispatch(logout())
-    router.replace(`${window.location.origin}/login`)
+    // router.replace(`${window.location.origin}/login`)
   }
 
   return (

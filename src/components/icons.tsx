@@ -37,14 +37,16 @@ import {
   Armchair,
   AlignJustify,
   LucideIcon,
+  Star,
 } from "lucide-react"
 
-export type Icon =  LucideIcon
+export type Icon = LucideIcon
 
 export const Icons = {
   logo: Command,
   Plane: Plane,
   close: X,
+  Star: Star,
   menu: AlignJustify,
   UserCheck: UserCheck,
   ChevronDown: ChevronDown,

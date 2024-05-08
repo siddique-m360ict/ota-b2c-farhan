@@ -49,6 +49,7 @@
         "cmdk": "^0.1.22",
         "cookies-next": "^4.1.1",
         "date-fns": "^2.30.0",
+        "embla-carousel-autoplay": "^8.0.4",
         "embla-carousel-react": "^8.0.0",
         "geist": "^1.2.2",
         "lucide-react": "^0.378.0",

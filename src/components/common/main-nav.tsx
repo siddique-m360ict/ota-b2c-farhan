@@ -56,7 +56,7 @@ export function MainNav({ home }: MainNavProps) {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
-      href: "/stream?origin=DAC&destination=CXB&departuredate=2024-05-21&adults=1&class=Y&route=oneway",
+      href: "/",
     },
     {
       id: "Visa",

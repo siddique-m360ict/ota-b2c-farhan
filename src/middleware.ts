@@ -39,5 +39,5 @@ export default async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/flight-revalidate", "/dashboard/:path*", "/login", "/register"],
+  matcher: ["/dashboard/:path*", "/login", "/register"],
 }
