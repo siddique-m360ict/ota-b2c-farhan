@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Icons } from "../../icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
 import FlightSearch from "../FlightSearch"
+import ComingSoon from "../ComingSoon"
 
 const HomeSearchNavigation = () => {
   const [activeTab, setActiveTab] = useState("Flights")
@@ -18,32 +19,32 @@ const HomeSearchNavigation = () => {
       id: "Hotels",
       label: "Hotels",
       icon: <Icons.Home className="size-[22px]" />,
-      element: <>Hotels</>,
+      element: <ComingSoon service={"Hotels"} />,
     },
 
     {
       id: "Trains",
       label: "Trains",
       icon: <Icons.TramFront />,
-      element: <>Trains</>,
+      element: <ComingSoon service={"Hotels"} />,
     },
     {
       id: "Cars",
       label: "Cars",
       icon: <Icons.CarFront className="size-[20px]" />,
-      element: <>Cars</>,
+      element: <ComingSoon service={"Cars"} />,
     },
     {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
-      element: <>Attractions & Tours</>,
+      element: <ComingSoon service={"Attractions & Tours"} />,
     },
     {
       id: "Visa",
       label: "Visa",
       icon: <Icons.Bundle className="size-[22px]" />,
-      element: <>Visa</>,
+      element: <ComingSoon service={"Visa"} />,
     },
   ]
 

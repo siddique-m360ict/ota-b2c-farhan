@@ -54,7 +54,7 @@ function SelectClass({ cabinClass, setCabinClass }: Props) {
           className="m-0 h-0 border-none p-0"
           aria-expanded={open}
         >
-          <Icons.Armchair size={18} className="me-1" />
+          <Icons.Armchair size={18} className="me-1 hidden md:block" />
           <p className="text-sm ">
             {cabinClass
               ? cabinClassList.find(
@@ -67,7 +67,6 @@ function SelectClass({ cabinClass, setCabinClass }: Props) {
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          
           <CommandGroup>
             {cabinClassList.map((framework) => (
               <CommandItem
@@ -90,7 +89,6 @@ function SelectClass({ cabinClass, setCabinClass }: Props) {
               </CommandItem>
             ))}
           </CommandGroup>
-    
         </Command>
       </PopoverContent>
     </Popover>

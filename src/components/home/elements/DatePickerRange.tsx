@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { PopoverClose } from "@radix-ui/react-popover"
 
 type Props = {
   className?: React.HTMLAttributes<HTMLDivElement>
@@ -89,9 +90,29 @@ function DatePickerRange({ className, date, setDate }: Props) {
             mode="range"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onDayClick={(day) =>
+              setDate((prev) =>
+                prev?.to
+                  ? { from: day, to: undefined }
+                  : prev?.from
+                  ? { from: prev?.from, to: day }
+                  : { from: day, to: undefined }
+              )
+            }
             numberOfMonths={2}
+            weekStartsOn={1}
           />
+          <div className="flex justify-end px-3 py-2">
+            <PopoverClose>
+              <Button
+                size="sm"
+                className="w-full text-xs"
+                variant={"secondary"}
+              >
+                Apply
+              </Button>
+            </PopoverClose>
+          </div>
         </PopoverContent>
       </Popover>
     </div>

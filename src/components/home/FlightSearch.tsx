@@ -47,9 +47,9 @@ const FlightSearch = ({ home, className }: Props) => {
   return (
     <Card className={cn(!home && "shadow-xl", className)}>
       <CardContent
-        className={cn("px-4 pt-11 text-start md:px-6", !home && "pt-4")}
+        className={cn("px-4 text-start md:px-6 md:pt-11", !home && "md:pt-4")}
       >
-        <div className="mb-3 mt-1 flex items-center gap-3 md:gap-5">
+        <div className="mb-3 mt-1 flex items-center justify-between md:justify-start md:gap-5">
           <SelectRoute
             activeRoute={activeRoute}
             setActiveRoute={setActiveRoute}

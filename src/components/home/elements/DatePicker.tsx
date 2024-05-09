@@ -1,9 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -20,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { PopoverClose } from "@radix-ui/react-popover"
-import { Icons } from "@/components/icons"
+import { useState } from "react"
 
 type Props = {
   setDate: (date: Date) => void
@@ -28,13 +26,14 @@ type Props = {
 }
 
 function DatePicker({ date, setDate }: Props) {
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   return (
-    <Popover>
+    <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
           className={cn(
-            "h h-[6vh] w-full justify-start text-left font-normal",
+            "h h-[5.4vh] w-full justify-start rounded text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
@@ -43,11 +42,12 @@ function DatePicker({ date, setDate }: Props) {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex w-full flex-col space-y-2 p-2">
-        <div className="flex">
+        <div className="hidden md:flex">
           <Select
-            onValueChange={(value) =>
+            onValueChange={(value) => {
               setDate(addDays(new Date(), parseInt(value)))
-            }
+              setIsCalendarOpen(false)
+            }}
           >
             <SelectTrigger>
               <SelectValue placeholder="Select" />
@@ -61,13 +61,8 @@ function DatePicker({ date, setDate }: Props) {
           </Select>
         </div>
         <div className="w-full rounded-md border">
-          <Calendar mode="single" selected={date!} onSelect={setDate} />
-        </div>
-        <div className=" flex w-full justify-end">
-          <PopoverClose className="w-full">
-            <Button size="sm" className="w-full text-xs" variant={"secondary"}>
-              Ok
-            </Button>
+          <PopoverClose>
+            <Calendar mode="single" selected={date!} onSelect={setDate} />
           </PopoverClose>
         </div>
       </PopoverContent>

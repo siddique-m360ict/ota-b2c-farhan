@@ -45,7 +45,7 @@ function SelectRoute({ activeRoute, setActiveRoute }: Props) {
           className="m-0 h-0 border-none p-0"
           aria-expanded={open}
         >
-          <Icons.Plane size={18} className="me-1" />
+          <Icons.Plane size={18} className="me-1 hidden md:block" />
           <p className="text-sm ">
             {activeRoute
               ? routeList.find((framework) => framework.id == activeRoute)
@@ -57,25 +57,22 @@ function SelectRoute({ activeRoute, setActiveRoute }: Props) {
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-        <CommandList>
-          <CommandGroup>
-            {routeList.map((framework) => (
-              <CommandItem
-                key={framework.id}
-                value={framework.id}
-                onSelect={(currentValue) => {
-                  setActiveRoute(
-                    currentValue == activeRoute ? "" : currentValue
-                  )
-                  setOpen(false)
-                }}
-              >
-                {framework.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      
+          <CommandList>
+            <CommandGroup>
+              {routeList.map((framework) => (
+                <CommandItem
+                  key={framework.id}
+                  value={framework.id}
+                  onSelect={(currentValue) => {
+                    setActiveRoute(currentValue)
+                    setOpen(false)
+                  }}
+                >
+                  {framework.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>

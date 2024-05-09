@@ -31,6 +31,7 @@ const AirportSelect = ({
         placeholder="Filter status..."
         value={searchTerm}
         onValueChange={setSearchTerm}
+        autoFocus
       />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>

@@ -11,6 +11,11 @@ const nextConfig = {
         hostname: "raw.githubusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/**",
+      },
     ],
   },
 }

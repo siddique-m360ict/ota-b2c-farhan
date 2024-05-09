@@ -38,6 +38,7 @@ import {
   AlignJustify,
   LucideIcon,
   Star,
+  ArrowDownUp,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -46,6 +47,7 @@ export const Icons = {
   logo: Command,
   Plane: Plane,
   close: X,
+  ArrowDownUp: ArrowDownUp,
   Star: Star,
   menu: AlignJustify,
   UserCheck: UserCheck,

@@ -90,7 +90,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
 
   return (
     <>
-      <div className="relative  flex flex-col gap-3 md:flex-row">
+      <div className="relative  flex flex-col gap-2 md:flex-row md:gap-3">
         <SelectAirport
           airport={fromAirport}
           setAirport={setFromAirport}
@@ -104,7 +104,16 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             border: "3px solid white",
             boxShadow: "0px 0px 0px 1px #E2E8F0",
           }}
-          className="absolute left-[29%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:block"
+          className="absolute right-[5%] top-[15%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:block  "
+        />
+        <Icons.ArrowDownUp
+          onClick={swapRoute}
+          style={{
+            transform: `rotate(${rotation}deg)`,
+            border: "3px solid white",
+            boxShadow: "0px 0px 0px 1px #E2E8F0",
+          }}
+          className="absolute right-[5%] top-[15%] z-50 block h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:hidden  "
         />
         <SelectAirport
           airport={toAirport}
@@ -125,7 +134,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
                 variant: "default",
                 size: isDesktop ? "xl" : "sm",
               }),
-              "rounded px-4"
+              "mt-2 h-10 rounded px-4 md:mt-0 md:h-12"
             )}
             onClick={(e) => {
               if (!fromAirport || !toAirport || !date) {

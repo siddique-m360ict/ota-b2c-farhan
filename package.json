@@ -1,7 +1,8 @@
 {
-    "name": "store-template",
+    "name": "bookingexpert",
     "version": "0.1.0",
     "private": true,
+    "author": "Amanullah",
     "scripts": {
         "dev": "next dev",
         "build": "next build",

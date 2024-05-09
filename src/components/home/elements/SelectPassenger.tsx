@@ -76,7 +76,7 @@ const SelectPassenger = ({ setPassenger, passenger }: Props) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger title="Select Travelers" className="m-0 p-0">
         <div className="flex">
-          <Icons.UserCheck size={18} className="me-1" />
+          <Icons.UserCheck size={18} className="me-1 hidden md:block" />
           <p className="text-sm">
             {passenger.adult +
               passenger.children +

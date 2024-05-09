@@ -19,10 +19,6 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
             fill
             className="object-contain object-left-top md:object-cover"
           />
-          <div
-            className="absolute top-[31.5%] block h-[48px] w-full md:hidden"
-            style={{ background: "linear-gradient(hsla(0,0%,100%,0),#f0f2f5)" }}
-          ></div>
         </div>
         <div className="z-50 hidden h-16  space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />
@@ -34,7 +30,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           className="absolute bottom-[-11px] z-0  h-10 w-full bg-background"
           style={{ borderRadius: "24px 24px 0 0" }}
         ></div>
-        <section className="modify relative pt-4">
+        <section className="modify relative z-50 pt-4">
           <div className="z-50 mt-10  rounded-3xl px-2 md:container md:px-0">
             <h1 className="mb-3 hidden text-[2vw] font-bold  text-white  md:block">
               Find cheap flight deals
@@ -45,7 +41,10 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           </div>
         </section>
       </header>
-
+      <div
+        className="absolute top-[19%] z-0 block h-[48px] w-full md:hidden"
+        style={{ background: "linear-gradient(hsla(0,0%,100%,0),#f0f2f5)" }}
+      ></div>
       <div className="container mt-2 flex-1">{children}</div>
       <SiteFooter className="border-t" />
     </div>

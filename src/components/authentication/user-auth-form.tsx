@@ -20,7 +20,6 @@ import { postLogin } from "@/app/(auth)/actions"
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   setOpenModal?: any
 }
-
 type FormData = z.infer<typeof userAuthSchema>
 
 export function UserAuthForm({
