@@ -91,6 +91,7 @@ const ForgotForm = () => {
               autoCorrect="off"
               disabled={isLoading}
               {...register("email")}
+              autoFocus
             />
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
@@ -114,8 +115,8 @@ const ForgotForm = () => {
                 )}
                 disabled={isLoading}
               >
-                {isLoading ||
-                  (isPending && (
+                {isPending ||
+                  (isLoading && (
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                   ))}
                 Search

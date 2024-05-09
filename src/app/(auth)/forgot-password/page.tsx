@@ -1,6 +1,7 @@
 import ForgotForm from "@/components/authentication/forgot-password/ForgotForm"
 import { Icons } from "@/components/icons"
 import { buttonVariants } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import React from "react"
