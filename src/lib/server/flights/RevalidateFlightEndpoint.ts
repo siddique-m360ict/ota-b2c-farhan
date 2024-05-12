@@ -95,7 +95,8 @@ export interface Passenger {
 
 export interface Baggage {
   id?: number
-  pieceCount?: number
+  weight?: number
+  unit?: string
 }
 
 export interface PassengerFare {

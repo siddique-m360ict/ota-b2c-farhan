@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "@/lib/utils"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Card, CardContent } from "../ui/card"
 import MultiCity from "./elements/MultiCity"
 import OneWay from "./elements/OneWay"
@@ -43,6 +43,13 @@ const FlightSearch = ({ home, className }: Props) => {
       element: <MultiCity cabinClass={cabinClass} passenger={passenger} />,
     },
   ]
+
+  useEffect(() => {
+    const localRoute = localStorage.getItem("route")
+    if (localRoute) {
+      setActiveRoute(localRoute)
+    }
+  }, [])
 
   return (
     <Card className={cn(!home && "shadow-xl", className)}>

@@ -10,10 +10,10 @@ type Props = {
 const FareDetails = ({ fare, className }: Props) => {
   const fareDetails = [
     { label: "Base Fare", value: fare.base_fare },
-    { label: "Discount", value: fare.discount },
+    { label: "Tax", value: fare.total_tax },
     { label: "AIT", value: fare.ait },
     { label: "Total Price", value: fare.total_price },
-    { label: "Total Tax", value: fare.total_tax },
+    { label: "Discount", value: fare.discount },
     { label: "Payable", value: fare.payable },
   ]
 
@@ -22,7 +22,13 @@ const FareDetails = ({ fare, className }: Props) => {
       <div className={cn("flex flex-col px-2 ", className)}>
         {fareDetails.map((item, index) => (
           <div>
-            <div key={index} className="flex justify-between">
+            <div
+              key={index}
+              className={cn(
+                "flex justify-between",
+                item.label === "Payable" && "font-bold text-primary"
+              )}
+            >
               <span>{item.label}</span>
               <span>{item.value}</span>
             </div>

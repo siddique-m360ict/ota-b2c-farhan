@@ -1,4 +1,4 @@
-import React, { useState, useTransition } from "react"
+import React, { useEffect, useState, useTransition } from "react"
 import SelectAirport from "./SelectAirport"
 import DatePicker from "./DatePicker" // Import your DatePicker component
 import { Icons } from "@/components/icons"
@@ -6,7 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { IAirportList } from "./types/flightSearchType"
 import { useToast } from "@/components/ui/use-toast"
 import { Passenger } from "../FlightSearch"
-import { format } from "date-fns"
+import { addDays, format } from "date-fns"
 import { useRouter, useSelectedLayoutSegment } from "next/navigation"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -34,8 +34,42 @@ const MultiCity = ({ cabinClass, passenger }) => {
   const { toast } = useToast()
   const router = useRouter()
   const [cityData, setCityData] = useState<cityData[]>([
-    { key: 0, from: null, to: null, date: null },
-    { key: 1, from: null, to: null, date: null },
+    {
+      key: 0,
+      from: {
+        id: 210,
+        country_id: 18,
+        country: "BANGLADESH",
+        name: "Dhaka - Hazrat Shahjalal International Airport",
+        iata_code: "DAC",
+      },
+      to: {
+        id: 2061,
+        country_id: 18,
+        country: "BANGLADESH",
+        name: "Cox's Bazar Airport",
+        iata_code: "CXB",
+      },
+      date: addDays(new Date(), 3),
+    },
+    {
+      key: 1,
+      from: {
+        id: 2061,
+        country_id: 18,
+        country: "BANGLADESH",
+        name: "Cox's Bazar Airport",
+        iata_code: "CXB",
+      },
+      to: {
+        id: 210,
+        country_id: 18,
+        country: "BANGLADESH",
+        name: "Dhaka - Hazrat Shahjalal International Airport",
+        iata_code: "DAC",
+      },
+      date: addDays(new Date(), 4),
+    },
   ])
 
   //  add flight city row
@@ -76,6 +110,8 @@ const MultiCity = ({ cabinClass, passenger }) => {
 
   // remove filter (from redux state)
   const removeFilter = () => {
+    localStorage.setItem("multiCityFlights", JSON.stringify(cityData))
+    localStorage.setItem("route", "multicity")
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
@@ -104,6 +140,24 @@ const MultiCity = ({ cabinClass, passenger }) => {
       })
     }
   }
+
+  // ==================== get flight search localStorage info
+  useEffect(() => {
+    if (window !== undefined) {
+      const searchFlightOneWay = JSON.parse(
+        localStorage.getItem("multiCityFlights")
+      )
+      console.log(searchFlightOneWay)
+
+      if (searchFlightOneWay && searchFlightOneWay.length > 0) {
+        const formattedFlights = searchFlightOneWay.map((flight) => ({
+          ...flight,
+          date: new Date(flight.date),
+        }))
+        setCityData(formattedFlights)
+      }
+    }
+  }, [segment])
 
   return (
     <>
@@ -224,7 +278,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                   variant: "default",
                   size: isDesktop ? "xl" : "sm",
                 }),
-                "w-full rounded px-4 md:h-12"
+                "h-9 rounded px-4 md:h-10 md:w-auto"
               )}
               onClick={() => startTransition(() => handleSearch())}
             >

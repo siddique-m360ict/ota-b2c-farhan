@@ -115,17 +115,15 @@ export async function ReValidateFlightV2(
 ): Promise<HTTPResponse<IRevalidated>> {
   const apiUrl = serverUrl(`/booking/flight/revalidate/v2/${id}`)
 
-  const customHeaders = new Headers()
-  customHeaders.append("Content-Type", "application/json")
-
   const response = await fetch(apiUrl, {
     method: "GET",
-    headers: customHeaders,
     cache: "no-store",
+    redirect: "follow",
   })
 
   if (!response?.ok) {
     throw new Error("Something Happened Wrong")
   }
-  return response.json()
+  const res = await response.json()
+  return res
 }

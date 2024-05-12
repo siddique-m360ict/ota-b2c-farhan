@@ -1,6 +1,9 @@
 import LoginModal from "@/components/flight-revalidate/elements/LoginModal"
+import RevalidateDetails from "@/components/flight-revalidate/elements/RevalidateDetails"
 import RevalidatePriceBox from "@/components/flight-revalidate/elements/RevalidatePriceBox"
+import TravelerForm from "@/components/flight-revalidate/elements/TravelerForm"
 import FlightRevalidateDetails from "@/components/flight-revalidate/FlightRevalidateDetails"
+import { Icons } from "@/components/icons"
 import {
   IRevalidated,
   Option,
@@ -57,26 +60,47 @@ const FlightRevalidate = async ({ flights }: Props) => {
 
   return (
     <>
-      <div className="pb-40">
-        <div className="mx-auto md:container md:py-5">
-          <div className="flex flex-col gap-5 md:mt-5 md:flex-row">
-            {/* PaymentSidebar */}
-            <div className="order-2 md:order-2 md:flex-1">
-              <RevalidatePriceBox
-                passengers={flights.passengers}
-                fare={flights.fare}
-              />
-            </div>
+      <div className="">
+        <div className="mx-auto md:p-5">
+          <div className="px-4 md:px-0">
+            <div className="flex flex-col gap-5 md:container md:mt-5 md:flex-row">
+              {/* PaymentSidebar */}
+              <div className="sticky top-6 order-2 md:order-2 md:flex-1">
+                <RevalidatePriceBox
+                  passengers={flights.passengers}
+                  fare={flights.fare}
+                />
+              </div>
 
-            <div className="order-1 flex-[2.5] space-y-5 md:order-1">
-              <FlightRevalidateDetails
-                data={revalidateData}
-                legDescriptions={flights?.leg_descriptions}
-                fare={flights.fare}
-                passengers={flights?.passengers}
-              />
+              <div className="order-1 flex-[2.5] space-y-5 md:order-1">
+                <FlightRevalidateDetails
+                  data={revalidateData}
+                  legDescriptions={flights?.leg_descriptions}
+                  fare={flights.fare}
+                  passengers={flights?.passengers}
+                />
+              </div>
             </div>
           </div>
+          {/* fare details */}
+          <section className="mt-8 bg-background px-4 md:px-0">
+            <div className="flex py-10 md:container">
+              <div className="flex-[2.5]">
+                <p className="mb-6 flex items-center gap-1 font-heading text-sm leading-4 text-destructive">
+                  <Icons.BadgeCheck size={18} className="text-primary" />
+                  <span className="mt-[2px]">
+                    Cabin and fare confirmed. Book now!
+                  </span>
+                </p>
+                <p className="mb-2 font-heading text-[24px] font-bold text-secondary">
+                  Your Ticket(s)
+                </p>
+                <RevalidateDetails passengers={flights?.passengers} />
+              </div>
+              <div className="md:flex-1"></div>
+            </div>
+          </section>
+          {/* <TravelerForm /> */}
         </div>
       </div>
       <LoginModal token={token} />

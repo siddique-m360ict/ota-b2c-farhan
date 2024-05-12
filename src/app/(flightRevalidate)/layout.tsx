@@ -35,7 +35,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
       </header>
 
       <div className="mt-2 flex-1 bg-secondaryBg">{children}</div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   )
 }

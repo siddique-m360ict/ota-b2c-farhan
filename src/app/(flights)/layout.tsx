@@ -46,7 +46,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
         style={{ background: "linear-gradient(hsla(0,0%,100%,0),#f0f2f5)" }}
       ></div>
       <div className="container mt-2 flex-1">{children}</div>
-      <SiteFooter className="border-t" />
+      <SiteFooter />
     </div>
   )
 }

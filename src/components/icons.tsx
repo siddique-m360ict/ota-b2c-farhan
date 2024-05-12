@@ -39,6 +39,7 @@ import {
   LucideIcon,
   Star,
   ArrowDownUp,
+  BadgeCheck,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -47,6 +48,7 @@ export const Icons = {
   logo: Command,
   Plane: Plane,
   close: X,
+  BadgeCheck: BadgeCheck,
   ArrowDownUp: ArrowDownUp,
   Star: Star,
   menu: AlignJustify,

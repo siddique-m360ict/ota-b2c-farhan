@@ -9,7 +9,7 @@ import Link from "next/link"
 import React, { useEffect, useState, useTransition } from "react"
 import { Passenger } from "../FlightSearch"
 import DatePicker from "./DatePicker"
-import { format } from "date-fns"
+import { addDays, format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
 import {
@@ -37,11 +37,21 @@ type Props = {
   passenger: Passenger
 }
 const OneWay = ({ cabinClass, passenger }: Props) => {
-  const [fromAirport, setFromAirport] = React.useState<IAirportList | null>(
-    null
-  )
-  const [toAirport, setToAirport] = React.useState<IAirportList | null>(null)
-  const [date, setDate] = React.useState<Date>()
+  const [fromAirport, setFromAirport] = React.useState<IAirportList | null>({
+    id: 210,
+    country_id: 18,
+    country: "BANGLADESH",
+    name: "Dhaka - Hazrat Shahjalal International Airport",
+    iata_code: "DAC",
+  })
+  const [toAirport, setToAirport] = React.useState<IAirportList | null>({
+    id: 2061,
+    country_id: 18,
+    country: "BANGLADESH",
+    name: "Cox's Bazar Airport",
+    iata_code: "CXB",
+  })
+  const [date, setDate] = React.useState<Date>(addDays(new Date(), 3))
 
   // swap icon rotate
   const [rotation, setRotation] = useState(0)
@@ -70,6 +80,9 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
 
   // remove all flight filter because new filter add when search button click
   const removeFilter = () => {
+    const saveLocalStorage = { fromAirport, toAirport, date }
+    localStorage.setItem("oneWayFlights", JSON.stringify(saveLocalStorage))
+    localStorage.setItem("route", "oneway")
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
@@ -87,6 +100,20 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     router.push(`/flightsearch?${queryParams}`)
     removeFilter()
   }
+
+  // ==================== get flight search localStorage info
+  useEffect(() => {
+    if (window !== undefined) {
+      const searchFlightOneWay = JSON.parse(
+        localStorage.getItem("oneWayFlights")
+      )
+      if (searchFlightOneWay && Object.keys(searchFlightOneWay).length > 0) {
+        setFromAirport(searchFlightOneWay?.fromAirport)
+        setToAirport(searchFlightOneWay?.toAirport)
+        setDate(new Date(searchFlightOneWay.date))
+      }
+    }
+  }, [segment])
 
   return (
     <>
@@ -157,7 +184,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
                 variant: "default",
                 size: isDesktop ? "xl" : "sm",
               }),
-              "rounded px-4"
+              "mt-2 h-10 rounded px-4 md:mt-0 md:h-12"
             )}
             onClick={() => startTransition(() => changeRoute())}
           >

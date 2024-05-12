@@ -27,10 +27,9 @@ const routeList = [
   {
     id: "oneway",
     label: "One Way",
-    element: <>hello</>,
   },
-  { id: "roundtrip", label: "Round Trip", element: <>Round Trip</> },
-  { id: "multicity", label: "Multi City", element: <>Multi City</> },
+  { id: "roundtrip", label: "Round Trip" },
+  { id: "multicity", label: "Multi City" },
 ]
 
 function SelectRoute({ activeRoute, setActiveRoute }: Props) {

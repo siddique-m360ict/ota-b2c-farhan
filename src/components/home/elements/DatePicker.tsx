@@ -1,5 +1,3 @@
-"use client"
-
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -27,6 +25,13 @@ type Props = {
 
 function DatePicker({ date, setDate }: Props) {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+
+  const handleDateSelect = (selectedDate: Date) => {
+    const formattedDate = format(selectedDate, "yyyy-MM-dd")
+    setDate(new Date(formattedDate))
+    setIsCalendarOpen(false)
+  }
+
   return (
     <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
       <PopoverTrigger asChild>

@@ -82,7 +82,7 @@ const SectionGridCategoryBox = ({ categories = DEMO_CATS }) => {
   return (
     <div className={` relative`}>
       <div className="text-center">
-        <h1 className="font-heading text-[28px] font-bold"> Explore nearby</h1>
+        <h1 className="font-heading text-[28px] font-bold">Explore nearby</h1>
         <p className="text-sm">Discover great places near where you live</p>
       </div>
       <div

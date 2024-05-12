@@ -48,12 +48,10 @@ const AirportSelect = ({
               <p className="w-[35px] px-3 text-[15px]"> {airport?.iata_code}</p>
               <div className="h-[30px] w-[1px] border-l border-gray-300"></div>
               <div>
-                <span className="p-0 text-sm leading-4">
-                  {airport.country}{" "}
-                </span>
+                <span className="p-0 text-sm leading-4">{airport.name} </span>
                 <br />
                 <span className="w-full text-ellipsis text-xs text-gray-500">
-                  {airport?.name}
+                  {airport?.country}
                 </span>
               </div>
             </div>

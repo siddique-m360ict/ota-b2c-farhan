@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useTransition } from "react"
+import React, { useEffect, useState, useTransition } from "react"
 import { IAirportList } from "./types/flightSearchType"
 import { addDays, format } from "date-fns"
 import { DateRange } from "react-day-picker"
@@ -32,13 +32,23 @@ type Props = {
 }
 
 const RoundWay = ({ cabinClass, passenger }: Props) => {
-  const [fromAirport, setFromAirport] = React.useState<IAirportList | null>(
-    null
-  )
-  const [toAirport, setToAirport] = React.useState<IAirportList | null>(null)
+  const [fromAirport, setFromAirport] = React.useState<IAirportList | null>({
+    id: 210,
+    country_id: 18,
+    country: "BANGLADESH",
+    name: "Dhaka - Hazrat Shahjalal International Airport",
+    iata_code: "DAC",
+  })
+  const [toAirport, setToAirport] = React.useState<IAirportList | null>({
+    id: 2061,
+    country_id: 18,
+    country: "BANGLADESH",
+    name: "Cox's Bazar Airport",
+    iata_code: "CXB",
+  })
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: addDays(new Date(), 1),
-    to: addDays(new Date(), 3),
+    from: addDays(new Date(), 2),
+    to: addDays(new Date(), 4),
   })
 
   const [rotation, setRotation] = useState(0)
@@ -68,6 +78,9 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
   }&class=${cabinClass}&route=roundway`
 
   const removeFilter = () => {
+    const saveLocalStorage = { fromAirport, toAirport, date }
+    localStorage.setItem("roundWayFlights", JSON.stringify(saveLocalStorage))
+    localStorage.setItem("route", "roundtrip")
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
@@ -86,6 +99,24 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     router.push(`/flightsearch?${queryParams}`)
     removeFilter()
   }
+
+  // ==================== get flight search localStorage info
+  useEffect(() => {
+    if (window !== undefined) {
+      const searchFlightOneWay = JSON.parse(
+        localStorage.getItem("roundWayFlights")
+      )
+      if (searchFlightOneWay && Object.keys(searchFlightOneWay).length > 0) {
+        setFromAirport(searchFlightOneWay?.fromAirport)
+        setToAirport(searchFlightOneWay?.toAirport)
+        setDate({
+          from: new Date(searchFlightOneWay.date.from),
+          to: new Date(searchFlightOneWay.date.to),
+        })
+      }
+    }
+  }, [segment])
+
   return (
     <>
       <div className="gap-2 md:flex">

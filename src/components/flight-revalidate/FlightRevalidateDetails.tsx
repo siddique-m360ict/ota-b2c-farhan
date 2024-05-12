@@ -23,6 +23,7 @@ import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader } from "../ui/card"
 import { Separator } from "../ui/separator"
 import FlightContentExtraInfo from "../flight-search/elements/FlightContentExtraInfo"
+import RevalidateDetails from "./elements/RevalidateDetails"
 
 type Props = {
   data: FormattedData[]
@@ -39,7 +40,7 @@ const FlightRevalidateDetails = ({
   return (
     <div>
       <div>
-        <h1 className="mb-4 text-lg font-bold text-secondary md:mb-6 md:text-[2rem] md:leading-5">
+        <h1 className="mb-4  text-lg font-bold uppercase text-secondary md:mb-6 md:text-[2rem] md:leading-5">
           Trip to {data[0].arrival_cityName}
         </h1>
         {data.map((item, index) => (
@@ -120,18 +121,6 @@ const FlightRevalidateDetails = ({
             </div>
           </div>
         ))}
-      </div>
-
-      {/* fare details */}
-      <div className="md:mt-16">
-        <Card>
-          <CardHeader>
-            <p className="text-lg font-bold text-secondary">Fare Details</p>
-          </CardHeader>
-          <CardContent>
-            <FlightContentExtraInfo fare={fare} passengers={passengers} />
-          </CardContent>
-        </Card>
       </div>
     </div>
   )
