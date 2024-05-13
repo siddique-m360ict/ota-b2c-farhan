@@ -43,7 +43,7 @@ const FlightTopAirline = () => {
   }
 
   return (
-    <Card className="mb-3 border-none shadow-md md:mb-6">
+    <Card className="mb-3 border-none shadow-md md:mb-4">
       <CardContent className="pb-0">
         <Carousel>
           <CarouselContent>

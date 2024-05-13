@@ -83,6 +83,8 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     const saveLocalStorage = { fromAirport, toAirport, date }
     localStorage.setItem("oneWayFlights", JSON.stringify(saveLocalStorage))
     localStorage.setItem("route", "oneway")
+    localStorage.setItem("class", cabinClass)
+    localStorage.setItem("passenger", JSON.stringify(passenger))
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())

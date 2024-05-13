@@ -43,8 +43,6 @@ export function UserAuthForm({
   const pathName = usePathname()
   const loginPage = pathName === "/login"
 
-  console.log(searchParams?.get("from"))
-
   async function onSubmit(data) {
     setIsLoading(true)
     try {

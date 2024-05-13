@@ -82,26 +82,34 @@ const FlightRevalidate = async ({ flights }: Props) => {
               </div>
             </div>
           </div>
-          {/* fare details */}
-          <section className="mt-8 bg-background px-4 md:px-0">
-            <div className="flex py-10 md:container">
-              <div className="flex-[2.5]">
-                <p className="mb-6 flex items-center gap-1 font-heading text-sm leading-4 text-destructive">
-                  <Icons.BadgeCheck size={18} className="text-primary" />
-                  <span className="mt-[2px]">
-                    Cabin and fare confirmed. Book now!
-                  </span>
-                </p>
-                <p className="mb-2 font-heading text-[24px] font-bold text-secondary">
-                  Your Ticket(s)
-                </p>
-                <RevalidateDetails passengers={flights?.passengers} />
-              </div>
-              <div className="md:flex-1"></div>
-            </div>
-          </section>
-          {/* <TravelerForm /> */}
         </div>
+        {/* fare details */}
+        <section className="bg-background px-4 md:mt-8 md:px-0">
+          <div className="flex py-10 md:container">
+            <div className="flex-[2.5]">
+              <p className="mb-6 flex items-center gap-1 font-heading text-sm leading-4 text-destructive">
+                <Icons.BadgeCheck size={18} className="text-primary" />
+                <span className="mt-[2px]">
+                  Cabin and fare confirmed. Book now!
+                </span>
+              </p>
+              <p className="mb-2 font-heading text-[24px] font-bold text-secondary">
+                Your Ticket(s)
+              </p>
+              <RevalidateDetails passengers={flights?.passengers} />
+            </div>
+            <div className="md:flex-1"></div>
+          </div>
+          <div className="container flex py-8 ">
+            <div className="flex-[2.5]">
+              <p className="mb-2 font-heading text-[24px] font-bold text-secondary">
+                Passenger Details
+              </p>
+              <TravelerForm passengers={flights?.passengers} />
+            </div>
+            <div className="md:flex-1"></div>
+          </div>
+        </section>
       </div>
       <LoginModal token={token} />
     </>

@@ -21,6 +21,7 @@ import {
   setFilterCount,
   setFilterDataList,
 } from "@/lib/redux/slice/filterDataList"
+import FlightTopAirline from "./elements/FlightTopAirline"
 
 type Props = {
   flights: IFlightSearchList | undefined
@@ -56,6 +57,10 @@ const FlightListView = ({ flights, count }: Props) => {
 
   return (
     <div>
+      <div className="px-2 md:px-0">
+        <FlightTopAirline />
+      </div>
+
       <FlightTopHeader
         totalFlight={filterCount || filterCount == 0 ? filterCount : count}
         arrivalCity={

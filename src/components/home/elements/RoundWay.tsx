@@ -81,6 +81,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     const saveLocalStorage = { fromAirport, toAirport, date }
     localStorage.setItem("roundWayFlights", JSON.stringify(saveLocalStorage))
     localStorage.setItem("route", "roundtrip")
+    localStorage.setItem("class", cabinClass)
+    localStorage.setItem("passenger", JSON.stringify(passenger))
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())

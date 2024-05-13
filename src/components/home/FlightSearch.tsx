@@ -46,9 +46,11 @@ const FlightSearch = ({ home, className }: Props) => {
 
   useEffect(() => {
     const localRoute = localStorage.getItem("route")
-    if (localRoute) {
-      setActiveRoute(localRoute)
-    }
+    const localClass = localStorage.getItem("class")
+    const localPassenger = JSON.parse(localStorage.getItem("passenger"))
+    localRoute && setActiveRoute(localRoute)
+    localClass && setCabinClass(localClass)
+    localPassenger && setPassenger(localPassenger)
   }, [])
 
   return (

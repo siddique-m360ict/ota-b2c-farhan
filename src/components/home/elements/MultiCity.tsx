@@ -112,6 +112,8 @@ const MultiCity = ({ cabinClass, passenger }) => {
   const removeFilter = () => {
     localStorage.setItem("multiCityFlights", JSON.stringify(cityData))
     localStorage.setItem("route", "multicity")
+    localStorage.setItem("class", cabinClass)
+    localStorage.setItem("passenger", JSON.stringify(passenger))
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
