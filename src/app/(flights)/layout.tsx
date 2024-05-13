@@ -31,7 +31,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           style={{ borderRadius: "24px 24px 0 0" }}
         ></div>
         <section className="modify relative z-50 pt-4">
-          <div className="z-50 mt-10  rounded-3xl px-2 md:container md:px-0">
+          <div className="z-50 mt-10  rounded-3xl px-2  md:container ">
             <h1 className="mb-3 hidden text-[2vw] font-bold  text-white  md:block">
               Find cheap flight deals
             </h1>

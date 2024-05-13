@@ -53,9 +53,11 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
           <Card className=" flex h-[5.5vh] cursor-pointer items-center rounded px-4  py-1 text-start">
             <CardContent className="w-full p-0">
               {airport ? (
-                <p className="leading-5">
+                <p className="xl:leading-5">
                   {airport.iata_code} <br />
-                  <small className="text-xs">{airport.name}</small>
+                  <small className="overflow-hidden truncate text-xs">
+                    {airport.name}
+                  </small>
                 </p>
               ) : (
                 <p className="text-sm"> {name} Airport</p>

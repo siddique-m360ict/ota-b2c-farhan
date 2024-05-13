@@ -26,7 +26,7 @@ const HomeSearchNavigation = () => {
       id: "Trains",
       label: "Trains",
       icon: <Icons.TramFront />,
-      element: <ComingSoon service={"Hotels"} />,
+      element: <ComingSoon service={"Trains"} />,
     },
     {
       id: "Cars",

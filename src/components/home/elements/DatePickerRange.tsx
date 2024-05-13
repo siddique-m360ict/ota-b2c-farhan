@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 import { PopoverClose } from "@radix-ui/react-popover"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 type Props = {
   className?: React.HTMLAttributes<HTMLDivElement>
@@ -22,6 +23,7 @@ type Props = {
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
 }
 function DatePickerRange({ className, date, setDate }: Props) {
+  const isDesktop = useMediaQuery("(min-width: 768px)")
   return (
     <div className={cn("w-full", className)}>
       <Popover>
@@ -30,7 +32,7 @@ function DatePickerRange({ className, date, setDate }: Props) {
             <Button
               variant={"outline"}
               className={cn(
-                "h h-[5.5vh] w-full justify-start rounded text-left font-normal",
+                "h h-[5.5vh] w-full justify-start rounded text-left font-normal xl:h-[5.5vh] 2xl:h-[5.5vh]",
                 !date && "text-muted-foreground"
               )}
             >
@@ -87,6 +89,9 @@ function DatePickerRange({ className, date, setDate }: Props) {
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
             initialFocus
+            disabled={(date) =>
+              date < new Date() || date < new Date("1900-01-01")
+            }
             mode="range"
             defaultMonth={date?.from}
             selected={date}
@@ -99,7 +104,7 @@ function DatePickerRange({ className, date, setDate }: Props) {
                   : { from: day, to: undefined }
               )
             }
-            numberOfMonths={2}
+            numberOfMonths={isDesktop ? 2 : 1}
             weekStartsOn={1}
           />
           <div className="flex justify-end px-3 py-2">

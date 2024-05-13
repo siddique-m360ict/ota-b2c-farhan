@@ -38,7 +38,7 @@ function DatePicker({ date, setDate }: Props) {
         <Button
           variant={"outline"}
           className={cn(
-            "h h-[5.4vh] w-full justify-start rounded text-left font-normal",
+            "h h-[5.4vh] w-full justify-start rounded text-left font-normal xl:h-[5.5vh] 2xl:h-[5.4vh]",
             !date && "text-muted-foreground"
           )}
         >
@@ -47,7 +47,7 @@ function DatePicker({ date, setDate }: Props) {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex w-full flex-col space-y-2 p-2">
-        <div className="hidden md:flex">
+        <div className="flex">
           <Select
             onValueChange={(value) => {
               setDate(addDays(new Date(), parseInt(value)))
@@ -66,9 +66,17 @@ function DatePicker({ date, setDate }: Props) {
           </Select>
         </div>
         <div className="w-full rounded-md border">
-          <PopoverClose>
-            <Calendar mode="single" selected={date!} onSelect={setDate} />
-          </PopoverClose>
+          <Calendar
+            mode="single"
+            selected={date!}
+            onSelect={(e) => {
+              setDate(e)
+              setIsCalendarOpen(false)
+            }}
+            disabled={(date) =>
+              date < new Date() || date < new Date("1900-01-01")
+            }
+          />
         </div>
       </PopoverContent>
     </Popover>

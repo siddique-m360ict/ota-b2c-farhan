@@ -131,7 +131,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             border: "3px solid white",
             boxShadow: "0px 0px 0px 1px #E2E8F0",
           }}
-          className="absolute right-[5%] top-[15%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:block  "
+          className="absolute right-[5%] top-[15%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:block xl:left-[28.5%] xl:top-[14%] 2xl:left-[29%] 2xl:top-[20%]  "
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
@@ -161,7 +161,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
                 variant: "default",
                 size: isDesktop ? "xl" : "sm",
               }),
-              "mt-2 h-10 rounded px-4 md:mt-0 md:h-12"
+              "mt-2 h-10 rounded px-4 md:mt-0 xl:h-[5.3vh] 2xl:h-12"
             )}
             onClick={(e) => {
               if (!fromAirport || !toAirport || !date) {

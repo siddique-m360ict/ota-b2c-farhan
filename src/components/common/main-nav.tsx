@@ -14,6 +14,7 @@ import { buttonVariants } from "../ui/button"
 import { useAppSelector } from "@/lib/redux/hooks"
 import { getCookies } from "cookies-next"
 import { ModeToggle } from "./mode-toggle"
+import Image from "next/image"
 
 interface MainNavProps {
   home?: boolean
@@ -80,10 +81,16 @@ export function MainNav({ home }: MainNavProps) {
             " hidden items-center space-x-2 text-[1.2vw] text-white md:flex"
           )}
         >
-          <Icons.logo />
+          {/* <Icons.logo />
           <span className="hidden font-bold sm:inline-block">
             {siteConfig.name}
-          </span>
+          </span> */}
+          <Image
+            src={"/be-removebg.png"}
+            alt="site logo"
+            width={200}
+            height={100}
+          />
         </Link>
 
         <div

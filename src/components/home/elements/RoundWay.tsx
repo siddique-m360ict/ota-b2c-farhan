@@ -119,8 +119,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
 
   return (
     <>
-      <div className="gap-2 md:flex">
-        <div className="relative grid w-full gap-1 md:flex md:gap-4">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-2">
+        <div className="relative grid w-full gap-3 md:flex md:gap-2">
           <SelectAirport
             airport={fromAirport}
             setAirport={setFromAirport}
@@ -134,7 +134,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
               border: "3px solid white",
               boxShadow: "0px 0px 0px 1px #E2E8F0",
             }}
-            className="absolute left-[47.5%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white md:block"
+            className="absolute top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
           />
           <Icons.ArrowDownUp
             onClick={swapRoute}
@@ -167,7 +167,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                   variant: "default",
                   size: isDesktop ? "xl" : "sm",
                 }),
-                "h-10 w-full rounded px-4 md:h-12 md:w-auto"
+                "h-10 w-full rounded px-4 md:w-auto xl:h-[5.2vh] 2xl:h-12"
               )}
               onClick={(e) => {
                 if (!fromAirport || !toAirport || !date?.from || !date?.to) {
