@@ -137,6 +137,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
         description: "",
       })
     } else {
+      removeFilter()
       startTransition(() => {
         router.push(`flightsearch?${queryParams}`)
       })

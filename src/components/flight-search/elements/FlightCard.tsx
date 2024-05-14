@@ -27,13 +27,10 @@ const FlightCard = ({ flights, fare }: Props) => {
   return (
     <div className="relative flex items-center justify-between gap-4 py-3">
       <div className="w-full  basis-10/12">
-        {flights?.flights?.map((flights, index) => (
-          <AccordionTrigger
-            className="top-0  py-0 hover:no-underline [&>svg]:hidden"
-            key={index}
-          >
+        <AccordionTrigger className="top-0 flex-col py-0 hover:no-underline [&>svg]:absolute [&>svg]:bottom-[2px] [&>svg]:left-[100%] [&>svg]:text-destructive  ">
+          {flights?.flights?.map((flights, index) => (
             <div className="flex w-full gap-4 md:gap-0">
-              <div className="flex basis-3/12 flex-col items-center md:basis-8/12  md:flex-row md:gap-2">
+              <div className="flex basis-3/12 flex-col items-center md:basis-8/12 md:flex-row md:gap-2">
                 <Image
                   className="h-auto max-w-24 rounded"
                   src={hostedImage(
@@ -98,8 +95,8 @@ const FlightCard = ({ flights, fare }: Props) => {
                 </div>
               </div>
             </div>
-          </AccordionTrigger>
-        ))}
+          ))}
+        </AccordionTrigger>
       </div>
 
       <div className="relative  basis-3/12">

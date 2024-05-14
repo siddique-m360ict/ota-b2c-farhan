@@ -66,41 +66,7 @@ const loading = () => {
     ],
   }
   return (
-    <div className="">
-      <div className="mb-6 mt-1">
-        <div className="flex h-[50px] w-full items-center justify-between overflow-x-scroll whitespace-nowrap rounded-xl  bg-secondaryBg shadow-md md:overflow-auto md:overflow-y-hidden md:whitespace-normal">
-          {dummyFilter.airlines.map((airline, index) => (
-            <div
-              key={index}
-              className="m-1 flex w-full basis-28 justify-between py-2 md:basis-48"
-            >
-              <button
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "sm" }),
-                  "relative flex basis-80 flex-col  text-center"
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={hostedImage(`/${airline.airline_logo}`)}
-                    alt={airline.airline_name}
-                    height={30}
-                    width={30}
-                    objectFit="cover"
-                    objectPosition="center"
-                  />
-                  <p>{airline.airline_code}</p>
-                </div>
-                <p className="text-xs">৳ {airline.price}</p>
-              </button>
-              <Separator
-                orientation="vertical"
-                className="h-[3.5vh] w-[1px] "
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="md:mt-4">
       <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[280px_1fr] lg:gap-6">
         <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto pr-2 md:sticky md:block ">
           <RefundableNonRefund />
@@ -127,6 +93,40 @@ const loading = () => {
           />
         </aside>
         <div>
+          <div className="mb-6 mt-1">
+            <div className="flex h-[50px] w-full items-center justify-between overflow-x-scroll whitespace-nowrap rounded-xl  bg-secondaryBg shadow-md md:overflow-auto md:overflow-y-hidden md:whitespace-normal">
+              {dummyFilter.airlines.map((airline, index) => (
+                <div
+                  key={index}
+                  className="m-1 flex w-full basis-28 justify-between py-2 md:basis-48"
+                >
+                  <button
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "sm" }),
+                      "relative flex basis-80 flex-col  text-center"
+                    )}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={hostedImage(`/${airline.airline_logo}`)}
+                        alt={airline.airline_name}
+                        height={30}
+                        width={30}
+                        objectFit="cover"
+                        objectPosition="center"
+                      />
+                      <p>{airline.airline_code}</p>
+                    </div>
+                    <p className="text-xs">৳ {airline.price}</p>
+                  </button>
+                  <Separator
+                    orientation="vertical"
+                    className="h-[3.5vh] w-[1px] "
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="mb-3">
             <FlightTopHeader totalFlight={0} arrivalCity={"UNITED STATES"} />
           </div>

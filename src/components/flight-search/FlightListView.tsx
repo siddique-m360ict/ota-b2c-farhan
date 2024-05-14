@@ -57,7 +57,7 @@ const FlightListView = ({ flights, count }: Props) => {
 
   return (
     <div>
-      <div className="px-2 md:px-0">
+      <div className="px-2 md:px-0 lg:w-[65vw] xl:w-[72vw] 2xl:w-[55vw]">
         <FlightTopAirline />
       </div>
 
