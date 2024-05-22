@@ -21,70 +21,75 @@ type Props = {
   className?: React.HTMLAttributes<HTMLDivElement>
   date: DateRange | undefined
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
+  visaPage?: boolean
 }
-function DatePickerRange({ className, date, setDate }: Props) {
+function DatePickerRange({ className, date, setDate, visaPage }: Props) {
   const isDesktop = useMediaQuery("(min-width: 768px)")
   return (
     <div className={cn("w-full", className)}>
       <Popover>
         <PopoverTrigger asChild>
-          <div className=" flex  gap-2">
+          {!visaPage ? (
+            <div className=" flex  gap-2">
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "h h-[5.5vh] w-full justify-start rounded text-left font-normal xl:h-[5.5vh] 2xl:h-[5.5vh]",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date?.from ? (
+                  format(date.from, "LLL dd, y")
+                ) : (
+                  <span>Departure Date</span>
+                )}
+              </Button>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "h h-[5.5vh] w-full justify-start rounded text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date?.to ? (
+                  format(date.to, "LLL dd, y")
+                ) : (
+                  <span>Return Date</span>
+                )}
+              </Button>
+            </div>
+          ) : (
             <Button
+              id="date"
               variant={"outline"}
               className={cn(
-                "h h-[5.5vh] w-full justify-start rounded text-left font-normal xl:h-[5.5vh] 2xl:h-[5.5vh]",
+                "h flex h-[6.5vh] w-full flex-col items-start justify-start rounded font-normal md:h-[6.5vh] 2xl:h-[5.6vh]",
                 !date && "text-muted-foreground"
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <p className="mb-[2px] text-xs text-destructive">
+                Intended Flying and return Date
+              </p>
               {date?.from ? (
-                format(date.from, "LLL dd, y")
+                date.to ? (
+                  <div className="flex w-full justify-between">
+                    <p>{format(date.from, "LLL dd, y")} </p>{" "}
+                    <Separator
+                      orientation="vertical"
+                      className=" h-[1px] w-[3vw] translate-y-3"
+                    />
+                    <p>{format(date.to, "LLL dd, y")}</p>
+                  </div>
+                ) : (
+                  format(date.from, "LLL dd, y")
+                )
               ) : (
-                <span>Departure Date</span>
+                <span>Select Departure and Return Date</span>
               )}
             </Button>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "h h-[5.5vh] w-full justify-start rounded text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date?.to ? (
-                format(date.to, "LLL dd, y")
-              ) : (
-                <span>Return Date</span>
-              )}
-            </Button>
-          </div>
-
-          {/* <Button
-            id="date"
-            variant={"outline"}
-            className={cn(
-              "h h-[5.5vh] w-full justify-start rounded text-left font-normal",
-              !date && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date.to ? (
-                <div className="flex w-full justify-between">
-                  <p>{format(date.from, "LLL dd, y")} </p>{" "}
-                  <Separator
-                    orientation="vertical"
-                    className=" h-[1px] w-[3vw] translate-y-3"
-                  />
-                  <p>{format(date.to, "LLL dd, y")}</p>
-                </div>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
-            ) : (
-              <span>Pick a date</span>
-            )}
-          </Button> */}
+          )}
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar

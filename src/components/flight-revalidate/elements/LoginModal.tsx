@@ -1,4 +1,3 @@
-"use client"
 import { UserAuthForm } from "@/components/authentication/user-auth-form"
 import {
   Dialog,
@@ -9,10 +8,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import Link from "next/link"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 
-export default function LoginModal({ token }: { token: string }) {
-  const [open, setOpen] = useState(!token)
+type Props = {
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export default function LoginModal({ open, setOpen }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-full bg-secondaryBg sm:max-w-[425px]">

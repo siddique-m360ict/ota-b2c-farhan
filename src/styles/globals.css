@@ -19,11 +19,11 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
-    --card: 0 0% 100%;
+    --card: #fff;
     --card-foreground: 222.2 47.4% 11.2%;
 
     --primary: #2c59e5;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: #fff;
 
     --secondary: #0f294d;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -45,7 +45,7 @@
 
     --secondary-bg: #030711;
 
-    --muted: 223 47% 11%;
+    --muted: #4a515a;
     --muted-foreground: 215.4 16.3% 56.9%;
 
     --accent: 216 34% 17%;
@@ -57,13 +57,14 @@
     --border: 216 34% 17%;
     --input: 216 34% 17%;
 
-    --card: 224 71% 4%;
+    --card: #0a0d14;
+    /* --card: #000000; */
     --card-foreground: 213 31% 91%;
 
     --primary: #2c59e5;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: #fff;
 
-    --secondary: 222.2 47.4% 11.2%;
+    --secondary: #859bdf;
     --secondary-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%;
@@ -83,5 +84,30 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ------------ custom */
+.booking_input {
+  @apply block w-full p-2 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600
+}
+
+@keyframes textBGAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
   }
 }

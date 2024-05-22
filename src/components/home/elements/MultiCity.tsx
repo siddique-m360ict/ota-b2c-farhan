@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useTransition } from "react"
 import SelectAirport from "./SelectAirport"
-import DatePicker from "./DatePicker" // Import your DatePicker component
+import DatePickerFlight from "./DatePickerFlight" // Import your DatePicker component
 import { Icons } from "@/components/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { IAirportList } from "./types/flightSearchType"
@@ -19,6 +19,7 @@ import {
 import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { Separator } from "@/components/ui/separator"
+import { useTheme } from "next-themes"
 type cityData = {
   key: number
   from: IAirportList | null
@@ -71,7 +72,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
       date: addDays(new Date(), 4),
     },
   ])
-
+  const { theme } = useTheme()
   //  add flight city row
   const addCity = () => {
     if (cityData.length < 6) {
@@ -211,19 +212,23 @@ const MultiCity = ({ cabinClass, passenger }) => {
                 onClick={() => handleSwap(index)}
                 style={{
                   transform: `rotate(${rotations[index]}deg)`,
-                  border: "solid white",
-                  boxShadow: "0px 0px 0px 1px #E2E8F0",
+                  boxShadow:
+                    theme === "light"
+                      ? "0px 0px 0px 1px #E2E8F0"
+                      : "0px 0px 0px 1px #222",
                 }}
-                className="absolute left-[31.3%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white  dark:bg-transparent md:block"
+                className="absolute left-[31.3%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5  font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent  dark:text-white md:block"
               />
               <Icons.ArrowDownUp
                 onClick={() => handleSwap(index)}
                 style={{
                   transform: `rotate(${rotations[index]}deg)`,
-                  border: "solid white",
-                  boxShadow: "0px 0px 0px 1px #E2E8F0",
+                  boxShadow:
+                    theme === "light"
+                      ? "0px 0px 0px 1px #E2E8F0"
+                      : "0px 0px 0px 1px #222",
                 }}
-                className="absolute right-[5%] top-[20%] z-50 block h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white  dark:bg-transparent md:hidden"
+                className="absolute right-[5%] top-[20%] z-50 block h-8 w-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white  dark:bg-transparent md:hidden"
               />
               <SelectAirport
                 airport={to}
@@ -234,7 +239,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                 }}
                 name="To"
               />
-              <DatePicker
+              <DatePickerFlight
                 setDate={(date) => {
                   const updatedCityData = [...cityData]
                   updatedCityData[index].date = date
@@ -265,6 +270,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                   e.preventDefault()
                   toast({
                     title: "Please fill all fields",
+                    duration: 1000,
                   })
                 } else {
                   removeFilter()

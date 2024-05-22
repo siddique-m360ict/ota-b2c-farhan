@@ -2,7 +2,7 @@
 import { Filter } from "@/components/home/elements/types/flightSearchType"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { cn, hostedImage } from "@/lib/utils"
+import { cn, formatNumber, hostedImage } from "@/lib/utils"
 import Image from "next/image"
 import {
   Carousel,
@@ -50,13 +50,15 @@ const FlightTopAirline = () => {
             {filterItem?.airlines &&
               filterItem?.airlines.map((airline) => (
                 <CarouselItem
-                  className="m-1 flex w-full basis-28 justify-between py-2  md:basis-36"
+                  className="flex h-auto w-full basis-28 justify-between  pl-0 md:basis-36"
                   key={airline.airline_code}
                 >
                   <button
                     className={cn(
-                      buttonVariants({ variant: "ghost", size: "sm" }),
-                      "relative flex basis-80 flex-col  text-center"
+                      buttonVariants({}),
+                      "relative flex h-auto basis-80 flex-col rounded-none bg-transparent text-center text-secondary hover:bg-[#1884ff31]",
+                      filterAirlines.includes(airline.airline_code) &&
+                        "bg-[#1884ff31]"
                     )}
                     onClick={() =>
                       handleAirlineFilterChange(airline.airline_code)
@@ -71,20 +73,32 @@ const FlightTopAirline = () => {
                         objectFit="cover"
                         objectPosition="center"
                       />
-                      <p>{airline.airline_code}</p>
+                      <div className="text-start">
+                        <p className="text-[13px] font-[200] ">
+                          {airline.airline_code}
+                        </p>
+                        <p className="text-xs ">
+                          <span className="me-[4px] font-mono font-bold text-secondary">
+                            ৳
+                          </span>
+                          <span className="text-[#77818C]">
+                            {formatNumber(airline.price)}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-xs">৳ {airline.price}</p>
+
                     {filterAirlines.includes(airline.airline_code) && (
                       <Separator
                         orientation="horizontal"
-                        className=" absolute bottom-[-14px] right-2 h-[2px] w-full bg-secondary "
+                        className="absolute bottom-[0px] right-0 h-[2px] w-full bg-secondary "
                       />
                     )}
                   </button>
-                  <Separator
+                  {/* <Separator
                     orientation="vertical"
                     className="h-[3.5vh] w-[1px] "
-                  />
+                  /> */}
                 </CarouselItem>
               ))}
           </CarouselContent>

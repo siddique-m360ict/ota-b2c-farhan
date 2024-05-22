@@ -14,8 +14,10 @@ import { UserType } from "@/types"
 import { LoginResData } from "@/lib/server/auth/PostLoginEndpoints"
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import { logout } from "@/lib/redux/slice/user_slice"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { dashboardConfig } from "@/config/dashboard"
+import { Icons } from "../icons"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -26,6 +28,7 @@ export function UserAccountNav({ className }: UserAccountNavProps) {
   const router = useRouter()
   const data = useAppSelector((state) => state.user)
   const user = data?.data
+  const path = usePathname()
 
   const handleLogout = () => {
     dispatch(logout())
@@ -52,15 +55,29 @@ export function UserAccountNav({ className }: UserAccountNavProps) {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild disabled>
-          <Link href="/dashboard">Dashboard</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild disabled>
-          <Link href="/dashboard/billing">Billing</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href="/dashboard/settings">Settings</Link>
-        </DropdownMenuItem>
+
+        {dashboardConfig.sidebarNav.map((item, index) => {
+          const Icon = Icons[item.icon || "arrowRight"]
+          return (
+            item.href && (
+              <DropdownMenuItem asChild className="p-0">
+                <Link key={index} href={item.disabled ? "" : item.href}>
+                  <span
+                    className={cn(
+                      "group flex w-full cursor-pointer items-center rounded-md px-2 py-2  text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                      path === item.href ? "bg-accent" : "transparent",
+                      item.disabled && "cursor-not-allowed opacity-80"
+                    )}
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    <span>{item.title}</span>
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+            )
+          )
+        })}
+
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"

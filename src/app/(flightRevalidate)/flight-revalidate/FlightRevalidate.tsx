@@ -1,3 +1,5 @@
+import { getTravelers } from "@/app/(dashboard)/dashboard/(travelers)/actions"
+import { Travelers } from "@/components/Dashboard/traveler/addTravelerForm"
 import LoginModal from "@/components/flight-revalidate/elements/LoginModal"
 import RevalidateDetails from "@/components/flight-revalidate/elements/RevalidateDetails"
 import RevalidatePriceBox from "@/components/flight-revalidate/elements/RevalidatePriceBox"
@@ -13,6 +15,7 @@ import React from "react"
 
 type Props = {
   flights: IRevalidated
+  ticketID: string
 }
 
 export interface FormattedData {
@@ -25,8 +28,13 @@ export interface FormattedData {
   content: Option[]
 }
 
-const FlightRevalidate = async ({ flights }: Props) => {
+const FlightRevalidate = async ({ flights, ticketID }: Props) => {
   const token = await getCookies()
+  let travelers: Travelers[] = []
+  if (token) {
+    const data = await getTravelers(token)
+    travelers = [...travelers, ...data.data]
+  }
 
   // make data
   let revalidateData: FormattedData[] = []
@@ -100,18 +108,22 @@ const FlightRevalidate = async ({ flights }: Props) => {
             </div>
             <div className="md:flex-1"></div>
           </div>
-          <div className="container flex py-8 ">
+          <div className="flex py-8 md:container">
             <div className="flex-[2.5]">
               <p className="mb-2 font-heading text-[24px] font-bold text-secondary">
                 Passenger Details
               </p>
-              <TravelerForm passengers={flights?.passengers} />
+              <TravelerForm
+                passengers={flights?.passengers}
+                ticketID={ticketID}
+                token={token}
+                travelers={travelers}
+              />
             </div>
             <div className="md:flex-1"></div>
           </div>
         </section>
       </div>
-      <LoginModal token={token} />
     </>
   )
 }

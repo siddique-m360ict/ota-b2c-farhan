@@ -28,7 +28,7 @@ const FlightSearch = ({ home, className }: Props) => {
     infant: 0,
   })
   const [cabinClass, setCabinClass] = useState<string>("Y")
-  const [activeRoute, setActiveRoute] = useState("oneway")
+  const [activeRoute, setActiveRoute] = useState("roundtrip")
   const routeContent = [
     {
       id: "oneway",

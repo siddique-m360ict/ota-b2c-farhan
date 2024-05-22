@@ -12,6 +12,7 @@ import {
   Passenger,
   RevalidateFare,
 } from "@/lib/server/flights/RevalidateFlightEndpoint"
+import { formatNumber } from "@/lib/utils"
 import React from "react"
 
 type Props = {
@@ -37,33 +38,33 @@ const RevalidatePriceBox = ({ passengers, fare }: Props) => {
             </h2>
             <div className="mb-[7px] flex justify-between text-sm">
               <p className="border-b border-dashed">Base Fare</p>
-              <p>{fare.base_fare}</p>
+              <p>{formatNumber(fare.base_fare)}</p>
             </div>
             <div className=" mb-[7px]  flex justify-between text-sm">
               <p className="border-b border-dashed">Tax</p>
-              <p>{fare.total_tax}</p>
+              <p>{formatNumber(fare.total_tax)}</p>
             </div>
 
             <div className=" mb-[7px]  flex justify-between text-sm">
               <p className="border-b border-dashed">AIT</p>
-              <p>{fare.ait}</p>
+              <p>{formatNumber(fare.ait)}</p>
             </div>
 
-            <div className="mb-[7px]  flex justify-between text-sm line-through">
+            <div className="mb-[7px]  flex justify-between text-sm ">
               <p className="border-b border-dashed">Total Price</p>
-              <p>{fare.total_price}</p>
+              <p>{formatNumber(fare.total_price)}</p>
             </div>
 
             <div className="mb-[7px]  flex justify-between text-sm">
               <p className="border-b border-dashed">Discount</p>
-              <p>{fare.discount}</p>
+              <p>{formatNumber(fare.discount)}</p>
             </div>
           </div>
         </CardContent>
         <div className="mx-4 mt-2 h-[1px] w-[90%] border border-dashed bg-secondaryBg"></div>
         <CardFooter className="my-6 flex flex-row justify-between text-xl font-bold ">
-          <p>Payable</p>
-          <p className="text-primary">৳ {fare.payable}</p>
+          <p>Total Amount</p>
+          <p className="text-primary">৳ {formatNumber(fare.payable)}</p>
         </CardFooter>
       </Card>
     </div>

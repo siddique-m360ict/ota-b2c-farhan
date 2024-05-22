@@ -11,7 +11,7 @@ export interface FilterAirlines {
   elapsed_time_min?: string | null
   departure_timings?: string | null
   arrival_timings?: string | null
-  type?: string | null
+  sort_by?: string | null
 }
 
 const initialState: FilterAirlines = {
@@ -24,7 +24,7 @@ const initialState: FilterAirlines = {
   elapsed_time_min: null,
   departure_timings: null,
   arrival_timings: null,
-  type: null,
+  sort_by: null,
 }
 
 const filterOptionSlice = createSlice({

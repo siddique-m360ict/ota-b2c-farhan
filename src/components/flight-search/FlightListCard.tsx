@@ -26,7 +26,7 @@ const FlightListCard = ({ flight }: Props) => {
           value={flight.carrier_code as string}
           className="border-0"
         >
-          <Card className="shadow-2xlo my-1 w-full rounded-none border-none">
+          <Card className="my-1 w-full rounded-none border-none">
             <CardContent className="px-5 py-0">
               <FlightCard flights={flight} fare={flight.fare} />
             </CardContent>

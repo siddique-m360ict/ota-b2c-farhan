@@ -54,10 +54,12 @@ export function UserAuthForm({
           description: "Your sign in request failed. Please try again.",
           variant: "destructive",
           className: "bg-[#ff0000]",
+          duration: 2000,
         })
       } else {
         toast({
           title: res.message,
+          duration: 2000,
         })
         dispatch(user(res))
         localStorage.setItem("b_token", res?.token as string)
@@ -78,7 +80,7 @@ export function UserAuthForm({
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
-          <div className="grid gap-1">
+          <div className="grid gap-2">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
@@ -119,7 +121,7 @@ export function UserAuthForm({
           </Link>
         </div>
       </form>
-      {loginPage && (
+      {/* {loginPage && (
         <div className="grid gap-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -156,7 +158,7 @@ export function UserAuthForm({
             Google
           </button>
         </div>
-      )}
+      )} */}
     </div>
   )
 }

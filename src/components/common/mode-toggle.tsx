@@ -11,8 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
+import { cn } from "@/lib/utils"
 
-export function ModeToggle() {
+type Props = {
+  className?: string
+}
+export function ModeToggle({ className }: Props) {
   const { setTheme } = useTheme()
 
   return (
@@ -21,10 +25,10 @@ export function ModeToggle() {
         <Button
           variant="default"
           size="sm"
-          className="h-[22px] w-[22px] px-0 md:h-8 md:w-8"
+          className={cn("h-[22px] w-[22px] px-0 md:h-8 md:w-8", className)}
         >
           <Icons.sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Icons.moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Icons.moon className="absolute w-[19px] rotate-90 scale-0 text-white transition-all dark:rotate-0 dark:scale-100  " />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

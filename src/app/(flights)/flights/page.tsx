@@ -77,7 +77,9 @@ const DEMO_CATS = [
       "https://images.pexels.com/photos/7740160/pexels-photo-7740160.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   },
 ]
-
+export const metadata = {
+  title: "Flights",
+}
 const SectionGridCategoryBox = ({ categories = DEMO_CATS }) => {
   return (
     <div className={` relative`}>

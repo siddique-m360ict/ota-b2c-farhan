@@ -1,9 +1,9 @@
 import MobileHome from "@/components/homeMobile/MobileHome"
 import HomeBanner from "@/components/home/HomeBanner"
 import HomeCardCarousel from "@/components/home/HomeCardCarousel"
-import PopularAttractions from "@/components/home/PopularAttractions"
 import { SiteFooter } from "@/components/common/site-footer"
 import AppPromo from "@/components/home/AppPromo"
+import PopularRoute from "@/components/home/PopularRoutes"
 
 export default async function IndexPage() {
   return (
@@ -12,13 +12,15 @@ export default async function IndexPage() {
       <div className="hidden min-h-screen bg-secondaryBg md:block">
         <HomeBanner />
         <HomeCardCarousel />
-        <PopularAttractions />
-        {/* <AppPromo /> */}
+        <PopularRoute />
+        <AppPromo />
       </div>
+
       {/* home for mobile devices */}
       <div className="block md:hidden">
         <MobileHome />
-        <PopularAttractions />
+        <PopularRoute />
+        <AppPromo />
       </div>
       <SiteFooter />
     </div>

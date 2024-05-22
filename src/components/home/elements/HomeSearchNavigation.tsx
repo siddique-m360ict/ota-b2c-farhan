@@ -4,6 +4,7 @@ import { Icons } from "../../icons"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
 import FlightSearch from "../FlightSearch"
 import ComingSoon from "../ComingSoon"
+import VisaSearchBox from "../../visa/VisaSearchBox"
 
 const HomeSearchNavigation = () => {
   const [activeTab, setActiveTab] = useState("Flights")
@@ -14,6 +15,12 @@ const HomeSearchNavigation = () => {
 
       icon: <Icons.Plane size={21} />,
       element: <FlightSearch home={true} />,
+    },
+    {
+      id: "Visa",
+      label: "Visa",
+      icon: <Icons.Bundle className="size-[22px]" />,
+      element: <VisaSearchBox home={true} />,
     },
     {
       id: "Hotels",
@@ -39,12 +46,6 @@ const HomeSearchNavigation = () => {
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
       element: <ComingSoon service={"Attractions & Tours"} />,
-    },
-    {
-      id: "Visa",
-      label: "Visa",
-      icon: <Icons.Bundle className="size-[22px]" />,
-      element: <ComingSoon service={"Visa"} />,
     },
   ]
 

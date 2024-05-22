@@ -55,23 +55,19 @@ const UserRegisterForm = () => {
         className: "bg-red-500",
       })
     }
-    if (!selectedFile) {
-      return toast({
-        title: "No profile picture selected",
-        description: "Please select a profile picture",
-        variant: "destructive",
-        className: "bg-red-500",
-      })
-    }
+
     setIsLoading(true)
     const formData = new FormData()
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value)
     })
     formData.append("gender", gender)
-    formData.append("photo", selectedFile)
+    if (selectedFile) {
+      formData.append("photo", selectedFile)
+    }
 
     const res = await registerUser(formData)
+
     console.log(res)
     try {
       if (!res.success) {
@@ -105,7 +101,7 @@ const UserRegisterForm = () => {
     <div className="grid gap-6">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
-          <div className="grid gap-1">
+          <div className="relative grid gap-1">
             <Label className="sr-only" htmlFor="username">
               Username
             </Label>
@@ -116,11 +112,12 @@ const UserRegisterForm = () => {
               autoComplete="username"
               {...register("username")}
             />
+            <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.username && (
               <p className="text-red-600">{errors.username.message}</p>
             )}
           </div>
-          <div className="grid gap-1">
+          <div className="relative grid gap-1">
             <Label className="sr-only" htmlFor="username">
               First Name
             </Label>
@@ -131,11 +128,12 @@ const UserRegisterForm = () => {
               autoComplete="First Name"
               {...register("first_name")}
             />
+            <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.first_name && (
               <p className="text-red-600">{errors.first_name.message}</p>
             )}
           </div>
-          <div className="grid gap-1">
+          <div className="relative grid gap-1">
             <Label className="sr-only" htmlFor="username">
               Last Name
             </Label>
@@ -146,13 +144,14 @@ const UserRegisterForm = () => {
               autoComplete="Last Name"
               {...register("last_name")}
             />
+            <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.last_name && (
               <p className="text-red-600">{errors.last_name.message}</p>
             )}
           </div>
 
           {/* email */}
-          <div className="grid gap-1">
+          <div className="relative grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
@@ -165,21 +164,24 @@ const UserRegisterForm = () => {
               autoCorrect="off"
               {...register("email")}
             />
+            <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.email && (
               <p className="text-red-600">{errors.email.message}</p>
             )}
           </div>
 
-          <PasswordInput
-            id="password"
-            placeholder="Password"
-            {...register("password")}
-          />
-          {errors.password && (
-            <p className="text-red-600">{errors.password.message}</p>
-          )}
+          <div className="relative">
+            <PasswordInput
+              id="password"
+              placeholder="Password"
+              {...register("password")}
+            />
+            {errors.password && (
+              <p className="text-red-600">{errors.password.message}</p>
+            )}
+          </div>
           {/* Other form fields */}
-          <div className="grid gap-1">
+          <div className="relative grid gap-1">
             <Label className="sr-only" htmlFor="username">
               Phone
             </Label>
@@ -190,6 +192,7 @@ const UserRegisterForm = () => {
               autoComplete="phone"
               {...register("phone_number")}
             />
+            <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.phone_number && (
               <p className="text-red-600">{errors.phone_number.message}</p>
             )}
@@ -200,7 +203,7 @@ const UserRegisterForm = () => {
           </div>
 
           {/* gender */}
-          <div className="mt-2 grid gap-1">
+          <div className="relative mt-2 grid gap-1">
             <Label className="sr-only" htmlFor="username">
               Gender
             </Label>

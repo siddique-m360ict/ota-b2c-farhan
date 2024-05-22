@@ -44,8 +44,8 @@ export async function filterFlightListV2(
   if (filter.arrival_timings) {
     apiUrl += `&arrival_timing=${filter.arrival_timings}`
   }
-  if (filter.type) {
-    apiUrl += `&sort_by=${filter.type}`
+  if (filter.sort_by) {
+    apiUrl += `&sort_by=${filter.sort_by}`
   }
 
   let myHeaders = new Headers()

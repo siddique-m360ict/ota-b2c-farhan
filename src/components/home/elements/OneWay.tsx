@@ -8,7 +8,7 @@ import { Search } from "lucide-react"
 import Link from "next/link"
 import React, { useEffect, useState, useTransition } from "react"
 import { Passenger } from "../FlightSearch"
-import DatePicker from "./DatePicker"
+import DatePickerFlight from "./DatePickerFlight"
 import { addDays, format } from "date-fns"
 import SelectAirport from "./SelectAirport"
 import { IAirportList } from "./types/flightSearchType"
@@ -31,6 +31,7 @@ import {
 } from "@/lib/redux/slice/filterOptions"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
+import { useTheme } from "next-themes"
 
 type Props = {
   cabinClass: string
@@ -60,6 +61,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     setFromAirport(toAirport)
     setToAirport(fromAirport)
   }
+  const { theme } = useTheme()
 
   // react hook
   const [isPending, startTransition] = useTransition()
@@ -74,8 +76,8 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     date ? format(new Date(date), "yyyy-MM-dd") : ""
   }&adults=${passenger.adult.toString()}${
     passenger.children !== 0 ? `&child=${passenger.children.toString()}` : ""
-  }${
-    passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
+  }${passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""}${
+    passenger.kids !== 0 ? `&kids=${passenger.kids.toString()}` : ""
   }&class=${cabinClass}&route=oneway`
 
   // remove all flight filter because new filter add when search button click
@@ -96,10 +98,12 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       toast({
         title: "Please fill all fields",
         description: "",
+        duration: 1000,
       })
       return
     }
     router.push(`/flightsearch?${queryParams}`)
+    router.refresh()
     removeFilter()
   }
 
@@ -130,19 +134,23 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           onClick={swapRoute}
           style={{
             transform: `rotate(${rotation}deg)`,
-            border: "3px solid white",
-            boxShadow: "0px 0px 0px 1px #E2E8F0",
+            boxShadow:
+              theme === "light"
+                ? "0px 0px 0px 1px #E2E8F0"
+                : "0px 0px 0px 1px #000",
           }}
-          className="absolute right-[5%] top-[15%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:block xl:left-[28.5%] xl:top-[14%] 2xl:left-[29%] 2xl:top-[20%]  "
+          className="absolute right-[5%] top-[15%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-[1px] dark:border-[#222] dark:bg-transparent dark:text-white md:block xl:left-[28.5%] xl:top-[14%] 2xl:left-[29%] 2xl:top-[20%]"
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
           style={{
             transform: `rotate(${rotation}deg)`,
-            border: "3px solid white",
-            boxShadow: "0px 0px 0px 1px #E2E8F0",
+            boxShadow:
+              theme === "light"
+                ? "0px 0px 0px 1px #E2E8F0"
+                : "0px 0px 0px 1px #000",
           }}
-          className="absolute right-[5%] top-[15%] z-50 block h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:hidden  "
+          className="absolute right-[5%] top-[15%] z-50 block h-8 w-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:hidden  "
         />
         <SelectAirport
           airport={toAirport}
@@ -150,7 +158,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           name="To"
         />
 
-        <DatePicker setDate={setDate} date={date} />
+        <DatePickerFlight setDate={setDate} date={date} />
         {segment !== "flightsearch" ? (
           <Link
             href={
@@ -170,6 +178,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
                 e.preventDefault()
                 toast({
                   title: "Please fill all fields",
+                  duration: 1000,
                 })
               } else {
                 removeFilter()

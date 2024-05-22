@@ -127,3 +127,67 @@ export async function ReValidateFlightV2(
   const res = await response.json()
   return res
 }
+
+// PNR CREATE
+export interface PnrResponse {
+  sessionUrl: string
+}
+
+export interface PnrFormData {
+  city?: number
+  date_of_birth?: Date
+  email?: string
+  first_name?: string
+  frequent_flyer_airline?: string
+  frequent_flyer_number?: string
+  last_name?: string
+  passport_expiry_date?: string
+  passport_number?: string
+  phone?: string
+  title?: string
+  type?: string
+}
+
+export type submitPnr = {
+  passengers: PnrFormData[]
+  flight_id: string
+}
+
+export type pnrSubmit = Omit<submitPnr, "flight_id">
+
+export async function CreatePNR(data: submitPnr, token: string): Promise<any> {
+  const apiUrl = serverUrl("/booking/booking-request")
+
+  const headers = new Headers()
+  headers.append("Content-Type", "application/json")
+  headers.append("Authorization", `Bearer ${token}`)
+  const raw = {
+    flight_id: "ebc55147-31b4-4537-9e9b-80a7dd1228bf",
+    passengers: [
+      {
+        type: "ADT",
+        title: "MR",
+        first_name: "Mahin",
+        last_name: "Mahfiz",
+        date_of_birth: "2000-01-01",
+        passport_number: "xc01954w",
+        passport_expiry_date: "2028-02-02",
+        city_id: 14,
+        email: "mahin@gmail.com",
+        phone: "01789945623",
+        frequent_flyer_airline: "Biman Bangladesh",
+        frequent_flyer_number: "3",
+      },
+    ],
+  }
+
+  const response = await fetch(apiUrl, {
+    cache: "no-store",
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify(data),
+  })
+  const res = await response.json()
+
+  return res
+}

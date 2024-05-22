@@ -28,7 +28,7 @@ const AirportSelect = ({
   return (
     <Command shouldFilter={false}>
       <CommandInput
-        placeholder="Filter status..."
+        placeholder="Search Airport"
         value={searchTerm}
         onValueChange={setSearchTerm}
         autoFocus

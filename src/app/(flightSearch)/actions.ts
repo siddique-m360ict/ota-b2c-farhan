@@ -52,6 +52,7 @@ const sanitizeSearchParams = (searchParams: any) => {
   addIfNotNull("adults", searchParams.adults)
   addIfNotNull("child", searchParams.child)
   addIfNotNull("infant", searchParams.infant)
+  addIfNotNull("kids", searchParams.kids)
   addIfNotNull("carrier_marketing", searchParams.carrier_marketing)
   addIfNotNull("class", searchParams.class)
   addIfNotNull("departuredate", searchParams.departuredate)
@@ -106,10 +107,12 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
       body: JSON.stringify(requestBody),
       cache: "no-store",
     })
-    if (!response.ok) {
-      throw new Error("Failed to fetch data")
-    }
+
+    // if (!response.ok) {
+    //   throw new Error("Failed to fetch data")
+    // }
     const res = await response.json()
+
     return res
   } catch (error) {
     console.error("Error getting flights:", error)
@@ -160,8 +163,8 @@ export async function filterFlightList(
   if (filter.arrival_timings) {
     apiUrl += `&arrival_timing=${filter.arrival_timings}`
   }
-  if (filter.type) {
-    apiUrl += `&sort_by=${filter.type}`
+  if (filter.sort_by) {
+    apiUrl += `&sort_by=${filter.sort_by}`
   }
 
   let myHeaders = new Headers()

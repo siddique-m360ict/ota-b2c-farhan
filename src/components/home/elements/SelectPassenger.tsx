@@ -5,6 +5,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { cn } from "@/lib/utils"
 import React from "react"
 
 type Passenger = "adult" | "children" | "kids" | "infant"
@@ -23,9 +24,10 @@ type Props = {
     infant: number
     kids: number
   }
+  type?: string
 }
 
-const SelectPassenger = ({ setPassenger, passenger }: Props) => {
+const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
   const [open, setOpen] = React.useState(false)
   const incrementPassenger = (type: Passenger) => {
     if (
@@ -74,24 +76,56 @@ const SelectPassenger = ({ setPassenger, passenger }: Props) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger title="Select Travelers" className="m-0 p-0">
-        <div className="flex">
-          <Icons.UserCheck size={18} className="me-1 hidden md:block" />
-          <p className="text-sm">
-            {passenger.adult +
-              passenger.children +
-              passenger.infant +
-              passenger.kids}{" "}
-            {passenger.adult +
-              passenger.children +
-              passenger.infant +
-              passenger.kids >
-            1
-              ? "Travelers"
-              : "Traveler"}
-          </p>
-          <Icons.ChevronDown className="ms-[1px] text-gray-800" size={20} />
-        </div>
+      <PopoverTrigger
+        title="Select Travelers"
+        className={cn("m-0 p-0", type && "w-full")}
+      >
+        {!type ? (
+          <div className="flex">
+            <Icons.UserCheck size={18} className="me-1 hidden md:block" />
+
+            <p className="text-sm">
+              {passenger.adult +
+                passenger.children +
+                passenger.infant +
+                passenger.kids}{" "}
+              {passenger.adult +
+                passenger.children +
+                passenger.infant +
+                passenger.kids >
+              1
+                ? "Travelers"
+                : "Traveler"}
+            </p>
+            <Icons.ChevronDown className="ms-[1px] text-gray-800" size={20} />
+          </div>
+        ) : (
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="h-auto w-full flex-col items-start justify-start rounded py-[5px] text-start"
+          >
+            <div className="flex w-full flex-col">
+              <span className="text-sm text-destructive">Travelers</span>
+              <div className="">
+                <p className="flex text-sm">
+                  {passenger.adult +
+                    passenger.children +
+                    passenger.infant +
+                    passenger.kids}{" "}
+                  {passenger.adult +
+                    passenger.children +
+                    passenger.infant +
+                    passenger.kids >
+                  1
+                    ? "Travelers"
+                    : "Traveler"}
+                </p>
+              </div>
+            </div>
+          </Button>
+        )}
       </PopoverTrigger>
       <PopoverContent>
         <div>

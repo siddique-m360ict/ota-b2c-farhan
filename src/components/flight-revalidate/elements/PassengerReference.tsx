@@ -1,15 +1,21 @@
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import React, { Dispatch, SetStateAction } from "react"
+import React from "react"
 import { referenceType } from "./FormField"
 
 type Props = {
-  type: "Adult" | "Child" | "Infant" | "All"
+  index?: number
+  type: "Adult" | "Child" | "Infant" | "Kids" | "All"
   setReference: any
   reference: referenceType
 }
 
-const PassengerReference = ({ reference, setReference, type }: Props) => {
+const PassengerReference = ({
+  index,
+  reference,
+  setReference,
+  type,
+}: Props) => {
   let arr: any[] = []
 
   if (type === "Adult") {
@@ -17,7 +23,7 @@ const PassengerReference = ({ reference, setReference, type }: Props) => {
   } else if (type === "Child") {
     reference !== "MISS" && setReference("MASTER")
     arr = ["MISS", "MASTER"]
-  } else if (type === "Infant") {
+  } else if (type === "Infant" || type === "Kids") {
     reference !== "MISS" && setReference("MASTER")
     arr = ["MISS", "MASTER"]
   } else if (type === "All") {
@@ -27,23 +33,24 @@ const PassengerReference = ({ reference, setReference, type }: Props) => {
   return (
     <div>
       <div className="mt-2 grid gap-1">
-        <Label className="sr-only" htmlFor="username">
-          Gender
-        </Label>
         <RadioGroup
           value={reference}
           onValueChange={(value: referenceType) => setReference(value)}
           className="mt-4 flex items-center gap-4"
         >
-          {arr?.map((item, index) => (
-            <div className="flex items-center space-x-2">
+          {arr?.map((item, idx) => (
+            <div className="flex items-center space-x-2" key={idx}>
               <RadioGroupItem
                 value={item}
-                id={item}
-                key={index}
+                id={`radio-${type}-${index}-${idx}`} // Unique id using type, index, and idx
                 className="border-destructive"
               />
-              <Label htmlFor={item}>{item}</Label>
+              <Label
+                className="cursor-pointer"
+                htmlFor={`radio-${type}-${index}-${idx}`}
+              >
+                {item}
+              </Label>
             </div>
           ))}
         </RadioGroup>

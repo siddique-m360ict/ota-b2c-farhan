@@ -9,10 +9,19 @@ export const dashboardConfig: DashboardConfig = {
       disabled: true,
     },
     {
-      title: "Billing",
-      href: "/dashboard/billing",
+      title: "Booking Request",
+      href: "/dashboard/bookingRequest",
+      icon: "post",
+    },
+    {
+      title: "Visa Application",
+      href: "/dashboard/visaApplication",
+      icon: "post",
+    },
+    {
+      title: "Travelers",
+      href: "/dashboard/traveler",
       icon: "billing",
-      disabled: true,
     },
     {
       title: "Settings",

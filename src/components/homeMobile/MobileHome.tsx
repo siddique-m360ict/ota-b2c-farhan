@@ -22,13 +22,13 @@ const MobileHome = () => {
         icon: "/images/home/mobile/6.png",
         href: "/flights",
       },
-
       {
-        id: "Trains",
-        label: "Trains",
-        icon: "/images/home/mobile/7.png",
-        href: "/",
+        id: "Visa",
+        label: "Visa",
+        icon: "/images/home/mobile/visa.svg",
+        href: "/visa",
       },
+
       {
         id: "Cars",
         label: "Car Rentals",
@@ -56,9 +56,9 @@ const MobileHome = () => {
         href: "/",
       },
       {
-        id: "Visa",
-        label: "Visa",
-        icon: "/images/home/mobile/4.png",
+        id: "Trains",
+        label: "Trains",
+        icon: "/images/home/mobile/7.png",
         href: "/",
       },
     ],
@@ -76,7 +76,7 @@ const MobileHome = () => {
                   <Link key={index} href={item.href}>
                     <div className="flex flex-col items-center gap-2">
                       <div
-                        className="size-[56px] rounded-full text-[#EAEEFF]"
+                        className="size-[56px] overflow-hidden rounded-full text-[#EAEEFF]"
                         style={{
                           background:
                             "linear-gradient(-180deg,#1e54f9,#517bff)",

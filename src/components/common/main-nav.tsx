@@ -20,52 +20,50 @@ interface MainNavProps {
   home?: boolean
 }
 
+export const headerItems = [
+  {
+    id: "Hotels",
+    label: "Hotels",
+    icon: <Icons.Home className="size-[22px]" />,
+    href: "/",
+  },
+  {
+    id: "Flights",
+    label: "Flights",
+    icon: <Icons.Plane size={20} />,
+    href: "/flights",
+  },
+  {
+    id: "Visa",
+    label: "Visa",
+    icon: <Icons.Bundle className="size-[22px]" />,
+    href: "/visa",
+  },
+  {
+    id: "Trains",
+    label: "Trains",
+    icon: <Icons.TramFront />,
+    href: "/",
+  },
+  {
+    id: "Cars",
+    label: "Cars",
+    icon: <Icons.CarFront className="size-[20px]" />,
+    href: "/",
+  },
+  {
+    id: "Attractions & Tours",
+    label: "Attractions & Tours",
+    icon: <Icons.Attractions className="size-[20px]" />,
+    href: "/",
+  },
+]
 export function MainNav({ home }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   const user = useAppSelector((state) => state.user)
   const isLogin = getCookies().b_token
   const isEmailVerified = user?.data?.is_verified
-
-  const headerItems = [
-    {
-      id: "Hotels",
-      label: "Hotels",
-      icon: <Icons.Home className="size-[22px]" />,
-      href: "/",
-    },
-    {
-      id: "Flights",
-      label: "Flights",
-      icon: <Icons.Plane size={20} />,
-      href: "/flights",
-    },
-
-    {
-      id: "Trains",
-      label: "Trains",
-      icon: <Icons.TramFront />,
-      href: "/",
-    },
-    {
-      id: "Cars",
-      label: "Cars",
-      icon: <Icons.CarFront className="size-[20px]" />,
-      href: "/",
-    },
-    {
-      id: "Attractions & Tours",
-      label: "Attractions & Tours",
-      icon: <Icons.Attractions className="size-[20px]" />,
-      href: "/",
-    },
-    {
-      id: "Visa",
-      label: "Visa",
-      icon: <Icons.Bundle className="size-[22px]" />,
-      href: "/",
-    },
-  ]
 
   return (
     <div className="z-50 flex w-full items-center justify-between">
@@ -130,7 +128,7 @@ export function MainNav({ home }: MainNavProps) {
             href="/register"
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
-              " px-4 "
+              " px-4 shadow-xl dark:bg-primary"
             )}
           >
             Register
@@ -139,7 +137,7 @@ export function MainNav({ home }: MainNavProps) {
             href="/login"
             className={cn(
               buttonVariants({ variant: "secondary", size: "sm" }),
-              "bg-white px-4 text-black"
+              "bg-white px-4 text-black dark:bg-white dark:text-black"
             )}
           >
             Sing in

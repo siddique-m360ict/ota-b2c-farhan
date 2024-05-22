@@ -5,7 +5,7 @@ import {
   Result,
 } from "@/components/home/elements/types/flightSearchType"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { cn, hostedImage } from "@/lib/utils"
+import { cn, formatNumber, hostedImage } from "@/lib/utils"
 import Image from "next/image"
 import React from "react"
 import { buttonVariants } from "@/components/ui/button"
@@ -24,13 +24,21 @@ type Props = {
 }
 const FlightCard = ({ flights, fare }: Props) => {
   const isDesktop = useMediaQuery("(min-width: 768px)")
+
   return (
-    <div className="relative flex items-center justify-between gap-4 py-3">
-      <div className="w-full  basis-10/12">
-        <AccordionTrigger className="top-0 flex-col py-0 hover:no-underline [&>svg]:absolute [&>svg]:bottom-[2px] [&>svg]:left-[100%] [&>svg]:text-destructive  ">
+    <div className="relative flex  items-center justify-between gap-4 py-3">
+      <div className="h-full w-full basis-10/12">
+        <AccordionTrigger
+          className={cn(
+            "top-0 flex-col py-0 hover:no-underline [&>svg]:absolute [&>svg]:bottom-[17px] [&>svg]:left-[76%] [&>svg]:text-primary",
+            flights?.flights.length < 2
+              ? "[&>svg]:bottom-[17px]"
+              : "[&>svg]:bottom-[5vh]"
+          )}
+        >
           {flights?.flights?.map((flights, index) => (
-            <div className="flex w-full gap-4 md:gap-0">
-              <div className="flex basis-3/12 flex-col items-center md:basis-8/12 md:flex-row md:gap-2">
+            <div className="mb-2 flex w-full gap-4 md:gap-0" key={index}>
+              <div className="flex basis-3/12 flex-col items-center md:basis-8/12 md:flex-row md:gap-4">
                 <Image
                   className="h-auto max-w-24 rounded"
                   src={hostedImage(
@@ -42,8 +50,8 @@ const FlightCard = ({ flights, fare }: Props) => {
                   placeholder="blur"
                   blurDataURL="data:image/webp;base64,UklGRngDAABXRUJQVlA4WAoAAAAgAAAAiAAAiAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggigEAAFAPAJ0BKokAiQA+7WaqTq01KKYumKtCoB2JZW7f+jwBwDiCr0Tt0Gy29sF5YFQjh9O84IStpshDU2KUryMR5lpzIBAiBBWUYV1UK62+nXZ5bGX4xxIU+U+cPzN8DXJ07YxMLmVCOhQbWZXrypCNt5B5zz/+7j9NlJxM8xcS//rr8GQAAP7wzJuF/q2WlbU9eOABfO/yU8HX/0qTIkJD2RBqfvUNYhE62jMc981x+r6aKUmeG7cpFHNR85rfxZLNlmO9f8pVl880VBDHUhLtWNgSxZFagJ7RmDGBUhRmCQcCE34Crds2Et5OiI21ogo03hTZNSxolshS+Orsj1u3hBIWhQt3+B9hHvvfOFWjo4K7Mnct5FT9j+/UWUrxzP4RmjIaIa0orxNPUSqpQc9b/HzcBj9cnvEFR4RH4zrXpUJJvLk3fLRp8KpIF8DUzGfLG0/bI2J5dqKKYerl1AAgwwhF67t7xoI1NhrfeH/NzS1Wt/GcvuwQCuDMbqx7QoOaB3dniQ9TdRMAAAA="
                 />
-                <p className="flex flex-col items-start ">
-                  <span className="text-[9px] text-secondary md:text-sm md:text-black">
+                <p className="flex flex-col items-start gap-1">
+                  <span className="text-[9px] text-secondary md:text-sm   ">
                     {flights?.options[0]?.carrier?.carrier_marketing_airline}
                   </span>
                   <span className="hidden text-xs text-destructive md:block">
@@ -99,13 +107,17 @@ const FlightCard = ({ flights, fare }: Props) => {
         </AccordionTrigger>
       </div>
 
-      <div className="relative  basis-3/12">
+      <div className="relative basis-3/12">
         <div className="w-full md:ps-4">
           <div className="text-end">
-            <p className="mr-2 text-xs text-destructive line-through">
-              ৳ {fare?.total_price}
+            <p className="flex items-center justify-end gap-1 text-[18px] font-[600]">
+              <span className="font-mono text-[15px]">৳</span>
+              {formatNumber(fare?.payable)}
             </p>
-            <p className="text-sm">৳ {fare?.payable} </p>
+            <p className="mr-2 text-[12px] text-destructive line-through">
+              <span className="font-mono">৳</span>
+              {formatNumber(fare?.total_price)}
+            </p>
           </div>
           <Link
             href={`/flight-revalidate?flight=${flights.flight_id}`}

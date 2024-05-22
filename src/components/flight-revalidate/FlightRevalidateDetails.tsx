@@ -116,6 +116,17 @@ const FlightRevalidateDetails = ({
                       {flight.arrival?.airport}
                     </p>
                   </div>
+
+                  {data[0].layover[index] !== "00:00:00" && (
+                    <div className="my-3">
+                      <p className="rounded bg-[#ebf0f4] p-1 text-center text-sm  text-black">
+                        Layover at <span> {flight.arrival?.airport}</span>
+                        <span className="ml-1 font-bold">
+                          {/* {convertTimeFormatHM(data.layover[index])} */}
+                        </span>
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

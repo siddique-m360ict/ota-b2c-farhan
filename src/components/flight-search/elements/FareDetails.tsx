@@ -1,6 +1,6 @@
 import { Fare } from "@/components/home/elements/types/flightSearchType"
 import { Separator } from "@/components/ui/separator"
-import { cn } from "@/lib/utils"
+import { cn, formatNumber } from "@/lib/utils"
 import React from "react"
 
 type Props = {
@@ -14,7 +14,7 @@ const FareDetails = ({ fare, className }: Props) => {
     { label: "AIT", value: fare.ait },
     { label: "Total Price", value: fare.total_price },
     { label: "Discount", value: fare.discount },
-    { label: "Payable", value: fare.payable },
+    { label: "Total Amount", value: fare.payable },
   ]
 
   return (
@@ -26,11 +26,11 @@ const FareDetails = ({ fare, className }: Props) => {
               key={index}
               className={cn(
                 "flex justify-between",
-                item.label === "Payable" && "font-bold text-primary"
+                item.label === "Total Amount" && "font-bold text-primary"
               )}
             >
               <span>{item.label}</span>
-              <span>{item.value}</span>
+              <span>৳ {formatNumber(item.value)}</span>
             </div>
             <Separator
               orientation="horizontal"

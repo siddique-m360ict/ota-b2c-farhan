@@ -14,6 +14,7 @@ import FilterAirline from "./FilterAirline"
 import PriceRangeFilter from "./PriceRangeFilter"
 import RefundableNonRefund from "./RefundableNonRefund"
 import Stoppage from "./Stoppage"
+import TimeCounter from "@/components/common/TimeCounter"
 
 type Props = {
   filterItem: Filter | undefined
@@ -22,6 +23,7 @@ const FilterSidebar = () => {
   let filterItem = useAppSelector(selectFilterItem)
   return (
     <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto pr-2 md:sticky md:block ">
+      <TimeCounter />
       <RefundableNonRefund />
       <Separator orientation="horizontal" className="my-4 h-[1px] w-full" />
       <FilterAirline Airlines={filterItem?.airlines} />

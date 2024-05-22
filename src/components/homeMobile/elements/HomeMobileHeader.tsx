@@ -11,6 +11,7 @@ import { ModeToggle } from "@/components/common/mode-toggle"
 
 import { UserAccountNav } from "@/components/common/user-account-nav"
 import { getCookies } from "cookies-next"
+import MobileMenuDrawer from "./MobileMenuDrawer"
 
 type Props = {
   home?: boolean
@@ -32,7 +33,12 @@ const HomeMobileHeader = ({ home }: Props) => {
       icon: <Icons.Plane size={20} />,
       href: "/flights",
     },
-
+    {
+      id: "Visa",
+      label: "Visa",
+      icon: <Icons.Bundle className="size-[22px]" />,
+      href: "/visa",
+    },
     {
       id: "Trains",
       label: "Trains",
@@ -49,12 +55,6 @@ const HomeMobileHeader = ({ home }: Props) => {
       id: "Attractions & Tours",
       label: "Attractions & Tours",
       icon: <Icons.Attractions className="size-[20px]" />,
-      href: "/",
-    },
-    {
-      id: "Visa",
-      label: "Visa",
-      icon: <Icons.Bundle className="size-[22px]" />,
       href: "/",
     },
   ]
@@ -95,9 +95,7 @@ const HomeMobileHeader = ({ home }: Props) => {
               </p>
             </DrawerTrigger>
             <DrawerContent>
-              <div className="mt-4 border-t p-4 text-center">
-                More details about booking expert <br /> add coming soon
-              </div>
+              <MobileMenuDrawer />
             </DrawerContent>
           </Drawer>
         </div>
@@ -122,7 +120,7 @@ const HomeMobileHeader = ({ home }: Props) => {
                   className={cn(
                     "font-Default flex items-center text-[15px] transition-colors hover:text-foreground/80",
                     item.href.startsWith(`/${segment}`)
-                      ? "mb-1 border-b-2 pb-0 font-bold text-[#fff]"
+                      ? "mb-1 border-b-2 pb-0 font-bold text-[#fff] dark:border-white"
                       : "text-deep"
                   )}
                 >

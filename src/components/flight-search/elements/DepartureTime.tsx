@@ -40,8 +40,8 @@ const DepartureTime = () => {
         minStepsBetweenThumbs={0}
         className="mb-1 bg-destructive"
         trackClassName="h-[1px]  "
-        rangClassName="bg-black"
-        thumbClassName="border-black"
+        rangClassName="bg-black dark:bg-primary"
+        thumbClassName="border-black dark:border-primary"
       />
     </div>
   )

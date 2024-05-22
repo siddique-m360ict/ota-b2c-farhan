@@ -25,6 +25,7 @@ import { useAppDispatch } from "@/lib/redux/hooks"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
+import { useTheme } from "next-themes"
 
 type Props = {
   cabinClass: string
@@ -50,7 +51,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     from: addDays(new Date(), 2),
     to: addDays(new Date(), 4),
   })
-
+  const { theme } = useTheme()
   const [rotation, setRotation] = useState(0)
   const router = useRouter()
   const swapRoute = () => {
@@ -73,8 +74,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     date?.to ? format(new Date(date.to), "yyyy-MM-dd") : ""
   }&adults=${passenger.adult}${
     passenger.children !== 0 ? `&child=${passenger.children}` : ""
-  }${
-    passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""
+  }${passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""}${
+    passenger.kids !== 0 ? `&kids=${passenger.kids}` : ""
   }&class=${cabinClass}&route=roundway`
 
   const removeFilter = () => {
@@ -94,6 +95,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
       toast({
         title: "Please fill all fields",
         description: "",
+        duration: 1000,
       })
       return
     }
@@ -133,19 +135,24 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
             onClick={swapRoute}
             style={{
               transform: `rotate(${rotation}deg)`,
-              border: "3px solid white",
-              boxShadow: "0px 0px 0px 1px #E2E8F0",
+              boxShadow:
+                theme === "light"
+                  ? "0px 0px 0px 1px #E2E8F0"
+                  : "0px 0px 0px 1px #222",
             }}
-            className="absolute top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
+            className="absolute top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-black dark:bg-transparent dark:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
           />
+
           <Icons.ArrowDownUp
             onClick={swapRoute}
             style={{
               transform: `rotate(${rotation}deg)`,
-              border: "3px solid white",
-              boxShadow: "0px 0px 0px 1px #E2E8F0",
+              boxShadow:
+                theme === "light"
+                  ? "0px 0px 0px 1px #E2E8F0"
+                  : "0px 0px 0px 1px #222",
             }}
-            className="absolute right-[4%] top-[27%] z-50 block h-8 w-8 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white md:hidden"
+            className="absolute right-[4%] top-[27%] z-50 block h-8 w-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:hidden"
           />
           <SelectAirport
             airport={toAirport}
@@ -169,13 +176,14 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                   variant: "default",
                   size: isDesktop ? "xl" : "sm",
                 }),
-                "h-10 w-full rounded px-4 md:w-auto xl:h-[5.2vh] 2xl:h-12"
+                "h-10 w-full rounded px-4 md:w-auto xl:h-[5.2vh] 2xl:h-[5.4vh]"
               )}
               onClick={(e) => {
                 if (!fromAirport || !toAirport || !date?.from || !date?.to) {
                   e.preventDefault()
                   toast({
                     title: "Please fill all fields",
+                    duration: 1000,
                   })
                 } else {
                   removeFilter()
