@@ -15,6 +15,7 @@ const PriceRangeFilter = ({ price }: Props) => {
   const [range, setRange] = useState<number[]>([0, 1000000])
   const [prevPrice, setPrevPrice] = useState<number[]>([])
   const dispatch = useAppDispatch()
+  const filterOption = useAppSelector(selectFilterOption)
 
   const priceRange = useMemo(() => {
     if (price && price.min !== undefined && price.max !== undefined) {
@@ -25,7 +26,11 @@ const PriceRangeFilter = ({ price }: Props) => {
 
   useEffect(() => {
     if (priceRange !== null) {
-      setRange([priceRange[0], priceRange[1]])
+      if (filterOption.min_price !== null && filterOption.max_price !== null) {
+        setRange([filterOption.min_price, filterOption.max_price])
+      } else {
+        setRange([priceRange[0], priceRange[1]])
+      }
       setPrevPrice([priceRange[0], priceRange[1]])
     }
   }, [priceRange])
@@ -37,11 +42,14 @@ const PriceRangeFilter = ({ price }: Props) => {
   const handleAfterSliderChange = (value: number[]) => {
     dispatch(
       setFilterOption({
+        ...filterOption,
         min_price: value[0],
         max_price: value[1],
       })
     )
   }
+  console.log(range)
+
   return (
     <div className="grid w-full gap-4 ">
       <label className="mb-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

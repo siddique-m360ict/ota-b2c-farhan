@@ -20,6 +20,7 @@ import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { Separator } from "@/components/ui/separator"
 import { useTheme } from "next-themes"
+import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
 type cityData = {
   key: number
   from: IAirportList | null
@@ -118,6 +119,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
+    dispatch(setModifyFlightDrawerOpen(false))
   }
 
   //  make URL

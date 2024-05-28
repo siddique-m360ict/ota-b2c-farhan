@@ -26,6 +26,7 @@ import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
 import { useTheme } from "next-themes"
+import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
 
 type Props = {
   cabinClass: string
@@ -87,6 +88,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
+    dispatch(setModifyFlightDrawerOpen(false))
   }
   // change route for flight
   const dispatch = useAppDispatch()

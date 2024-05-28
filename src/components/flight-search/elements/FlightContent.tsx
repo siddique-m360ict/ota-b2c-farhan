@@ -7,7 +7,7 @@ import { hostedImage } from "@/lib/utils"
 import Image from "next/image"
 import React, { useState } from "react"
 import {
-  convertTimeFormatHM,
+  convertMinutesToHM,
   formatFlightDate,
   minutesToHoursAndMinutes,
   timeSlice,
@@ -21,7 +21,7 @@ interface TabDataTypes {
   id: string
   label: string
   content: Option[]
-  layover: string[]
+  layover: number[]
 }
 const FlightContent = ({ flights }: Props) => {
   const [activeTab, setActiveTab] = useState(
@@ -51,13 +51,13 @@ const FlightContent = ({ flights }: Props) => {
 
   return (
     <Tabs defaultValue={activeTab}>
-      <TabsList className="" aria-label="Manage your account">
+      <TabsList className="h-0 bg-transparent" aria-label="Manage your account">
         {tabs.map((tab) => (
           <TabsTrigger
             key={tab.id}
             value={tab?.id}
             onClick={() => handleTabChange(tab.id)}
-            className="mx-3 rounded-full text-white"
+            className="mx-2 my-[-3px] mb-[19px] rounded-none border-b bg-transparent bg-none  pb-2  shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary"
           >
             <p className="flex items-center gap-1 text-[14px] font-bold">
               {tab.label}
@@ -67,12 +67,12 @@ const FlightContent = ({ flights }: Props) => {
       </TabsList>
 
       {tabs.map((tab) => (
-        <TabsContent key={tab.id} className="TabsContent" value={tab.id}>
+        <TabsContent key={tab.id} className="TabsContent mt-0" value={tab.id}>
           <div>
             {tab.content?.map((item, index) => (
-              <div className="p-3" key={index}>
+              <div className=" px-3" key={index}>
                 <div className="flex items-center justify-between border-b border-t">
-                  <div className="flex items-center justify-between gap-3 py-2">
+                  <div className="flex items-center justify-between gap-3 pb-3 pt-4  ">
                     <Image
                       src={hostedImage(
                         `/${item.carrier?.carrier_marketing_logo}`
@@ -94,8 +94,16 @@ const FlightContent = ({ flights }: Props) => {
                   </div>
 
                   <div className="text-sm">
-                    {flights?.flight_class[0].cabin_type}(
-                    {flights?.flight_class[0].booking_code})
+                    {
+                      flights?.passengers[0].availability[0].segments[0]
+                        .cabin_type
+                    }
+                    (
+                    {
+                      flights?.passengers[0].availability[0].segments[0]
+                        .booking_code
+                    }
+                    )
                   </div>
                 </div>
 
@@ -144,12 +152,12 @@ const FlightContent = ({ flights }: Props) => {
                   </div>
                 </div>
 
-                {tab.layover[index] !== "00:00:00" && (
+                {tab.layover[index] !== 0 && (
                   <div className="mt-2 ">
-                    <p className="rounded bg-[#ebf0f4] p-1 text-center text-sm  text-black">
+                    <p className="rounded bg-[#cee2fa] p-1 text-center text-xs text-black dark:bg-black dark:text-white">
                       Layover at <span>{item.arrival?.airport}</span>
                       <span className="ml-1 font-bold">
-                        {convertTimeFormatHM(tab.layover[index])}
+                        {convertMinutesToHM(tab.layover[index])}
                       </span>
                     </p>
                   </div>

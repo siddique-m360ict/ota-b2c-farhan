@@ -112,7 +112,7 @@ const MobileMenuDrawer = () => {
       )}
       <Separator className="mb-3 dark:invisible" />
 
-      <div className="flex flex-col gap-2 ps-6 text-start">
+      <div className="flex flex-col gap-1 text-center ">
         <Link href={"/terms"} className="text-xs">
           Terms of Service
         </Link>

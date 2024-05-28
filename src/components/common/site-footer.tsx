@@ -32,10 +32,10 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
                   providers of travel services.
                 </p>
                 <div className="mt-6 flex w-full justify-between">
-                  <p className="text-xs">
+                  <p className="text-xs font-bold text-primary">
                     Address: House# 74 Road# 7, Block# H, Banani, Dhaka-1213
                   </p>
-                  <p className="text-xs">
+                  <p className="text-xs font-bold text-primary">
                     Contact Us: +8809638336699, info@m360ict.com
                   </p>
                 </div>

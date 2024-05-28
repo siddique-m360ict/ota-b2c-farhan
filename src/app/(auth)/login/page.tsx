@@ -7,6 +7,7 @@ import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/authentication/user-auth-form"
 import LoginForm from "@/components/authentication/LoginForm"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Login - Secure Sign In to Your Account | Booking Expert",
@@ -79,7 +80,13 @@ export default function SigninPage() {
       <Card className="mx-auto flex w-full flex-col justify-center space-y-6 pt-6 sm:w-[350px]">
         <CardContent>
           <div className="mb-4 flex flex-col space-y-2 text-center">
-            <Icons.logo className="mx-auto h-6 w-6" />
+            <Image
+              src={"/app-icon.png"}
+              alt=""
+              width={40}
+              height={40}
+              className="mx-auto"
+            />
             <h1 className="text-2xl font-semibold tracking-tight">
               Welcome back
             </h1>

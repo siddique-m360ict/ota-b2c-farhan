@@ -9,6 +9,7 @@ import { toast } from "@/components/ui/use-toast"
 import { sendOTP } from "@/lib/server/auth/ForgotPasswordEndpoint"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React, { useState, useTransition } from "react"
@@ -30,18 +31,18 @@ const ForgotForm = () => {
   })
   const router = useRouter()
 
-  const [isPending, seTransition] = useTransition()
+  const [isPending, setTransition] = useTransition()
 
   async function onSubmit(data: FormData) {
     setIsLoading(true)
 
     try {
-      const res = await sendOTP(data.email)
+      const res = await sendOTP(data.email, "reset_user")
       if (!res.success) {
         setIsLoading(false)
         return toast({
           title: res.message,
-          description: "Your OTP in request failed. Please try again.",
+          description: "Your OTP request failed. Please try again.",
           variant: "destructive",
           className: "bg-[#ff0000]",
         })
@@ -50,7 +51,7 @@ const ForgotForm = () => {
           title:
             "OTP successfully sent to your email. Please check inbox or spam",
         })
-        seTransition(() =>
+        setTransition(() =>
           router.push(`/forgot-password/otp?email=${res.data?.email}`)
         )
       }
@@ -67,7 +68,7 @@ const ForgotForm = () => {
       <Card>
         <CardHeader className="px-0 py-4">
           <div className="mb-2 flex items-center gap-3 px-4">
-            <Icons.logo className="h-6 w-6" />
+            <Image src={"/app-icon.png"} alt="" width={40} height={40} />
             <h1 className=" text-xl font-semibold tracking-tight">
               Find Your Account
             </h1>

@@ -4,16 +4,14 @@ import { serverUrl } from "@/lib/utils"
 
 export interface IRevalidated {
   flight_id?: string
-  fare: RevalidateFare
-  refundable: Refundable[]
-  flight_class: FlightClass[]
+  fare?: RevalidateFare
+  refundable?: Refundable[]
   carrier_code?: string
   carrier_name?: string
   carrier_logo?: string
-  ticket_last_date?: Date
-  leg_descriptions: LegDescription[]
+  leg_descriptions?: LegDescription[]
   flights?: Flight[]
-  passengers: Passenger[]
+  passengers?: Passenger[]
 }
 
 export interface RevalidateFare {
@@ -26,18 +24,12 @@ export interface RevalidateFare {
   total_tax?: number
 }
 
-export interface FlightClass {
-  type?: string
-  booking_code?: string
-  cabin_type: string
-}
-
 export interface Flight {
   stoppage?: number
   id?: number
-  elapsed_time: number
-  options: Option[]
-  layover_time?: string[]
+  elapsed_time?: number
+  options?: Option[]
+  layover_time?: number[]
 }
 
 export interface Option {
@@ -52,15 +44,14 @@ export interface Option {
 }
 
 export interface Arrival {
-  airport: string
-  city: string
-  airport_code: string
+  airport?: string
+  city?: string
+  airport_code?: string
   city_code?: string
   country?: string
   time?: string
-  date?: Date
+  date?: string
   terminal?: string
-  date_adjustment?: number
 }
 
 export interface Carrier {
@@ -84,19 +75,35 @@ export interface Passenger {
   type?: string
   number?: number
   non_refundable?: boolean
-  baggage?: Baggage
-  meal_code?: string
-  meal_type?: string
-  cabin_code?: string
-  cabin_type?: string
-  booking_code?: string
+  availability?: Availability[]
   fare?: PassengerFare
+}
+
+export interface Availability {
+  id?: number
+  from_airport?: string
+  to_airport?: string
+  segments?: Segment[]
+  baggage?: Baggage
 }
 
 export interface Baggage {
   id?: number
-  weight?: number
   unit?: string
+  count?: number
+}
+
+export interface Segment {
+  id?: number
+  name?: string
+  meal_type?: string
+  meal_code?: string
+  cabin_code?: string
+  cabin_type?: string
+  booking_code?: string
+  available_seat?: number
+  available_break?: boolean
+  available_fare_break?: boolean
 }
 
 export interface PassengerFare {
@@ -107,7 +114,7 @@ export interface PassengerFare {
 
 export interface Refundable {
   type?: string
-  refundable: boolean
+  refundable?: boolean
 }
 
 export async function ReValidateFlight(

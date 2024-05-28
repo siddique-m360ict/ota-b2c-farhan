@@ -22,6 +22,7 @@ const userSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem("b_token")
       deleteCookie("b_token")
+      deleteCookie("user")
       return initialState
     },
     updateIsVerified: (state, action: PayloadAction<true | false>) => {

@@ -1,41 +1,46 @@
-import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 import { GetProfile } from "./lib/server/auth/UserProfileEndpoints"
 
 export default async function middleware(req) {
   const token = req.cookies.get("b_token")?.value
-  if (!!token) {
+  const url = req.nextUrl.clone()
+  const isAuthPage =
+    url.pathname.startsWith("/login") || url.pathname.startsWith("/register")
+
+  if (token) {
     const res = await GetProfile(token as string)
     const isAuth = !!res.success
 
-    const isAuthPage =
-      req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register")
+    if (isAuth) {
+      const response = NextResponse.next()
+      response.cookies.set("user", JSON.stringify(res.data), { path: "/" })
 
-    console.log(`middleware call...................`)
+      if (isAuthPage) {
+        return NextResponse.redirect(new URL("/", req.url))
+      }
 
-    if (isAuthPage && isAuth) {
-      return NextResponse.redirect(new URL("/", req.url))
-    }
-
-    if (!isAuth && !isAuthPage) {
+      return response
+    } else {
       let from = req.nextUrl.pathname
       if (req.nextUrl.search) {
         from += req.nextUrl.search
       }
-
-      return NextResponse.redirect(
+      const response = NextResponse.redirect(
         new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
       )
+      response.cookies.delete("b_token")
+      response.cookies.delete("user")
+      return response
     }
   } else {
-    const isAuthPage =
-      req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register")
     if (!isAuthPage) {
-      return NextResponse.redirect(new URL(`/login`, req.url))
+      const response = NextResponse.redirect(new URL(`/login`, req.url))
+      response.cookies.delete("user") // Clear the user cookie if there's no token
+      return response
     }
   }
+
+  return NextResponse.next()
 }
 
 export const config = {

@@ -12,7 +12,6 @@ const HomeSearchNavigation = () => {
     {
       id: "Flights",
       label: "Flights",
-
       icon: <Icons.Plane size={21} />,
       element: <FlightSearch home={true} />,
     },

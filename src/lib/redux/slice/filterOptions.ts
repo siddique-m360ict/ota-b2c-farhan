@@ -1,3 +1,4 @@
+// redux/slice/filterOptions.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../store"
 
@@ -12,6 +13,7 @@ export interface FilterAirlines {
   departure_timings?: string | null
   arrival_timings?: string | null
   sort_by?: string | null
+  priceRange?: number[] | null // Add this line
 }
 
 const initialState: FilterAirlines = {
@@ -25,6 +27,7 @@ const initialState: FilterAirlines = {
   departure_timings: null,
   arrival_timings: null,
   sort_by: null,
+  priceRange: null, // Add this line
 }
 
 const filterOptionSlice = createSlice({

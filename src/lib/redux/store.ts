@@ -5,7 +5,8 @@ import filterReducer from "./slice/flight_filter"
 import userReducer from "./slice/user_slice"
 import filterOptionsReducer from "./slice/filterOptions"
 import filterDataReducer from "./slice/filterDataList"
-
+import modifyFlightSearchDrawerReducer from "./slice/ModifyFlightSearchDrawer"
+import transitionLoadingReducer from "./slice/transitionLoading"
 const persistConfig = {
   key: "root",
   version: 1,
@@ -18,6 +19,8 @@ const rootReducer = combineReducers({
   filterOption: filterOptionsReducer,
   user: userReducer,
   filter: filterDataReducer,
+  modifyFlightSearch: modifyFlightSearchDrawerReducer,
+  transitionLoading: transitionLoadingReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

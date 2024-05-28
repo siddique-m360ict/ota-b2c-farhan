@@ -12,8 +12,12 @@ import Stoppage from "@/components/flight-search/elements/Stoppage"
 import DepartureTime from "@/components/flight-search/elements/DepartureTime"
 import ArrivalTime from "@/components/flight-search/elements/ArrivalTime"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
-
-const loading = () => {
+import FlightLocationHeader from "@/components/flight-search/elements/FlightLocationHeader"
+import MobileFlightCard from "@/components/flight-search/elements/MobileFlightCard"
+import FlightListCard from "@/components/flight-search/FlightListCard"
+import dummyFlights from "../../../public/data/dummyFlight.json"
+import { Result } from "@/components/home/elements/types/flightSearchType"
+const Loading = () => {
   const dummyFilter = {
     total_stoppage: [0, 1, 2],
     price_rage: {
@@ -65,6 +69,7 @@ const loading = () => {
       },
     ],
   }
+
   return (
     <div className="md:mt-4">
       <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[280px_1fr] lg:gap-6">
@@ -92,8 +97,8 @@ const loading = () => {
             className=" my-5 h-[1px] w-full"
           />
         </aside>
-        <div>
-          <div className="mb-6 mt-1">
+        <div className="hidden md:block">
+          <div className="mb-6 mt-1 ">
             <div className="flex h-[50px] w-full items-center justify-between overflow-x-scroll whitespace-nowrap rounded-xl  bg-secondaryBg shadow-md md:overflow-auto md:overflow-y-hidden md:whitespace-normal">
               {dummyFilter.airlines.map((airline, index) => (
                 <div
@@ -136,10 +141,23 @@ const loading = () => {
             ))}
           </div>
         </div>
+        <div className="block md:hidden">
+          <FlightLocationHeader
+            departureLocation={"DAC"}
+            arrivalLocation={"JFK"}
+            departureDate={"15-05-2024"}
+            arrivalDate={"15-05-2024"}
+            totalFlight={50}
+          />
+
+          {dummyFlights.map((flight: any, index: number) => (
+            <FlightListCard key={index} flight={flight} />
+          ))}
+        </div>
       </div>
       <LoadingIndicator />
     </div>
   )
 }
 
-export default loading
+export default Loading

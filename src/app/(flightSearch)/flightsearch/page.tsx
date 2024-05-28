@@ -18,7 +18,7 @@ const AllFlights = async (props: any) => {
   if (!res.success) {
     return <FlightNotFound message={res?.message} />
   }
-  // console.log(res?.data?.filter)
+  // console.log(JSON.stringify(res?.data))
 
   return <FlightListView flights={res?.data} count={res?.count} />
 }

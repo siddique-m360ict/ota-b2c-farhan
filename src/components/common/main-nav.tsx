@@ -15,6 +15,7 @@ import { useAppSelector } from "@/lib/redux/hooks"
 import { getCookies } from "cookies-next"
 import { ModeToggle } from "./mode-toggle"
 import Image from "next/image"
+import WarningOTP from "./WarningOTP"
 
 interface MainNavProps {
   home?: boolean
@@ -118,6 +119,7 @@ export function MainNav({ home }: MainNavProps) {
 
       {isLogin && user?.success ? (
         <div className="flex items-center gap-6">
+          {!user.data.is_verified && <WarningOTP />}
           <ModeToggle />
           <UserAccountNav />
         </div>
@@ -140,7 +142,7 @@ export function MainNav({ home }: MainNavProps) {
               "bg-white px-4 text-black dark:bg-white dark:text-black"
             )}
           >
-            Sing in
+            Sign in
           </Link>
         </nav>
       )}

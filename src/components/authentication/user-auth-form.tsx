@@ -57,13 +57,10 @@ export function UserAuthForm({
           duration: 2000,
         })
       } else {
-        toast({
-          title: res.message,
-          duration: 2000,
-        })
         dispatch(user(res))
         localStorage.setItem("b_token", res?.token as string)
         setCookie("b_token", res?.token)
+        setCookie("user", JSON.stringify(res.data), { path: "/" })
         setOpenModal && setOpenModal(false)
         router.refresh()
         loginPage && router.push(searchParams?.get("from") || "/")

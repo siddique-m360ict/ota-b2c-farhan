@@ -42,6 +42,9 @@ import {
   BadgeCheck,
   Timer,
   Info,
+  ArrowLeft,
+  Pencil,
+  SlidersHorizontal,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -49,7 +52,10 @@ export type Icon = LucideIcon
 export const Icons = {
   logo: Command,
   Plane: Plane,
+  Pencil: Pencil,
   close: X,
+  ArrowLeft: ArrowLeft,
+  SlidersHorizontal: SlidersHorizontal,
   Info: Info,
   Timer: Timer,
   BadgeCheck: BadgeCheck,

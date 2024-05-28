@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react"
 type Props = {
   filter: number[] | undefined
 }
+
 const Stoppage = ({ filter: total_stoppage }: Props) => {
   const filterOption = useAppSelector(selectFilterOption)
   const dispatch = useAppDispatch()
@@ -69,7 +70,9 @@ const Stoppage = ({ filter: total_stoppage }: Props) => {
             value={stop.value}
             className="border-2 border-destructive"
             onCheckedChange={(event) => handleCheckboxChange(stop.value)}
-            // checked={filterOption..includes() === ?.refundable}
+            checked={
+              filterOption?.stoppage?.includes(Number(stop.value)) || false
+            }
           />
           <Label
             htmlFor={stop.value}

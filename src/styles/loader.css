@@ -101,3 +101,26 @@ only screen and (min-width: 576px) and (max-width: 767px),
         background-position-x: -340px;
     }
 }
+
+
+/* ----------------- before */
+.mobileAirLogo:before {
+    width: 34px;
+    background: linear-gradient(270deg, rgb(216, 225, 235) 0%, rgb(245, 247, 250) 102.79%);
+    margin-right: 6px;
+    content: "";
+    height: 1px;
+    flex: 1 1 0%;
+    display: block;
+
+}
+
+.mobileAirLogo::after {
+    width: 34px;
+    background: linear-gradient(270deg, rgb(245, 247, 250) 0%, rgb(216, 225, 235) 102.79%);
+    margin-left: 6px;
+    content: "";
+    height: 1px;
+    flex: 1 1 0%;
+    display: block;
+}

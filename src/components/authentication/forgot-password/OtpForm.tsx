@@ -31,7 +31,7 @@ const FormSchema = z.object({
   }),
 })
 
-export function OTPForm({ searchParams }) {
+export function OTPForm({ searchParams, type }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,7 +46,7 @@ export function OTPForm({ searchParams }) {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true)
     try {
-      const res = await matchOTP(searchParams?.email, data.pin)
+      const res = await matchOTP(searchParams?.email, data.pin, type)
       if (!res.success) {
         setIsLoading(false)
         return toast({
@@ -57,11 +57,16 @@ export function OTPForm({ searchParams }) {
         })
       } else {
         toast({
-          title: res.message,
+          title:
+            type === "reset_user"
+              ? res.message
+              : "Your Email has been verified",
         })
         seTransition(() =>
           router.push(
-            `/forgot-password/verify?email=${searchParams.email}&token=${res.token}`
+            type === "reset_user"
+              ? `/forgot-password/verify?email=${searchParams.email}&token=${res.token}`
+              : "/"
           )
         )
       }

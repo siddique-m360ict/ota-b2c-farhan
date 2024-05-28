@@ -1,81 +1,120 @@
 "use client"
+
+import React, { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
+
+import { filterFlightList } from "@/app/(flightSearch)/actions"
+import {
+  setFilterCount,
+  setFilterDataList,
+  selectFilterDataCount,
+  selectFilterDataList,
+} from "@/lib/redux/slice/filterDataList"
 import FlightTopFilter from "@/components/flight-search/elements/FlightTopFilter"
 import FlightTopHeader from "@/components/flight-search/elements/FlightTopHeader"
 import FlightListCard from "@/components/flight-search/FlightListCard"
+import FlightTopAirline from "@/components/flight-search/elements/FlightTopAirline"
+
 import {
-  Filter,
   IFlightSearchList,
   Result,
 } from "@/components/home/elements/types/flightSearchType"
-import React, { useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
-import { setFilterData } from "@/lib/redux/slice/flight_filter"
 import {
   FilterAirlines,
   selectFilterOption,
 } from "@/lib/redux/slice/filterOptions"
-import { filterFlightList } from "@/app/(flightSearch)/actions"
-import {
-  selectFilterDataCount,
-  selectFilterDataList,
-  setFilterCount,
-  setFilterDataList,
-} from "@/lib/redux/slice/filterDataList"
-import FlightTopAirline from "./elements/FlightTopAirline"
+import { setFilterData } from "@/lib/redux/slice/flight_filter"
+import FlightLocationHeader from "./elements/FlightLocationHeader"
+import LoadingIndicator from "../common/spinner/LoadingIndicator"
+import useGlobalTransition from "@/hooks/useGlobalTransition"
+import { selectTransitionIsPending } from "@/lib/redux/slice/transitionLoading"
 
 type Props = {
   flights: IFlightSearchList | undefined
   count: number
 }
-const isFilterNotEmpty = (filter: any) => {
-  return Object.values(filter).some((value) => value !== null)
-}
+
+const isFilterNotEmpty = (filter: FilterAirlines) =>
+  Object.values(filter).some((value) => value !== null)
+
 const FlightListView = ({ flights, count }: Props) => {
   const dispatch = useAppDispatch()
   const filterOption = useAppSelector(selectFilterOption) as FilterAirlines
   const filterCount = useAppSelector(selectFilterDataCount)
   const filterDataList = useAppSelector(selectFilterDataList)
-  if (flights?.filter) {
-    dispatch(setFilterData(flights.filter))
-  }
+  const loading = useAppSelector(selectTransitionIsPending)
 
-  // handle filtering
+  useEffect(() => {
+    if (flights?.filter) {
+      dispatch(setFilterData(flights.filter))
+    }
+  }, [flights, dispatch])
+
   useEffect(() => {
     if (isFilterNotEmpty(filterOption)) {
-      const filterApi = async () => {
+      const fetchFilteredData = async () => {
         try {
           const res = await filterFlightList(filterOption, 1)
-          dispatch(setFilterDataList(res?.data?.results))
-          dispatch(setFilterCount(res.count))
+          if (res?.data?.results) {
+            dispatch(setFilterDataList(res.data.results))
+            dispatch(setFilterCount(res.count))
+          }
         } catch (error) {
-          throw new Error(`Something wrong in filter`)
+          console.error("Error fetching filtered data:", error)
         }
       }
-      filterApi()
+
+      fetchFilteredData()
     }
-  }, [filterOption])
+  }, [filterOption, dispatch])
+
+  const departureLocation =
+    filterDataList?.[0]?.leg_descriptions?.[0]?.departureLocation ||
+    flights?.results?.[0]?.leg_descriptions?.[0]?.departureLocation
+  const arrivalLocation =
+    filterDataList?.[0]?.leg_descriptions?.[0]?.arrivalLocation ||
+    flights?.results?.[0]?.leg_descriptions?.[0]?.arrivalLocation
+  const departureDate =
+    filterDataList?.[0]?.leg_descriptions?.[0]?.departureDate ||
+    flights?.results?.[0]?.leg_descriptions?.[0]?.departureDate
+  const arrivalDate =
+    filterDataList?.[0]?.leg_descriptions?.[0]?.departureDate ||
+    flights?.results?.[0]?.leg_descriptions?.[0]?.departureDate
 
   return (
     <div>
-      <div className="px-2 md:px-0 lg:w-[65vw] xl:w-[72vw] 2xl:w-[55vw]">
+      <div className="hidden px-2 md:block md:px-0 lg:w-[65vw] xl:w-[72vw] 2xl:w-[55vw]">
         <FlightTopAirline />
       </div>
 
-      <FlightTopHeader
-        totalFlight={filterCount || filterCount == 0 ? filterCount : count}
-        arrivalCity={
-          flights?.results[0]?.flights[0]?.options?.[
-            flights.results[0]?.flights[0]?.options?.length - 1
-          ].arrival?.city
-        }
-      />
-      <FlightTopFilter />
+      <div className="hidden md:block">
+        <FlightTopHeader
+          totalFlight={filterCount ?? count}
+          arrivalCity={
+            flights?.results?.[0]?.flights?.[0]?.options?.[
+              flights.results[0]?.flights[0]?.options?.length - 1
+            ].arrival?.city
+          }
+        />
+        <FlightTopFilter />
+      </div>
+
+      <div className="block md:hidden">
+        <FlightLocationHeader
+          departureLocation={departureLocation}
+          arrivalLocation={arrivalLocation}
+          departureDate={departureDate}
+          arrivalDate={arrivalDate}
+          totalFlight={filterCount ?? count}
+        />
+      </div>
+
       <div>
         {filterDataList
-          ? filterDataList.map((flight: any, index: number) => (
+          ? filterDataList.map((flight: Result, index: number) => (
               <FlightListCard key={index} flight={flight} />
             ))
-          : flights?.results.map((flight: any, index: number) => (
+          : flights?.results.map((flight: Result, index: number) => (
               <FlightListCard key={index} flight={flight} />
             ))}
       </div>

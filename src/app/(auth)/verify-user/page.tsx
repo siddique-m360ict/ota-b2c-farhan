@@ -2,7 +2,6 @@ import { OTPForm } from "@/components/authentication/forgot-password/OtpForm"
 import { Icons } from "@/components/icons"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import Link from "next/link"
 import React, { Suspense } from "react"
 
@@ -10,12 +9,12 @@ const page = ({ params, searchParams }) => {
   return (
     <div>
       <Suspense fallback={<>Loading.......</>}>
-        <OTP searchParams={searchParams} />
+        <Verify searchParams={searchParams} />
       </Suspense>
     </div>
   )
 }
-const OTP = async (props: any) => {
+const Verify = async (props: any) => {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
@@ -30,20 +29,14 @@ const OTP = async (props: any) => {
           Back to login
         </>
       </Link>
-      <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-[350px]">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <Image
-            src={"/app-icon.png"}
-            alt=""
-            width={35}
-            height={35}
-            className="mx-auto"
-          />
+          <Icons.logo className="mx-auto h-6 w-6" />
           <h1 className="text-2xl font-semibold tracking-tight">
             Enter the OTP
           </h1>
         </div>
-        <OTPForm searchParams={props?.searchParams} type="reset_user" />
+        <OTPForm searchParams={props?.searchParams} type="verify_user" />
       </div>
     </div>
   )

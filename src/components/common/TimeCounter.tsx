@@ -1,6 +1,10 @@
 "use client"
 import React, { useState } from "react"
-import { useRouter } from "next/navigation"
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegment,
+} from "next/navigation"
 import { useTimer } from "react-timer-hook"
 import {
   Dialog,
@@ -12,8 +16,10 @@ import {
 } from "../ui/dialog"
 import { Button } from "../ui/button"
 import { Icons } from "../icons"
+import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
-function Timer({ expiryTimestamp, onExpire }) {
+function Timer({ expiryTimestamp, onExpire, className, isDesktop }) {
   const { seconds, minutes } = useTimer({
     expiryTimestamp,
     onExpire,
@@ -21,34 +27,58 @@ function Timer({ expiryTimestamp, onExpire }) {
   const zeroPadTime = (time) => {
     return time < 10 ? `0${time}` : time
   }
+  const pathName = usePathname()
   return (
-    <div className="mb-4 flex items-center justify-between gap-2 rounded   bg-card px-4 py-[1.8vh] shadow">
+    <div
+      className={cn(
+        "mb-4 flex items-center justify-between gap-2 rounded   bg-card px-4 py-[1.6vh] shadow",
+        className
+      )}
+    >
       <div className="flex items-center gap-2">
-        <Icons.Timer size={23} className="font-bold text-primary" />
-        <p className="text-sm"> Time Remaining</p>
+        <Icons.Timer
+          size={isDesktop ? 23 : 20}
+          className={cn(
+            "font-bold  md:text-primary",
+            pathName !== "/flight-revalidate" && "text-white"
+          )}
+        />
+        <p className="text-sm">Time Remaining</p>
       </div>
-      <div className="text-sm font-bold text-primary">
+      <div className={cn("text-sm font-bold md:text-primary")}>
         <span>{zeroPadTime(minutes)}</span>:<span>{zeroPadTime(seconds)}</span>
       </div>
     </div>
   )
 }
 
-const TimeCounter = () => {
+const TimeCounter = ({ className }: { className?: string }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const router = useRouter()
   const targetTime = new Date(Date.now() + 15 * 60 * 1000)
+  const pathName = usePathname()
   const handleExpire = () => {
     setIsModalOpen(true)
   }
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+
   const closeModal = () => {
     setIsModalOpen(false)
-    window.location.reload()
+    if (pathName === "/flightsearch") {
+      window.location.reload()
+    } else {
+      router.push("/")
+    }
   }
 
   return (
     <div>
-      <Timer expiryTimestamp={targetTime} onExpire={handleExpire} />
+      <Timer
+        expiryTimestamp={targetTime}
+        onExpire={handleExpire}
+        className={className}
+        isDesktop={isDesktop}
+      />
       {isModalOpen && (
         <Dialog open={isModalOpen} onOpenChange={closeModal}>
           <DialogContent className="bg-secondaryBg [&>button]:hidden">

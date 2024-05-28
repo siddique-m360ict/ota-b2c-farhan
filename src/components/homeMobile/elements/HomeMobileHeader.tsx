@@ -6,11 +6,11 @@ import React from "react"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { useSelectedLayoutSegment } from "next/navigation"
+import { usePathname, useSelectedLayoutSegment } from "next/navigation"
 import { ModeToggle } from "@/components/common/mode-toggle"
 
 import { UserAccountNav } from "@/components/common/user-account-nav"
-import { getCookies } from "cookies-next"
+import { getCookie, getCookies } from "cookies-next"
 import MobileMenuDrawer from "./MobileMenuDrawer"
 
 type Props = {
@@ -19,7 +19,10 @@ type Props = {
 const HomeMobileHeader = ({ home }: Props) => {
   const [open, setOpen] = React.useState(false)
   const segment = useSelectedLayoutSegment()
-  const isLogin = getCookies().b_token
+  const isLogin = getCookie("b_token")
+  const pathName = usePathname()
+  const flightSearchPage = pathName === "/flightsearch"
+
   const headerItems = [
     {
       id: "Hotels",
@@ -60,13 +63,14 @@ const HomeMobileHeader = ({ home }: Props) => {
   ]
 
   return (
-    <header className=" px-4 py-3">
+    <header className="px-4 py-3">
       <div className="flex items-center justify-between ">
         <Link href={"/"} className="z-50">
           <p
             className={cn(
               " font-roboto text-[18px] font-bold text-primary",
-              !home && "text-white"
+              home ? "text-primary" : "text-white",
+              flightSearchPage && "text-white"
             )}
           >
             Booking
@@ -77,7 +81,7 @@ const HomeMobileHeader = ({ home }: Props) => {
         <div className="z-50 flex justify-between gap-5">
           {/* <ModeToggle /> */}
           {!isLogin ? (
-            <p className={cn("", !home && "text-white")}>
+            <p className={cn("", !home || (flightSearchPage && "text-white"))}>
               <Link href={"/login"}>
                 <Icons.User size={22} />
               </Link>
@@ -90,7 +94,9 @@ const HomeMobileHeader = ({ home }: Props) => {
 
           <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-              <p className={cn("", !home && "text-white")}>
+              <p
+                className={cn("", !home || (flightSearchPage && "text-white"))}
+              >
                 <Icons.menu size={22} />
               </p>
             </DrawerTrigger>

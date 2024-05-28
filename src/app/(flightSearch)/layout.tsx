@@ -51,9 +51,9 @@ export const metadata = {
 
 export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#E2E8F0] dark:bg-background md:bg-background">
       <header
-        className="relative w-full pb-8 md:pb-20"
+        className="relative hidden w-full pb-0 md:block md:pb-20"
         style={{
           backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
         }}
@@ -62,10 +62,10 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           <MainNav />
         </div>
         <div className="block md:hidden">
-          <HomeMobileHeader />
+          <HomeMobileHeader home={true} />
         </div>
         <div
-          className="absolute bottom-[-11px] z-0 h-8 w-full bg-background md:h-10"
+          className="absolute bottom-[-11px] z-0 hidden h-8 w-full bg-background md:block md:h-10"
           style={{ borderRadius: "24px 24px 0 0" }}
         ></div>
       </header>
@@ -74,7 +74,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           <FlightSearch />
         </div>
       </section>
-      <main className="mt-2 flex-1 md:container">{children}</main>
+      <main className="flex-1 md:container md:mt-2">{children}</main>
       <SiteFooter className="border-t" />
     </div>
   )

@@ -114,7 +114,7 @@ const UserRegisterForm = () => {
             />
             <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.username && (
-              <p className="text-red-600">{errors.username.message}</p>
+              <p className="text-red-600">Username is required</p>
             )}
           </div>
           <div className="relative grid gap-1">
@@ -130,7 +130,7 @@ const UserRegisterForm = () => {
             />
             <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.first_name && (
-              <p className="text-red-600">{errors.first_name.message}</p>
+              <p className="text-red-600">First name is required</p>
             )}
           </div>
           <div className="relative grid gap-1">
@@ -146,7 +146,7 @@ const UserRegisterForm = () => {
             />
             <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.last_name && (
-              <p className="text-red-600">{errors.last_name.message}</p>
+              <p className="text-red-600">Last name is required</p>
             )}
           </div>
 
@@ -165,9 +165,7 @@ const UserRegisterForm = () => {
               {...register("email")}
             />
             <span className="absolute right-3 top-3 text-red-600">*</span>
-            {errors.email && (
-              <p className="text-red-600">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="text-red-600">Email is required</p>}
           </div>
 
           <div className="relative">
@@ -177,7 +175,10 @@ const UserRegisterForm = () => {
               {...register("password")}
             />
             {errors.password && (
-              <p className="text-red-600">{errors.password.message}</p>
+              <p className="text-red-600">
+                {" "}
+                you have to enter at least 6 digit!
+              </p>
             )}
           </div>
           {/* Other form fields */}
@@ -194,7 +195,7 @@ const UserRegisterForm = () => {
             />
             <span className="absolute right-3 top-3 text-red-600">*</span>
             {errors.phone_number && (
-              <p className="text-red-600">{errors.phone_number.message}</p>
+              <p className="text-red-600">Phone number is required</p>
             )}
           </div>
 

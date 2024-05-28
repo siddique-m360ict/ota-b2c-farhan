@@ -32,6 +32,8 @@ import {
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
 import { useTheme } from "next-themes"
+import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
+import { setTransitionLoading } from "@/lib/redux/slice/transitionLoading"
 
 type Props = {
   cabinClass: string
@@ -90,6 +92,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
+    dispatch(setModifyFlightDrawerOpen(false))
   }
   // change route for flight
   const dispatch = useAppDispatch()
@@ -120,6 +123,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       }
     }
   }, [segment])
+
+  useEffect(() => {
+    dispatch(setTransitionLoading(isPending))
+  }, [isPending, dispatch])
 
   return (
     <>

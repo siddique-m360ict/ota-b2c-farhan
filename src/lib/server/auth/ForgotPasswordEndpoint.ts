@@ -4,11 +4,14 @@ import { serverUrl } from "@/lib/utils"
 export interface response {
   email: string
 }
-export async function sendOTP(email: string): Promise<HTTPResponse<response>> {
+export async function sendOTP(
+  email: string,
+  type
+): Promise<HTTPResponse<response>> {
   const apiUrl = serverUrl("/common/send-email-otp")
   const data = JSON.stringify({
     email,
-    type: "reset_user",
+    type,
   })
 
   let myHeaders = new Headers()
@@ -30,14 +33,14 @@ interface MatchOTPResponse {
   success: boolean
   token?: string
 }
-export const matchOTP = async (email, otp) => {
+export const matchOTP = async (email, otp, type) => {
   const api = serverUrl("/common/match-email-otp")
   const headers = new Headers()
   headers.append("Content-Type", "application/json")
   const data = JSON.stringify({
     email,
     otp,
-    type: "reset_user",
+    type,
   })
 
   const response = await fetch(api, {

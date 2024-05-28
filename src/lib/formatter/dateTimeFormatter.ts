@@ -17,19 +17,12 @@ export function formatFlightDate(DateTimeString: string | undefined) {
   return formattedDate
 }
 
-export function convertTimeFormatHM(inputTime: string) {
-  const timeComponents = inputTime.split(":")
-  if (timeComponents.length !== 3) {
-    return "Invalid time format"
-  }
-  const hours = parseInt(timeComponents[0], 10)
-  const minutes = parseInt(timeComponents[1], 10)
+export function convertMinutesToHM(minutes: number): string {
+  const hours = Math.floor(minutes / 60)
+  const remainingMinutes = minutes % 60
 
-  if (isNaN(hours) || isNaN(minutes)) {
-    return "Invalid time format"
-  }
+  const hoursPart = hours > 0 ? `${hours}h ` : ""
+  const minutesPart = `${remainingMinutes}m`
 
-  const formattedTime = `${hours}h ${minutes}m`
-
-  return formattedTime
+  return `${hoursPart}${minutesPart}`
 }
