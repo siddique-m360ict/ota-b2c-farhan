@@ -85,6 +85,8 @@ export interface Carrier {
   carrier_operating_airline?: string
   carrier_operating_logo?: string
   carrier_operating_flight_number?: number
+  carrier_aircraft_code?: string
+  carrier_aircraft_name?: string
 }
 
 export interface LegDescription {

@@ -20,7 +20,7 @@ import {
   useSelectedLayoutSegment,
 } from "next/navigation"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
-import { useAppDispatch } from "@/lib/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import {
   setFilterCount,
   setFilterDataList,
@@ -33,7 +33,10 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
 import { useTheme } from "next-themes"
 import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
-import { setTransitionLoading } from "@/lib/redux/slice/transitionLoading"
+import {
+  selectTransitionIsPending,
+  setTransitionLoading,
+} from "@/lib/redux/slice/transitionLoading"
 
 type Props = {
   cabinClass: string
@@ -64,10 +67,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     setToAirport(fromAirport)
   }
   const { theme } = useTheme()
-
+  const loading = useAppSelector(selectTransitionIsPending)
   // react hook
   const [isPending, startTransition] = useTransition()
-  const segment = useSelectedLayoutSegment()
+  const pathName = usePathname()
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   // make url and change route ---------------------------------------
@@ -92,7 +95,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
-    dispatch(setModifyFlightDrawerOpen(false))
+    // dispatch(setModifyFlightDrawerOpen(false))
   }
   // change route for flight
   const dispatch = useAppDispatch()
@@ -122,11 +125,20 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         setDate(new Date(searchFlightOneWay.date))
       }
     }
-  }, [segment])
+  }, [pathName])
 
   useEffect(() => {
     dispatch(setTransitionLoading(isPending))
   }, [isPending, dispatch])
+
+  useEffect(() => {
+    if (loading) {
+      dispatch(setTransitionLoading(isPending))
+      if (!isDesktop) {
+        dispatch(setModifyFlightDrawerOpen(isPending))
+      }
+    }
+  }, [loading, isPending, dispatch])
 
   return (
     <>
@@ -166,7 +178,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
         />
 
         <DatePickerFlight setDate={setDate} date={date} />
-        {segment !== "flightsearch" ? (
+        {pathName !== "/flightsearch" ? (
           <Link
             href={
               fromAirport && toAirport && date
@@ -206,11 +218,13 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             )}
             onClick={() => startTransition(() => changeRoute())}
           >
+            {loading && (
+              <Icons.spinner className="mr-2 block h-4 w-4 animate-spin md:hidden" />
+            )}
             Search
           </Button>
         )}
       </div>
-      {isPending && <LoadingIndicator />}
     </>
   )
 }

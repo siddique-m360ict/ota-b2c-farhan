@@ -21,15 +21,15 @@ const typeMapping = {
 
 const Passenger = ({ passengers }: Props) => {
   return (
-    <div className="p-4 dark:bg-gray-900 dark:text-gray-100">
-      <Accordion type="single" collapsible>
+    <div className="dark:bg-gray-900 dark:text-gray-100 md:p-4">
+      <Accordion type="single" collapsible defaultValue="passenger-0">
         {passengers.map((passenger, pIndex) => (
           <AccordionItem key={pIndex} value={`passenger-${pIndex}`}>
-            <AccordionTrigger>
+            <AccordionTrigger className="bg-card px-4">
               <div className="flex w-full justify-between">
                 <p>
                   {typeMapping[passenger.type] || passenger.type}
-                  {passenger.number > 1 && <span> ({passenger.number})</span>}
+                  <span> ({passenger.number})</span>
                 </p>
                 <p className="text-destructive">
                   {!passenger.non_refundable ? "Refundable" : "nonrefundable"}

@@ -75,6 +75,9 @@ const TravelersList = async ({ travelers, token }: Props) => {
               ))}
             </tbody>
           </table>
+          {travelers.length === 0 && (
+            <h1 className="text-center">No Data Found</h1>
+          )}
         </div>
       </div>
     </div>

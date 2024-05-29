@@ -7,11 +7,15 @@ import { IAirportList } from "./types/flightSearchType"
 import { useToast } from "@/components/ui/use-toast"
 import { Passenger } from "../FlightSearch"
 import { addDays, format } from "date-fns"
-import { useRouter, useSelectedLayoutSegment } from "next/navigation"
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegment,
+} from "next/navigation"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { useAppDispatch } from "@/lib/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import {
   setFilterCount,
   setFilterDataList,
@@ -21,6 +25,10 @@ import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { Separator } from "@/components/ui/separator"
 import { useTheme } from "next-themes"
 import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
+import {
+  selectTransitionIsPending,
+  setTransitionLoading,
+} from "@/lib/redux/slice/transitionLoading"
 type cityData = {
   key: number
   from: IAirportList | null
@@ -106,7 +114,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
     })
   }
   // hook
-  const segment = useSelectedLayoutSegment()
+  const pathName = usePathname()
   const isDesktop = useMediaQuery("(min-width: 768px)")
   const dispatch = useAppDispatch()
 
@@ -119,7 +127,6 @@ const MultiCity = ({ cabinClass, passenger }) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
-    dispatch(setModifyFlightDrawerOpen(false))
   }
 
   //  make URL
@@ -141,12 +148,11 @@ const MultiCity = ({ cabinClass, passenger }) => {
       })
     } else {
       removeFilter()
-      startTransition(() => {
-        router.push(`flightsearch?${queryParams}`)
-      })
+
+      router.push(`flightsearch?${queryParams}`)
     }
   }
-
+  const loading = useAppSelector(selectTransitionIsPending)
   // ==================== get flight search localStorage info
   useEffect(() => {
     if (window !== undefined) {
@@ -163,7 +169,20 @@ const MultiCity = ({ cabinClass, passenger }) => {
         setCityData(formattedFlights)
       }
     }
-  }, [segment])
+  }, [pathName])
+
+  useEffect(() => {
+    dispatch(setTransitionLoading(isPending))
+  }, [isPending, dispatch])
+
+  useEffect(() => {
+    if (loading) {
+      dispatch(setTransitionLoading(isPending))
+      if (!isDesktop) {
+        dispatch(setModifyFlightDrawerOpen(isPending))
+      }
+    }
+  }, [loading, isPending, dispatch])
 
   return (
     <>
@@ -257,7 +276,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
           <Button onClick={addCity} className="h-8 md:h-auto">
             Add another flight
           </Button>
-          {segment !== "flightsearch" ? (
+          {pathName !== "/flightsearch" ? (
             <Link
               href={!isEmpty ? `/flightsearch?${queryParams}` : "#"}
               className={cn(
@@ -293,12 +312,14 @@ const MultiCity = ({ cabinClass, passenger }) => {
               )}
               onClick={() => startTransition(() => handleSearch())}
             >
+              {loading && (
+                <Icons.spinner className="mr-2 block h-4 w-4 animate-spin md:hidden" />
+              )}
               Search
             </Button>
           )}
         </div>
       </div>
-      {isPending && <LoadingIndicator />}
     </>
   )
 }

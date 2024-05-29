@@ -66,7 +66,7 @@ export default function SignUpPage() {
         href="/"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 text-white md:left-8 md:top-8"
+          "absolute left-4 top-4 text-primary md:left-8 md:top-8 md:text-white"
         )}
       >
         <>
@@ -113,7 +113,7 @@ export default function SignUpPage() {
             </p>
           </div>
           <UserRegisterForm />
-          <p className="px-8 text-center text-sm text-muted-foreground">
+          <p className="z-50 px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link
               href="/terms"

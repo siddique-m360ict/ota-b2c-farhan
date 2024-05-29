@@ -13,7 +13,7 @@ import {
 import { cn, hostedImage } from "@/lib/utils"
 import Image from "next/image"
 import React from "react"
-import { Button } from "../ui/button" 
+import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 
 type Props = {
@@ -93,11 +93,13 @@ const FlightRevalidateDetails = ({
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <p className="md:text-md text-sm font-bold text-secondary">
+                      <p className="md:text-md text-sm font-bold  text-secondary">
                         {flight.departure?.airport}
                       </p>
-                      <p className="flex flex-wrap gap-0 space-x-4 text-xs text-destructive md:gap-3 md:text-sm">
-                        <span>{flight.carrier?.carrier_marketing_airline}</span>
+                      <p className="flex flex-wrap gap-0 space-x-3 text-xs text-destructive md:gap-3 md:text-sm">
+                        <span className="text-primary">
+                          {flight.carrier?.carrier_marketing_airline}
+                        </span>
                         <span>
                           {flight.carrier?.carrier_marketing_code} (
                           {flight.carrier?.carrier_marketing_flight_number})
@@ -106,6 +108,7 @@ const FlightRevalidateDetails = ({
                         <span>
                           {item.refundable ? "Refundable" : "Nonrefundable"}
                         </span>
+                        <span> {flight.carrier?.carrier_aircraft_name} </span>
                       </p>
                       <p className="md:text-md text-sm font-bold text-secondary ">
                         {flight.arrival?.airport}

@@ -68,9 +68,7 @@ const Baggages = ({ passengers }: Props) => {
                         >
                           <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-300">
                             {typeMapping[passenger.type] || passenger.type}
-                            {passenger.number > 1 && (
-                              <span> ({passenger.number})</span>
-                            )}
+                            {<span> ({passenger.number})</span>}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-300">
                             {availability.baggage.count}

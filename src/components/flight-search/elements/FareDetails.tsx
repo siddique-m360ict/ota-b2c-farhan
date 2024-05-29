@@ -5,6 +5,7 @@ import {
 } from "@/components/home/elements/types/flightSearchType"
 import { Separator } from "@/components/ui/separator"
 import { cn, formatNumber } from "@/lib/utils"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 type Props = {
   fare: Fare
@@ -36,49 +37,51 @@ const FareDetails = ({ fare, className, passengers }: Props) => {
           <h3 className="dark:text-primary-light mb-2 text-center text-[16px] font-bold text-primary">
             Passenger Fare
           </h3>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead>
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Base Fare
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Tax
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Total Price
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-800">
-                {passengers.map((passenger, index) => (
-                  <tr key={index}>
-                    <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
-                      {typeMapping[passenger.type] || passenger.type}
-                      {passenger.number > 1 && (
-                        <span> ({passenger.number})</span>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
-                      <span className="font-mono text-sm"> ৳</span>{" "}
-                      {formatNumber(passenger.fare.base_fare)}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
-                      <span className="font-mono text-sm"> ৳</span>{" "}
-                      {formatNumber(passenger.fare.tax)}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
-                      <span className="font-mono text-sm"> ৳</span>{" "}
-                      {formatNumber(passenger.fare.total_fare)}
-                    </td>
+
+          <div>
+            <ScrollArea className="w-screen whitespace-nowrap rounded-md border md:w-full">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead>
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Type
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Base Fare
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Tax
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Total Price
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-800">
+                  {passengers.map((passenger, index) => (
+                    <tr key={index}>
+                      <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
+                        {typeMapping[passenger.type] || passenger.type}
+                        {<span> ({passenger.number})</span>}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
+                        <span className="font-mono text-sm"> ৳</span>{" "}
+                        {formatNumber(passenger.fare.base_fare)}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
+                        <span className="font-mono text-sm"> ৳</span>{" "}
+                        {formatNumber(passenger.fare.tax)}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-3 dark:text-gray-100">
+                        <span className="font-mono text-sm"> ৳</span>{" "}
+                        {formatNumber(passenger.fare.total_fare)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <ScrollBar orientation="horizontal" className="invisible" />
+            </ScrollArea>
           </div>
         </div>
 

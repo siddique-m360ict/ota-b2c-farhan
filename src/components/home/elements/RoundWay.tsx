@@ -10,6 +10,7 @@ import { Icons } from "@/components/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import {
+  usePathname,
   useRouter,
   useSearchParams,
   useSelectedLayoutSegment,
@@ -21,12 +22,16 @@ import {
   setFilterDataList,
 } from "@/lib/redux/slice/filterDataList"
 import { removeFilterOption } from "@/lib/redux/slice/filterOptions"
-import { useAppDispatch } from "@/lib/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/components/ui/use-toast"
 import { useTheme } from "next-themes"
 import { setModifyFlightDrawerOpen } from "@/lib/redux/slice/ModifyFlightSearchDrawer"
+import {
+  selectTransitionIsPending,
+  setTransitionLoading,
+} from "@/lib/redux/slice/transitionLoading"
 
 type Props = {
   cabinClass: string
@@ -63,7 +68,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
 
   // react hook
   const [isPending, startTransition] = useTransition()
-  const segment = useSelectedLayoutSegment()
+  const pathName = usePathname()
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   // Make url
@@ -88,7 +93,6 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     dispatch(setFilterDataList(undefined))
     dispatch(setFilterCount(undefined))
     dispatch(removeFilterOption())
-    dispatch(setModifyFlightDrawerOpen(false))
   }
   // change route for flight
   const dispatch = useAppDispatch()
@@ -105,6 +109,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     router.push(`/flightsearch?${queryParams}`)
     removeFilter()
   }
+  const loading = useAppSelector(selectTransitionIsPending)
 
   // ==================== get flight search localStorage info
   useEffect(() => {
@@ -121,7 +126,20 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
         })
       }
     }
-  }, [segment])
+  }, [pathName])
+
+  useEffect(() => {
+    dispatch(setTransitionLoading(isPending))
+  }, [isPending, dispatch])
+
+  useEffect(() => {
+    if (loading) {
+      dispatch(setTransitionLoading(isPending))
+      if (!isDesktop) {
+        dispatch(setModifyFlightDrawerOpen(isPending))
+      }
+    }
+  }, [loading, isPending, dispatch])
 
   return (
     <>
@@ -166,7 +184,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
           <div className="mb-4 mt-2 w-full md:mb-0 md:mt-0">
             <DatePickerRange date={date} setDate={setDate} />
           </div>
-          {segment !== "flightsearch" ? (
+          {pathName !== "/flightsearch" ? (
             <Link
               href={
                 fromAirport && toAirport && date?.from && date?.to
@@ -206,12 +224,14 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
               )}
               onClick={() => startTransition(() => changeRoute())}
             >
+              {loading && (
+                <Icons.spinner className="mr-2 block h-4 w-4 animate-spin md:hidden" />
+              )}
               Search
             </Button>
           )}
         </div>
       </div>
-      {isPending && <LoadingIndicator />}
     </>
   )
 }

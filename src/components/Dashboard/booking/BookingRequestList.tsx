@@ -63,6 +63,9 @@ const BookingRequestList = ({ bookingRequestData }: Props) => {
               ))}
             </tbody>
           </table>
+          {bookingRequestData.length === 0 && (
+            <h1 className="text-center">No Data Found</h1>
+          )}
         </div>
       </div>
     </div>

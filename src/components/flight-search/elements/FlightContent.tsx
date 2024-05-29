@@ -81,11 +81,18 @@ const FlightContent = ({ flights }: Props) => {
                       width={50}
                       height={50}
                     />
+
                     <div>
                       <div className="text-sm">
                         {item?.carrier?.carrier_marketing_airline}
                       </div>
-                      <div className="text-sm">
+
+                      <div>
+                        <p className="text-[11px] leading-3">
+                          Aircraft: {item?.carrier?.carrier_aircraft_name}
+                        </p>
+                      </div>
+                      <div className="text-[11px]">
                         {(item?.carrier?.carrier_marketing_code || "") +
                           "-" +
                           item?.carrier?.carrier_marketing_flight_number}

@@ -1,9 +1,10 @@
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import React from "react"
 
 const loading = () => {
   return (
     <div>
-      loading...............................................................
+      <LoadingIndicator />
     </div>
   )
 }

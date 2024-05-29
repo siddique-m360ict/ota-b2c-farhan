@@ -87,7 +87,7 @@ const MobileMenuDrawer = () => {
         <div className="mt-1">
           <Separator className="mb-3 dark:invisible" />
           <p className="ms-2 text-start text-sm text-destructive">
-            Travel Options
+            Dashboard Options
           </p>
           {dashboardConfig.sidebarNav.map((item, index) => {
             const Icon = Icons[item.icon || "arrowRight"]

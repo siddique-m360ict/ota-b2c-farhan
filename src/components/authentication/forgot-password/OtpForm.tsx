@@ -24,6 +24,8 @@ import { useState, useTransition } from "react"
 import { matchOTP } from "@/lib/server/auth/ForgotPasswordEndpoint"
 import { useRouter } from "next/navigation"
 import { Icons } from "@/components/icons"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import { updateIsVerified } from "@/lib/redux/slice/user_slice"
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -41,7 +43,7 @@ export function OTPForm({ searchParams, type }) {
   const [isLoading, setIsLoading] = useState(false)
   const [isPending, seTransition] = useTransition()
   const router = useRouter()
-
+  const dispatch = useAppDispatch()
   // submit
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true)
@@ -69,6 +71,9 @@ export function OTPForm({ searchParams, type }) {
               : "/"
           )
         )
+        if (type == "verify_user") {
+          dispatch(updateIsVerified(true))
+        }
       }
     } catch (error) {
       setIsLoading(false)

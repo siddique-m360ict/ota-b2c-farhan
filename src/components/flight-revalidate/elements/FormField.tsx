@@ -200,10 +200,10 @@ const FormField = ({
   // defaultValue:  0Adult and  value: index.toString() + name
   return (
     <Accordion type="single" collapsible defaultValue={name}>
-      <AccordionItem value={name} className="border-0">
-        <Card className="shadow-2xlo my-1 w-full rounded-none border-none">
-          <CardHeader className="px-5 py-0 dark:bg-[#191f27]">
-            <AccordionTrigger className="top-0 hover:no-underline" key={1}>
+      <AccordionItem value={name} className="border-0 ">
+        <Card className="shadow-2xlo  my-1 w-full rounded-none border-none">
+          <CardHeader className="bg-background px-5 py-0 dark:bg-[#191f27]">
+            <AccordionTrigger className="top-0  hover:no-underline" key={1}>
               Passenger {name} {index + 1}
             </AccordionTrigger>
           </CardHeader>

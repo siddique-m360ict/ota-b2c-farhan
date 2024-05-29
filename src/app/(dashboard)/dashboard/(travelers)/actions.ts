@@ -43,6 +43,7 @@ export async function getTravelers(
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status || 500}`)
   }
+  // console.log(await response.json())
 
   return response.json()
 }

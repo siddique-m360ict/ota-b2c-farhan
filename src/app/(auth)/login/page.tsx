@@ -68,7 +68,7 @@ export default function SigninPage() {
         href="/"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 border border-[#9cade2] text-white md:left-8 md:top-8"
+          "absolute left-4 top-4 text-primary md:left-8 md:top-8 md:border md:border-[#9cade2] md:text-white"
         )}
       >
         <>
