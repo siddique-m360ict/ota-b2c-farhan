@@ -35,7 +35,7 @@ export default async function middleware(req) {
   } else {
     if (!isAuthPage) {
       const response = NextResponse.redirect(new URL(`/login`, req.url))
-      response.cookies.delete("user") // Clear the user cookie if there's no token
+      response.cookies.delete("user")
       return response
     }
   }

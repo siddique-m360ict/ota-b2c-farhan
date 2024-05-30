@@ -2,6 +2,7 @@ import { OTPForm } from "@/components/authentication/forgot-password/OtpForm"
 import { Icons } from "@/components/icons"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 import Link from "next/link"
 import React, { Suspense } from "react"
 
@@ -31,7 +32,13 @@ const Verify = async (props: any) => {
       </Link>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <Icons.logo className="mx-auto h-6 w-6" />
+          <Image
+            src={"/app-icon.png"}
+            alt=""
+            width={40}
+            height={40}
+            className="mx-auto"
+          />
           <h1 className="text-2xl font-semibold tracking-tight">
             Enter the OTP
           </h1>

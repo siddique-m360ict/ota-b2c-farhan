@@ -9,8 +9,9 @@ import { cookies } from "next/headers"
 
 export default async function IndexPage() {
   const cookieStore = cookies()
-  const cookie = cookieStore.get("user")
+  const cookie = cookieStore.get("user").value
   // console.log(cookie)
+
   return (
     <div>
       {/* home for large devices */}

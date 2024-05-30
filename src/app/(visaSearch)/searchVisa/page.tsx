@@ -18,7 +18,7 @@ export default async function VisaSearchPage({ params, searchParams }) {
 
 const AllVisa = async (props: any) => {
   const res = await getAllVisa(props?.searchParams)
-  if (!res.success) {
+  if (!res.success || res?.data?.length === 0) {
     return <NotFoundVisa />
   }
 

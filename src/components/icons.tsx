@@ -44,6 +44,8 @@ import {
   Info,
   ArrowLeft,
   Pencil,
+  CircleAlert,
+  TriangleAlert,
   SlidersHorizontal,
 } from "lucide-react"
 
@@ -52,7 +54,9 @@ export type Icon = LucideIcon
 export const Icons = {
   logo: Command,
   Plane: Plane,
+  CircleAlert: CircleAlert,
   Pencil: Pencil,
+  TriangleAlert: TriangleAlert,
   close: X,
   ArrowLeft: ArrowLeft,
   SlidersHorizontal: SlidersHorizontal,
