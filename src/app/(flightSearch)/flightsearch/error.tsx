@@ -1,5 +1,8 @@
 "use client"
 
+import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
+import { useAppSelector } from "@/lib/redux/hooks"
+import { selectTransitionIsPending } from "@/lib/redux/slice/transitionLoading"
 import Link from "next/link"
 
 export default function Error({
@@ -9,6 +12,7 @@ export default function Error({
   reset: () => void
   error: Error
 }) {
+  const loading = useAppSelector(selectTransitionIsPending)
   return (
     <div className="mx-auto my-4 flex h-auto w-full flex-col rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12">
       <h2 className="text-xl font-bold">Flight Not Found {error.message}</h2>
@@ -19,6 +23,7 @@ export default function Error({
       >
         Try Again
       </Link>
+      {loading && <LoadingIndicator />}
     </div>
   )
 }

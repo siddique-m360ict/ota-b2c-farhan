@@ -123,7 +123,7 @@ export interface Refundable {
 export async function ReValidateFlightV2(
   id: string
 ): Promise<HTTPResponse<IRevalidated>> {
-  const apiUrl = serverUrl(`/booking/flight/revalidate/v2/${id}`)
+  const apiUrl = serverUrl(`/booking/flight/revalidate/${id}`)
 
   const response = await fetch(apiUrl, {
     method: "GET",

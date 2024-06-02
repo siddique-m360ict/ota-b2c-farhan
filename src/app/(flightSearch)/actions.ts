@@ -86,7 +86,7 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
       return { success: false, message: "search params not found" }
     }
 
-    const apiUrl = serverUrl(`/booking/flight/search/v2`)
+    const apiUrl = serverUrl(`/booking/flight/search`)
     let myHeaders = new Headers()
     myHeaders.append("Content-Type", "application/json")
 
@@ -112,7 +112,6 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
     //   throw new Error("Failed to fetch data")
     // }
     const res = await response.json()
-
     return res
   } catch (error) {
     console.error("Error getting flights:", error)
@@ -127,7 +126,7 @@ export async function filterFlightList(
   page: number
 ): Promise<HTTPResponse<IFlightSearchList>> {
   // Structuring URL
-  let apiUrl = serverUrl(`/booking/flight/filter/v2?page=${page}&size=20`)
+  let apiUrl = serverUrl(`/booking/flight/filter?page=${page}&size=20`)
 
   if (Array.isArray(filter?.carrier_operating)) {
     if (filter?.carrier_operating.length > 0) {

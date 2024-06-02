@@ -313,7 +313,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
               onClick={() => startTransition(() => handleSearch())}
             >
               {loading && (
-                <Icons.spinner className="mr-2 block h-4 w-4 animate-spin md:hidden" />
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               Search
             </Button>
