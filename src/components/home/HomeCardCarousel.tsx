@@ -14,19 +14,19 @@ const HomeCardCarousel = () => {
   const cardItems = [
     {
       id: 1,
-      img: "/images/home/carousel1.jpg",
+      img: "/images/home/carousel1.png",
     },
     {
       id: 2,
-      img: "/images/home/carousel2.jpg",
+      img: "/images/home/carousel2.png",
     },
     {
       id: 3,
-      img: "/images/home/carousel1.jpg",
+      img: "/images/home/carousel1.png",
     },
     {
       id: 4,
-      img: "/images/home/carousel2.jpg",
+      img: "/images/home/carousel2.png",
     },
   ]
   return (

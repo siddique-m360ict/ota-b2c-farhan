@@ -54,3 +54,12 @@ export const formatGlobalTime = (timeString) => {
 export function formatNumber(num) {
   return new Intl.NumberFormat("en-US").format(num)
 }
+
+export const removeEmptyProperties = (obj: any) => {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      acc[key] = value
+    }
+    return acc
+  }, {} as any)
+}

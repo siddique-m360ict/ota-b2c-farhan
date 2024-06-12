@@ -120,86 +120,59 @@ export interface Refundable {
   refundable?: boolean
 }
 
-export async function ReValidateFlight(
-  id: string
-): Promise<HTTPResponse<IRevalidated>> {
-  const apiUrl = serverUrl(`/booking/flight/revalidate/${id}`)
+// ---------------- type end
 
-  const response = await fetch(apiUrl, {
-    method: "GET",
-    cache: "no-store",
-    redirect: "follow",
-  })
-
-  if (!response?.ok) {
-    throw new Error("Something Happened Wrong")
+const sanitizeSearchParams = (searchParams: any) => {
+  const sanitizeParams: { [key: string]: string } = {}
+  function addIfNotNull(
+    property: string,
+    value: string | null | undefined
+  ): void {
+    if (value !== null && value !== undefined) {
+      sanitizeParams[property] = value
+    }
   }
-  const res = await response.json()
-  return res
+  addIfNotNull("origin", searchParams.origin)
+  addIfNotNull("destination", searchParams.destination)
+  addIfNotNull("trips", searchParams.trips)
+  addIfNotNull("adults", searchParams.adults)
+  addIfNotNull("child", searchParams.child)
+  addIfNotNull("infant", searchParams.infant)
+  addIfNotNull("kids", searchParams.kids)
+  addIfNotNull("carrier_marketing", searchParams.carrier_marketing)
+  addIfNotNull("class", searchParams.class)
+  addIfNotNull("departuredate", searchParams.departuredate)
+  addIfNotNull(
+    "returndate",
+    searchParams.route === "oneway" ? null : searchParams.returndate
+  )
+  addIfNotNull("max", searchParams.max)
+  addIfNotNull("max_price", searchParams.max_price)
+  addIfNotNull("min_price", searchParams.min_price)
+  addIfNotNull("route", searchParams.route)
+  addIfNotNull("page", searchParams.page)
+  addIfNotNull("refundable", searchParams.refundable)
+  addIfNotNull("size", searchParams.size)
+  addIfNotNull("stoppage", searchParams.stoppage)
+  return sanitizeParams
 }
 
-// -------------------------------------------- flight revalidate
-
-// PNR CREATE
-export interface PnrResponse {
-  sessionUrl: string
-}
-
-export interface PnrFormData {
-  city?: number
-  date_of_birth?: Date
-  email?: string
-  first_name?: string
-  frequent_flyer_airline?: string
-  frequent_flyer_number?: string
-  last_name?: string
-  passport_expiry_date?: string
-  passport_number?: string
-  phone?: string
-  title?: string
-  type?: string
-}
-
-export type submitPnr = {
-  passengers: PnrFormData[]
-  flight_id: string
-}
-
-export type pnrSubmit = Omit<submitPnr, "flight_id">
-
-export async function CreatePNR(data: submitPnr, token: string): Promise<any> {
-  const apiUrl = serverUrl("/booking/booking-request")
-
-  const headers = new Headers()
-  headers.append("Content-Type", "application/json")
-  headers.append("Authorization", `Bearer ${token}`)
-  const raw = {
-    flight_id: "ebc55147-31b4-4537-9e9b-80a7dd1228bf",
-    passengers: [
-      {
-        type: "ADT",
-        title: "MR",
-        first_name: "Mahin",
-        last_name: "Mahfiz",
-        date_of_birth: "2000-01-01",
-        passport_number: "xc01954w",
-        passport_expiry_date: "2028-02-02",
-        city_id: 14,
-        email: "mahin@gmail.com",
-        phone: "01789945623",
-        frequent_flyer_airline: "Biman Bangladesh",
-        frequent_flyer_number: "3",
-      },
-    ],
-  }
-
+export async function ReValidateFlightV2(body) {
+  const apiUrl = serverUrl(`/booking/flight/revalidate/v2`)
+  let myHeaders = new Headers()
+  myHeaders.append("Content-Type", "application/json")
   const response = await fetch(apiUrl, {
-    cache: "no-store",
-    headers: headers,
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
+    headers: myHeaders,
+    cache: "no-store",
   })
+
+  // if (!response?.ok) {
+  //   throw new Error("Something Happened Wrong")
+  // }
   const res = await response.json()
+  console.log(res)
 
   return res
 }

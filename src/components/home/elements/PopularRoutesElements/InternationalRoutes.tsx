@@ -204,7 +204,7 @@ const InternationalRoutes = () => {
                 </div>
               </div>
             </div>
-            <CardFooter className="m-0 my-3 flex justify-end gap-1 px-4 pb-3 pt-0">
+            <CardFooter className="m-0 my-3 flex justify-center gap-1 px-0  pb-3 pt-0">
               <div>
                 <p className="my-4 text-center text-sm text-destructive">
                   {format(item.formDate, "PPP")} - {format(item.toDate, "PPP")}

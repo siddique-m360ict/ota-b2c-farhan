@@ -1,0 +1,83 @@
+/* ====================== revalidate */
+.revalidate-card {
+    position: relative;
+    margin-left: 12px;
+    padding-left: 30px;
+}
+
+.revalidate-card:before {
+    content: "";
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #66a1c5;
+    z-index: 3;
+}
+
+.revalidate-card:after {
+    content: "";
+    height: 100%;
+    width: 1px;
+    background-color: #dddddd;
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    z-index: 1;
+}
+
+.revalidate-end {
+    position: relative;
+}
+
+.revalidate-end:before {
+    content: "";
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0px;
+    left: -30px;
+    background-color: #66a1c5;
+    z-index: 3;
+}
+
+.text-ads-middle {
+    position: absolute;
+    top: 50%;
+    transform: rotate(-90deg);
+}
+
+/* ======================== */
+
+.details-section:before {
+    display: block;
+    content: "";
+    background-color: #F2F4F8;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    margin-inline-start: 100%;
+}
+
+.details-section {
+    position: relative;
+    z-index: 0;
+
+}
+
+.details-section:after {
+    display: block;
+    content: "";
+    background-color: #F2F4F8;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    margin-inline-start: -100vw;
+}

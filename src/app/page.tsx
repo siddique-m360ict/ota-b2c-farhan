@@ -6,6 +6,7 @@ import AppPromo from "@/components/home/AppPromo"
 import PopularRoute from "@/components/home/PopularRoutes"
 import { getCookies } from "@/lib/token/getCookies"
 import { cookies } from "next/headers"
+import SectionVideos from "@/components/home/SectionVideos"
 
 export default async function IndexPage() {
   return (
@@ -15,6 +16,7 @@ export default async function IndexPage() {
         <HomeBanner />
         <HomeCardCarousel />
         <PopularRoute />
+        <SectionVideos className="container" />
         <AppPromo />
       </div>
 
@@ -22,6 +24,7 @@ export default async function IndexPage() {
       <div className="block md:hidden">
         <MobileHome />
         <PopularRoute />
+        <SectionVideos className="mx-2" />
         <AppPromo />
       </div>
       <SiteFooter />

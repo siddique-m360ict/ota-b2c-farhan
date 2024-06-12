@@ -48,7 +48,6 @@ const PriceRangeFilter = ({ price }: Props) => {
       })
     )
   }
-  console.log(range)
 
   return (
     <div className="grid w-full gap-4 ">

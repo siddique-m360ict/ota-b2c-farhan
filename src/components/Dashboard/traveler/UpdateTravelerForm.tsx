@@ -19,6 +19,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { format } from "date-fns"
+import { removeEmptyProperties } from "@/lib/utils"
 
 interface SingleTravelers {
   id: number
@@ -78,8 +79,9 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
   const onSubmit = async (data: SingleTravelers) => {
     setLoading(true)
     try {
+      const sanitizeData = removeEmptyProperties(data)
       const body = {
-        ...data,
+        ...sanitizeData,
         type: paxType,
         title: reference,
         city_id: selectedCity.id,
@@ -95,11 +97,8 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
           duration: 1000,
         })
       } else {
-        // toast({
-        //   title: result.message,
-        //   duration: 1000,
-        // })
         router.push("/dashboard/traveler")
+        router.refresh()
       }
     } catch (error) {
       console.error("Error creating traveler:", error)

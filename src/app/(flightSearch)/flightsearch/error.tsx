@@ -14,8 +14,11 @@ export default function Error({
 }) {
   const loading = useAppSelector(selectTransitionIsPending)
   return (
-    <div className="mx-auto my-4 flex h-auto w-full flex-col rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12">
-      <h2 className="text-xl font-bold">Flight Not Found {error.message}</h2>
+    <div className="mx-auto my-4 flex h-auto w-full flex-col rounded-lg border border-neutral-200 bg-white p-8 text-center dark:border-neutral-800 dark:bg-black md:p-12">
+      <h2 className="text-xl font-bold">
+        Flight Not Found{" "}
+        {process.env.NODE_ENV !== "production" && error.message}
+      </h2>
       <p className="my-2">Please search your flight again.</p>
       <Link
         href="/"

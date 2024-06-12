@@ -22,7 +22,7 @@ type Props = {
 const RevalidatePriceBox = ({ passengers, fare }: Props) => {
   return (
     <div>
-      <Card className="border-none shadow-2xl">
+      <Card className="shadow-lg">
         <CardHeader className="px-6  py-4">
           <h1 className="text-[1.2rem] font-bold ">Price Details</h1>
         </CardHeader>
@@ -62,7 +62,7 @@ const RevalidatePriceBox = ({ passengers, fare }: Props) => {
           </div>
         </CardContent>
         <div className="mx-4 mt-2 h-[1px] w-[90%] border border-dashed bg-secondaryBg"></div>
-        <CardFooter className="my-6 flex flex-row justify-between text-xl font-bold ">
+        <CardFooter className="mt-6 flex flex-row justify-between text-xl font-bold ">
           <p>Total Amount</p>
           <p className="text-primary">৳ {formatNumber(fare.payable)}</p>
         </CardFooter>

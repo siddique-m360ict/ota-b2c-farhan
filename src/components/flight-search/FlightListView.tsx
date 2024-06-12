@@ -81,8 +81,6 @@ const FlightListView = ({ flights, count }: Props) => {
     filterDataList?.[0]?.leg_descriptions?.[0]?.departureDate ||
     flights?.results?.[0]?.leg_descriptions?.[0]?.departureDate
 
-  console.log(loading)
-
   return (
     <div>
       <div className="hidden px-2 md:block md:px-0 lg:w-[65vw] xl:w-[72vw] 2xl:w-[55vw]">

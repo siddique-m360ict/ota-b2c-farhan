@@ -14,6 +14,7 @@ import { CreateTravels } from "@/app/(dashboard)/dashboard/(travelers)/actions"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
+import { removeEmptyProperties } from "@/lib/utils"
 
 type Props = {}
 
@@ -70,8 +71,9 @@ const CreateTravelerForm = (props: Props) => {
   const onSubmit = async (data: Travelers) => {
     setLoading(true)
     try {
+      const sanitizeData = removeEmptyProperties(data)
       const body = {
-        ...data,
+        ...sanitizeData,
         type: paxType,
         title: reference,
         city_id: selectedCity.id,

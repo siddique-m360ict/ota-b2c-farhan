@@ -46,6 +46,7 @@ import {
   Pencil,
   CircleAlert,
   TriangleAlert,
+  Play,
   SlidersHorizontal,
 } from "lucide-react"
 
@@ -56,6 +57,7 @@ export const Icons = {
   Plane: Plane,
   CircleAlert: CircleAlert,
   Pencil: Pencil,
+  Play: Play,
   TriangleAlert: TriangleAlert,
   close: X,
   ArrowLeft: ArrowLeft,

@@ -1,7 +1,6 @@
 import { getTravelers } from "@/app/(dashboard)/dashboard/(travelers)/actions"
 import TimeCounter from "@/components/common/TimeCounter"
 import { Travelers } from "@/components/Dashboard/traveler/addTravelerForm"
-import LoginModal from "@/components/flight-revalidate/elements/LoginModal"
 import RevalidateDetails from "@/components/flight-revalidate/elements/RevalidateDetails"
 import RevalidatePriceBox from "@/components/flight-revalidate/elements/RevalidatePriceBox"
 import TravelerForm from "@/components/flight-revalidate/elements/TravelerForm"
@@ -71,7 +70,7 @@ const FlightRevalidate = async ({ flights, ticketID }: Props) => {
           <div className="px-3 md:px-0">
             <div className="flex flex-col gap-5 md:container md:mt-5 md:flex-row">
               {/* PaymentSidebar */}
-              <div className="order-2 md:order-2 md:flex-1">
+              <div className="order-2 mt-10 md:order-2 md:flex-1">
                 <div className="sticky top-6">
                   <TimeCounter className="shadow-md" />
                   <RevalidatePriceBox

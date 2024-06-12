@@ -14,7 +14,7 @@ const PopularRoute = () => {
     { img: "/images/home/check.webp", name: "Flight Booking Guarantee" },
   ]
   const { theme } = useTheme()
-  const [activeTab, setActiveTab] = useState("Domestic")
+  const [activeTab, setActiveTab] = useState("International")
   const tabs = [
     {
       id: "Domestic",

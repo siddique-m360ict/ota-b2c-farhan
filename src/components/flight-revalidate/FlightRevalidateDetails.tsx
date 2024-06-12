@@ -2,6 +2,7 @@
 import { FormattedData } from "@/app/(flightRevalidate)/flight-revalidate/FlightRevalidate"
 import {
   convertMinutesToHM,
+  formatFlightDate,
   minutesToHoursAndMinutes,
   timeSlice,
 } from "@/lib/formatter/dateTimeFormatter"
@@ -30,106 +31,138 @@ const FlightRevalidateDetails = ({
 }: Props) => {
   return (
     <div>
-      <div>
-        <h1 className="mb-4  text-lg font-bold uppercase text-secondary md:mb-6 md:text-[2rem] md:leading-5">
+      <div className="w-full bg-white">
+        <h1 className="mb-4 text-center text-lg font-bold uppercase text-primary md:mb-6 md:text-[1.8rem] md:leading-5">
           Trip to {data[0].arrival_cityName}
         </h1>
-        {data.map((item, index) => (
-          <div className="flex flex-col gap-5">
-            <div>
-              <div className="flex flex-row items-center gap-3 md:gap-4">
-                <Button className="rounded text-sm md:h-7 md:px-3 md:py-0">
-                  {item.label}
-                </Button>
-                <p className="text-sm">
-                  {legDescriptions?.map((leg, index) => (
-                    <p key={index}>
-                      {item.label ===
-                        leg.departureLocation + "-" + leg.arrivalLocation &&
-                        leg.departureDate}
-                    </p>
-                  ))}
-                </p>
-                <Separator
-                  orientation="vertical"
-                  className="h-[1.9vh] w-[1px]"
-                />
-                <p className="text-sm">
-                  Duration {minutesToHoursAndMinutes(item.elapsed_time)?.time}
-                </p>
+        <div className="w-full rounded-[8px] border border-[#E4E6E8] p-4">
+          {data.map((item, index) => (
+            <div className="revalidate-card mb-4 flex flex-col gap-2">
+              <div className="mb-1 border-b pb-1">
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <button className="rounded text-sm font-bold text-primary md:h-7 ">
+                    {item.label}
+                  </button>
+                  <p className="text-gray-400">|</p>
+                  <p className="flex gap-1 text-sm">
+                    Date :
+                    {legDescriptions?.map((leg, index) => (
+                      <p key={index}>
+                        {item.label ===
+                          leg.departureLocation + "-" + leg.arrivalLocation &&
+                          leg.departureDate}
+                      </p>
+                    ))}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="md:pb-4">
-              {item.content.map((flight, index) => (
-                <>
-                  <div
-                    key={index}
-                    className={cn(
-                      "mb-7 flex items-center gap-6 md:mb-0",
-                      item.layover[index] == 0 && "md:mb-6"
-                    )}
-                  >
-                    <div className="flex items-center gap-6">
-                      <div className="flex flex-col">
-                        <p className="font-bold text-secondary md:text-lg">
-                          {timeSlice(flight.departure?.time)}
-                        </p>
-                        <Image
-                          src={hostedImage(
-                            `/${flight.carrier?.carrier_marketing_logo}`
-                          )}
-                          alt="airline_logo"
-                          width={40}
-                          height={40}
-                        />
-                        <p className="font-bold text-secondary md:text-lg">
-                          {timeSlice(flight.arrival?.time)}
+              <div className="">
+                {item.content.map((flight, index) => (
+                  <>
+                    <div key={index}>
+                      <div className="mb-1 flex items-center justify-between border-b pb-2">
+                        <div className="flex gap-3 ">
+                          <Image
+                            src={hostedImage(
+                              `/${flight.carrier?.carrier_marketing_logo}`
+                            )}
+                            alt="airline_logo"
+                            width={40}
+                            height={40}
+                          />
+                          <div>
+                            <p className="text-sm">
+                              {flight.carrier?.carrier_marketing_airline}
+                            </p>
+                            <div className="mt-[2px] flex gap-1 text-xs text-gray-600">
+                              <p>
+                                {flight.carrier?.carrier_marketing_code}{" "}
+                                {
+                                  flight.carrier
+                                    ?.carrier_marketing_flight_number
+                                }
+                              </p>
+                              <p>|</p>
+                              <p>{item.flight_class}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs">
+                            {!item.refundable ? "nonrefundable" : "Refundable"}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex flex-col items-center justify-between gap-4 pb-3 md:flex-row">
+                        <div className="w-full text-start ">
+                          <div className="text-sm font-semibold text-primary md:text-lg  ">
+                            {flight?.departure.airport_code} -{" "}
+                            {timeSlice(flight?.departure.time)}
+                          </div>
+                          <div className="text-xs">
+                            {formatFlightDate(flight?.departure.date)}
+                          </div>
+                          <div className="w-[80%] truncate text-xs ">
+                            {flight?.departure.airport}
+                          </div>
+                        </div>
+
+                        <div className="flex basis-full items-center justify-center text-center">
+                          <div>
+                            <p className="text-xs">
+                              {
+                                minutesToHoursAndMinutes(flight?.elapsedTime)
+                                  ?.time
+                              }
+                            </p>
+                            <div className="relative my-1 w-[60vw] border border-b md:w-[10vw]">
+                              <div className="absolute left-[-1px] top-[-3px] h-[6px] w-[6px] rounded-full bg-primary"></div>
+                              <div className="absolute right-[-1px] top-[-3px] h-[6px] w-[6px] rounded-full bg-primary"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex w-full flex-col text-start md:items-end">
+                          <div className="text-sm font-semibold text-primary md:text-lg">
+                            {flight?.arrival.airport_code}-{" "}
+                            {timeSlice(flight?.arrival.time)}
+                          </div>
+                          <div className="text-xs ">
+                            {formatFlightDate(flight.arrival.date)}
+                          </div>
+                          <div className="max-w-[80%] truncate text-xs ">
+                            {flight?.arrival?.airport}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {item.layover[index] !== 0 && (
+                      <div className="mb-6 mt-3">
+                        <p className="rounded bg-[#f5f9ff] p-1 text-center text-xs text-black dark:bg-black dark:text-white">
+                          Layover at <span>{flight.arrival?.airport}</span>
+                          <span className="ml-1 font-bold">
+                            {convertMinutesToHM(item.layover[index])}
+                          </span>
                         </p>
                       </div>
-                      <Separator
-                        orientation="vertical"
-                        className="h-[9vh] w-[5px]"
-                      />
-                    </div>
+                    )}
+                  </>
+                ))}
+              </div>
+              <div className="revalidate-end"></div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="md:text-md text-sm font-bold  text-secondary">
-                        {flight.departure?.airport}
-                      </p>
-                      <p className="flex flex-wrap gap-0 space-x-3 text-xs text-destructive md:gap-3 md:text-sm">
-                        <span className="text-primary">
-                          {flight.carrier?.carrier_marketing_airline}
-                        </span>
-                        <span>
-                          {flight.carrier?.carrier_marketing_code} (
-                          {flight.carrier?.carrier_marketing_flight_number})
-                        </span>
-                        <span>{item.flight_class}</span>
-                        <span>
-                          {item.refundable ? "Refundable" : "Nonrefundable"}
-                        </span>
-                        <span> {flight.carrier?.carrier_aircraft_name} </span>
-                      </p>
-                      <p className="md:text-md text-sm font-bold text-secondary ">
-                        {flight.arrival?.airport}
-                      </p>
-                    </div>
-                  </div>
-                  {item.layover[index] !== 0 && (
-                    <div className="">
-                      <p className="rounded bg-[#cee2fa] p-1 text-center text-xs text-black dark:bg-black dark:text-white">
-                        Layover at <span>{flight.arrival?.airport}</span>
-                        <span className="ml-1 font-bold">
-                          {convertMinutesToHM(item.layover[index])}
-                        </span>
-                      </p>
-                    </div>
-                  )}
-                </>
-              ))}
+              <p
+                className={`leading-0 text-ads-middle overflow-hidden font-bold ${
+                  minutesToHoursAndMinutes(item.elapsed_time)?.time.length > 6
+                    ? "left-[-38px] "
+                    : "left-[-45px]"
+                }`}
+              >
+                {minutesToHoursAndMinutes(item.elapsed_time)?.time}
+              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )
