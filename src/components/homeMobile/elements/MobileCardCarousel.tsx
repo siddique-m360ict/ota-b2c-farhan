@@ -11,11 +11,11 @@ export const MobileCardCarousel = () => {
   const cardItems = [
     {
       id: 1,
-      img: "/images/home/mobile/cardCarousel/promo.webp",
+      img: "/images/home/mobile/cardCarousel/carousel1.png",
     },
     {
       id: 2,
-      img: "/images/home/mobile/cardCarousel/promo2.webp",
+      img: "/images/home/mobile/cardCarousel/carousel2.png",
     },
   ]
 
@@ -78,7 +78,7 @@ export const MobileCardCarousel = () => {
                     width={500}
                     objectFit="cover"
                     objectPosition="center"
-                    className="rounded-md"
+                    className="h-[120px] rounded-md object-fill"
                   />
                 </CarouselItem>
               ))}
