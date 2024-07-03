@@ -25,7 +25,7 @@ interface TabDataTypes {
 }
 const FlightContent = ({ flights }: Props) => {
   const [activeTab, setActiveTab] = useState(
-    flights?.flights[0]?.id?.toString()
+    flights?.flights[0]?.id?.toString() + 0
   )
 
   let tabs: TabDataTypes[] = []
@@ -37,7 +37,7 @@ const FlightContent = ({ flights }: Props) => {
     let layover = flight.layover_time
 
     const makeData = {
-      id: flight.id?.toString(),
+      id: flight.id?.toString() + index,
       label: departure_airport + "-" + arrival_airport,
       layover,
       content,
@@ -102,8 +102,10 @@ const FlightContent = ({ flights }: Props) => {
 
                   <div className="text-sm">
                     {
-                      flights?.passengers[0].availability[0].segments[0]
-                        .cabin_type
+                      flights?.passengers[0].availability[0].segments[
+                        flights?.passengers[0].availability[0].segments.length -
+                          1
+                      ].cabin_type
                     }
                     (
                     {

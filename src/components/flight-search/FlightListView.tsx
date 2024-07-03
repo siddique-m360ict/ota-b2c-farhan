@@ -1,8 +1,6 @@
 "use client"
-
 import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
-
 import { filterFlightList } from "@/app/(flightSearch)/actions"
 import {
   setFilterCount,

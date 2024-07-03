@@ -7,6 +7,7 @@ import PopularRoute from "@/components/home/PopularRoutes"
 import { getCookies } from "@/lib/token/getCookies"
 import { cookies } from "next/headers"
 import SectionVideos from "@/components/home/SectionVideos"
+import Offer from "@/components/home/Offer"
 
 export default async function IndexPage() {
   return (
@@ -14,6 +15,7 @@ export default async function IndexPage() {
       {/* home for large devices */}
       <div className="hidden min-h-screen bg-secondaryBg md:block">
         <HomeBanner />
+        {/* <Offer /> */}
         <HomeCardCarousel />
         <PopularRoute />
         <SectionVideos className="container" />

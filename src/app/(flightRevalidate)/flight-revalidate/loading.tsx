@@ -278,7 +278,6 @@ export const FlightRevalidateLoader = () => {
         </div>
         {<LoadingIndicator className="backdrop-blur-[4px]" />}
       </div>
-      {<LoadingIndicator className="backdrop-blur-[4px]" />}
     </div>
   )
 }

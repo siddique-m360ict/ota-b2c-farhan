@@ -29,6 +29,10 @@ const FlightRevalidateDetails = ({
   fare,
   passengers,
 }: Props) => {
+  console.log(
+    minutesToHoursAndMinutes(data[0].content[0].elapsedTime)?.time.length
+  )
+
   return (
     <div>
       <div className="w-full bg-white">
@@ -153,9 +157,9 @@ const FlightRevalidateDetails = ({
 
               <p
                 className={`leading-0 text-ads-middle overflow-hidden font-bold ${
-                  minutesToHoursAndMinutes(item.elapsed_time)?.time.length > 6
-                    ? "left-[-38px] "
-                    : "left-[-45px]"
+                  minutesToHoursAndMinutes(item.elapsed_time)?.time.length > 7
+                    ? "left-[-45px]"
+                    : "left-[-40px]"
                 }`}
               >
                 {minutesToHoursAndMinutes(item.elapsed_time)?.time}

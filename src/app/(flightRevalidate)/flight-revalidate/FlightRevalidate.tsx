@@ -47,7 +47,9 @@ const FlightRevalidate = async ({ flights, ticketID }: Props) => {
       let layover = flight?.layover_time
       let elapsed_time = flight?.elapsed_time
       let flight_class =
-        flights?.passengers[0].availability[0].segments[0].cabin_type +
+        flights?.passengers[0].availability[0].segments[
+          flights?.passengers[0].availability[0].segments.length - 1
+        ].cabin_type +
         `(${flights?.passengers[0].availability[0].segments[0].booking_code})`
       let refundable = flights?.refundable[0].refundable
 

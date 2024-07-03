@@ -120,43 +120,7 @@ export interface Refundable {
   refundable?: boolean
 }
 
-// ---------------- type end
-
-const sanitizeSearchParams = (searchParams: any) => {
-  const sanitizeParams: { [key: string]: string } = {}
-  function addIfNotNull(
-    property: string,
-    value: string | null | undefined
-  ): void {
-    if (value !== null && value !== undefined) {
-      sanitizeParams[property] = value
-    }
-  }
-  addIfNotNull("origin", searchParams.origin)
-  addIfNotNull("destination", searchParams.destination)
-  addIfNotNull("trips", searchParams.trips)
-  addIfNotNull("adults", searchParams.adults)
-  addIfNotNull("child", searchParams.child)
-  addIfNotNull("infant", searchParams.infant)
-  addIfNotNull("kids", searchParams.kids)
-  addIfNotNull("carrier_marketing", searchParams.carrier_marketing)
-  addIfNotNull("class", searchParams.class)
-  addIfNotNull("departuredate", searchParams.departuredate)
-  addIfNotNull(
-    "returndate",
-    searchParams.route === "oneway" ? null : searchParams.returndate
-  )
-  addIfNotNull("max", searchParams.max)
-  addIfNotNull("max_price", searchParams.max_price)
-  addIfNotNull("min_price", searchParams.min_price)
-  addIfNotNull("route", searchParams.route)
-  addIfNotNull("page", searchParams.page)
-  addIfNotNull("refundable", searchParams.refundable)
-  addIfNotNull("size", searchParams.size)
-  addIfNotNull("stoppage", searchParams.stoppage)
-  return sanitizeParams
-}
-
+ 
 export async function ReValidateFlightV2(body) {
   const apiUrl = serverUrl(`/booking/flight/revalidate/v2`)
   let myHeaders = new Headers()
@@ -168,11 +132,9 @@ export async function ReValidateFlightV2(body) {
     cache: "no-store",
   })
 
-  // if (!response?.ok) {
-  //   throw new Error("Something Happened Wrong")
-  // }
+  if (!response?.ok) {
+    throw new Error("Something Happened Wrong")
+  }
   const res = await response.json()
-  console.log(res)
-
   return res
 }

@@ -65,8 +65,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        heading: ["var(--font-heading)", ...fontFamily.sans],
-        roboto: ["var(--font-roboto)", ...fontFamily.sans],
+        heading: ["var(--font-heading)"],
+        roboto: ["var(--font-roboto)"],
       },
       keyframes: {
         "accordion-down": {

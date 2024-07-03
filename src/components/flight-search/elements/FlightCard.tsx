@@ -21,30 +21,42 @@ import { AccordionTrigger } from "@/components/ui/accordion"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import MobileFlightCard from "./MobileFlightCard"
 import { addDays, format } from "date-fns"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { Passenger } from "@/components/home/FlightSearch"
+import { DateRange } from "react-day-picker"
 
 type Props = {
   flights: Result
   fare: Fare
 }
+
+const initialAirportState: IAirportList = {
+  id: 210,
+  country_id: 18,
+  country: "BANGLADESH",
+  name: "Dhaka - Hazrat Shahjalal International Airport",
+  iata_code: "DAC",
+}
+
 const FlightCard = ({ flights: FlightData, fare }: Props) => {
   const isDesktop = useMediaQuery("(min-width: 768px)")
-  const [fromAirport, setFromAirport] = React.useState<IAirportList | null>({
-    id: 210,
-    country_id: 18,
-    country: "BANGLADESH",
-    name: "Dhaka - Hazrat Shahjalal International Airport",
-    iata_code: "DAC",
-  })
-  const [toAirport, setToAirport] = React.useState<IAirportList | null>({
+  const [fromAirport, setFromAirport] = useState<IAirportList | null>(
+    initialAirportState
+  )
+  const [toAirport, setToAirport] = useState<IAirportList | null>({
     id: 2061,
     country_id: 18,
     country: "BANGLADESH",
     name: "Cox's Bazar Airport",
     iata_code: "CXB",
   })
-  const [date, setDate] = React.useState<Date>(addDays(new Date(), 3))
+  const [multiCityFlightsInfo, setMultiCityFlightsInfo] = useState<any[]>([])
+
+  const [date, setDate] = useState<Date>(addDays(new Date(), 3))
+  const [dateRound, setDateRound] = useState<DateRange | undefined>({
+    from: addDays(new Date(), 2),
+    to: addDays(new Date(), 4),
+  })
   const pathName = usePathname()
   const [passenger, setPassenger] = useState<Passenger>({
     adult: 1,
@@ -53,33 +65,47 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
     infant: 0,
   })
   const [cabinClass, setCabinClass] = useState<string>("Y")
+  const searchParams = useSearchParams()
+  const route = searchParams.get("route")
 
   useEffect(() => {
-    if (window !== undefined) {
-      const searchFlightOneWay = JSON.parse(
-        localStorage.getItem("oneWayFlights")
+    const loadDataFromLocalStorage = () => {
+      const searchFlight = JSON.parse(
+        localStorage.getItem(
+          route === "oneway" ? "oneWayFlights" : "roundWayFlights"
+        )
       )
-      const passenger = JSON.parse(localStorage.getItem("passenger"))
-      const cabinClass = localStorage.getItem("class")
-
-      if (searchFlightOneWay && Object.keys(searchFlightOneWay).length > 0) {
-        setFromAirport(searchFlightOneWay?.fromAirport)
-        setToAirport(searchFlightOneWay?.toAirport)
-        setDate(new Date(searchFlightOneWay.date))
+      const searchMultiFlight = JSON.parse(
+        localStorage.getItem("multiCityFlights")
+      )
+      const storedPassenger = JSON.parse(localStorage.getItem("passenger"))
+      const storedCabinClass = localStorage.getItem("class")
+      if (searchFlight) {
+        setFromAirport(searchFlight.fromAirport)
+        setToAirport(searchFlight.toAirport) 
+        if (route === "oneway") {
+          setDate(new Date(searchFlight.date))
+        } else if (route === "roundway") {
+          setDateRound({
+            from: new Date(searchFlight.date.from),
+            to: new Date(searchFlight.date.to),
+          })
+        } else {
+          setMultiCityFlightsInfo(searchMultiFlight)
+        }
       }
-      if (passenger) {
-        setPassenger(passenger)
-      }
-      if (cabinClass) {
-        setCabinClass(cabinClass)
-      }
+      if (storedPassenger) setPassenger(storedPassenger)
+      if (storedCabinClass) setCabinClass(storedCabinClass)
     }
-  }, [pathName])
 
-  //  MAKE URL
-  const transformFlightData = (results: Result) => {
-    return results.flights.flatMap((flight) =>
-      flight.options.map((option: Option) => ({
+    if (window !== undefined) {
+      loadDataFromLocalStorage()
+    }
+  }, [pathName, route])
+
+  const transformFlightData = (results) => {
+    return results.flights.map((flight) =>
+      flight.options.map((option) => ({
         departure_time: option.departure.time,
         departure_date: option.departure.date,
         arrival_time: option.arrival.time,
@@ -93,33 +119,57 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
       }))
     )
   }
-
   const generateQueryParams = (
     flightData,
     fromAirport,
     toAirport,
     date,
+    roundDate,
     passenger,
     cabinClass
   ) => {
     const transformedFlights = transformFlightData(flightData)
-
     const flightParams = transformedFlights
-      .map((flight, index) => {
-        return `flights${index}=${flight.carrier_marketing_flight_number}-${flight.departure_airport_code}-${flight.arrival_airport_code}&departure_time${index}=${flight.departure_time}&departure_date${index}=${flight.departure_date}&arrival_time${index}=${flight.arrival_time}&arrival_date${index}=${flight.arrival_date}&carrier_marketing_code${index}=${flight.carrier_marketing_code}&carrier_operating_code${index}=${flight.carrier_operating_code}`
-      })
+      .map((flights, legIndex) =>
+        flights
+          .map((flight, flightIndex) => {
+            const index = `${legIndex}_${flightIndex}`
+            return `flights${index}=${flight.carrier_marketing_flight_number}-${flight.departure_airport_code}-${flight.arrival_airport_code}&departure_time${index}=${flight.departure_time}&departure_date${index}=${flight.departure_date}&arrival_time${index}=${flight.arrival_time}&arrival_date${index}=${flight.arrival_date}&carrier_marketing_code${index}=${flight.carrier_marketing_code}&carrier_operating_code${index}=${flight.carrier_operating_code}`
+          })
+          .join("&")
+      )
       .join("&")
 
-    const queryParams = `ID=${FlightData.flight_id}&origin=${
-      fromAirport?.iata_code
-    }&destination=${toAirport?.iata_code}&departuredate=${
-      date ? format(new Date(date), "yyyy-MM-dd") : ""
-    }&adults=${passenger.adult.toString()}${
-      passenger.children !== 0 ? `&child=${passenger.children.toString()}` : ""
-    }${passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""}${
-      passenger.kids !== 0 ? `&kids=${passenger.kids.toString()}` : ""
-    }&class=${cabinClass}&route=oneway&${flightParams}`
-
+    let queryParams
+    if (route === "oneway" || route === "roundway") {
+      queryParams = `ID=${FlightData.flight_id}&origin=${
+        fromAirport?.iata_code
+      }&destination=${toAirport?.iata_code}&departuredate=${
+        route === "oneway"
+          ? format(new Date(date), "yyyy-MM-dd")
+          : format(new Date(roundDate?.from), "yyyy-MM-dd")
+      }&returndate=${
+        route === "roundway"
+          ? format(new Date(roundDate?.to), "yyyy-MM-dd")
+          : ""
+      }&adults=${passenger.adult.toString()}${
+        passenger.children !== 0
+          ? `&child=${passenger.children.toString()}`
+          : ""
+      }${
+        passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
+      }${
+        passenger.kids !== 0 ? `&kids=${passenger.kids.toString()}` : ""
+      }&class=${cabinClass}&route=${route}&${flightParams}`
+    } else {
+      const formattedParams = multiCityFlightsInfo
+        .map(({ from, to, date }) => {
+          const formattedDate = date ? format(new Date(date), "yyyy-MM-dd") : ""
+          return `${from?.iata_code},${to?.iata_code},${formattedDate}`
+        })
+        .join(",")
+      queryParams = `trips=${formattedParams}&adults=${passenger.adult}&child=${passenger.children}&infant=${passenger.infant}&kids=${passenger.kids}&class=${cabinClass}&route=multiway&${flightParams}`
+    }
     return queryParams
   }
 
@@ -128,9 +178,12 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
     fromAirport,
     toAirport,
     date,
+    dateRound,
     passenger,
     cabinClass
   )
+
+  console.log(FlightData)
 
   return (
     <div className="relative items-center  justify-between gap-4 md:flex md:py-3">

@@ -5,14 +5,8 @@ import HomeSearchNavigation from "./elements/HomeSearchNavigation"
 
 const HomeBanner = () => {
   return (
-    <div
-      className="bg-center bg-no-repeat sm:bg-cover "
-      style={{
-        backgroundImage: `url(/images/bg/bg.webp)`,
-        backgroundPositionY: "-180px",
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="relative bg-center bg-no-repeat sm:bg-cover ">
+      <div className="home-overly"></div>
       <div>
         <header className="container z-40">
           <div className="flex h-[8vh] justify-between pt-5 ">
@@ -22,7 +16,7 @@ const HomeBanner = () => {
         {/* banner content */}
         <section className="space-y-6 pb-8 pt-6  md:pb-12 md:pt-10 lg:pb-7 lg:pt-24 ">
           <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-            <h2 className="leading-2 mb-1 font-roboto  text-3xl font-bold tracking-wide text-white sm:text-5xl md:text-6xl lg:text-[35px]">
+            <h2 className="leading-2 z-50 mb-1 font-roboto  text-3xl font-bold tracking-wide text-white sm:text-5xl md:text-6xl lg:text-[35px]">
               Your Trip Starts Here
             </h2>
             <div className="flex gap-6">

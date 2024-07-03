@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
+import InternationalRoutes from "@/components/home/elements/PopularRoutesElements/InternationalRoutes"
 
 const DEMO_CATS = [
   {
@@ -82,43 +83,13 @@ export const metadata = {
 }
 const SectionGridCategoryBox = ({ categories = DEMO_CATS }) => {
   return (
-    <div className={` relative`}>
+    <div className={`relative `}>
       <div className="text-center">
         <h1 className="font-heading text-[28px] font-bold">Explore nearby</h1>
         <p className="text-sm">Discover great places near where you live</p>
       </div>
-      <div
-        className={`mb-10 mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:gap-4 lg:grid-cols-3 xl:grid-cols-4`}
-      >
-        {categories.map((item, i) => (
-          <Link
-            href={item.href}
-            className={`relative flex items-center rounded-sm border p-3 sm:p-6`}
-          >
-            <Badge className="bg-gray absolute  right-2 top-2 text-destructive">
-              {item.count}
-            </Badge>
-
-            <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-full">
-              <Image
-                src={item.thumbnail || ""}
-                fill
-                alt=""
-                sizes="(max-width: 400px) 100vw, 400px"
-              />
-            </div>
-            <div className="ml-4 flex-grow overflow-hidden">
-              <h2 className="text-base font-medium">
-                <span className="line-clamp-1">{item.name}</span>
-              </h2>
-              <span
-                className={`mt-2 block text-sm text-neutral-500 dark:text-neutral-400`}
-              >
-                19 minutes drive
-              </span>
-            </div>
-          </Link>
-        ))}
+      <div className={`mb-10 mt-6`}>
+        <InternationalRoutes />,
       </div>
     </div>
   )

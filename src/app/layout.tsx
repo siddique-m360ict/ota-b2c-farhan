@@ -12,7 +12,6 @@ import { siteConfig } from "@/config/site"
 import { Inter as FontSans, Roboto } from "next/font/google"
 import localFont from "next/font/local"
 import NextTopLoader from "nextjs-toploader"
-
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -32,7 +31,7 @@ const fontHeading = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Book Flights - Best Deals on Flight Tickets | Booking Expert",
+    default: "Booking Expert - Best Deals on Flight Tickets",
     template: "%s | Booking Expert",
   },
   description:

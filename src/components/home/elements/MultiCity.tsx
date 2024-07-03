@@ -159,7 +159,6 @@ const MultiCity = ({ cabinClass, passenger }) => {
       const searchFlightOneWay = JSON.parse(
         localStorage.getItem("multiCityFlights")
       )
-      console.log(searchFlightOneWay)
 
       if (searchFlightOneWay && searchFlightOneWay.length > 0) {
         const formattedFlights = searchFlightOneWay.map((flight) => ({

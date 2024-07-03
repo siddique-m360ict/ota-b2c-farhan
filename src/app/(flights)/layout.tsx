@@ -76,7 +76,7 @@ export const metadata = {
 
 export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
-    <div className="relative flex min-h-screen flex-col  ">
+    <div className="relative flex min-h-screen flex-col">
       <header className="relative w-full pb-20  ">
         <div className="bg-wrapper absolute left-0 top-0 z-0  h-full w-full">
           <Image

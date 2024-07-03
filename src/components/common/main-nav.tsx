@@ -105,7 +105,7 @@ export function MainNav({ home }: MainNavProps) {
                     "font-Default flex items-center text-[15px] transition-colors hover:text-foreground/80",
                     item.href.startsWith(`/${segment}`)
                       ? "text-[#ff0000]"
-                      : "text-deep"
+                      : "text-white"
                   )}
                 >
                   <span className="me-2">{item.icon}</span>
