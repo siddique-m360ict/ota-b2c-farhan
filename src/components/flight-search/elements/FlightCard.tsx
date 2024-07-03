@@ -296,7 +296,7 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
         </div>
         <div>
           <Link
-            href={`/flight-revalidate?flight=${FlightData.flight_id}`}
+            href={`/flight-revalidate?ID=${FlightData.flight_id}`}
             className={cn(
               buttonVariants({ variant: "default", size: "sm" }),
               "mt-1 h-6 w-full rounded px-4 text-white md:h-7"
