@@ -16,10 +16,10 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
       <div className=" border-t pt-6">
         <div className="container text-center">
           <div className="text-xs md:text-sm">
-            Copyright © 2024 Booking Expert. All rights reserved{" "}
+            Copyright © 2024 Booking Expert. All rights reserved.{" "}
             <br className="hidden md:block" />
             <p className="text-center text-sm leading-loose ">
-              Built and maintained by{" "}
+                 Developed by{" "}
               <a
                 href={"https://m360ict.com/"}
                 target="_blank"
