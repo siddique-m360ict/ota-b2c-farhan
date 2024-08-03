@@ -124,7 +124,7 @@ const VisaForm = ({ passengers, token, visa_id }: Props) => {
           .map((item, index) => (
             <FormField
               key={index}
-              index={index}
+              index={index + passengers.adult}
               name="Child"
               passengerType={`passengers[${index + passengers.adult}]`}
               register={control.register}
@@ -140,7 +140,7 @@ const VisaForm = ({ passengers, token, visa_id }: Props) => {
           .map((item, index) => (
             <FormField
               key={index}
-              index={index}
+              index={index + passengers.adult + passengers.children}
               name="Infant"
               passengerType={`passengers[${
                 index + passengers.adult + passengers.children
@@ -158,7 +158,12 @@ const VisaForm = ({ passengers, token, visa_id }: Props) => {
           .map((item, index) => (
             <FormField
               key={index}
-              index={index}
+              index={
+                index +
+                passengers.adult +
+                passengers.children +
+                passengers.infant
+              }
               name="Kids"
               passengerType={`passengers[${
                 index +

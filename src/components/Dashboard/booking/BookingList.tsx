@@ -1,12 +1,34 @@
+"use client"
 import { BookingRequest } from "@/app/(dashboard)/dashboard/(booking)/actions"
+import { paymentAfterBooking } from "@/app/(flightRevalidate)/actions"
+import { Button } from "@/components/ui/button"
+import { toast } from "@/components/ui/use-toast"
+import { useAppSelector } from "@/lib/redux/hooks"
+import { getCookies } from "@/lib/token/getCookies"
 import { format } from "date-fns"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import React from "react"
 
 type Props = {
   bookingRequestData: BookingRequest[]
 }
-const BookingRequestList = ({ bookingRequestData }: Props) => {
+const BookingList = ({ bookingRequestData }: Props) => {
+  const user = useAppSelector((state) => state.user)
+  const router = useRouter()
+  const handlePay = async (BookingID) => {
+    const response = await paymentAfterBooking(BookingID, user.token)
+    if (response.success) {
+      router.push(response?.redirect_url)
+    } else {
+      console.log(response)
+      toast({
+        title: "Something happened wrong",
+        variant: "destructive",
+        className: "bg-red-500",
+      })
+    }
+  }
   return (
     <div>
       <div className="mt-6 md:mt-0">
@@ -19,6 +41,9 @@ const BookingRequestList = ({ bookingRequestData }: Props) => {
                 </th>
                 <th scope="col" className="px-3 py-2 md:px-6">
                   Status
+                </th>
+                <th scope="col" className="px-3 py-2 md:px-6">
+                  PNR
                 </th>
 
                 <th scope="col" className="px-3 py-2 md:px-6">
@@ -34,29 +59,40 @@ const BookingRequestList = ({ bookingRequestData }: Props) => {
               </tr>
             </thead>
             <tbody>
-              {bookingRequestData?.map((request) => (
+              {bookingRequestData?.map((request, index) => (
                 <tr
-                  key={request.id}
+                  key={index}
                   className="border-b bg-white hover:bg-gray-50  dark:bg-transparent dark:text-white "
                 >
                   <td className="px-6 py-2">{request.journey_type}</td>
-                  <td className="px-6 py-2">{request.status}</td>
-                  <td className="px-6 py-2">{request.payable}</td>
+                  <td className="px-6 py-2">{request.booking_status}</td>
+                  <td className="px-6 py-2">{request.pnr_code}</td>
+                  <td className="px-6 py-2">{request.payable_amount}</td>
                   <td className="px-6 py-2">
-                    {request.created_date
-                      ? format(new Date(request.created_date), "yyyy-MM-dd")
+                    {request.booking_created_at
+                      ? format(
+                          new Date(request.booking_created_at),
+                          "yyyy-MM-dd"
+                        )
                       : ""}
                   </td>
 
                   <td className="px-4 py-2">
                     <div className="flex items-center gap-2">
                       <Link
-                        href={`/dashboard/viewBookingRequest/${request.id}`}
+                        href={`/dashboard/viewBooking/${request.booking_id}`}
                       >
                         <div className="rounded border  border-blue-100 px-2 py-1 text-center text-xs text-blue-500 transition-all duration-300 dark:border-[#222]">
                           View
                         </div>
                       </Link>
+                      {request.booking_status === "pending" && (
+                        <button onClick={() => handlePay(request.booking_id)}>
+                          <div className="rounded border border-blue-100 bg-primary px-2 py-1 text-center text-xs text-white transition-all duration-300 dark:border-[#222]">
+                            Pay
+                          </div>
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -72,4 +108,4 @@ const BookingRequestList = ({ bookingRequestData }: Props) => {
   )
 }
 
-export default BookingRequestList
+export default BookingList

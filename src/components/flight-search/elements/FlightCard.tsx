@@ -82,7 +82,7 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
       const storedCabinClass = localStorage.getItem("class")
       if (searchFlight) {
         setFromAirport(searchFlight.fromAirport)
-        setToAirport(searchFlight.toAirport) 
+        setToAirport(searchFlight.toAirport)
         if (route === "oneway") {
           setDate(new Date(searchFlight.date))
         } else if (route === "roundway") {
@@ -90,10 +90,9 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
             from: new Date(searchFlight.date.from),
             to: new Date(searchFlight.date.to),
           })
-        } else {
-          setMultiCityFlightsInfo(searchMultiFlight)
         }
       }
+      setMultiCityFlightsInfo(searchMultiFlight)
       if (storedPassenger) setPassenger(storedPassenger)
       if (storedCabinClass) setCabinClass(storedCabinClass)
     }
@@ -152,18 +151,14 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
         route === "roundway"
           ? format(new Date(roundDate?.to), "yyyy-MM-dd")
           : ""
-      }&adults=${passenger.adult.toString()}${
-        passenger.children !== 0
-          ? `&child=${passenger.children.toString()}`
-          : ""
-      }${
-        passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""
-      }${
-        passenger.kids !== 0 ? `&kids=${passenger.kids.toString()}` : ""
+      }&adults=${passenger.adult}${
+        passenger.children !== 0 ? `&child=${passenger.children}` : ""
+      }${passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""}${
+        passenger.kids !== 0 ? `&kids=${passenger.kids}` : ""
       }&class=${cabinClass}&route=${route}&${flightParams}`
     } else {
       const formattedParams = multiCityFlightsInfo
-        .map(({ from, to, date }) => {
+        ?.map(({ from, to, date }) => {
           const formattedDate = date ? format(new Date(date), "yyyy-MM-dd") : ""
           return `${from?.iata_code},${to?.iata_code},${formattedDate}`
         })
@@ -183,27 +178,62 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
     cabinClass
   )
 
-  console.log(FlightData)
-
   return (
     <div className="relative items-center  justify-between gap-4 md:flex md:py-3">
-      <div className="flex items-center gap-2 px-3 pb-2 pt-3 md:hidden">
-        <Image
-          className="h-auto max-w-24 rounded"
-          src={hostedImage(`/${FlightData.carrier_logo}`)}
-          alt="airline_image"
-          width={20}
-          height={20}
-          placeholder="blur"
-          blurDataURL="data:image/webp;base64,UklGRngDAABXRUJQVlA4WAoAAAAgAAAAiAAAiAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggigEAAFAPAJ0BKokAiQA+7WaqTq01KKYumKtCoB2JZW7f+jwBwDiCr0Tt0Gy29sF5YFQjh9O84IStpshDU2KUryMR5lpzIBAiBBWUYV1UK62+nXZ5bGX4xxIU+U+cPzN8DXJ07YxMLmVCOhQbWZXrypCNt5B5zz/+7j9NlJxM8xcS//rr8GQAAP7wzJuF/q2WlbU9eOABfO/yU8HX/0qTIkJD2RBqfvUNYhE62jMc981x+r6aKUmeG7cpFHNR85rfxZLNlmO9f8pVl880VBDHUhLtWNgSxZFagJ7RmDGBUhRmCQcCE34Crds2Et5OiI21ogo03hTZNSxolshS+Orsj1u3hBIWhQt3+B9hHvvfOFWjo4K7Mnct5FT9j+/UWUrxzP4RmjIaIa0orxNPUSqpQc9b/HzcBj9cnvEFR4RH4zrXpUJJvLk3fLRp8KpIF8DUzGfLG0/bI2J5dqKKYerl1AAgwwhF67t7xoI1NhrfeH/NzS1Wt/GcvuwQCuDMbqx7QoOaB3dniQ9TdRMAAAA="
-        />
-        <p className="text-start text-xs">{FlightData.carrier_name}</p>
+      <div className="absolute left-0 top-[10px] hidden items-center gap-2 md:flex">
+        <div className="rounded bg-[#06aebd] px-2 py-[2px] text-[8px] text-white">
+          {!FlightData.passengers[0].non_refundable
+            ? "Refundable"
+            : "nonRefundable"}
+        </div>
+
+        <div>
+          <p className="bg-[#06aebd14] px-2 py-[2px] text-[9px] text-[#05939f]">
+            {
+              FlightData.passengers[0].availability[0].segments[0]
+                .available_seat
+            }{" "}
+            Seats
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between md:hidden">
+        <div className="flex items-center gap-2 px-3 pb-2 pt-3 ">
+          <Image
+            className="h-auto max-w-24 rounded"
+            src={hostedImage(`/${FlightData.carrier_logo}`)}
+            alt="airline_image"
+            width={20}
+            height={20}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRngDAABXRUJQVlA4WAoAAAAgAAAAiAAAiAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggigEAAFAPAJ0BKokAiQA+7WaqTq01KKYumKtCoB2JZW7f+jwBwDiCr0Tt0Gy29sF5YFQjh9O84IStpshDU2KUryMR5lpzIBAiBBWUYV1UK62+nXZ5bGX4xxIU+U+cPzN8DXJ07YxMLmVCOhQbWZXrypCNt5B5zz/+7j9NlJxM8xcS//rr8GQAAP7wzJuF/q2WlbU9eOABfO/yU8HX/0qTIkJD2RBqfvUNYhE62jMc981x+r6aKUmeG7cpFHNR85rfxZLNlmO9f8pVl880VBDHUhLtWNgSxZFagJ7RmDGBUhRmCQcCE34Crds2Et5OiI21ogo03hTZNSxolshS+Orsj1u3hBIWhQt3+B9hHvvfOFWjo4K7Mnct5FT9j+/UWUrxzP4RmjIaIa0orxNPUSqpQc9b/HzcBj9cnvEFR4RH4zrXpUJJvLk3fLRp8KpIF8DUzGfLG0/bI2J5dqKKYerl1AAgwwhF67t7xoI1NhrfeH/NzS1Wt/GcvuwQCuDMbqx7QoOaB3dniQ9TdRMAAAA="
+          />
+          <p className="text-start text-xs">{FlightData.carrier_name}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="rounded bg-[#06aebd] px-2 py-[2px] text-[8px] text-white">
+            {!FlightData.passengers[0].non_refundable
+              ? "Refundable"
+              : "nonRefundable"}
+          </div>
+
+          <div>
+            <p className="bg-[#06aebd14] px-2 py-[2px] text-[9px] text-[#05939f]">
+              {
+                FlightData.passengers[0].availability[0].segments[0]
+                  .available_seat
+              }{" "}
+              Seats
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="h-full w-full basis-10/12">
         <AccordionTrigger
           className={cn(
-            "top-0 flex-col py-0 hover:no-underline md:flex [&>svg]:absolute [&>svg]:bottom-[17px] [&>svg]:left-[76%] [&>svg]:text-destructive [&>svg]:md:block md:[&>svg]:text-primary ",
+            "top-0 flex-col py-0 pt-4 hover:no-underline md:flex [&>svg]:absolute [&>svg]:bottom-[17px] [&>svg]:left-[76%] [&>svg]:text-destructive [&>svg]:md:block md:[&>svg]:text-primary ",
             FlightData?.flights.length < 2
               ? "[&>svg]:bottom-[12px] md:[&>svg]:bottom-[17px]"
               : "[&>svg]:bottom-[1.2vh] md:[&>svg]:bottom-[4.5vh]"
@@ -212,10 +242,10 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
           {FlightData?.flights?.map((flights, index) => (
             <>
               <div
-                className="mb-2 hidden w-full gap-4 md:flex md:gap-0"
+                className="mb-2 hidden w-full gap-4 md:flex md:gap-8"
                 key={index}
               >
-                <div className="flex basis-3/12 flex-col items-center md:basis-8/12 md:flex-row md:gap-4">
+                <div className="flex basis-3/12 flex-col items-center md:basis-3/12 md:flex-row md:gap-2">
                   <Image
                     className="h-auto max-w-24 rounded"
                     src={hostedImage(`/${FlightData.carrier_logo}`)}
@@ -226,19 +256,24 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
                     blurDataURL="data:image/webp;base64,UklGRngDAABXRUJQVlA4WAoAAAAgAAAAiAAAiAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggigEAAFAPAJ0BKokAiQA+7WaqTq01KKYumKtCoB2JZW7f+jwBwDiCr0Tt0Gy29sF5YFQjh9O84IStpshDU2KUryMR5lpzIBAiBBWUYV1UK62+nXZ5bGX4xxIU+U+cPzN8DXJ07YxMLmVCOhQbWZXrypCNt5B5zz/+7j9NlJxM8xcS//rr8GQAAP7wzJuF/q2WlbU9eOABfO/yU8HX/0qTIkJD2RBqfvUNYhE62jMc981x+r6aKUmeG7cpFHNR85rfxZLNlmO9f8pVl880VBDHUhLtWNgSxZFagJ7RmDGBUhRmCQcCE34Crds2Et5OiI21ogo03hTZNSxolshS+Orsj1u3hBIWhQt3+B9hHvvfOFWjo4K7Mnct5FT9j+/UWUrxzP4RmjIaIa0orxNPUSqpQc9b/HzcBj9cnvEFR4RH4zrXpUJJvLk3fLRp8KpIF8DUzGfLG0/bI2J5dqKKYerl1AAgwwhF67t7xoI1NhrfeH/NzS1Wt/GcvuwQCuDMbqx7QoOaB3dniQ9TdRMAAAA="
                   />
                   <p className="flex flex-col items-start gap-1">
-                    <span className="text-[9px] text-secondary md:text-sm   ">
+                    <span className="text-[9px] text-secondary md:text-[13px]">
                       {FlightData.carrier_name}
                     </span>
                   </p>
                 </div>
 
-                <div className="flex basis-full items-center gap-6">
+                <div className="grid basis-full grid-cols-3 ">
                   <div>
-                    <p className="md:text-[20px] md:font-bold">
+                    <p className="md:text-[16px] md:font-bold">
+                      {flights?.options[0]?.departure?.airport_code}
+                      {" - "}
                       {timeSlice(flights?.options[0]?.departure?.time)}
                     </p>
-                    <p className="text-destructive">
-                      {flights?.options[0]?.departure?.airport_code}
+                    <p className="text-xs text-destructive">
+                      {format(
+                        new Date(flights?.options[0]?.departure?.date),
+                        "dd MMM, EEEE"
+                      )}
                     </p>
                   </div>
 
@@ -254,18 +289,28 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
                       {flights?.stoppage + " Stop" || "Nonstop"}
                     </p>
                   </div>
+
                   <div>
-                    <p className="md:text-[20px] md:font-bold">
+                    <p className="md:text-[16px] md:font-bold">
+                      {
+                        flights?.options[flights?.options.length - 1]?.arrival
+                          ?.airport_code
+                      }
+                      {" - "}
                       {timeSlice(
                         flights?.options[flights?.options.length - 1]?.arrival
                           ?.time
                       )}
                     </p>
-                    <p className="text-destructive">
-                      {
-                        flights?.options[flights?.options.length - 1]?.arrival
-                          ?.airport_code
-                      }
+                    <p className="text-xs text-destructive">
+                      {format(
+                        new Date(
+                          flights?.options[
+                            flights?.options.length - 1
+                          ].arrival.date
+                        ),
+                        "dd MMM, EEEE"
+                      )}
                     </p>
                   </div>
                 </div>

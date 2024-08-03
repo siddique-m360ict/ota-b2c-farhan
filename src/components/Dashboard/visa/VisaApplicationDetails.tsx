@@ -1,8 +1,4 @@
 import {
-  IBookingRequestDetails,
-  Segment,
-} from "@/app/(dashboard)/dashboard/(booking)/actions"
-import {
   IVisaApplicationDetails,
   TrackingDatum,
   TravelerDatum,

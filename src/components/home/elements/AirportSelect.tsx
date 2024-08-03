@@ -33,7 +33,7 @@ const AirportSelect = ({
         onValueChange={setSearchTerm}
         autoFocus
       />
-      <CommandList>
+      <CommandList className="max-h-screen md:max-h-[300px]">
         <CommandEmpty>No results found.</CommandEmpty>
         {airportList?.map((airport) => (
           <CommandItem
@@ -51,7 +51,7 @@ const AirportSelect = ({
                 <span className="p-0 text-sm leading-4">{airport.name} </span>
                 <br />
                 <span className="w-full text-ellipsis text-xs text-gray-500">
-                  {airport?.country}
+                  {airport.city_name}, {airport?.country}
                 </span>
               </div>
             </div>

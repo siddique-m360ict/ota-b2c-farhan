@@ -23,9 +23,9 @@ import { removeEmptyProperties } from "@/lib/utils"
 
 interface SingleTravelers {
   id: number
-  title: string
-  first_name: string
-  last_name: string
+  reference: string
+  mid_name: string
+  sur_name: string
   phone: string
   date_of_birth: Date
   email: string
@@ -83,7 +83,7 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
       const body = {
         ...sanitizeData,
         type: paxType,
-        title: reference,
+        reference,
         city_id: selectedCity.id,
       }
       const result = await UpdateTravels(body, token, traveler.id)
@@ -109,10 +109,10 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
 
   // -------------------- initial value set
   useEffect(() => {
-    setReference(traveler.title as referenceType)
+    setReference(traveler.reference as referenceType)
     setPaxType(traveler.type.toUpperCase() as paxType)
-    setValue(`first_name`, traveler.first_name)
-    setValue(`last_name`, traveler.last_name)
+    setValue(`mid_name`, traveler.mid_name)
+    setValue(`sur_name`, traveler.sur_name)
     setValue(`email`, traveler.email)
     setSelectedCountry({
       id: traveler.city_id,
@@ -175,13 +175,13 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
                 id="first_name"
                 placeholder="Enter your first name"
                 type="text"
-                {...register("first_name", {
+                {...register("mid_name", {
                   required: "First name is required",
                 })}
               />
-              {errors.first_name && (
+              {errors.mid_name && (
                 <p className="absolute text-xs text-red-500">
-                  {errors.first_name.message}
+                  {errors.mid_name.message}
                 </p>
               )}
             </div>
@@ -193,13 +193,13 @@ const UpdateTravelerForm = ({ traveler }: Props) => {
                 id="sur_name"
                 placeholder="Enter your last name"
                 type="text"
-                {...register("last_name", {
+                {...register("sur_name", {
                   required: "last name is required",
                 })}
               />
-              {errors.last_name && (
+              {errors.sur_name && (
                 <p className="absolute text-xs text-red-500">
-                  {errors.last_name.message}
+                  {errors.sur_name.message}
                 </p>
               )}
             </div>

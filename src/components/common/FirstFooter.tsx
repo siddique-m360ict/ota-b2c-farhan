@@ -61,7 +61,7 @@ const FirstFooter = () => {
             </div>
             <div className="flex gap-2 text-[#3E4957]">
               <Icons.Mail />
-              <p className="text-xs">info@m360ict.com</p>
+              <p className="text-xs">reservation@bookingexpert.world</p>
             </div>
             <div className="flex gap-2 text-[#3E4957]">
               <Icons.Phone className="text-[15px]" />
@@ -104,7 +104,7 @@ const FirstFooter = () => {
                 <span className="me-1 font-semibold text-[#3E4957]">
                   Email:
                 </span>
-                <p className="text-primary">info@m360ict.com</p>
+                <p className="text-primary">reservation@bookingexpert.world</p>
               </a>
             </li>
             <li>
@@ -112,7 +112,7 @@ const FirstFooter = () => {
                 <span className="me-1 font-semibold text-[#3E4957] ">
                   Phone:
                 </span>
-                <p className="text-primary">+880-2-41060531</p>
+                <p className="text-primary">+8802226603136</p>
               </a>
             </li>
             <li>

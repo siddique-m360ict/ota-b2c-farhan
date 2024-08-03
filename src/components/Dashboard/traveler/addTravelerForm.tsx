@@ -20,9 +20,9 @@ type Props = {}
 
 export interface Travelers {
   id?: number
-  title?: string
-  first_name?: string
-  last_name?: string
+  reference?: string
+  mid_name?: string
+  sur_name?: string
   phone?: string
   type?: string
   date_of_birth?: Date
@@ -75,7 +75,7 @@ const CreateTravelerForm = (props: Props) => {
       const body = {
         ...sanitizeData,
         type: paxType,
-        title: reference,
+        reference: reference,
         city_id: selectedCity.id,
       }
       const result = await CreateTravels(body, token)
@@ -130,18 +130,18 @@ const CreateTravelerForm = (props: Props) => {
           <div className="grid-cols-3 gap-4  md:grid">
             {/* first name */}
             <div>
-              <Label htmlFor="first_name">First Name</Label>
+              <Label htmlFor="mid_name">First Name</Label>
               <Input
-                id="first_name"
+                id="mid_name"
                 placeholder="Enter your first name"
                 type="text"
-                {...register("first_name", {
+                {...register("mid_name", {
                   required: "First name is required",
                 })}
               />
-              {errors.first_name && (
+              {errors.mid_name && (
                 <p className="absolute text-xs text-red-500">
-                  {errors.first_name.message}
+                  {errors.mid_name.message}
                 </p>
               )}
             </div>
@@ -153,13 +153,13 @@ const CreateTravelerForm = (props: Props) => {
                 id="sur_name"
                 placeholder="Enter your last name"
                 type="text"
-                {...register("last_name", {
+                {...register("sur_name", {
                   required: "last name is required",
                 })}
               />
-              {errors.last_name && (
+              {errors.sur_name && (
                 <p className="absolute text-xs text-red-500">
-                  {errors.last_name.message}
+                  {errors.sur_name.message}
                 </p>
               )}
             </div>

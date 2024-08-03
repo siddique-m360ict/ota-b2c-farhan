@@ -8,6 +8,13 @@ import RoundWay from "./elements/RoundWay"
 import SelectClass from "./elements/SelectClass"
 import SelectPassenger from "./elements/SelectPassenger"
 import SelectRoute from "./elements/SelectRoute"
+import { CappingAirlines, FancyMultiSelect } from "./elements/FancyMultiSelect"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
+import {
+  selectCapAirline,
+  setCappingAirlineList,
+} from "@/lib/redux/slice/cappingAirline"
+import { useRouter } from "next/navigation"
 
 export interface Passenger {
   adult: number
@@ -28,7 +35,9 @@ const FlightSearch = ({ home, className }: Props) => {
     infant: 0,
   })
   const [cabinClass, setCabinClass] = useState<string>("Y")
+
   const [activeRoute, setActiveRoute] = useState("roundtrip")
+  const router = useRouter()
   const routeContent = [
     {
       id: "oneway",
@@ -58,15 +67,26 @@ const FlightSearch = ({ home, className }: Props) => {
       <CardContent
         className={cn("px-4 text-start md:px-6 md:pt-11", !home && "md:pt-4")}
       >
-        <div className="mb-3 mt-1 flex items-center justify-between md:justify-start md:gap-5">
-          <SelectRoute
-            activeRoute={activeRoute}
-            setActiveRoute={setActiveRoute}
-          />
-          <SelectPassenger setPassenger={setPassenger} passenger={passenger} />
-
-          <SelectClass cabinClass={cabinClass} setCabinClass={setCabinClass} />
+        <div className="items-center justify-between gap-3 md:flex">
+          <div className="mb-3 mt-1 flex flex-wrap items-center justify-between md:justify-start md:gap-5">
+            <SelectRoute
+              activeRoute={activeRoute}
+              setActiveRoute={setActiveRoute}
+            />
+            <SelectPassenger
+              setPassenger={setPassenger}
+              passenger={passenger}
+            />
+            <SelectClass
+              cabinClass={cabinClass}
+              setCabinClass={setCabinClass}
+            />
+          </div>
+          {/* <div>
+            <FancyMultiSelect />
+          </div> */}
         </div>
+
         {routeContent.map(
           (route, index) =>
             route.id === activeRoute && <div key={index}>{route.element}</div>

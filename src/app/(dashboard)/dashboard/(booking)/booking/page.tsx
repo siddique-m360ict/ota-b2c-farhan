@@ -8,31 +8,31 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
-import BookingRequestList from "@/components/Dashboard/booking/BookingRequestList"
-import { getBookingRequest } from "../actions"
+import BookingList from "@/components/Dashboard/booking/BookingList"
+import { getBookingList } from "../actions"
 import TimeCounter from "@/components/common/TimeCounter"
 
 export const metadata = {
-  title: "Booking Request",
-  description: "Manage your Booking Request",
+  title: "Booking List",
+  description: "Manage your Booking List",
 }
-export default async function BookingRequestPage() {
+export default async function BookingListPage() {
   const token = await getCookies()
 
   if (!token) {
     redirect("/login")
   }
 
-  const bookingRequest = await getBookingRequest(token)
+  const bookingRequest = await getBookingList(token)
 
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Booking Request"
-        text="Manage your booking request"
+        heading="Booking List"
+        text="Manage your booking list"
       ></DashboardHeader>
       <div className="grid gap-8">
-        <BookingRequestList bookingRequestData={bookingRequest.data} />
+        <BookingList bookingRequestData={bookingRequest.data} />
       </div>
     </DashboardShell>
   )

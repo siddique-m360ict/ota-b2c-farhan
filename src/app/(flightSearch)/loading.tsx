@@ -9,63 +9,78 @@ import RefundableNonRefund from "@/components/flight-search/elements/RefundableN
 import FilterAirline from "@/components/flight-search/elements/FilterAirline"
 import PriceRangeFilter from "@/components/flight-search/elements/PriceRangeFilter"
 import Stoppage from "@/components/flight-search/elements/Stoppage"
-import DepartureTime from "@/components/flight-search/elements/DepartureTime"
-import ArrivalTime from "@/components/flight-search/elements/ArrivalTime"
 import LoadingIndicator from "@/components/common/spinner/LoadingIndicator"
 import FlightLocationHeader from "@/components/flight-search/elements/FlightLocationHeader"
 import MobileFlightCard from "@/components/flight-search/elements/MobileFlightCard"
 import FlightListCard from "@/components/flight-search/FlightListCard"
 import dummyFlights from "../../../public/data/dummyFlight.json"
 import { Result } from "@/components/home/elements/types/flightSearchType"
+import TimeCounter from "@/components/common/TimeCounter"
+import TimeFilter from "@/components/flight-search/elements/timeFilter/TimeFilter"
+import BaggageFilter from "@/components/flight-search/elements/BaggageFilter"
 const Loading = () => {
-  const dummyFilter = {
-    total_stoppage: [0, 1, 2],
+  const filterItem = {
+    total_stoppage: [[0, 1, 2]],
     price_rage: {
-      max: 1737064,
-      min: 792309,
+      max: 341350.31,
+      min: 32550,
     },
     airlines: [
       {
-        airline_code: "EK",
-        airline_logo: "airlines/EK.png",
-        airline_name: "Emirates",
-        price: 792309,
+        airline_code: "BS",
+        airline_logo: "airlines/BS.png",
+        airline_name: "US-Bangla Airlines",
+        price: 32550,
+      },
+      {
+        airline_code: "BG",
+        airline_logo: "airlines/BG.png",
+        airline_name: "Biman Bangladesh Airlines",
+        price: 33691.36,
       },
       {
         airline_code: "AI",
         airline_logo: "airlines/AI.png",
         airline_name: "Air India",
-        price: 1138253,
+        price: 35526.82,
+      },
+      {
+        airline_code: "SV",
+        airline_logo: "airlines/SV.png",
+        airline_name: "Saudi Airlines",
+        price: 61844.22,
       },
       {
         airline_code: "QR",
         airline_logo: "airlines/QR.png",
         airline_name: "Qatar Airways",
-        price: 1321170,
+        price: 63516,
       },
       {
-        airline_code: "CX",
-        airline_logo: "airlines/CX.png",
-        airline_name: "Cathay Pacific Airways",
-        price: 1323487,
-      },
-      {
-        airline_code: "KU",
-        airline_logo: "airlines/KU.png",
-        airline_name: "Kuwait Airways",
-        price: 1551527,
+        airline_code: "SQ",
+        airline_logo: "airlines/SQ.png",
+        airline_name: "Singapore Airlines",
+        price: 110809.53,
       },
       {
         airline_code: "TK",
         airline_logo: "airlines/TK.png",
         airline_name: "Turkish Airlines",
-        price: 1480624.6,
+        price: 128741,
       },
+    ],
+    baggage: ["30 kg", "1 pieces", "25 kg", "20 kg"],
+    departure_time: [
       {
-        airline_code: "EY",
-        airline_logo: "airlines/EY.png",
-        airline_name: "Etihad Airways",
-        price: 1737064,
+        min: "2024-08-03T02:35:00+06:00",
+        max: "2024-08-03T23:55:00+06:00",
+        airport: "Dhaka - BANGLADESH",
+      },
+    ],
+    arrival_time: [
+      {
+        min: "2024-08-03T10:15:00+04:00",
+        max: "2024-08-04T18:25:00+04:00",
       },
     ],
   }
@@ -74,24 +89,28 @@ const Loading = () => {
     <div className="md:mt-4">
       <div className="flex-1 md:grid md:grid-cols-[220px_1fr] md:gap-6 lg:grid-cols-[280px_1fr] lg:gap-6">
         <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto pr-2 md:sticky md:block ">
+          <TimeCounter />
           <RefundableNonRefund />
           <Separator orientation="horizontal" className="my-4 h-[1px] w-full" />
-          <FilterAirline Airlines={dummyFilter.airlines} />
+          <FilterAirline Airlines={filterItem?.airlines} />
           <Separator orientation="horizontal" className="my-5 h-[1px] w-full" />
-          <PriceRangeFilter price={dummyFilter?.price_rage} />
-          <Separator
-            orientation="horizontal"
-            className=" my-5 h-[1px] w-full"
-          />
+          <PriceRangeFilter price={filterItem?.price_rage} />
 
-          <Stoppage filter={dummyFilter?.total_stoppage} />
           <Separator
             orientation="horizontal"
             className=" my-5 h-[1px] w-full"
           />
-          <h3 className="mb-4 font-bold text-secondary">Times</h3>
-          <DepartureTime />
-          <ArrivalTime />
+          <TimeFilter />
+          <Separator
+            orientation="horizontal"
+            className=" my-5 h-[1px] w-full"
+          />
+          <Stoppage filter={filterItem?.total_stoppage} />
+          <Separator
+            orientation="horizontal"
+            className=" my-5 h-[1px] w-full"
+          />
+          <BaggageFilter baggageOptions={filterItem.baggage} />
           <Separator
             orientation="horizontal"
             className=" my-5 h-[1px] w-full"
@@ -100,7 +119,7 @@ const Loading = () => {
         <div className="hidden md:block">
           <div className="mb-6 mt-1 ">
             <div className="flex h-[50px] w-full items-center justify-between overflow-x-scroll whitespace-nowrap rounded-xl  bg-secondaryBg shadow-md md:overflow-auto md:overflow-y-hidden md:whitespace-normal">
-              {dummyFilter.airlines.map((airline, index) => (
+              {filterItem.airlines.map((airline, index) => (
                 <div
                   key={index}
                   className="m-1 flex w-full basis-28 justify-between py-2 md:basis-48"

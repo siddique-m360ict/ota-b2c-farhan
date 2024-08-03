@@ -4,16 +4,25 @@ export interface IFlightSearchList {
 }
 
 export interface Filter {
-  total_stoppage?: number[]
+  total_stoppage?: Array<number[]>
   price_rage?: PriceRage
   airlines?: Airline[]
+  baggage?: string[]
+  departure_time?: Time[]
+  arrival_time?: Time[]
 }
 
 export interface Airline {
-  airline_code: string
-  airline_logo: string
-  airline_name: string
-  price: number
+  airline_code?: string
+  airline_logo?: string
+  airline_name?: string
+  price?: number
+}
+
+export interface Time {
+  min?: string
+  max?: string
+  airport?: string
 }
 
 export interface PriceRage {
@@ -149,6 +158,8 @@ export interface IAirportList {
   country?: string
   name?: string
   iata_code?: string
+  city_id?: number
+  city_name?: string
 }
 
 export interface FilterState {

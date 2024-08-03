@@ -21,7 +21,7 @@
     content: "";
     height: 100%;
     width: 1px;
-    background-color: #dddddd;
+
     position: absolute;
     left: 3px;
     top: 0px;
@@ -40,7 +40,6 @@
     position: absolute;
     bottom: 0px;
     left: -30px;
-    background-color: #66a1c5;
     z-index: 3;
 }
 

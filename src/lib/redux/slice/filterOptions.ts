@@ -7,13 +7,18 @@ export interface FilterAirlines {
   max_price?: number | null
   min_price?: number | null
   refundable?: string | null
-  stoppage?: number[] | null
+  baggage?: string[] | null
+  stoppage?: Array<number[]> | null
   aircraft?: string | null
   elapsed_time_min?: string | null
   departure_timings?: string | null
   arrival_timings?: string | null
   sort_by?: string | null
-  priceRange?: number[] | null // Add this line
+  priceRange?: number[] | null
+  min_departure_time?: string | null
+  max_departure_time?: string | null
+  min_arrival_time?: string | null
+  max_arrival_time?: string | null
 }
 
 const initialState: FilterAirlines = {
@@ -27,7 +32,12 @@ const initialState: FilterAirlines = {
   departure_timings: null,
   arrival_timings: null,
   sort_by: null,
-  priceRange: null, // Add this line
+  priceRange: null,
+  min_departure_time: null,
+  max_departure_time: null,
+  min_arrival_time: null,
+  max_arrival_time: null,
+  baggage: null,
 }
 
 const filterOptionSlice = createSlice({

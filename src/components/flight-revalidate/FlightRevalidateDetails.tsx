@@ -29,19 +29,15 @@ const FlightRevalidateDetails = ({
   fare,
   passengers,
 }: Props) => {
-  console.log(
-    minutesToHoursAndMinutes(data[0].content[0].elapsedTime)?.time.length
-  )
-
   return (
     <div>
-      <div className="w-full bg-white">
+      <div className="w-full bg-secondaryBg">
         <h1 className="mb-4 text-center text-lg font-bold uppercase text-primary md:mb-6 md:text-[1.8rem] md:leading-5">
           Trip to {data[0].arrival_cityName}
         </h1>
-        <div className="w-full rounded-[8px] border border-[#E4E6E8] p-4">
+        <div className="w-full rounded-[8px] border border-[#E4E6E8] p-4 dark:border-[#303f42]">
           {data.map((item, index) => (
-            <div className="revalidate-card mb-4 flex flex-col gap-2">
+            <div className="revalidate-card mb-4 flex flex-col gap-2 after:bg-[#dddddd] dark:after:bg-[#333c3d]">
               <div className="mb-1 border-b pb-1">
                 <div className="flex flex-row items-center justify-center gap-2">
                   <button className="rounded text-sm font-bold text-primary md:h-7 ">
@@ -153,7 +149,7 @@ const FlightRevalidateDetails = ({
                   </>
                 ))}
               </div>
-              <div className="revalidate-end"></div>
+              <div className="revalidate-end before:bg-[#66a1c5]"></div>
 
               <p
                 className={`leading-0 text-ads-middle overflow-hidden font-bold ${

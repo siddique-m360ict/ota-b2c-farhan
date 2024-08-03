@@ -2,6 +2,7 @@
 import {
   CreatePNR,
   Passenger,
+  paymentAfterBooking,
   submitPnr,
 } from "@/app/(flightRevalidate)/actions"
 import FlightCard from "@/components/flight-search/elements/FlightCard"
@@ -18,10 +19,11 @@ import FormField from "./FormField"
 import { toast } from "@/components/ui/use-toast"
 import { useAppSelector } from "@/lib/redux/hooks"
 import LoginModal from "./LoginModal"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { Travelers } from "@/components/Dashboard/traveler/addTravelerForm"
+import { serverUrl } from "@/lib/utils"
 
 type Props = {
   passengers: Passenger[]
@@ -48,8 +50,9 @@ const TravelerForm = ({
 }: Props) => {
   const [loading, setLoading] = useState(false)
   const user = useAppSelector((state) => state.user)
-
+  const [isPayNow, setIsPayNow] = useState(false)
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+
   const router = useRouter()
   // Formatting Passenger Count
   const passengerCounts: passengerCounts = {
@@ -114,8 +117,10 @@ const TravelerForm = ({
     }
 
     setLoading(true)
+
     try {
       const res = await CreatePNR(body, token)
+      console.log(body, res)
 
       if (!res.success) {
         setLoading(false)
@@ -127,11 +132,16 @@ const TravelerForm = ({
           duration: 1000,
         })
       } else {
-        toast({
-          title: res.message,
-          duration: 1000,
-        })
-        router.push("/dashboard/bookingRequest")
+        if (isPayNow) {
+          const response = await paymentAfterBooking(res?.booking_id, token)
+          router.push(response?.redirect_url)
+        } else {
+          toast({
+            title: res.message,
+            duration: 1000,
+          })
+          router.push("/dashboard/booking")
+        }
       }
     } catch (error) {
       console.log(error)
@@ -190,7 +200,7 @@ const TravelerForm = ({
           .map((item, index) => (
             <FormField
               key={index + passengerCounts.Adult}
-              index={index}
+              index={index + passengerCounts.Adult}
               name="Child"
               passengerType={`passengers[${index + passengerCounts.Adult}]`}
               register={control.register}
@@ -210,7 +220,7 @@ const TravelerForm = ({
           .map((item, index) => (
             <FormField
               key={index + passengerCounts.Adult + passengerCounts.Child}
-              index={index}
+              index={index + passengerCounts.Adult + passengerCounts.Child}
               name="Infant"
               passengerType={`passengers[${
                 index + passengerCounts.Adult + passengerCounts.Child
@@ -236,7 +246,12 @@ const TravelerForm = ({
                 passengerCounts.Child +
                 passengerCounts.Infant
               }
-              index={index}
+              index={
+                index +
+                passengerCounts.Adult +
+                passengerCounts.Child +
+                passengerCounts.Infant
+              }
               name="Kids"
               passengerType={`passengers[${
                 index +
@@ -255,13 +270,29 @@ const TravelerForm = ({
               token={token}
             />
           ))}
-        <Button
-          type="submit"
-          className="mt-5 w-full cursor-pointer rounded border bg-primary p-2 text-center text-sm font-semibold text-white"
-        >
-          {loading && <Icons.spinner className="mr-2 size-4 animate-spin" />}
-          Submit
-        </Button>
+
+        <div className="flex items-center justify-between gap-6">
+          <Button
+            type="submit"
+            className="mt-5 w-full cursor-pointer rounded border border-primary bg-transparent p-2 text-center text-sm font-semibold text-destructive hover:bg-primary hover:text-white "
+            onClick={() => setIsPayNow(false)}
+          >
+            {!isPayNow && loading && (
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            )}
+            Book Now (Pay Later)
+          </Button>
+          <Button
+            type="submit"
+            className="mt-5 w-full cursor-pointer rounded border bg-primary p-2 text-center text-sm font-semibold text-white hover:border-primary hover:bg-transparent hover:text-black"
+            onClick={() => setIsPayNow(true)}
+          >
+            {isPayNow && loading && (
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            )}
+            Pay Now
+          </Button>
+        </div>
       </form>
       <LoginModal open={isLoginModalOpen} setOpen={setIsLoginModalOpen} />
     </div>

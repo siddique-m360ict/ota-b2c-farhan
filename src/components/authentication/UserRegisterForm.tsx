@@ -219,7 +219,9 @@ const UserRegisterForm = () => {
                   id="r1"
                   className="border-destructive"
                 />
-                <Label htmlFor="r1">Male</Label>
+                <Label htmlFor="r1" className="cursor-pointer">
+                  Male
+                </Label>
               </div>
               <div className="flex w-full items-center gap-2 rounded border border-destructive px-5 py-1 ">
                 <RadioGroupItem
@@ -227,15 +229,19 @@ const UserRegisterForm = () => {
                   id="r2"
                   className="border-destructive"
                 />
-                <Label htmlFor="r2">Female</Label>
+                <Label htmlFor="r2" className="cursor-pointer">
+                  Female
+                </Label>
               </div>
               <div className="flex w-full items-center gap-2 rounded border border-destructive px-5 py-1 ">
                 <RadioGroupItem
                   value="Other"
-                  id="r2"
+                  id="r3"
                   className="border-destructive"
                 />
-                <Label htmlFor="r2">Others</Label>
+                <Label htmlFor="r3" className="cursor-pointer">
+                  Others
+                </Label>
               </div>
             </RadioGroup>
           </div>

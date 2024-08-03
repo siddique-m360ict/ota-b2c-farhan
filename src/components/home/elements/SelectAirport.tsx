@@ -43,8 +43,8 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
   }
 
   useEffect(() => {
-    fetchAirportData(searchTerm)
-  }, [searchTerm])
+    fetchAirportData(debouncedQuery)
+  }, [debouncedQuery])
 
   if (isDesktop) {
     return (
@@ -54,7 +54,7 @@ const SelectAirport = ({ airport, setAirport, name, placeholder }: Props) => {
             <CardContent className="w-full p-0">
               {airport ? (
                 <p className="xl:leading-5">
-                  {airport.iata_code} <br />
+                  {airport.city_name} <br />
                   <small className="overflow-hidden truncate text-xs">
                     {airport.name}
                   </small>

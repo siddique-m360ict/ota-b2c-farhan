@@ -37,6 +37,9 @@ import {
   selectTransitionIsPending,
   setTransitionLoading,
 } from "@/lib/redux/slice/transitionLoading"
+import { IAirlineList } from "./SelectAirline"
+import { CappingAirlines } from "./FancyMultiSelect"
+import { selectSelectedAirlines } from "@/lib/redux/slice/cappingAirline"
 
 type Props = {
   cabinClass: string
@@ -49,6 +52,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     country: "BANGLADESH",
     name: "Dhaka - Hazrat Shahjalal International Airport",
     iata_code: "DAC",
+    city_name: "Dhaka",
   })
   const [toAirport, setToAirport] = React.useState<IAirportList | null>({
     id: 2061,
@@ -56,6 +60,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     country: "BANGLADESH",
     name: "Cox's Bazar Airport",
     iata_code: "CXB",
+    city_name: "Cox's Bazar",
   })
   const [date, setDate] = React.useState<Date>(addDays(new Date(), 3))
 
@@ -72,17 +77,23 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
   const [isPending, startTransition] = useTransition()
   const pathName = usePathname()
   const isDesktop = useMediaQuery("(min-width: 768px)")
+  // flight search with airline
+  const selectedAirlines = useAppSelector(selectSelectedAirlines)
+  const [filterAirline, setFilterAirline] = useState<string[]>()
+  useEffect(() => {
+    setFilterAirline(selectedAirlines?.map((airline) => airline.airline_code))
+  }, [selectedAirlines])
 
   // make url and change route ---------------------------------------
   const router = useRouter()
   const queryParams = `origin=${fromAirport?.iata_code}&destination=${
     toAirport?.iata_code
-  }&departuredate=${
-    date ? format(new Date(date), "yyyy-MM-dd") : ""
-  }&adults=${passenger.adult.toString()}${
-    passenger.children !== 0 ? `&child=${passenger.children.toString()}` : ""
-  }${passenger.infant !== 0 ? `&infant=${passenger.infant.toString()}` : ""}${
-    passenger.kids !== 0 ? `&kids=${passenger.kids.toString()}` : ""
+  }&departuredate=${date ? format(new Date(date), "yyyy-MM-dd") : ""}&adults=${
+    passenger.adult
+  }${passenger.children !== 0 ? `&child=${passenger.children}` : ""}${
+    passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""
+  }${passenger.kids !== 0 ? `&kids=${passenger.kids}` : ""}&carrier_operating=${
+    filterAirline && filterAirline.length > 0 ? filterAirline : ""
   }&class=${cabinClass}&route=oneway`
 
   // remove all flight filter because new filter add when search button click
@@ -113,15 +124,13 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
     removeFilter()
   }
 
-  // ==================== get flight search localStorage info
+  // ==================== get flight search date localStorage info
   useEffect(() => {
     if (window !== undefined) {
       const searchFlightOneWay = JSON.parse(
         localStorage.getItem("oneWayFlights")
       )
       if (searchFlightOneWay && Object.keys(searchFlightOneWay).length > 0) {
-        setFromAirport(searchFlightOneWay?.fromAirport)
-        setToAirport(searchFlightOneWay?.toAirport)
         setDate(new Date(searchFlightOneWay.date))
       }
     }
@@ -139,6 +148,26 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
       }
     }
   }, [loading, isPending, dispatch])
+
+  // ------------------------- link between one way and round way
+  // Getting data form localStorage
+  useEffect(() => {
+    const origin: string | null = localStorage.getItem("origin")
+    const departure: string | null = localStorage.getItem("departure")
+
+    if (JSON.parse(origin)?.iata_code !== "DAC") {
+      if (origin) setFromAirport(JSON.parse(origin))
+    }
+    if (JSON.parse(departure)?.iata_code !== "CXB") {
+      if (departure) setToAirport(JSON.parse(departure))
+    }
+  }, [])
+
+  // Setting data to localStorage
+  useEffect(() => {
+    localStorage.setItem("origin", JSON.stringify(fromAirport))
+    localStorage.setItem("departure", JSON.stringify(toAirport))
+  }, [fromAirport, toAirport])
 
   return (
     <>

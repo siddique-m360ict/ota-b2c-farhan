@@ -32,6 +32,8 @@ import {
   selectTransitionIsPending,
   setTransitionLoading,
 } from "@/lib/redux/slice/transitionLoading"
+import { CappingAirlines } from "./FancyMultiSelect"
+import { selectSelectedAirlines } from "@/lib/redux/slice/cappingAirline"
 
 type Props = {
   cabinClass: string
@@ -45,6 +47,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     country: "BANGLADESH",
     name: "Dhaka - Hazrat Shahjalal International Airport",
     iata_code: "DAC",
+    city_name: "Dhaka",
   })
   const [toAirport, setToAirport] = React.useState<IAirportList | null>({
     id: 2061,
@@ -52,6 +55,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     country: "BANGLADESH",
     name: "Cox's Bazar Airport",
     iata_code: "CXB",
+    city_name: "Cox's Bazar",
   })
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: addDays(new Date(), 2),
@@ -70,6 +74,12 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
   const [isPending, startTransition] = useTransition()
   const pathName = usePathname()
   const isDesktop = useMediaQuery("(min-width: 768px)")
+  // flight search with airline
+  const selectedAirlines = useAppSelector(selectSelectedAirlines)
+  const [filterAirline, setFilterAirline] = useState<string[]>()
+  useEffect(() => {
+    setFilterAirline(selectedAirlines?.map((airline) => airline.airline_code))
+  }, [selectedAirlines])
 
   // Make url
   const queryParams = `origin=${fromAirport?.iata_code}&destination=${
@@ -82,6 +92,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
     passenger.children !== 0 ? `&child=${passenger.children}` : ""
   }${passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""}${
     passenger.kids !== 0 ? `&kids=${passenger.kids}` : ""
+  }&carrier_operating=${
+    filterAirline && filterAirline.length > 0 ? filterAirline : ""
   }&class=${cabinClass}&route=roundway`
 
   const removeFilter = () => {
@@ -118,8 +130,6 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
         localStorage.getItem("roundWayFlights")
       )
       if (searchFlightOneWay && Object.keys(searchFlightOneWay).length > 0) {
-        setFromAirport(searchFlightOneWay?.fromAirport)
-        setToAirport(searchFlightOneWay?.toAirport)
         setDate({
           from: new Date(searchFlightOneWay.date.from),
           to: new Date(searchFlightOneWay.date.to),
@@ -140,6 +150,29 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
       }
     }
   }, [loading, isPending, dispatch])
+
+  // local flight info set and get
+  useEffect(() => {
+    const origin: string | null = localStorage.getItem("origin")
+    const departure: string | null = localStorage.getItem("departure")
+
+    if (origin) setFromAirport(JSON.parse(origin))
+    if (departure) setToAirport(JSON.parse(departure))
+  }, [])
+
+  // Setting data to localStorage
+  useEffect(() => {
+    if (fromAirport?.iata_code !== "DAC") {
+      localStorage.setItem("origin", JSON.stringify(fromAirport))
+    } else {
+      localStorage.removeItem("origin")
+    }
+    if (toAirport?.iata_code !== "CXB") {
+      localStorage.setItem("departure", JSON.stringify(toAirport))
+    } else {
+      localStorage.removeItem("origin")
+    }
+  }, [fromAirport, toAirport])
 
   return (
     <>

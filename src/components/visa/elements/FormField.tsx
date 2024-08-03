@@ -83,14 +83,16 @@ const FormField = ({
     errors.hasOwnProperty("passengers") &&
     errors?.passengers[index]?.passport_expiry_date
 
-  const is_phone =
-    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.phone
+  const is_contact_number =
+    errors.hasOwnProperty("passengers") &&
+    errors?.passengers[index]?.contact_number
 
   const is_gender =
     errors.hasOwnProperty("passengers") && errors?.passengers[index]?.gender
 
-  const is_email =
-    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.email
+  const is_contact_email =
+    errors.hasOwnProperty("passengers") &&
+    errors?.passengers[index]?.contact_email
 
   const is_date_of_birth =
     errors.hasOwnProperty("passengers") &&
@@ -202,7 +204,7 @@ const FormField = ({
 
                   {is_first_name && (
                     <p className="absolute -bottom-4 text-xs text-red-500">
-                      Given Name Required
+                      First Name is Required
                     </p>
                   )}
                 </div>
@@ -222,7 +224,7 @@ const FormField = ({
                   />
                   {is_last_name && (
                     <p className="absolute -bottom-4 text-xs text-red-500">
-                      Last Name Required
+                      Last Name is Required
                     </p>
                   )}
                 </div>
@@ -235,7 +237,7 @@ const FormField = ({
                   <Input
                     type="date"
                     {...register(`${passengerType}.date_of_birth`, {
-                      required: "DOB required",
+                      required: "Date of Birth is required",
                       validate: {
                         dateValidation: (value) => {
                           const birthdate = new Date(value)
@@ -352,7 +354,7 @@ const FormField = ({
                   />
                   {is_passport_expiry_date && (
                     <p className="absolute -bottom-4 text-xs text-red-500">
-                      Passport Expiry Date Required
+                      Passport Expiry Date is Required
                     </p>
                   )}
                 </div>
@@ -408,9 +410,9 @@ const FormField = ({
                           },
                         })}
                       />
-                      {is_email && (
+                      {is_contact_email && (
                         <p className="absolute -bottom-4 text-xs text-red-500">
-                          Email Required
+                          Contact email is Required
                         </p>
                       )}
                     </div>
@@ -430,9 +432,9 @@ const FormField = ({
                         className="mt-1 p-2"
                         placeholder="Contact Number"
                       />
-                      {is_phone && (
+                      {is_contact_number && (
                         <p className="absolute -bottom-4 text-xs text-red-500">
-                          Contact Number Required
+                          Contact Number is Required
                         </p>
                       )}
                     </div>

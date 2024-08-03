@@ -8,13 +8,13 @@ import { selectFilterItem } from "@/lib/redux/slice/flight_filter"
 import { hostedImage } from "@/lib/utils"
 import Image from "next/image"
 import React, { ChangeEvent, useState } from "react"
-import ArrivalTime from "./ArrivalTime"
-import DepartureTime from "./DepartureTime"
 import FilterAirline from "./FilterAirline"
 import PriceRangeFilter from "./PriceRangeFilter"
 import RefundableNonRefund from "./RefundableNonRefund"
 import Stoppage from "./Stoppage"
 import TimeCounter from "@/components/common/TimeCounter"
+import TimeFilter from "./timeFilter/TimeFilter"
+import BaggageFilter from "./BaggageFilter"
 
 type Props = {
   filterItem: Filter | undefined
@@ -29,13 +29,13 @@ const FilterSidebar = () => {
       <FilterAirline Airlines={filterItem?.airlines} />
       <Separator orientation="horizontal" className="my-5 h-[1px] w-full" />
       <PriceRangeFilter price={filterItem?.price_rage} />
-      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
 
+      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
+      <TimeFilter />
+      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
       <Stoppage filter={filterItem?.total_stoppage} />
       <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
-      <h3 className="mb-4 font-bold text-secondary">Times</h3>
-      <DepartureTime />
-      <ArrivalTime />
+      <BaggageFilter baggageOptions={filterItem.baggage} />
       <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
       {/* <DocsSidebarNav items={docsConfig.sidebarNav} /> */}
     </aside>

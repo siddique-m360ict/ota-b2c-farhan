@@ -61,7 +61,6 @@ const FlightListView = ({ flights, count }: Props) => {
           console.error("Error fetching filtered data:", error)
         }
       }
-
       fetchFilteredData()
     }
   }, [filterOption, dispatch])

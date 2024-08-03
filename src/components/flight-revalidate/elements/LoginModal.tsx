@@ -16,6 +16,8 @@ type Props = {
 }
 
 export default function LoginModal({ open, setOpen }: Props) {
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-full bg-secondaryBg sm:max-w-[425px]">

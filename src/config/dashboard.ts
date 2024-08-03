@@ -9,8 +9,8 @@ export const dashboardConfig: DashboardConfig = {
       disabled: true,
     },
     {
-      title: "Booking Request",
-      href: "/dashboard/bookingRequest",
+      title: "Booking",
+      href: "/dashboard/booking",
       icon: "post",
     },
     {

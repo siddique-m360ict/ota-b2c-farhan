@@ -3,26 +3,25 @@ import { getCookies } from "@/lib/token/getCookies"
 import { serverUrl } from "@/lib/utils"
 
 export type BookingRequest = {
-  id: number
-  status: string
-  journey_type: string
-  created_date: Date
-  payable: string
-  note: null
-  user_id: number
-  username: string
-  user_photo: string
-  phone_number: string
+  booking_id?: number
+  created_by?: string
+  pnr_code?: string
+  total_passenger?: number
+  booking_created_at?: Date
+  booking_status?: string
+  ticket_issue_last_time?: null
+  payable_amount?: string
+  journey_type?: string
 }
 
-export async function getBookingRequest(
+export async function getBookingList(
   token: string
 ): Promise<HTTPResponse<BookingRequest[]>> {
   const customHeaders = new Headers()
   customHeaders.append("Content-Type", "application/json")
   customHeaders.append("Authorization", `Bearer ${token}`)
 
-  const apiUrl = serverUrl("/booking/booking-request")
+  const apiUrl = serverUrl("/booking/flight-booking")
   const response = await fetch(apiUrl, {
     method: "GET",
     headers: customHeaders,
@@ -37,75 +36,121 @@ export async function getBookingRequest(
 }
 
 // get single booking request
-export type IBookingRequestDetails = {
-  id: number
-  status: string
-  journey_type: string
-  ait: string
-  created_date: Date
-  note: null
-  commission: string
-  total_price: string
-  base_fair: string
-  total_tax: string
-  discount: string
-  payable: string
-  total_travelers: number
-  traveler_adult: number
-  traveler_children: number
-  traveler_kids: number
-  traveler_infants: number
-  user_id: number
-  username: string
-  user_photo: string
-  user_email: string
-  user_phone: string
-  admin_id: null
-  admin_name: null
-  admin_photo: null
-  segments: Segment[]
-  travelers: Traveler[]
+export type IBookingDetails = {
+  booking_id?: number
+  created_by?: string
+  user_email?: string
+  user_mobile?: string
+  pnr_code?: string
+  total_passenger?: number
+  booking_created_at?: string
+  booking_status?: string
+  ticket_issue_last_time?: string
+  payable_amount?: string
+  ticket_price?: string
+  base_fare?: string
+  total_tax?: string
+  ait?: string
+  discount?: string
+  journey_type?: string
+  segments?: Segment[]
+  traveler?: Traveler[]
+  ticket?: Ticket
 }
 
 export interface Segment {
-  id: number
-  booking_request_id: number
-  flight_number: string
-  airline: string
-  airline_logo: string
-  airline_code: string
-  origin: string
-  destination: string
-  class: string
-  baggage: string
-  departure_date: Date
-  arrival_date: Date
-  departure_time: Date
-  arrival_time: string
+  id?: number
+  flight_booking_id?: number
+  flight_number?: string
+  airline?: string
+  airline_code?: string
+  airline_logo?: string
+  origin?: string
+  destination?: string
+  class?: string
+  baggage?: string
+  departure_date?: string
+  arrival_date?: string
+  departure_time?: string
+  arrival_time?: string
+}
+
+export interface Ticket {
+  ticket_issue_data?: TicketIssueDatum[]
+  ticket_issue_segment_data?: TicketIssueSegmentDatum[]
+}
+
+export interface TicketIssueDatum {
+  id?: number
+  flight_booking_id?: number
+  traveler_given_name?: string
+  traveler_surname?: string
+  traveler_reference?: string
+  reservation_code?: string
+  traveler_type: string
+  date_issued?: string
+  ticket_number?: string
+  issuing_airline?: string
+  issuing_agent?: string
+  issuing_agent_location?: null
+  iata_number?: string
+  sub_total?: string
+  taxes?: string
+  total?: string
+  currency?: string
+}
+
+export interface TicketIssueSegmentDatum {
+  id?: number
+  flight_booking_id?: number
+  airline_name?: string
+  airline_code?: string
+  flight_number?: string
+  reservation_code?: string
+  departure_address?: string
+  fromAirportCode: string
+  toAirportCode?: string
+  arrival_date: string
+  departure_time?: string
+  departure_terminal?: string
+  arrival_address?: string
+  arrival_time?: string
+  arrival_terminal?: string
+  departure_date?: string
+  cabin_type?: string
+  cabin_code?: string
+  status?: string
+  fare_basis?: string
+  bags?: string
+  operated_by?: string
 }
 
 export interface Traveler {
-  id: number
-  booking_request_id: number
-  type: string
-  title: string
-  first_name: string
-  last_name: string
-  date_of_birth: Date
-  passport_number: string
-  passport_expiry_date: Date
-  city_id: number
-  email: string
-  phone: string
-  frequent_flyer_airline: string
-  frequent_flyer_number: string
-  city_name: string
+  id?: number
+  flight_booking_id?: number
+  type?: string
+  reference?: string
+  mid_name?: string
+  sur_name?: string
+  phone?: string
+  date_of_birth?: string
+  gender?: string
+  email?: string
+  passport_number?: string
+  passport_expiry_date?: string
+  city_id?: number
+  country_id?: number
+  visa_file?: null
+  passport_file?: null
+  country_name?: string
+  city_name?: string
 }
-export async function bookingRequestDetails(
+
+export async function bookingDetails(
   id: string,
   token: string
-): Promise<HTTPResponse<IBookingRequestDetails>> {
-  const apiUrl = serverUrl(`/booking/booking-request/${parseInt(id)}`)
+): Promise<HTTPResponse<IBookingDetails>> {
+  const apiUrl = serverUrl(`/booking/flight-booking/${parseInt(id)}`)
 
   let myHeaders = new Headers()
   myHeaders.append("Content-Type", "application/json")

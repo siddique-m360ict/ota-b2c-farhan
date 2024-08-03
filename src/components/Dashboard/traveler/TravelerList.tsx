@@ -50,9 +50,9 @@ const TravelersList = async ({ travelers, token }: Props) => {
                 >
                   <td className="px-6 py-2">{traveler.id}</td>
                   <td className="px-6 py-2">
-                    {traveler.first_name + " " + traveler.last_name}
+                    {traveler.mid_name + " " + traveler.sur_name}
                   </td>
-                  <td className="px-6 py-2">{traveler.title}</td>
+                  <td className="px-6 py-2">{traveler.reference}</td>
                   <td className="px-6 py-2">{traveler.phone}</td>
 
                   <td className="px-6 py-2"> {traveler.passport_number} </td>

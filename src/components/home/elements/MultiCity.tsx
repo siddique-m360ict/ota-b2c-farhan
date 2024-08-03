@@ -29,6 +29,8 @@ import {
   selectTransitionIsPending,
   setTransitionLoading,
 } from "@/lib/redux/slice/transitionLoading"
+import { CappingAirlines } from "./FancyMultiSelect"
+import { selectSelectedAirlines } from "@/lib/redux/slice/cappingAirline"
 type cityData = {
   key: number
   from: IAirportList | null
@@ -43,6 +45,13 @@ const MultiCity = ({ cabinClass, passenger }) => {
   const [isPending, startTransition] = useTransition()
   const { toast } = useToast()
   const router = useRouter()
+  // flight search with airline
+  const selectedAirlines = useAppSelector(selectSelectedAirlines)
+  const [filterAirline, setFilterAirline] = useState<string[]>()
+  useEffect(() => {
+    setFilterAirline(selectedAirlines?.map((airline) => airline.airline_code))
+  }, [selectedAirlines])
+
   const [cityData, setCityData] = useState<cityData[]>([
     {
       key: 0,
@@ -52,6 +61,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
         country: "BANGLADESH",
         name: "Dhaka - Hazrat Shahjalal International Airport",
         iata_code: "DAC",
+        city_name: "Dhaka",
       },
       to: {
         id: 2061,
@@ -59,6 +69,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
         country: "BANGLADESH",
         name: "Cox's Bazar Airport",
         iata_code: "CXB",
+        city_name: "Cox's Bazar",
       },
       date: addDays(new Date(), 3),
     },
@@ -70,6 +81,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
         country: "BANGLADESH",
         name: "Cox's Bazar Airport",
         iata_code: "CXB",
+        city_name: "Cox's Bazar",
       },
       to: {
         id: 210,
@@ -77,6 +89,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
         country: "BANGLADESH",
         name: "Dhaka - Hazrat Shahjalal International Airport",
         iata_code: "DAC",
+        city_name: "Dhaka",
       },
       date: addDays(new Date(), 4),
     },
@@ -87,7 +100,26 @@ const MultiCity = ({ cabinClass, passenger }) => {
     if (cityData.length < 6) {
       setCityData([
         ...cityData,
-        { key: cityData.length, from: null, to: null, date: null },
+        {
+          key: cityData.length,
+          from: {
+            id: cityData[cityData.length - 1].to.id,
+            country_id: cityData[cityData.length - 1].to.country_id,
+            country: cityData[cityData.length - 1].to.country,
+            name: cityData[cityData.length - 1].to.name,
+            iata_code: cityData[cityData.length - 1].to.iata_code,
+            city_name: cityData[cityData.length - 1].to.city_name,
+          },
+          to: {
+            id: cityData[cityData.length - 1].from.id,
+            country_id: cityData[cityData.length - 1].from.country_id,
+            country: cityData[cityData.length - 1].from.country,
+            name: cityData[cityData.length - 1].from.name,
+            iata_code: cityData[cityData.length - 1].from.iata_code,
+            city_name: cityData[cityData.length - 1].from.city_name,
+          },
+          date: addDays(new Date(), cityData.length + 10),
+        },
       ])
     }
   }
@@ -137,7 +169,13 @@ const MultiCity = ({ cabinClass, passenger }) => {
       return `${from?.iata_code},${to?.iata_code},${formattedDate}`
     })
     .join(",")
-  const queryParams = `trips=${formattedParams}&adults=${passenger.adult}&child=${passenger.children}&infant=${passenger.infant}&kids=${passenger.kids}&class=${cabinClass}&route=multiway`
+  const queryParams = `trips=${formattedParams}&adults=${
+    passenger.adult
+  }&child=${passenger.children}&infant=${passenger.infant}&kids=${
+    passenger.kids
+  }&class=${cabinClass}&carrier_operating=${
+    filterAirline && filterAirline.length > 0 ? filterAirline : ""
+  }&route=multiway`
 
   // HANDLE SEARCH
   const handleSearch = () => {

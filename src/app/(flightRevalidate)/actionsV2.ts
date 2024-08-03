@@ -120,7 +120,6 @@ export interface Refundable {
   refundable?: boolean
 }
 
- 
 export async function ReValidateFlightV2(body) {
   const apiUrl = serverUrl(`/booking/flight/revalidate/v2`)
   let myHeaders = new Headers()
@@ -136,5 +135,6 @@ export async function ReValidateFlightV2(body) {
     throw new Error("Something Happened Wrong")
   }
   const res = await response.json()
+
   return res
 }

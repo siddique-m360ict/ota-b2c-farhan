@@ -7,7 +7,7 @@ import {
   selectFilterOption,
   setFilterOption,
 } from "@/lib/redux/slice/filterOptions"
-import { hostedImage } from "@/lib/utils"
+import { formatNumber, hostedImage } from "@/lib/utils"
 import Image from "next/image"
 
 import React from "react"
@@ -48,17 +48,22 @@ const FilterAirline = ({ Airlines }: Props) => {
           />
           <Label
             htmlFor={airline.airline_code}
-            className="flex cursor-pointer items-center gap-2"
+            className="flex w-full cursor-pointer items-center justify-between "
           >
-            <Image
-              src={hostedImage(`/${airline.airline_logo}`)}
-              alt={airline.airline_name}
-              height={20}
-              width={20}
-              objectFit="cover"
-              objectPosition="center"
-            />
-            {airline.airline_name}
+            <div className="flex w-[70%] items-center">
+              <Image
+                src={hostedImage(`/${airline.airline_logo}`)}
+                alt={airline.airline_name}
+                height={20}
+                width={20}
+                objectFit="cover"
+                objectPosition="center"
+              />
+              <p className="ms-1 w-[80%] truncate">{airline.airline_name}</p>
+            </div>
+            <div className=" text-[12px]">
+              <span className="font-mono">৳</span> {formatNumber(airline.price)}
+            </div>
           </Label>
         </div>
       ))}

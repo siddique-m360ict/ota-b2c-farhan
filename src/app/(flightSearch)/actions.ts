@@ -27,7 +27,7 @@ interface IReqFlightSearch {
     | string
     | null
   trips?: string | null
-  carrier_marketing?: string | null
+  carrier_operating?: string | null
   min_price?: number | string | null
   max_price?: number | string | null
   refundable?: string | null
@@ -86,7 +86,11 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
       return { success: false, message: "search params not found" }
     }
 
-    const apiUrl = serverUrl(`/booking/flight/search`)
+    const apiUrl = serverUrl(
+      `/booking/flight/search?carrier_operating=${
+        params.carrier_operating ? params.carrier_operating : ""
+      }`
+    )
     let myHeaders = new Headers()
     myHeaders.append("Content-Type", "application/json")
 
@@ -145,8 +149,8 @@ export async function filterFlightList(
   }
 
   if (Array.isArray(filter?.stoppage)) {
-    if (filter?.stoppage.length > 0) {
-      apiUrl += `&stoppage=${filter.stoppage}`
+    if (filter.stoppage.length > 0) {
+      apiUrl += `&stoppage=${JSON.stringify(filter.stoppage)}`
     }
   }
 
@@ -165,6 +169,23 @@ export async function filterFlightList(
   if (filter.sort_by) {
     apiUrl += `&sort_by=${filter.sort_by}`
   }
+  if (filter.min_departure_time) {
+    apiUrl += `&min_departure_time=${filter.min_departure_time}`
+  }
+  if (filter.max_departure_time) {
+    apiUrl += `&max_departure_time=${filter.max_departure_time}`
+  }
+
+  if (filter.min_arrival_time) {
+    apiUrl += `&min_arrival_time=${filter.min_arrival_time}`
+  }
+
+  if (filter.max_arrival_time) {
+    apiUrl += `&max_arrival_time=${filter.max_arrival_time}`
+  }
+  if (filter.baggage) {
+    apiUrl += `&baggage=${filter.baggage.join(", ")}`
+  }
 
   let myHeaders = new Headers()
   myHeaders.append("Content-Type", "application/json")
@@ -178,6 +199,7 @@ export async function filterFlightList(
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`)
   }
+  const res = await response.json()
 
-  return response.json()
+  return res
 }

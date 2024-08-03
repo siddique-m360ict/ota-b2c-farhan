@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import {
   Control,
+  Controller,
   FieldErrors,
   FieldValues,
   UseFormRegister,
@@ -20,6 +21,8 @@ import City from "./PNRForm/City"
 import { Travelers } from "@/components/Dashboard/traveler/addTravelerForm"
 import { useTheme } from "next-themes"
 import { Input } from "@/components/ui/input"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 
 type Props = {
   index: number
@@ -69,7 +72,7 @@ const FormField = ({
     id: 18,
     name: "BANGLADESH",
   })
-
+  const [saveInfo, setSaveInfo] = useState(false)
   const { theme } = useTheme()
   const [travelerListFilter, setTravelerListFilter] = useState<Travelers[]>([])
   // FILTER TRAVELER DATA
@@ -97,16 +100,9 @@ const FormField = ({
   useEffect(() => {
     if (passengerType === Object.keys(selectedTraveler)[0]) {
       const travelerData = Object.entries(selectedTraveler)[0][1]
-
-      setReference(travelerData?.title as referenceType)
-      setValue(
-        `${passengerType}.first_name`,
-        travelerData.first_name || "data nai"
-      )
-      setValue(
-        `${passengerType}.last_name`,
-        travelerData.last_name || "data nai"
-      )
+      setReference(travelerData?.reference as referenceType)
+      setValue(`${passengerType}.mid_name`, travelerData.mid_name || "")
+      setValue(`${passengerType}.sur_name`, travelerData.sur_name || "")
 
       setSelectedCountry({
         id: travelerData.country_id,
@@ -114,12 +110,12 @@ const FormField = ({
       })
       setSelectedCity({ id: travelerData.city_id, name: travelerData.city })
 
-      setValue(`${passengerType}.phone`, travelerData.phone || "data nai")
-      setValue(`${passengerType}.email`, travelerData.email || "data nai")
-      setValue(`${passengerType}.title`, travelerData.title || "data nai")
+      setValue(`${passengerType}.phone`, travelerData.phone || "")
+      setValue(`${passengerType}.email`, travelerData.email || "")
+      setValue(`${passengerType}.reference`, travelerData.reference || "")
       setValue(
         `${passengerType}.passport_number`,
-        travelerData.passport_number || "data nai"
+        travelerData.passport_number || ""
       )
       setValue(
         `${passengerType}.passport_expiry_date`,
@@ -134,17 +130,9 @@ const FormField = ({
           ? format(new Date(travelerData.date_of_birth), "yyyy-MM-dd")
           : ""
       )
-      setValue(
-        `${passengerType}.frequent_flyer_number`,
-        travelerData.frequent_flyer_number || "data nai"
-      )
-      setValue(
-        `${passengerType}.frequent_flyer_airline`,
-        travelerData.frequent_flyer_airline || "data nai"
-      )
 
-      clearErrors(`${passengerType}.first_name`)
-      clearErrors(`${passengerType}.last_name`)
+      clearErrors(`${passengerType}.mid_name`)
+      clearErrors(`${passengerType}.sur_name`)
       clearErrors(`${passengerType}.phone`)
       clearErrors(`${passengerType}.email`)
       clearErrors(`${passengerType}.date_of_birth`)
@@ -152,11 +140,11 @@ const FormField = ({
   }, [selectedTraveler, setValue, clearErrors])
 
   let errors: any = err
-  const is_first_name =
-    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.first_name
+  const is_mid_name =
+    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.mid_name
 
-  const is_last_name =
-    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.last_name
+  const is_sur_name =
+    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.sur_name
 
   const is_passport_number =
     errors.hasOwnProperty("passengers") &&
@@ -178,9 +166,6 @@ const FormField = ({
     errors.hasOwnProperty("passengers") &&
     errors?.passengers[index]?.date_of_birth
 
-  const is_post_code =
-    errors.hasOwnProperty("passengers") && errors?.passengers[index]?.post_code
-
   const is_city =
     errors.hasOwnProperty("passengers") && errors?.passengers[index]?.city
 
@@ -189,15 +174,31 @@ const FormField = ({
 
   useEffect(() => {
     if (selectedCity) {
-      setValue(`${passengerType}.city_id`, selectedCity.id || "data nai")
+      setValue(`${passengerType}.city_id`, selectedCity.id || "")
+      setValue(`${passengerType}.country_id`, selectedCountry.id || "")
     }
     if (reference) {
-      setValue(`${passengerType}.title`, reference || "data nai")
+      setValue(`${passengerType}.reference`, reference || "")
     }
   }, [selectedCity, reference])
 
   // first default open
   // defaultValue:  0Adult and  value: index.toString() + name
+  const handleChangeSaveInfo = () => {
+    let save: boolean
+
+    if (saveInfo === true) {
+      save = false
+    } else {
+      save = true
+    }
+    setSaveInfo(save)
+  }
+
+  useEffect(() => {
+    setValue(`${passengerType}.save_information`, saveInfo)
+  }, [saveInfo])
+
   return (
     <Accordion type="single" collapsible defaultValue={name}>
       <AccordionItem value={name} className="border-0 ">
@@ -249,7 +250,7 @@ const FormField = ({
                         data-passenger-type={passengerType}
                         className="dark:bg-black"
                       >
-                        {`${traveler.title} - ${traveler.first_name} ${traveler.last_name}`}
+                        {`${traveler.reference} - ${traveler.mid_name} ${traveler.sur_name}`}
                       </option>
                     ))}
                   </select>
@@ -263,7 +264,7 @@ const FormField = ({
                   <input
                     readOnly
                     type="text"
-                    {...register(`${passengerType}.title`, {
+                    {...register(`${passengerType}.reference`, {
                       required: "This is a required field",
                     })}
                     className="booking_input"
@@ -289,21 +290,21 @@ const FormField = ({
                   />
                 </div>
 
-                {/* first_name */}
+                {/* mid_name */}
                 <div className="relative flex flex-col">
-                  <RequiredLabel htmlFor={`passengers.${index}.first_name`}>
+                  <RequiredLabel htmlFor={`passengers.${index}.mid_name`}>
                     First Name
                   </RequiredLabel>
                   <Input
                     type="text"
-                    {...register(`${passengerType}.first_name`, {
+                    {...register(`${passengerType}.mid_name`, {
                       required: "This is a required field",
                     })}
                     placeholder="First name"
                     className="mt-1 p-2"
                   />
 
-                  {is_first_name && (
+                  {is_mid_name && (
                     <p className="absolute -bottom-4 text-xs text-red-500">
                       Given Name Required
                     </p>
@@ -312,18 +313,18 @@ const FormField = ({
 
                 {/* Last Name  */}
                 <div className=" relative flex flex-col">
-                  <RequiredLabel htmlFor={`passengers.${index}.last_name`}>
+                  <RequiredLabel htmlFor={`passengers.${index}.sur_name`}>
                     Last Name
                   </RequiredLabel>
                   <Input
                     type="text"
-                    {...register(`${passengerType}.last_name`, {
+                    {...register(`${passengerType}.sur_name`, {
                       required: "this is a required",
                     })}
                     className="mt-1 p-2"
                     placeholder="Last name"
                   />
-                  {is_last_name && (
+                  {is_sur_name && (
                     <p className="absolute -bottom-4 text-xs text-red-500">
                       Last Name Required
                     </p>
@@ -368,6 +369,34 @@ const FormField = ({
                     </p>
                   )}
                 </div>
+
+                <Controller
+                  name={`${passengerType}.gender`}
+                  control={control}
+                  rules={{ required: "Gender is required" }}
+                  render={({ field }) => (
+                    <div className="relative flex flex-col">
+                      <label htmlFor={`gender-${index}`}>Gender</label>
+                      <div>
+                        <select
+                          className="w-full rounded border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                          {...field}
+                        >
+                          <option value="" disabled selected>
+                            Select a Gender
+                          </option>
+                          <option value="M">Male</option>
+                          <option value="F">Female</option>
+                        </select>
+                      </div>
+                      {is_gender && (
+                        <p className="absolute -bottom-4 text-xs text-red-500">
+                          Gender Required
+                        </p>
+                      )}
+                    </div>
+                  )}
+                />
 
                 {/* email  */}
                 <div className=" relative flex flex-col">
@@ -436,6 +465,26 @@ const FormField = ({
                     className="booking_input"
                   />
                 </div>
+
+                <div className="relative hidden flex-col text-sm">
+                  <label htmlFor="Country">Country</label>
+                  <input
+                    readOnly
+                    type="number"
+                    {...register(`${passengerType}.country_id`)}
+                    className="booking_input"
+                  />
+                </div>
+
+                <div className="relative hidden flex-col text-sm">
+                  <label htmlFor="city">save information</label>
+                  <input
+                    readOnly
+                    type="number"
+                    {...register(`${passengerType}.save_information`)}
+                    className="booking_input"
+                  />
+                </div>
                 {/* ------------------------------- for city */}
 
                 {/* passport number  */}
@@ -460,7 +509,7 @@ const FormField = ({
                   )}
                 </div>
 
-                {/*  passport_expiry_date  */}
+                {/* passport_expiry_date  */}
                 <div className=" relative flex flex-col">
                   <RequiredLabel
                     htmlFor={`passengers.${index}.passport_expiry_date`}
@@ -481,28 +530,24 @@ const FormField = ({
                     </p>
                   )}
                 </div>
+              </div>
 
-                {/* frequent_flyer_airline */}
-                <div className=" relative flex flex-col">
-                  <label htmlFor="phone">Frequent Flyer Airline</label>
-                  <Input
-                    type="text"
-                    {...register(`${passengerType}.frequent_flyer_airline`)}
-                    className="mt-1 p-2"
-                    placeholder="Flyer Airline"
-                  />
-                </div>
-
-                {/* frequent_flyer_number */}
-                <div className=" relative flex flex-col">
-                  <label htmlFor="phone">Frequent Flyer Number</label>
-                  <Input
-                    type="text"
-                    {...register(`${passengerType}.frequent_flyer_number`)}
-                    className="mt-1 p-2"
-                    placeholder="Flyer Number"
-                  />
-                </div>
+              <div
+                className="mb-3 flex items-center justify-end space-x-2"
+                key={index}
+              >
+                <Checkbox
+                  id={passengerType}
+                  checked={saveInfo}
+                  onCheckedChange={(event) => handleChangeSaveInfo()}
+                  className="text-primary"
+                />
+                <Label
+                  htmlFor={passengerType}
+                  className="flex cursor-pointer items-center gap-2 text-primary"
+                >
+                  Save this info
+                </Label>
               </div>
             </div>
           </div>

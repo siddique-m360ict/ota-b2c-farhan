@@ -101,13 +101,16 @@ function DatePickerRange({ className, date, setDate, visaPage }: Props) {
             defaultMonth={date?.from}
             selected={date}
             onDayClick={(day) =>
-              setDate((prev) =>
-                prev?.to
-                  ? { from: day, to: undefined }
-                  : prev?.from
-                  ? { from: prev?.from, to: day }
-                  : { from: day, to: undefined }
-              )
+              setDate((prev) => {
+                if (!prev?.from || prev?.to) {
+                  return { from: day, to: undefined }
+                }
+                const newRange = { from: prev.from, to: day }
+                if (newRange.to < newRange.from) {
+                  return { from: newRange.to, to: undefined }
+                }
+                return newRange
+              })
             }
             numberOfMonths={isDesktop ? 2 : 1}
             weekStartsOn={1}
