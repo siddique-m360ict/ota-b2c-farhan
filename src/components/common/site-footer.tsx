@@ -19,7 +19,11 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             Copyright © 2024 Booking Expert. All rights reserved.{" "}
             <br className="hidden md:block" />
             <p className="text-center text-sm leading-loose ">
+<<<<<<< HEAD
               Developed by{" "}
+=======
+                 Developed by{" "}
+>>>>>>> 8c99d625a92c6547930bfc9a051bcc1551a2ea38
               <a
                 href={"https://m360ict.com/"}
                 target="_blank"
