@@ -7,6 +7,7 @@ import { Passenger } from "./VisaSearchBox"
 import { IGetSingleVisa } from "@/app/(visaSearch)/actions"
 import { formatNumber } from "@/lib/utils"
 import VisaForm from "./elements/VisaForm"
+import VisaDetails from "./elements/VisaDetails"
 
 type Props = {
   data: IGetSingleVisa
@@ -110,6 +111,8 @@ const ReviewBookVisa = ({ data, token, id }: Props) => {
             </div>
           </CardContent>
         </Card>
+
+        <VisaDetails />
         <VisaForm passengers={passengers} token={token} visa_id={id} />
       </div>
       <div>
