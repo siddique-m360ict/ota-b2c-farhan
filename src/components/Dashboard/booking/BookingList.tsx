@@ -86,13 +86,13 @@ const BookingList = ({ bookingRequestData }: Props) => {
                           View
                         </div>
                       </Link>
-                      {request.booking_status === "pending" && (
+                      {/* {request.booking_status === "pending" && (
                         <button onClick={() => handlePay(request.booking_id)}>
                           <div className="rounded border border-blue-100 bg-primary px-2 py-1 text-center text-xs text-white transition-all duration-300 dark:border-[#222]">
                             Pay
                           </div>
                         </button>
-                      )}
+                      )} */}
                     </div>
                   </td>
                 </tr>
