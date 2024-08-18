@@ -1,4 +1,3 @@
-"use client"
 import { Suspense } from "react"
 import { getAllFlights } from "../actions"
 import FlightListView from "@/components/flight-search/FlightListView"

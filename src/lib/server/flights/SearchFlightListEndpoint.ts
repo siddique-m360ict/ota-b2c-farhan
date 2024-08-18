@@ -70,25 +70,25 @@ const sanitizeSearchParams = (searchParams) => {
 export default async function GetFlightList_V1(
   params: IReqFlightSearch
 ): Promise<HTTPResponse<IFlightSearchList>> {
-  const apiUrl = serverUrl("/booking/flight/search/v2?page=1&size=20")
+  const apiUrl = serverUrl("/booking/flight/search")
   let myHeaders = new Headers()
   myHeaders.append("Content-Type", "application/json")
-  const sanitizeParams = sanitizeSearchParams(params)
 
   let requestBody
 
   if (params.route === "oneway") {
-    requestBody = OneWayFormatter(sanitizeParams)
+    requestBody = OneWayFormatter(params)
   } else if (params.route === "roundway") {
-    requestBody = RoundWayFormatter(sanitizeParams)
+    requestBody = RoundWayFormatter(params)
   } else if (params.route === "multiway") {
-    requestBody = MultiWayFormatter(sanitizeParams)
+    requestBody = MultiWayFormatter(params)
   }
 
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify(requestBody),
+    cache: "no-store",
   })
 
   console.log(JSON.stringify(requestBody))
