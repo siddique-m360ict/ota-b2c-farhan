@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next"
 import { GeistSans } from "geist/font/sans"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/styles/globals.css"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -136,8 +134,6 @@ export default async function RootLayout({
           <NextTopLoader color="orange" />
           <ReduxProvider>
             {children}
-            <Analytics />
-            <SpeedInsights />
             <Toaster />
             <TailwindIndicator />
           </ReduxProvider>
