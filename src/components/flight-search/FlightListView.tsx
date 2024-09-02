@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import { filterFlightList } from "@/app/(flightSearch)/actions"
 import {
@@ -26,6 +26,8 @@ import FlightLocationHeader from "./elements/FlightLocationHeader"
 import LoadingIndicator from "../common/spinner/LoadingIndicator"
 import useGlobalTransition from "@/hooks/useGlobalTransition"
 import { selectTransitionIsPending } from "@/lib/redux/slice/transitionLoading"
+import { useInView } from "react-intersection-observer"
+import LoadingCard from "./elements/LoadingCard"
 
 type Props = {
   flights: IFlightSearchList | undefined
@@ -41,6 +43,9 @@ const FlightListView = ({ flights, count }: Props) => {
   const filterCount = useAppSelector(selectFilterDataCount)
   const filterDataList = useAppSelector(selectFilterDataList)
   const loading = useAppSelector(selectTransitionIsPending)
+  const totalPage = Math.ceil((filterCount || 0) / 20)
+  const [page, setPage] = useState(2)
+  const { ref, inView } = useInView()
 
   useEffect(() => {
     if (flights?.filter) {
@@ -64,6 +69,32 @@ const FlightListView = ({ flights, count }: Props) => {
       fetchFilteredData()
     }
   }, [filterOption, dispatch])
+
+  // Handle Pagination
+  useEffect(() => {
+    if (totalPage >= page) {
+      const searchApi = async () => {
+        try {
+          const res = await filterFlightList(filterOption, page)
+          const filterData = res?.data?.results
+          if (res?.data?.results) {
+            dispatch(
+              setFilterDataList([
+                ...(flights.results || []),
+                ...(filterData || []),
+              ])
+            )
+            dispatch(setFilterCount(res.count))
+          }
+          setPage((prev) => prev + 1)
+        } catch (error) {
+          throw new Error(`Something wrong in filter`)
+        } finally {
+        }
+      }
+      searchApi()
+    }
+  }, [inView])
 
   const departureLocation =
     filterDataList?.[0]?.leg_descriptions?.[0]?.departureLocation ||
@@ -115,6 +146,20 @@ const FlightListView = ({ flights, count }: Props) => {
               <FlightListCard key={index} flight={flight} />
             ))}
       </div>
+      {totalPage > page ? (
+        <div ref={ref}>
+          {[0, 1, 2].map((_, index) => (
+            <LoadingCard key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-2 flex items-center justify-center">
+          <div className="rounded-md bg-gray-200 p-4">
+            <p className="text-lg text-gray-600">No more results found</p>
+          </div>
+        </div>
+      )}
+
       {loading && <LoadingIndicator />}
     </div>
   )

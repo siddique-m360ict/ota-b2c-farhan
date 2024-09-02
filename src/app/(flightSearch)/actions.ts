@@ -85,7 +85,7 @@ export const getAllFlights = async (params: IReqFlightSearch) => {
     }
 
     const apiUrl = serverUrl(
-      `/booking/flight/search?carrier_operating=${
+      `/booking/flight/search??page=20&carrier_operating=${
         params.carrier_operating ? params.carrier_operating : ""
       }`
     )
