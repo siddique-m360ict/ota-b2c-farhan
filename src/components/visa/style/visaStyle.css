@@ -1,0 +1,68 @@
+/* visa card style */
+.timeline .timeline-item .timeline-item-tail {
+    position: absolute;
+    inset-block-start: 10px;
+    inset-inline-start: 4px;
+    height: calc(100% - 10px);
+    border-inline-start: 2px dotted #d0d0dd;
+    transition: border-inline-start-color .5s;
+}
+
+.timeline .timeline-item .timeline-item-head {
+    position: absolute;
+    inset-block-start: 5px;
+    inset-inline-start: 5px;
+    transform: translate(-50%, -50%);
+}
+
+.timeline .timeline-item .timeline-item-head .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: #d0d0dd;
+    transition: background-color .5s;
+}
+
+.timeline .timeline-item .timeline-item-content {
+    position: relative;
+    inset-block-start: -7px;
+    margin-inline-start: 18px;
+    color: var(--gray-800);
+    font-size: 13px;
+}
+
+.timeline .timeline-item {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.timeline .timeline-item:last-child .timeline-item-tail {
+    border-inline-start: 0;
+}
+
+/* visa details >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+.term-visa-list li:before {
+    background-color: #12b76a;
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    height: 20px;
+    width: 20px;
+    z-index: 2;
+    background-repeat: no-repeat;
+    content: "";
+    -webkit-mask: url(/images/visa/bullet-ponit-2.svg) no-repeat 50% 50%;
+    mask: url(/images/visa/bullet-ponit-2.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.term-visa-list li {
+    word-break: break-all;
+    list-style-type: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* visa details sidebar */

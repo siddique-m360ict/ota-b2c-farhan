@@ -2,22 +2,29 @@
 import { cn } from "@/lib/utils"
 import React, { useEffect, useState, useTransition } from "react"
 import { Card, CardContent } from "../ui/card"
-import SelectPassenger from "../home/elements/SelectPassenger"
-import City from "../flight-revalidate/elements/PNRForm/City"
 import SelectCountry from "./elements/SelectCountry"
-import DatePickerRange from "../home/elements/DatePickerRange"
-import { addDays, format } from "date-fns"
-import { DateRange } from "react-day-picker"
-import { Button, buttonVariants } from "../ui/button"
-import {
-  usePathname,
-  useRouter,
-  useSelectedLayoutSegment,
-} from "next/navigation"
-import Link from "next/link"
-import { useMediaQuery } from "@/hooks/use-media-query"
-import { toast } from "../ui/use-toast"
 import LoadingIndicator from "../common/spinner/LoadingIndicator"
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
+import {
+  selectCitizenCountry,
+  selectTravelingCountry,
+  selectVisaCategory,
+  setCitizenCountry,
+  setTravelingCountry,
+  setVisaCategory,
+} from "@/lib/redux/slice/visaSlice/visaSearchState"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select"
+import categoryData from "../../../public/data/visa/visaCategory.json"
+import Link from "next/link"
+import { buttonVariants } from "../ui/button"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 export interface Passenger {
   adult: number
@@ -31,97 +38,14 @@ type Props = {
   className?: string
 }
 const VisaSearchBox = ({ home, className }: Props) => {
-  const [passenger, setPassenger] = useState<Passenger>({
-    adult: 1,
-    kids: 0,
-    children: 0,
-    infant: 0,
-  })
-
-  const [selectedCountry, setSelectedCountry] = useState<{
-    id: number
-    name: string
-    iso: string
-  } | null>({
-    id: 224,
-    name: "UNITED ARAB EMIRATES",
-    iso: "AE",
-  })
-  const [selectedNationality, setSelectedNationality] = useState<{
-    id: number
-    name: string
-    iso: string
-  } | null>({
-    id: 38,
-    name: "CANADA",
-    iso: "CA",
-  })
-  const [selectedResidenceCountry, setSelectedResidenceCountry] = useState<{
-    id: number
-    name: string
-    iso: string
-  } | null>({
-    id: 18,
-    name: "BANGLADESH",
-    iso: "BD",
-  })
-
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: addDays(new Date(), 7),
-    to: addDays(new Date(), 20),
-  })
-
-  // react hook
   const [isPending, startTransition] = useTransition()
-  const segment = useSelectedLayoutSegment()
-  const pathName = usePathname()
-  const router = useRouter()
+  // get search state form redux slice
+  const citizenCountry = useAppSelector(selectCitizenCountry)
+  const travelingCountry = useAppSelector(selectTravelingCountry)
+  const visaCategory = useAppSelector(selectVisaCategory)
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
-  // Make url
-  const queryParams = `country_id=${selectedCountry.id}&departuredate=${
-    date?.from ? format(new Date(date.from), "yyyy-MM-dd") : ""
-  }&returndate=${
-    date?.to ? format(new Date(date.to), "yyyy-MM-dd") : ""
-  }&adults=${passenger.adult}${
-    passenger.children !== 0 ? `&child=${passenger.children}` : ""
-  }${passenger.infant !== 0 ? `&infant=${passenger.infant}` : ""}${
-    passenger.kids !== 0 ? `&kids=${passenger.kids}` : ""
-  }`
-
-  const addData = () => {
-    const saveLocalStorage = {
-      selectedCountry,
-      selectedNationality,
-      selectedResidenceCountry,
-      passenger,
-      date,
-    }
-    localStorage.setItem("visaSearch", JSON.stringify(saveLocalStorage))
-  }
-
-  // ==================== get flight search localStorage info
-  useEffect(() => {
-    if (window !== undefined) {
-      const searchVisa = JSON.parse(localStorage.getItem("visaSearch"))
-      if (searchVisa && Object.keys(searchVisa).length > 0) {
-        setSelectedCountry(searchVisa?.selectedCountry)
-        setSelectedNationality(searchVisa?.selectedNationality)
-        setSelectedResidenceCountry(searchVisa?.selectedResidenceCountry)
-        setPassenger(searchVisa.passenger)
-        setDate({
-          from: new Date(searchVisa.date.from),
-          to: new Date(searchVisa.date.to),
-        })
-      }
-    }
-  }, [segment])
-
-  const changeRoute = () => {
-    addData()
-    router.push(`/searchVisa?${queryParams}`)
-    router.refresh()
-  }
+  const dispatch = useAppDispatch()
   return (
     <>
       <Card className={cn(!home && "shadow-xl", className)}>
@@ -131,71 +55,78 @@ const VisaSearchBox = ({ home, className }: Props) => {
           <div className="mb-[7px] mt-1 flex items-center justify-between md:justify-start md:gap-5">
             <p className=" p-0 font-heading text-destructive">Search Visa</p>
           </div>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-2">
-            <div className="relative grid w-full gap-3 md:flex md:gap-2">
+          <div className="grid grid-cols-1 items-center gap-3 md:gap-2 xl:grid-cols-9 2xl:grid-cols-10">
+            <div className="grid grid-cols-3 gap-2 xl:col-span-8 2xl:col-span-9 ">
+              {/* citizen country  */}
               <SelectCountry
-                selectedCountry={selectedCountry}
-                setSelectedCountry={setSelectedCountry}
-                type="Country"
+                country={citizenCountry}
+                label="I’m a Citizen of"
+                setSelectedCountry={(selectedCountry) => {
+                  dispatch(setCitizenCountry(selectedCountry))
+                }}
               />
 
-              <DatePickerRange date={date} setDate={setDate} visaPage={true} />
+              {/* traveling country*/}
+              <SelectCountry
+                country={travelingCountry}
+                label="Traveling to"
+                setSelectedCountry={(selectedCountry) => {
+                  dispatch(setTravelingCountry(selectedCountry))
+                }}
+              />
+
+              <div>
+                <label className="flex flex-col pr-0">
+                  <span className="mb-[6px] text-sm font-[400] text-[#4A4A4A]  ">
+                    Visa Category
+                  </span>
+
+                  <Card className="cursor-pointer rounded px-3 py-2 text-start">
+                    <CardContent className="h-[4vh] w-full cursor-pointer p-0">
+                      <Select
+                        value={visaCategory}
+                        onValueChange={(value) => {
+                          dispatch(setVisaCategory(value))
+                        }}
+                      >
+                        <SelectTrigger
+                          className={`w-full border-none p-0 text-[22px] font-[900] leading-[30px] focus:ring-0 [&_svg]:hidden`}
+                        >
+                          <SelectValue placeholder="Visa Category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {categoryData.map((category) => (
+                              <SelectItem
+                                value={category.title}
+                                key={category.title}
+                              >
+                                {category.title}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </CardContent>
+                  </Card>
+                </label>
+              </div>
             </div>
-            <div className="flex flex-col gap-2 md:flex-row ">
-              <SelectCountry
-                selectedCountry={selectedNationality}
-                setSelectedCountry={setSelectedNationality}
-                type="Nationality"
-              />
-              <SelectPassenger
-                setPassenger={setPassenger}
-                passenger={passenger}
-                type="visa"
-              />
-              <SelectCountry
-                selectedCountry={selectedResidenceCountry}
-                setSelectedCountry={setSelectedResidenceCountry}
-                type="Residence Country"
-              />
 
-              {pathName !== "/searchVisa" ? (
-                <Link
-                  href={`/searchVisa?${queryParams}`}
-                  className={cn(
-                    buttonVariants({
-                      variant: "default",
-                      size: isDesktop ? "xl" : "sm",
-                    }),
-                    "h-10 w-full cursor-pointer rounded px-4 md:w-auto xl:h-[5.2vh] 2xl:h-[5.4vh]"
-                  )}
-                  onClick={(e) => {
-                    if (!selectedCountry.id) {
-                      e.preventDefault()
-                      toast({
-                        title: "Please fill Country fields",
-                        duration: 1000,
-                      })
-                    } else {
-                      addData()
-                    }
-                  }}
-                >
-                  Search
-                </Link>
-              ) : (
-                <Button
-                  className={cn(
-                    buttonVariants({
-                      variant: "default",
-                      size: "sm",
-                    }),
-                    "w-full rounded bg-[#06aebd] px-4  md:h-[5.4vh] md:w-auto"
-                  )}
-                  onClick={() => startTransition(() => changeRoute())}
-                >
-                  Search
-                </Button>
-              )}
+            <div>
+              <Link
+                href={`/visaDetails/${travelingCountry.title.toLowerCase()}`}
+                className={cn(
+                  buttonVariants({
+                    variant: "default",
+                    size: isDesktop ? "xl" : "sm",
+                  }),
+                  "h-10 rounded px-4 md:mt-[25px] xl:h-[5.6vh] 2xl:h-[5.5vh]"
+                )}
+                onClick={(e) => {}}
+              >
+                Check Details
+              </Link>
             </div>
           </div>
         </CardContent>

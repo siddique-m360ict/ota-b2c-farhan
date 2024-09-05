@@ -19,6 +19,8 @@ import WarningOTP from "./WarningOTP"
 
 interface MainNavProps {
   home?: boolean
+  className?: string
+  logoMain?: boolean
 }
 
 export const headerItems = [
@@ -59,7 +61,7 @@ export const headerItems = [
     href: "/",
   },
 ]
-export function MainNav({ home }: MainNavProps) {
+export function MainNav({ home, className, logoMain }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   const user = useAppSelector((state) => state.user)
@@ -85,7 +87,7 @@ export function MainNav({ home }: MainNavProps) {
             {siteConfig.name}
           </span> */}
           <Image
-            src={"/be-removebg.png"}
+            src={logoMain ? "/be.png" : "/be-removebg.png"}
             alt="site logo"
             width={200}
             height={100}
@@ -105,6 +107,8 @@ export function MainNav({ home }: MainNavProps) {
                     "font-Default flex items-center text-[15px] transition-colors hover:text-foreground/80",
                     item.href.startsWith(`/${segment}`)
                       ? "text-[#ff0000]"
+                      : className
+                      ? className
                       : "text-white"
                   )}
                 >

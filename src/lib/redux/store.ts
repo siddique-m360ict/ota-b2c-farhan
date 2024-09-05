@@ -8,11 +8,12 @@ import filterDataReducer from "./slice/filterDataList"
 import modifyFlightSearchDrawerReducer from "./slice/ModifyFlightSearchDrawer"
 import transitionLoadingReducer from "./slice/transitionLoading"
 import cappingAirlineReducers from "./slice/cappingAirline"
+import visaSearchStateReducer from "./slice/visaSlice/visaSearchState"
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["filterItems", "user", "cappingAirline"],
+  whitelist: ["filterItems", "user", "cappingAirline", "visaSearchState"],
 }
 
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   filter: filterDataReducer,
   modifyFlightSearch: modifyFlightSearchDrawerReducer,
   transitionLoading: transitionLoadingReducer,
+  visaSearchState: visaSearchStateReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

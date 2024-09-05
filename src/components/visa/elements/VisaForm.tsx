@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation"
 
 type Props = {
   passengers: Passenger
-  token: string
-  visa_id: string
+  token?: string
+  visa_id?: string
 }
 type passengerCounts = {
   Adult: number

@@ -1,98 +1,83 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
+  PopoverContent,
 } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command"
-import countries from "../../../../public/data/countries.json"
-import { Check } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { useDebounce } from "@/hooks/use-debounce"
+import CountrySelect from "./CountrySelect"
+import { IVisaCountry } from "./visaType"
+import Image from "next/image"
+import visaCountry from "../../../../public/data/visa/visaCountry.json"
 
 type Props = {
-  setSelectedCountry: React.Dispatch<
-    React.SetStateAction<{ id: number; name: string; iso: string } | null>
-  >
-  selectedCountry: { id: number; name: string; iso } | null
-  type: string
+  country: IVisaCountry
+  setSelectedCountry: (selectedAirport: IVisaCountry | null) => void
+  label: string
 }
-const SelectCountry = ({
-  setSelectedCountry,
-  selectedCountry,
-  type,
-}: Props) => {
-  const [open, setOpen] = useState(false)
-  const handleCountrySelect = (country: {
-    id: number
-    name: string
-    iso: string
-  }) => {
-    setSelectedCountry(country)
-    setOpen(false)
+
+const SelectCountry = ({ country, setSelectedCountry, label }: Props) => {
+  const [open, setOpen] = React.useState(false)
+  const [visaCountryList, setVisaCountryList] = useState<IVisaCountry[]>()
+  const [searchTerm, setSearchTerm] = useState("")
+  const debouncedQuery = useDebounce(searchTerm, 400)
+
+  async function fetchVisaCountryData(arg: string) {
+    const filteredOptions = visaCountry?.filter(
+      (airport) =>
+        airport?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        airport?.slug?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setVisaCountryList(filteredOptions)
   }
+
+  useEffect(() => {
+    fetchVisaCountryData(debouncedQuery)
+  }, [debouncedQuery])
+
   return (
-    <div className="flex w-full flex-col">
+    <div>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className="h-auto w-full flex-col items-start justify-start rounded py-[7px] text-start"
-          >
-            {selectedCountry ? (
-              <div className="flex w-full flex-col">
-                <span className="text-sm text-destructive">{type}</span>
-                <div className="text-xs ">
-                  {type === "Country" ? (
-                    <p className=" flex w-full gap-4">
-                      {selectedCountry.name} ({selectedCountry.iso})
-                    </p>
-                  ) : (
-                    <p className=" flex w-full gap-4">
-                      {selectedCountry.iso} ({selectedCountry.name})
-                    </p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              "Select Country"
-            )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="p-0 ">
-          <Command>
-            <CommandInput placeholder="Search country..." />
-            <CommandEmpty>No country found.</CommandEmpty>
-            <CommandGroup className="max-h-[35vh]  overflow-auto">
-              {countries.map((country) => (
-                <CommandItem
-                  key={country.id}
-                  value={country.id as any}
-                  onSelect={() => handleCountrySelect(country)}
-                  className="cursor-pointer"
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      selectedCountry && selectedCountry.id === country.id
-                        ? "opacity-100"
-                        : "opacity-0"
-                    )}
+        <PopoverTrigger className="w-full cursor-pointer">
+          <span className="mb-[6px] flex items-center gap-2 text-sm font-[400] text-[#4A4A4A]">
+            {label}{" "}
+            <Image
+              src={country.flag as string}
+              alt="country flag"
+              width={20}
+              height={20}
+            />{" "}
+          </span>
+          <Card className="cursor-pointer rounded px-3 py-2 text-start">
+            <CardContent className="h-[4vh] w-full cursor-pointer p-0">
+              <label className="relative flex cursor-pointer items-center gap-3">
+                <div>
+                  <Image
+                    src={country.flag as string}
+                    alt="country flag"
+                    width={40}
+                    height={40}
                   />
-                  {country.name}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </Command>
+                </div>
+                <div className={`flex flex-col`}>
+                  <p className={`text-[24px] font-[900] leading-[36px]`}>
+                    {country.title}{" "}
+                    <span className="text-xs"> {country.continent}</span>
+                  </p>
+                </div>
+              </label>
+            </CardContent>
+          </Card>
+        </PopoverTrigger>
+        <PopoverContent className="w-full p-0" align="start">
+          <CountrySelect
+            setOpen={setOpen}
+            setSelectedCountry={setSelectedCountry}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            visaCountryList={visaCountryList}
+          />
         </PopoverContent>
       </Popover>
     </div>

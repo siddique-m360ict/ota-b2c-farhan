@@ -8,6 +8,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "unispaces.sgp1.digitaloceanspaces.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "raw.githubusercontent.com",
         pathname: "/**",
       },
