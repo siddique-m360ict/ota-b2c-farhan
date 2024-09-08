@@ -160,7 +160,7 @@ c-0.03,0.01-0.09,0.01-0.18,0.01c-0.23,0-0.43-0.08-0.59-0.24S14.14,14.71,14.14,14
                     <div className="flex items-center justify-between">
                       <div className="flex items-center  gap-[5px]">
                         <Image
-                          src={"/images/visa/pak.webp"}
+                          src={fees.country.flag}
                           alt=""
                           width={35}
                           height={35}
