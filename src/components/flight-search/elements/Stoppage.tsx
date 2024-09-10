@@ -21,8 +21,8 @@ const Stoppage = ({ filter: total_stoppage }: Props) => {
   const departuredate = searchParams.get("departuredate")
   const returnDate = searchParams.get("returndate")
   const trips = searchParams.get("trips")
-
   const filterOption = useAppSelector(selectFilterOption)
+
   const dispatch = useAppDispatch()
   const [stoppage, setStoppage] = useState<
     {

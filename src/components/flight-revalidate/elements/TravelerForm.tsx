@@ -271,7 +271,7 @@ const TravelerForm = ({
             />
           ))}
 
-        {/* <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-6">
           <Button
             type="submit"
             className="mt-5 w-full cursor-pointer rounded border border-primary bg-transparent p-2 text-center text-sm font-semibold text-destructive hover:bg-primary hover:text-white "
@@ -292,7 +292,7 @@ const TravelerForm = ({
             )}
             Pay Now
           </Button>
-        </div> */}
+        </div>
       </form>
       <LoginModal open={isLoginModalOpen} setOpen={setIsLoginModalOpen} />
     </div>

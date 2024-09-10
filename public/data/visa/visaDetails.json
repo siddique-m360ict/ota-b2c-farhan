@@ -42075,7 +42075,1071 @@
         "isHasVisaRequirementPage": false,
         "isHasEmbassyPage": true,
         "isHasApplyPage": true
+},
+
+{
+        "organizationCountryId": 15,
+        "country": {
+            "id": 202,
+            "isActive": true,
+            "organization": "bangladesh",
+            "createdAt": "2023-10-21T18:27:28.680Z",
+            "updatedAt": "2024-06-08T06:09:01.968Z",
+            "title": "United States",
+            "code": "united-states",
+            "slug": "united-states",
+            "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+            "continent": "North America",
+            "visaMethod": "In-Person Submission",
+            "orderPriority": 0,
+            "isFeatured": false,
+            "isPageActive": true,
+            "createdById": null,
+            "updatedById": 5
+        },
+        "countryPage": {
+            "id": 17,
+            "isActive": true,
+            "organization": "bangladesh",
+            "createdAt": "2024-05-04T10:12:50.736Z",
+            "updatedAt": "2024-05-23T06:05:45.232Z",
+            "title": "Apply for US Visa from Bangladesh",
+            "prevSlug": "united-states-of-america",
+            "capital": "Washington D.C.",
+            "timeZone": "-4",
+            "visitPerYear": "48 Million",
+            "description": "<p><p dir=\"ltr\">The United States of America is the country of dreams and opportunities for millions of people. People all around the world desire to be in the United States for both the short and long term. The US government is also welcoming individuals by offering a diverse visa type to people who want to apply for US visa from Bangladesh.&nbsp;</p><p dir=\"ltr\">The United States Embassy is located in Dhaka, Bangladesh. So, Bangladeshi people do not need to go abroad to apply for US visa. However, the application procedure is quite subtle. Follow the article for more accurate information about the US visa application process.</p></p>",
+            "visaTypeSectionTitle": "Different <span>Types of US Visa</span> Categories for Bangladeshi Citizens",
+            "visaTypeSectionDescription": "<p>The United States of America is always well known for its generous amount of opportunity for international engagement. There is an extensive range of ways for people who want to enter the USA for various purposes. Find out your visa purpose from the US visa categories below.</p>",
+            "visaTypeSectionContent": [
+                {
+                    "bgColor": "#D1FADF",
+                    "content": "<p><ol><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">P: Athletes, Artists, Entertainers</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">B-1: Business Visitors, Athletes, Amateurs, or Professionals (competing for prize money only).</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">D: Crewmembers</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">A: Diplomats and foreign government officials</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">B-1: Domestic employees or nannies</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">G1-G5, NATO: Employees of a designated international organization, and NATO</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">J: Exchange visitors</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">J-1: Exchange visitors - au pairs, professors, scholars, teachers</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">J-2: Exchange visitors - Children or spouse</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">J, Q: Exchange visitors - international cultural</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">K-1: Fiancé</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">O-1: Foreign nationals with extraordinary ability in sciences, arts, education, business or athletics</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-1B1: Free Trade Agreement (FTA) professionals: Chile</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">I: Information media representative (media, journalists)</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">L: Intra-company transferees</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">B-2: Medical treatment, visitors for</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-1C: Nurses traveling to areas short of healthcare professionals</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">J-1, H-1B: Physicians</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">R: Religious workers</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-1B: Specialty occupations in fields requiring highly specialized knowledge</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">F-1: Students - academic and language students</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">F-2: Student dependents - dependent of an F-1 holder</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">M-1: Students – vocational</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">M-2: Student dependents - dependent of an M-1 holder</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-2A: Temporary workers - seasonal agricultural</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-2B: Temporary workers – nonagricultural</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">B-2: Tourism, vacation, pleasure visitors</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">H-3: Training in a program not primarily for employment</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">E-2: Treaty Investors</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">E-1: Treaty traders</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">C: Transiting the United States</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">T-1: Victims of human trafficking</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">U-1: Victims of criminal activity</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">A1-2, G1-4, NATO1-6: Visa renewals in the United States - A, G, and NATO</p></li></ol></p>"
+                }
+            ],
+            "serviceSectionTitle": "<span>Visa Services</span> Bangladeshi People Can Take for The USA from <span>VISAThing</span>",
+            "serviceSectionDescription": "<p>General people find the visa application process complex because of its habitual nature. People most often get confused with the vast categories of the US visa types. Moreover, applicants need to be prepared while applying for a US visa. It’s because an in-person interview is needed at the US Embassy. Here, VISAThing supports the visa candidates with the most important thing which is:</p>",
+            "visaStepSectionTitle": "Applying Process for US Visa From Bangladesh",
+            "visaStepSectionDescription": "<p>Applicants need to have a good understanding of the visa purpose and the required documents to apply for US visa in Bangladesh. Applicants need to be prepared well for the interview. VISAThing is providing you with a clear visa application guideline below. Read the process if you want the proper direction.</p>",
+            "promotionTitle": "The <span>US Visa</span> Application <span>Online</span> Process Offered by VISAThing",
+            "promotionDescription": "<p><p dir=\"ltr\">In the modern era, people have less time for themselves to plan something. Applicants usually research and get confused with the huge number of different information they get to follow. In this case, the most important thing is to organize the documents and properly take the instructions. Now you don’t need to worry.&nbsp;&nbsp;</p><p dir=\"ltr\">VISAThing has an online application facility for Bangladeshi clients. Just activate VISAThing’s online service to process your visa. First, visit the VISATHing website and select your visa category. Click “Apply Now” to go to the further process. Submit the required documents on the portal and pay the relevant fees. That’s it. You will get your visa decision within the required time.</p><p dir=\"ltr\">By taking this opportunity, you can apply for a US visa from Bangladesh. You do not need to overwork or be worried about making any mistakes. Contact VISAThing and get your job done.</p></p>",
+            "conclusion": "<p>Be fully prepared and apply for US visa from Bangladesh to get your visa on the first attempt. The continuous rejection can make your visa profile look unreliable. You have a VISAThing support center for your assistance. We can organize your documents, notarize them, and assist you to be prepared for the interview. So, without any further delay, contact with VISAThing before applying for a US visa.</p>",
+            "metaData": {
+                "title": "Apply for US Visa from Bangladesh - Overall Details",
+                "isIndex": true,
+                "isFollow": true,
+                "keywords": "Apply for US Visa from Bangladesh",
+                "description": "Effortlessly apply for a US visa from Bangladesh with VISAThing's expert guidance. Visa categories, procedures, and success strategies revealed."
+            },
+            "image": {
+                "id": 81,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T11:10:09.935Z",
+                "updatedAt": "2024-05-05T10:10:45.086Z",
+                "title": "Apply for US Visa from Bangladesh",
+                "caption": "Apply for US Visa from Bangladesh",
+                "source": null,
+                "altText": "Apply for US Visa from Bangladesh",
+                "url": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/images/1714821009954.png",
+                "key": "nebula/images/1714821009954.png",
+                "fileType": "image/png",
+                "fileExtension": "png",
+                "createdById": 5,
+                "updatedById": 12
+            },
+            "imageId": 81,
+            "createdById": 5,
+            "updatedById": 12
+        },
+        "countryVisaSteps": [
+            {
+                "id": 67,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:17:07.758Z",
+                "updatedAt": "2024-05-04T10:17:07.758Z",
+                "title": "Step 1: Fill Up the US Visa Application Online",
+                "description": "<p>Go to the US visa online application portal to fill up the DS-160 form. Carefully fill up all the required information. Any mistakes in the application form can create your US visa complications or cause rejection.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 68,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:17:44.018Z",
+                "updatedAt": "2024-05-04T10:17:44.018Z",
+                "title": "Step 2: Pay Your US Visa Fee",
+                "description": "<p>Eastern Bank Limited (EBL) processes US visa fees in Bangladesh. Applicants need to visit any branch of EBL or pay them online. First, you need to create a CGI Federal profile and generate an invoice with the appropriate visa category. If you want to pay your visa fee in the EBL branch, bring a printed copy of the invoice and your passport. If you are an existing EBL account holder, you can pay your visa fees online through their Sky Banking app. Remember, you cannot pay your visa fees through any Debit or Credit card.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 69,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:18:24.656Z",
+                "updatedAt": "2024-05-04T10:18:24.656Z",
+                "title": "Step 3: Make an Appointment Request",
+                "description": "<p>After you pay your visa fees, you need to go to the “Apply For An US Visa” website to make an appointment. You cannot make an appointment request before paying your visa fees.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 70,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:18:54.243Z",
+                "updatedAt": "2024-05-04T10:18:54.243Z",
+                "title": "Step 4: Collect Documents for The US",
+                "description": "<p>Gather all required documents, and organize and translate the documents into English. Notarize the translated documents. You need to bring them to the interview in person at the US Embassy.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 71,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:19:21.681Z",
+                "updatedAt": "2024-05-04T10:19:21.681Z",
+                "title": "Step 5: Submit Your Biometrics",
+                "description": "<p>You need to provide your biometrics for the US visa application at the US Embassy in Bangladesh. Your biometric will be taken on the day of your interview.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 72,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:19:50.039Z",
+                "updatedAt": "2024-05-04T10:19:50.039Z",
+                "title": "Step 6: Wait for The Visa Decision",
+                "description": "<p>When the US visa application is done, all you need to do is wait for the visa decision. Collect your passport after the visa decision comes out.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            }
+        ],
+        "countryFaqs": [],
+        "serviceTypes": [
+            {
+                "id": 5,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-04-25T10:15:09.460Z",
+                "updatedAt": "2024-06-13T04:13:59.528Z",
+                "title": "Document Legalization",
+                "slug": "document-legalization",
+                "description": "<p>Bangladeshi nationals and residents frequently require legalization, apostille, authentication, and notarization of various commercial and non-commercial documents from diplomatic offices in New Delhi, India. The Ministry of Foreign Affairs in Bangladesh must verify or testify to these documents. VISAThing will legalize/apostille commercial and non-commercial documents from embassies in India for Bangladeshi citizens.</p>",
+                "orderPriority": 60,
+                "isPageActive": true,
+                "isVisibleInWeb": true,
+                "isVisaFeeRequired": true,
+                "iconId": 45,
+                "imageId": 45,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 2,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-01-02T05:47:16.021Z",
+                "updatedAt": "2024-09-03T11:40:49.777Z",
+                "title": "Visa Consultancy",
+                "slug": "visa-consultancy",
+                "description": "<p>VISAThing consultancy service will ensure smooth visa processing in Bangladesh. Our professionals will provide you with an accurate visa application method. Begin your worldwide journey with VISAThing consultancy services from Bangladesh.</p>",
+                "orderPriority": 100,
+                "isPageActive": true,
+                "isVisibleInWeb": true,
+                "isVisaFeeRequired": false,
+                "iconId": 43,
+                "imageId": 43,
+                "createdById": null,
+                "updatedById": 27
+            }
+        ],
+        "countrySections": [
+            {
+                "id": 26,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:21:35.112Z",
+                "updatedAt": "2024-05-04T10:21:35.112Z",
+                "name": "Time and Fees",
+                "title": "US Visa Processing <span>Time and Fees</span> for Bangladeshi",
+                "content": "<p><p dir=\"ltr\">The US visa fee varies depending on the different categories. The fees start from BDT 21,090 and a maximum of BDT 35,910. Please keep in mind that the visa fee can be a bit higher or lower if the Dollar rate fluctuates.&nbsp;</p><p dir=\"ltr\">The US visa processing time is approximately 15 to 30 working days after the visa application is received by the embassy. Do not plan any trip before you get your US visa in hand.</p></p>",
+                "orderPriority": 0,
+                "imageId": null,
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            },
+            {
+                "id": 27,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-04T10:22:26.670Z",
+                "updatedAt": "2024-05-04T10:22:26.670Z",
+                "name": "Decision and Appeal",
+                "title": "When you get your US Visa <span>Decisions</span> and Approach to <span>Appeal</span>",
+                "content": "<p><p dir=\"ltr\">The US visa decision comes out within 15 to 30 working days. It can vary according to the different categories and purposes. Rather than worrying, applying for a visa ahead of time is the right step.</p><p dir=\"ltr\">There is no process to appeal against the US visa decision. You need to re-apply for the US visa if your visa gets rejected. Add supporting documents and correct the previous mistakes before reapplying for a US visa.</p></p>",
+                "orderPriority": 0,
+                "imageId": null,
+                "countryId": 202,
+                "createdById": 5,
+                "updatedById": null
+            }
+        ],
+        "visaFees": [
+            {
+                "id": 422,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:58:40.693Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 6,
+                    "title": "Business Visit",
+                    "slug": "business-visit",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 2492,
+                        "code": "service_document_legalization_united_states_business_visit",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 1545,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 421,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:58:13.197Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 10,
+                    "title": "Event",
+                    "slug": "event",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 2358,
+                        "code": "service_document_legalization_united_states_event",
+                        "serviceTitle": "Document Legalization"
+                    }
+                ]
+            },
+            {
+                "id": 420,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:57:41.126Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 5,
+                    "title": "Family Visit",
+                    "slug": "family-visit",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 2223,
+                        "code": "service_document_legalization_united_states_family_visit",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 2505,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 419,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:57:02.379Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 3,
+                    "title": "Tourism",
+                    "slug": "tourism",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 2087,
+                        "code": "service_document_legalization_united_states_tourism",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 2504,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 418,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:56:33.692Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 11,
+                    "title": "Work / Employment",
+                    "slug": "work-employment",
+                    "periodOfStay": "90 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 1408,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    },
+                    {
+                        "id": 1950,
+                        "code": "service_document_legalization_united_states_work_employment",
+                        "serviceTitle": "Document Legalization"
+                    }
+                ]
+            },
+            {
+                "id": 417,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:55:30.891Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 12,
+                    "title": "Join Family",
+                    "slug": "join-family",
+                    "periodOfStay": "90 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 1815,
+                        "code": "service_document_legalization_united_states_join_spouse",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 1265,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 416,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:55:00.752Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-30 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 202,
+                    "title": "United States",
+                    "slug": "united-states",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1682579132479.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 47,
+                    "title": "Conference",
+                    "slug": "conference",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 2,
+                    "title": "United States Dollar",
+                    "currencyCode": "USD",
+                    "currencySymbol": "$"
+                },
+                "services": [
+                    {
+                        "id": 1680,
+                        "code": "service_document_legalization_united_states_conference",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 3729,
+                        "code": "service_offshore_visa_only_secured_courier_country_conference",
+                        "serviceTitle": "Offshore Visa (Only Secured Courier)"
+                    },
+                    {
+                        "id": 941,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            }
+        ],
+        "isHasVisaRequirementPage": false,
+        "isHasEmbassyPage": false,
+        "isHasApplyPage": true
+},
+
+
+{
+        "organizationCountryId": 15,
+        "country": {
+            "id": 6,
+            "isActive": true,
+            "organization": "bangladesh",
+            "createdAt": "2023-10-21T18:27:28.680Z",
+            "updatedAt": "2024-06-30T11:54:21.381Z",
+            "title": "Canada",
+            "code": "canada",
+            "slug": "canada",
+            "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+            "continent": "North America",
+            "visaMethod": "In-Person Submission",
+            "orderPriority": 0,
+            "isFeatured": false,
+            "isPageActive": true,
+            "createdById": null,
+            "updatedById": 5
+        },
+        "countryPage": {
+            "id": 14,
+            "isActive": true,
+            "organization": "bangladesh",
+            "createdAt": "2024-05-02T08:04:03.462Z",
+            "updatedAt": "2024-06-30T11:54:21.366Z",
+            "title": "Canada Visa From Bangladesh",
+            "prevSlug": "canada",
+            "capital": "Ottawa",
+            "timeZone": "-4",
+            "visitPerYear": "22.5 Million",
+            "description": "<p><p dir=\"ltr\">Canada is a popular destination for its diverse visa options and substantial economic opportunities. The craze among the Bangladeshis to visit Canada is way more visible. Getting a Canada visa from Bangladesh means you have fulfilled the requirements of the Canadian Embassy for your entry.</p><br><p dir=\"ltr\">Bangladesh has a High Commission of Canada in Dhaka. However, Canada visa application is managed by the Canada Visa Application Center, Bangladesh. It saves your time and lessen your hassle. This article gives an overview of the Canada visa for Bangladeshi citizens. Please have a look.</p></p>",
+            "visaTypeSectionTitle": "Canada <span>Visa Categories</span> you can get as a Bangladeshi",
+            "visaTypeSectionDescription": "<p>Bangladeshi citizen who wants to go to Canada has a variety of visa options. The diverse visa types of Canada show the eligibility criteria for Bangladeshi. So, you better look over the types of visas that Canada is offering for Bangladeshi citizens.</p>",
+            "visaTypeSectionContent": [
+                {
+                    "bgColor": "#D1FADF",
+                    "content": "<p><strong>Short-Term Visa</strong></p><p><ol><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Tourist Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Super Visa (For parents and grandparents)</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Diplomatic and Official Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Courtesy Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Business Visit Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Visa to Give Birth in Canada</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Intending Organ Donors Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Facilitation Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Student Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Temporary Work Visa</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Temporary Residence Permit</p></li><li dir=\"ltr\" aria-level=\"1\"><p dir=\"ltr\" role=\"presentation\">Working Holiday Visa</p></li></ol></p>"
+                },
+                {
+                    "bgColor": "#FEF0C7",
+                    "content": "<p><strong>Transit Visa</strong></p>"
+                },
+                {
+                    "bgColor": "#E0F2FE",
+                    "content": "<p><strong>Long-Term Visa</strong></p><ol><li aria-level=\"1\"><p>Immigrant Investor Program</p></li><li aria-level=\"1\"><p>Startup Visa Program</p></li><li aria-level=\"1\"><p>Self-employed Persons Visa</p></li><li aria-level=\"1\"><p>Quebec-Selected Skilled Worker Program (QSWP)</p></li><li aria-level=\"1\"><p>Family-Sponsorship Program</p></li><li aria-level=\"1\"><p>Live-in Caregiver Program</p></li></ol>"
+                }
+            ],
+            "serviceSectionTitle": "<span>Visa Facilities</span> Bangladeshi can Get from VISAThing for Canada",
+            "serviceSectionDescription": "<p>If you are smart, you can make the process of your Canada visa application almost hassle-free. Along with your presence at the Canada Visa Application Center, your documents need to be carefully organized. So, VISAThing is providing you with the services below.</p>",
+            "visaStepSectionTitle": "<span>Easy Steps</span> for Bangladeshis to get Canada Visa",
+            "visaStepSectionDescription": "<p>Doing a little research can make your Canada visa application easier. With the right instructions, you can apply for Canada visa from Bangladesh properly. Here, VISAThing will guide you through the Canada visa application process. Please check out the instructions below.</p>",
+            "promotionTitle": "<span>The Online Application Service</span> of VISAThing for Canada from Bangladesh",
+            "promotionDescription": "<p><p dir=\"ltr\">Are you searching for the best and easiest way to apply for Canada visa from Bangladesh?&nbsp;</p><p dir=\"ltr\">VISAThing is here with the latest online application facility for their clients! In this modern era, roaming around to collect information in person is not a smart act. Doing everything online is the trend now. So, throw out the unnecessary hassles and do Canada visa application online from Bangladesh from the VISAThing website.</p><p dir=\"ltr\">The first thing you need to do is to visit the VISAThing website and select which category you want to apply. Then click “Apply Now” and you will get options to apply for your desired visa. Upload your required documents in the given section. Pay your relevant fees and wait for the expert consultants to be connected with you. VISAThing will manage every visa application step and keep updating you.&nbsp;</p><p dir=\"ltr\">Hurry up! There is no time to waste to apply for your Canada visa.</p></p>",
+            "conclusion": "<p>All you need is a little guidance before applying for a Canada visa from Bangladesh. With the proper assistance, you surely can make your Canada visa application journey smoother.&nbsp; That is why VISAThing is helping Bangladeshis to obtain Canada visas. All you need to do is to contact us before applying for your Canada visa.</p>",
+            "metaData": {
+                "title": "Canada Visa From Bangladesh - Easy Steps",
+                "isIndex": true,
+                "isFollow": true,
+                "keywords": "Canada Visa From Bangladesh",
+                "description": "Explore the detailed steps to secure your Canada visa from Bangladesh. Start your Canada visa application smoothly with VISAThing."
+            },
+            "image": {
+                "id": 77,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:02:30.467Z",
+                "updatedAt": "2024-05-05T09:53:58.350Z",
+                "title": "Canada Visa From Bangladesh",
+                "caption": "Canada Visa From Bangladesh",
+                "source": null,
+                "altText": "Canada Visa From Bangladesh",
+                "url": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/images/1714636950518.jpg",
+                "key": "nebula/images/1714636950518.jpg",
+                "fileType": "image/jpeg",
+                "fileExtension": "jpg",
+                "createdById": 5,
+                "updatedById": 12
+            },
+            "imageId": 77,
+            "createdById": null,
+            "updatedById": 54
+        },
+        "countryVisaSteps": [
+            {
+                "id": 46,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:08:42.952Z",
+                "updatedAt": "2024-05-02T08:10:35.004Z",
+                "title": "Step 1: Download the Necessary Documents",
+                "description": "<p>You need to visit the Canadian official IRCC website to download the Canada visa application form, Schedule-1 form, and the Family Information Form. You need to fill up all three forms and validate them.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 47,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:09:00.544Z",
+                "updatedAt": "2024-05-02T08:10:48.093Z",
+                "title": "Step 2: Fill Up the Canada Visa Application form Online",
+                "description": "<p>Fill out the online Canada visa application form for Bangladeshi. You must upload all the necessary documents and the three download forms online.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 48,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:09:30.914Z",
+                "updatedAt": "2024-05-02T08:09:30.914Z",
+                "title": "Step 3: Pay the Visa Fees Online",
+                "description": "<p>After submitting your Canada visa application successfully online, pay your visa fees. Only international payment cards are accepted for this transaction from Bangladesh. The payment can be made securely through online payment methods.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 49,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:10:01.620Z",
+                "updatedAt": "2024-05-02T08:10:01.620Z",
+                "title": "Step 4: Make an Appointment for Biometric",
+                "description": "<p>You need to visit the Canada Visa Application Center’s website to make an appointment to provide your biometric information. You need to submit your fingerprint and photo on the appointment day. This is the last step to complete your application for Canada visa from Bangladesh.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 50,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:10:26.925Z",
+                "updatedAt": "2024-05-02T08:10:26.925Z",
+                "title": "Step 5: Wait for the Decision",
+                "description": "<p>Now you only need to wait for the Canada visa decision. After the decision, you can collect your passport from the Visa Application Center in person.</p>",
+                "type": "LIST",
+                "orderPriority": 0,
+                "items": [],
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            }
+        ],
+        "countryFaqs": [
+            {
+                "id": 27,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:13:18.602Z",
+                "updatedAt": "2024-05-02T08:13:18.602Z",
+                "statement": "Do I need a visa to enter Canada from Bangladesh?",
+                "answer": "Yes, you need a visa to enter Canada from Bangladesh.",
+                "orderPriority": 0,
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 28,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:13:32.611Z",
+                "updatedAt": "2024-05-02T08:13:32.611Z",
+                "statement": "How can I get a Canadian visa from Bangladesh?",
+                "answer": "You need to apply for a Canada visa at the VFS in Bangladesh.",
+                "orderPriority": 0,
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            }
+        ],
+        "serviceTypes": [
+            {
+                "id": 5,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-04-25T10:15:09.460Z",
+                "updatedAt": "2024-06-13T04:13:59.528Z",
+                "title": "Document Legalization",
+                "slug": "document-legalization",
+                "description": "<p>Bangladeshi nationals and residents frequently require legalization, apostille, authentication, and notarization of various commercial and non-commercial documents from diplomatic offices in New Delhi, India. The Ministry of Foreign Affairs in Bangladesh must verify or testify to these documents. VISAThing will legalize/apostille commercial and non-commercial documents from embassies in India for Bangladeshi citizens.</p>",
+                "orderPriority": 60,
+                "isPageActive": true,
+                "isVisibleInWeb": true,
+                "isVisaFeeRequired": true,
+                "iconId": 45,
+                "imageId": 45,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 2,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-01-02T05:47:16.021Z",
+                "updatedAt": "2024-09-03T11:40:49.777Z",
+                "title": "Visa Consultancy",
+                "slug": "visa-consultancy",
+                "description": "<p>VISAThing consultancy service will ensure smooth visa processing in Bangladesh. Our professionals will provide you with an accurate visa application method. Begin your worldwide journey with VISAThing consultancy services from Bangladesh.</p>",
+                "orderPriority": 100,
+                "isPageActive": true,
+                "isVisibleInWeb": true,
+                "isVisaFeeRequired": false,
+                "iconId": 43,
+                "imageId": 43,
+                "createdById": null,
+                "updatedById": 27
+            }
+        ],
+        "countrySections": [
+            {
+                "id": 18,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:11:56.318Z",
+                "updatedAt": "2024-05-02T08:11:56.318Z",
+                "name": "Time and Fees",
+                "title": "Processing <span>Time and Canada Visa</span> fee from Bangladesh",
+                "content": "<p><p dir=\"ltr\">Canada visa processing time usually takes approximately 30 to 90 working days. It takes more time for some specific visa types. So, it is better to be prepared beforehand and apply for the visa keeping time in hand.</p><p dir=\"ltr\">Canada visa fee for Bangladeshi starts from BDT 8200 to BDT 14750. Additionally, you need to pay for your biometric. Canada's biometric fee is BDT 7000. You should know the updated information before you pay your Canada visa and biometric fees.</p></p>",
+                "orderPriority": 0,
+                "imageId": null,
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            },
+            {
+                "id": 19,
+                "isActive": true,
+                "organization": "bangladesh",
+                "createdAt": "2024-05-02T08:12:55.206Z",
+                "updatedAt": "2024-05-02T08:15:57.882Z",
+                "name": "Decision and Appeal",
+                "title": "Details of Canada Visa <span>Decision and Appeal</span>",
+                "content": "<p dir=\"ltr\">There is no official process to appeal against Canada’s tourist or temporary visa decision. You need to reapply for these visas with the updated documentation.&nbsp;</p><p dir=\"ltr\">Applicants can only appeal for a refugee and permanent visa. If the applicants believe the decision is unfair they can appeal the decision with the request of reconsideration. You will get 30 days to file an appeal from the day you get your refusal letter from IRCC. Submit additional documents with the appeal if the refusal reason is the lack of necessary documentation.&nbsp;</p><p dir=\"ltr\">For the reapplication, you can re-apply for all Canada visas at any time. You can re-apply as long as the refusal letter does not prohibit you from doing so. It is better to re-apply when your purpose of visit has changed or your documentation has been updated.</p><p dir=\"ltr\">The appeal decision for a Canada visa takes not more than 60 days. As for the reapplication, it takes the usual visa processing time for Canada.</p>",
+                "orderPriority": 0,
+                "imageId": null,
+                "countryId": 6,
+                "createdById": null,
+                "updatedById": null
+            }
+        ],
+        "visaFees": [
+            {
+                "id": 415,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:11:38.820Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 6,
+                    "title": "Business Visit",
+                    "slug": "business-visit",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 2368,
+                        "code": "service_document_legalization_canada_business_visit",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 1419,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 414,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:10:54.603Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 10,
+                    "title": "Event",
+                    "slug": "event",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 2507,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    },
+                    {
+                        "id": 2233,
+                        "code": "service_document_legalization_canada_event",
+                        "serviceTitle": "Document Legalization"
+                    }
+                ]
+            },
+            {
+                "id": 413,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:10:29.157Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 5,
+                    "title": "Family Visit",
+                    "slug": "family-visit",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 2098,
+                        "code": "service_document_legalization_canada_family_visit",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 2508,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 412,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:10:05.525Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 3,
+                    "title": "Tourism",
+                    "slug": "tourism",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 1962,
+                        "code": "service_document_legalization_canada_tourism",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 2506,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 411,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:09:40.639Z",
+                "noOfEntries": "MULTIPLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 11,
+                    "title": "Work / Employment",
+                    "slug": "work-employment",
+                    "periodOfStay": "90 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 1283,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    },
+                    {
+                        "id": 1826,
+                        "code": "service_document_legalization_canada_work_employment",
+                        "serviceTitle": "Document Legalization"
+                    }
+                ]
+            },
+            {
+                "id": 410,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:09:13.183Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 12,
+                    "title": "Join Family",
+                    "slug": "join-family",
+                    "periodOfStay": "90 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 1691,
+                        "code": "service_document_legalization_canada_join_spouse",
+                        "serviceTitle": "Document Legalization"
+                    },
+                    {
+                        "id": 1142,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    }
+                ]
+            },
+            {
+                "id": 409,
+                "organization": "bangladesh",
+                "createdAt": "2024-06-01T03:08:46.571Z",
+                "noOfEntries": "SINGLE ENTRY",
+                "processedTime": "Approx. 20-45 Working Days",
+                "amount": 185,
+                "country": {
+                    "id": 6,
+                    "title": "Canada",
+                    "slug": "canada",
+                    "flag": "https://unispaces.sgp1.digitaloceanspaces.com/nebula/1681191270587.png",
+                    "isPageActive": true
+                },
+                "visaCategory": {
+                    "id": 47,
+                    "title": "Conference",
+                    "slug": "conference",
+                    "periodOfStay": "30 Days"
+                },
+                "currency": {
+                    "id": 7,
+                    "title": "Canadian Dollar",
+                    "currencyCode": "CAD",
+                    "currencySymbol": "CA$"
+                },
+                "services": [
+                    {
+                        "id": 942,
+                        "code": "1111",
+                        "serviceTitle": "Visa Consultancy"
+                    },
+                    {
+                        "id": 3534,
+                        "code": "service_offshore_visa_only_secured_courier_country_conference",
+                        "serviceTitle": "Offshore Visa (Only Secured Courier)"
+                    },
+                    {
+                        "id": 1555,
+                        "code": "service_document_legalization_canada_conference",
+                        "serviceTitle": "Document Legalization"
+                    }
+                ]
+            }
+        ],
+        "isHasVisaRequirementPage": false,
+        "isHasEmbassyPage": true,
+        "isHasApplyPage": true
 }
+    
+   
    
 
      
