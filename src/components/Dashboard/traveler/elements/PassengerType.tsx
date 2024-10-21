@@ -49,11 +49,11 @@ const PassengerTypes = ({ reference, setPaxType, paxType }: Props) => {
   return (
     <div className="relative flex flex-col">
       <label className="mb-1 text-sm">Passenger Type</label>
-      <div className="booking_input">
+      <div className="">
         <select
           onChange={(e) => handleChange(e)}
           value={paxType}
-          className="w-full text-sm"
+          className="block w-full cursor-pointer rounded-md border border-gray-200 bg-background p-2 text-sm  placeholder-gray-500 caret-blue-600 transition-all duration-200 focus:border-blue-600 focus:outline-none dark:border-gray-900"
         >
           {passengerTypes.map((item, index) => (
             <option key={index} value={item.value}>
