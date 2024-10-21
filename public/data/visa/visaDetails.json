@@ -1390,7 +1390,6 @@
 
 
 {
-            
                 "organizationCountryId": 15,
                 "country": {
                     "id": 50,
@@ -1907,7 +1906,6 @@
                 "isHasApplyPage": true
 },
            
-
 {
                
                     "organizationCountryId": 15,
@@ -43138,10 +43136,5 @@
         "isHasEmbassyPage": true,
         "isHasApplyPage": true
 }
-    
-   
-   
-
-     
 
 ]

@@ -146,6 +146,10 @@ const FirstFooter = () => {
             </div>
           ))}
         </div>
+        <div className="mt-2">
+          <p className="mb-[2px] text-xs">Verified by</p>
+          <Image src={"/images/ssl.png"} width={150} height={100} alt="ssl" />
+        </div>
       </div>
     </div>
   )

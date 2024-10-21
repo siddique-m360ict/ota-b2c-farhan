@@ -75,6 +75,7 @@ function DatePickerFlight({ date, setDate, className }: Props) {
               setDate(e)
               setIsCalendarOpen(false)
             }}
+            defaultMonth={date}
             disabled={(date) =>
               date < new Date() || date < new Date("1900-01-01")
             }

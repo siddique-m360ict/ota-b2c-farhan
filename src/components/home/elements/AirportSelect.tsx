@@ -1,10 +1,9 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import { IAirportList } from "./types/flightSearchType"
 import {
   Command,
   CommandEmpty,
-  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
