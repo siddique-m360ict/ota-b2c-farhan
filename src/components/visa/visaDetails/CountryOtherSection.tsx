@@ -9,7 +9,7 @@ const CountryOtherSection = ({ countrySections }: Props) => {
     <>
       {countrySections.map((section) => (
         <section
-          className="my-5 rounded-[10px] bg-[#fff] p-[20px]"
+          className="my-5 rounded-[10px] bg-white p-[20px]"
           id={`country-${section.name.toLowerCase().replace(/ /g, "-")}`}
         >
           <div className="mb-[15px] text-left md:mb-[30px]">

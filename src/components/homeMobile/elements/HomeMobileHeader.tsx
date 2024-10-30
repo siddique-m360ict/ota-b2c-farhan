@@ -88,7 +88,7 @@ const HomeMobileHeader = ({ home }: Props) => {
             </p>
           ) : (
             <div>
-              <UserAccountNav className="h-6 w-6" />
+              <UserAccountNav className="size-6" />
             </div>
           )}
 
@@ -126,7 +126,7 @@ const HomeMobileHeader = ({ home }: Props) => {
                   className={cn(
                     "font-Default flex items-center text-[15px] transition-colors hover:text-foreground/80",
                     item.href.startsWith(`/${segment}`)
-                      ? "mb-1 border-b-2 pb-0 font-bold text-[#fff] dark:border-white"
+                      ? "mb-1 border-b-2 pb-0 font-bold text-white dark:border-white"
                       : "text-deep"
                   )}
                 >

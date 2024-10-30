@@ -385,7 +385,7 @@ const FormField = ({
                   <div>
                     <h1 className="font-heading text-2xl">Contact Details</h1>
                     <p className="my-2 flex items-center gap-2">
-                      <Icons.Info className="h-4 w-4 text-destructive" />{" "}
+                      <Icons.Info className="size-4 text-destructive" />{" "}
                       Receive booking confirmation & updates
                     </p>
                   </div>

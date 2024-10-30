@@ -53,7 +53,7 @@ const PassengerTypes = ({ reference, setPaxType, paxType }: Props) => {
         <select
           onChange={(e) => handleChange(e)}
           value={paxType}
-          className="block w-full cursor-pointer rounded-md border border-gray-200 bg-background p-2 text-sm  placeholder-gray-500 caret-blue-600 transition-all duration-200 focus:border-blue-600 focus:outline-none dark:border-gray-900"
+          className="block w-full cursor-pointer rounded-md border border-gray-200 bg-background p-2 text-sm  caret-blue-600 transition-all duration-200 placeholder:text-gray-500 focus:border-blue-600 focus:outline-none dark:border-gray-900"
         >
           {passengerTypes.map((item, index) => (
             <option key={index} value={item.value}>

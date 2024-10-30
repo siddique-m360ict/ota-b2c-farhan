@@ -79,7 +79,7 @@ function SelectClass({ cabinClass, setCabinClass }: Props) {
               >
                 <Check
                   className={cn(
-                    "mr-2 h-4 w-4",
+                    "mr-2 size-4",
                     framework.value == cabinClass?.toUpperCase()
                       ? "opacity-100"
                       : "opacity-0"

@@ -61,7 +61,7 @@ const RevalidatePriceBox = ({ passengers, fare }: Props) => {
             </div>
           </div>
         </CardContent>
-        <div className="mx-4 mt-2 h-[1px] w-[90%] border border-dashed bg-secondaryBg"></div>
+        <div className="mx-4 mt-2 h-px w-[90%] border border-dashed bg-secondaryBg"></div>
         <CardFooter className="mt-6 flex flex-row justify-between text-xl font-bold ">
           <p>Total Amount</p>
           <p className="text-primary">৳ {formatNumber(fare.payable)}</p>

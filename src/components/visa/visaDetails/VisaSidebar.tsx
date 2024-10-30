@@ -25,12 +25,12 @@ const VisaSidebar = ({ country }: Props) => {
               <p className="text-[.875rem] font-[500] leading-normal  text-[#eaeaf0]">
                 Calculate Your
               </p>
-              <p className="text-[1.125rem] font-[600] leading-[1.75rem] text-white">
+              <p className="text-[1.125rem] font-[600] leading-7 text-white">
                 Visa Fee &amp; Service Cost
               </p>
             </div>
             <div
-              className="main_content_wrapper border-b-[4px] border-l border-r border-b-[#9394b2] border-l-[#9394b2] border-r-[#9394b2] bg-white px-[16px] py-[8px] "
+              className="main_content_wrapper border-x border-b-4 border-x-[#9394b2] border-b-[#9394b2] bg-white px-[16px] py-[8px] "
               style={{
                 borderRadius: "0 0 10px 10px",
               }}
@@ -112,7 +112,7 @@ const VisaSidebar = ({ country }: Props) => {
               width={25}
               height={25}
             />
-            <p className="text-[18px] font-[500] leading-[1.75rem] text-[#0f0f24]">
+            <p className="text-[18px] font-[500] leading-7 text-[#0f0f24]">
               Need Help Feel FREE To Call
             </p>
           </div>
@@ -124,7 +124,7 @@ const VisaSidebar = ({ country }: Props) => {
 
         <div className="rounded-lg border border-[#dde3fd] bg-white p-6">
           <div className="flex items-center justify-center gap-3">
-            <p className="text-[18px] font-[500] leading-[1.75rem] text-[#0f0f24]">
+            <p className="text-[18px] font-[500] leading-7 text-[#0f0f24]">
               Chat With
             </p>
           </div>

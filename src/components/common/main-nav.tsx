@@ -1,155 +1,116 @@
 "use client"
 
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
+import {
+  Bell,
+  Home,
+  Plane,
+  Train,
+  Car,
+  Map,
+  Sun,
+  Moon,
+  CircleUserRound,
+} from "lucide-react"
 
-import { MainNavItem } from "@/types"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
-import { MobileNav } from "./mobile-nav"
-import { UserAccountNav } from "./user-account-nav"
-import { buttonVariants } from "../ui/button"
-import { useAppSelector } from "@/lib/redux/hooks"
-import { getCookies } from "cookies-next"
-import { ModeToggle } from "./mode-toggle"
-import Image from "next/image"
-import WarningOTP from "./WarningOTP"
-
-interface MainNavProps {
-  home?: boolean
-  className?: string
-  logoMain?: boolean
-}
-
-export const headerItems = [
-  {
-    id: "Hotels",
-    label: "Hotels",
-    icon: <Icons.Home className="size-[22px]" />,
-    href: "/",
-  },
-  {
-    id: "Flights",
-    label: "Flights",
-    icon: <Icons.Plane size={20} />,
-    href: "/flights",
-  },
-  {
-    id: "Visa",
-    label: "Visa",
-    icon: <Icons.Bundle className="size-[22px]" />,
-    href: "/visa",
-  },
-  {
-    id: "Trains",
-    label: "Trains",
-    icon: <Icons.TramFront />,
-    href: "/",
-  },
-  {
-    id: "Cars",
-    label: "Cars",
-    icon: <Icons.CarFront className="size-[20px]" />,
-    href: "/",
-  },
-  {
-    id: "Attractions & Tours",
-    label: "Attractions & Tours",
-    icon: <Icons.Attractions className="size-[20px]" />,
-    href: "/",
-  },
-]
-export function MainNav({ home, className, logoMain }: MainNavProps) {
+const MainNav = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const segment = useSelectedLayoutSegment()
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
-  const user = useAppSelector((state) => state.user)
-  const isLogin = getCookies().b_token
-  const isEmailVerified = user?.data?.is_verified
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const navItems = [
+    {
+      label: "Home",
+      href: "/stays",
+      id: "stays",
+    },
+    {
+      label: "Flights",
+      href: "/flights",
+      id: "flights",
+    },
+    {
+      label: "Hotel",
+      href: "/trains",
+      id: "trains",
+    },
+    {
+      label: "Promo",
+      href: "/cars",
+      id: "cars",
+    },
+    {
+      label: "Orders",
+      href: "/activities",
+      id: "activities",
+    },
+  ]
 
   return (
-    <div className="z-50 flex w-full items-center justify-between">
-      <div
-        className={cn(
-          "",
-          home !== true ? "flex flex-row items-start gap-12" : ""
-        )}
-      >
-        <Link
-          href="/"
-          className={cn(
-            " hidden items-center space-x-2 text-[1.2vw] text-white md:flex"
-          )}
-        >
-          {/* <Icons.logo />
-          <span className="hidden font-bold sm:inline-block">
-            {siteConfig.name}
-          </span> */}
-          <Image
-            src={logoMain ? "/be.png" : "/be-removebg.png"}
-            alt="site logo"
-            width={200}
-            height={100}
-          />
-        </Link>
+    <div className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      isScrolled
+        ? 'bg-black/80 shadow-lg backdrop-blur-sm'
+        : 'bg-transparent'
+    }`}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
+        {/* Logo */}
+        <div className="flex items-center gap-8">
+          <Link href="/" className="text-2xl font-bold text-white">
+            Farhan Travels
+          </Link>
 
-        <div
-          className={cn("translate-y-3", home !== true ? "translate-y-2" : "")}
-        >
-          {headerItems?.length ? (
-            <nav className={cn("hidden gap-10  md:flex", !home && "gap-11")}>
-              {headerItems?.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className={cn(
-                    "font-Default flex items-center text-[15px] transition-colors hover:text-foreground/80",
-                    item.href.startsWith(`/${segment}`)
-                      ? "text-[#ff0000]"
-                      : className
-                      ? className
-                      : "text-white"
-                  )}
-                >
-                  <span className="me-2">{item.icon}</span>
-                  {item.label}
-                </Link>
+          {/* Navigation Items */}
+          <nav className="hidden md:block">
+            <ul className="flex items-center gap-8">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-2 text-white transition-colors hover:text-gray-200
+                      ${
+                        item.href.startsWith(`/${segment}`)
+                          ? "text-yellow-300"
+                          : ""
+                      }`}
+                  >
+                    {item.icon}
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
               ))}
-            </nav>
-          ) : null}
+            </ul>
+          </nav>
+        </div>
+
+        {/* Right Side Controls */}
+        <div className="flex items-center gap-4">
+          <div className="flex gap-4 text-white">
+            <Link href="/login" className="flex items-center hover:text-gray-200">
+              <CircleUserRound className="mx-1 size-4" /> Sign In
+            </Link>
+            <Link
+              href="/register"
+              className="rounded bg-white/25 px-2 py-1 transition-colors hover:bg-white/30"
+            >
+              Register
+            </Link>
+          </div>
         </div>
       </div>
-
-      {isLogin && user?.success ? (
-        <div className="flex items-center gap-6">
-          {!user.data.is_verified && <WarningOTP />}
-          <ModeToggle />
-          <UserAccountNav />
-        </div>
-      ) : (
-        <nav className="flex gap-3">
-          <ModeToggle />
-          <Link
-            href="/register"
-            className={cn(
-              buttonVariants({ variant: "secondary", size: "sm" }),
-              " px-4 shadow-xl dark:bg-primary"
-            )}
-          >
-            Register
-          </Link>
-          <Link
-            href="/login"
-            className={cn(
-              buttonVariants({ variant: "secondary", size: "sm" }),
-              "bg-white px-4 text-black dark:bg-white dark:text-black"
-            )}
-          >
-            Sign in
-          </Link>
-        </nav>
-      )}
     </div>
   )
 }
+
+export default MainNav

@@ -49,7 +49,7 @@ const AvailableServices = ({ countryPage, serviceTypes, visaFees }: Props) => {
     <section className="my-14" id="country-available-services">
       <div className="section_intro mb-[15px] text-left md:mb-[30px]">
         <h2
-          className="w-[80%] text-[30px] font-[600]"
+          className="w-4/5 text-[30px] font-[600]"
           dangerouslySetInnerHTML={{ __html: countryPage.serviceSectionTitle }}
         />
         <div
@@ -98,7 +98,7 @@ const AvailableServices = ({ countryPage, serviceTypes, visaFees }: Props) => {
                 <div className="embla__slide" key={index}>
                   <div className="rounded-[10px] border border-[#eaebf0] bg-white p-[10px] ">
                     <div className="text-center">
-                      <p className="text-[.875rem] leading-[1.25rem] text-[#595b86]">
+                      <p className="text-[.875rem] leading-5 text-[#595b86]">
                         {fees.visaCategory.title}
                       </p>
                       <h2 className="text-[15px] font-[500] text-[#14152c]">
@@ -109,10 +109,10 @@ const AvailableServices = ({ countryPage, serviceTypes, visaFees }: Props) => {
                     <hr className="mt-[12px] bg-[#eaebf0]" />
 
                     <div className="mt-[10px] rounded-[5px] bg-[#f9f9fb] px-[10px] py-[6px] text-center">
-                      <p className="text-[.75rem] leading-[1rem] text-[#666885]">
+                      <p className="text-[.75rem] leading-4 text-[#666885]">
                         Processing Time
                       </p>
-                      <p className="text-[.875rem] leading-[1.25rem] text-[#595b86]">
+                      <p className="text-[.875rem] leading-5 text-[#595b86]">
                         <span>
                           <svg
                             stroke="currentColor"
@@ -147,10 +147,10 @@ c-0.03,0.01-0.09,0.01-0.18,0.01c-0.23,0-0.43-0.08-0.59-0.24S14.14,14.71,14.14,14
                     </div>
 
                     <div className="mt-[10px] rounded-[5px] bg-[#f9f9fb] px-[10px] py-[6px] text-center">
-                      <p className="text-[.75rem] leading-[1rem] text-[#666885]">
+                      <p className="text-[.75rem] leading-4 text-[#666885]">
                         Service Available
                       </p>
-                      <p className="text-[.875rem] leading-[1.25rem] text-[#595b86]">
+                      <p className="text-[.875rem] leading-5 text-[#595b86]">
                         <span className="ps-[5px] text-[#0f0f24]">
                           {fees.services[0].serviceTitle}
                         </span>
@@ -170,7 +170,7 @@ c-0.03,0.01-0.09,0.01-0.18,0.01c-0.23,0-0.43-0.08-0.59-0.24S14.14,14.71,14.14,14
                           {fees.country.title}
                         </p>
                       </div>
-                      <div className="flex flex-col text-[1.125rem] font-[600] leading-[1.75rem] text-[#0f0f24]">
+                      <div className="flex flex-col text-[1.125rem] font-[600] leading-7 text-[#0f0f24]">
                         <p className="mb-[-.5rem] text-[11px] text-[#666885]">
                           Visa Fee
                         </p>

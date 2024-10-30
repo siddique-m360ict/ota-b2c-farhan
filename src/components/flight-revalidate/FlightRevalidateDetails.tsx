@@ -103,7 +103,7 @@ const FlightRevalidateDetails = ({
                           <div className="text-xs">
                             {formatFlightDate(flight?.departure.date)}
                           </div>
-                          <div className="w-[80%] truncate text-xs ">
+                          <div className="w-4/5 truncate text-xs ">
                             {flight?.departure.airport}
                           </div>
                         </div>
@@ -116,9 +116,9 @@ const FlightRevalidateDetails = ({
                                   ?.time
                               }
                             </p>
-                            <div className="relative my-1 w-[60vw] border border-b md:w-[10vw]">
-                              <div className="absolute left-[-1px] top-[-3px] h-[6px] w-[6px] rounded-full bg-primary"></div>
-                              <div className="absolute right-[-1px] top-[-3px] h-[6px] w-[6px] rounded-full bg-primary"></div>
+                            <div className="relative my-1 w-[60vw] border md:w-[10vw]">
+                              <div className="absolute -left-px top-[-3px] size-[6px] rounded-full bg-primary"></div>
+                              <div className="absolute -right-px top-[-3px] size-[6px] rounded-full bg-primary"></div>
                             </div>
                           </div>
                         </div>

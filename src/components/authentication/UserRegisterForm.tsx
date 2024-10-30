@@ -248,7 +248,7 @@ const UserRegisterForm = () => {
 
           <button className={cn("mt-1", buttonVariants())} type="submit">
             {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
             Sign Up
           </button>

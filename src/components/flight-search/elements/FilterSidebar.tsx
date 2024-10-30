@@ -25,18 +25,18 @@ const FilterSidebar = () => {
     <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto pr-2 md:sticky md:block ">
       <TimeCounter />
       <RefundableNonRefund />
-      <Separator orientation="horizontal" className="my-4 h-[1px] w-full" />
+      <Separator orientation="horizontal" className="my-4 h-px w-full" />
       <FilterAirline Airlines={filterItem?.airlines} />
-      <Separator orientation="horizontal" className="my-5 h-[1px] w-full" />
+      <Separator orientation="horizontal" className="my-5 h-px w-full" />
       <PriceRangeFilter price={filterItem?.price_rage} />
 
-      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
+      <Separator orientation="horizontal" className=" my-5 h-px w-full" />
       <TimeFilter />
-      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
+      <Separator orientation="horizontal" className=" my-5 h-px w-full" />
       <Stoppage filter={filterItem?.total_stoppage} />
-      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
+      <Separator orientation="horizontal" className=" my-5 h-px w-full" />
       <BaggageFilter baggageOptions={filterItem.baggage} />
-      <Separator orientation="horizontal" className=" my-5 h-[1px] w-full" />
+      <Separator orientation="horizontal" className=" my-5 h-px w-full" />
       {/* <DocsSidebarNav items={docsConfig.sidebarNav} /> */}
     </aside>
   )

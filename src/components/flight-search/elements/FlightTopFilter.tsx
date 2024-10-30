@@ -20,8 +20,8 @@ const FlightTopFilter = () => {
 
   return (
     <Card className="mt-[4px]">
-      <CardContent className="overflow-hidden whitespace-nowrap p-0 px-0  md:overflow-auto  md:whitespace-normal ">
-        <div className="flex items-center gap-4 overflow-y-hidden overflow-x-scroll md:gap-6 md:overflow-x-hidden md:overflow-y-hidden">
+      <CardContent className="overflow-hidden whitespace-nowrap p-0 md:overflow-auto  md:whitespace-normal ">
+        <div className="flex items-center gap-4 overflow-y-hidden overflow-x-scroll md:gap-6 md:overflow-hidden">
           <div
             className={cn(
               "relative flex basis-full cursor-pointer p-3",
@@ -35,7 +35,7 @@ const FlightTopFilter = () => {
             </p>
             <Separator
               orientation="vertical"
-              className="absolute right-[-1px] top-[8px] h-[4vh] w-[1px]"
+              className="absolute -right-px top-[8px] h-[4vh] w-px"
             />
           </div>
           <div
@@ -51,7 +51,7 @@ const FlightTopFilter = () => {
             </p>
             <Separator
               orientation="vertical"
-              className=" absolute right-[-1px] top-[8px] h-[4vh] w-[1px]"
+              className=" absolute -right-px top-[8px] h-[4vh] w-px"
             />
           </div>
           <div

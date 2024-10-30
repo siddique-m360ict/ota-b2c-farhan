@@ -35,7 +35,7 @@ const FilterAirline = ({ Airlines }: Props) => {
   return (
     <section>
       <h3 className="mb-2 font-bold text-secondary">Airlines</h3>
-      <Separator orientation="horizontal" className="my-3 h-[1px] w-full" />
+      <Separator orientation="horizontal" className="my-3 h-px w-full" />
       {Airlines?.map((airline, index) => (
         <div className="mb-3 flex items-center space-x-2" key={index}>
           <Checkbox
@@ -59,7 +59,7 @@ const FilterAirline = ({ Airlines }: Props) => {
                 objectFit="cover"
                 objectPosition="center"
               />
-              <p className="ms-1 w-[80%] truncate">{airline.airline_name}</p>
+              <p className="ms-1 w-4/5 truncate">{airline.airline_name}</p>
             </div>
             <div className=" text-[12px]">
               <span className="font-mono">৳</span> {formatNumber(airline.price)}

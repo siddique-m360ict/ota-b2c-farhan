@@ -45,7 +45,7 @@ const AirportSelect = ({
           >
             <div className="flex items-center gap-4 ">
               <p className="w-[35px] px-3 text-[15px]"> {airport?.iata_code}</p>
-              <div className="h-[30px] w-[1px] border-l border-gray-300"></div>
+              <div className="h-[30px] w-px border-l border-gray-300"></div>
               <div>
                 <span className="p-0 text-sm leading-4">{airport.name} </span>
                 <br />

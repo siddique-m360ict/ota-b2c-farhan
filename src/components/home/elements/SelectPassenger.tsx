@@ -140,7 +140,7 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
             </div>
             <div className="flex items-center  gap-0">
               <Icons.Minus
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => decrementPassenger("adult")}
               />
               <span className="w-10 text-center text-sm">
@@ -148,7 +148,7 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
               </span>
 
               <Icons.add
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => incrementPassenger("adult")}
               />
             </div>
@@ -164,14 +164,14 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
             </div>
             <div className="flex items-center">
               <Icons.Minus
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => decrementPassenger("children")}
               />
               <span className="w-10 text-center text-sm">
                 {passenger.children}
               </span>
               <Icons.add
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => incrementPassenger("children")}
               />
             </div>
@@ -187,13 +187,13 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
             </div>
             <div className="flex items-center">
               <Icons.Minus
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => decrementPassenger("kids")}
               />
 
               <span className="w-10 text-center text-sm">{passenger.kids}</span>
               <Icons.add
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => incrementPassenger("kids")}
               />
             </div>
@@ -209,7 +209,7 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
             </div>
             <div className="flex items-center">
               <Icons.Minus
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => decrementPassenger("infant")}
               />
 
@@ -217,7 +217,7 @@ const SelectPassenger = ({ setPassenger, passenger, type }: Props) => {
                 {passenger.infant}
               </span>
               <Icons.add
-                className="h-6 w-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
+                className="size-6 cursor-pointer rounded-full border bg-[#EBF0F5] p-1.5"
                 onClick={() => incrementPassenger("infant")}
               />
             </div>

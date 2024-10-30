@@ -129,7 +129,7 @@ export function FancyMultiSelect() {
                   }}
                   onClick={() => handleUnselect(framework)}
                 >
-                  <X className="h-3 w-3 text-muted hover:text-foreground" />
+                  <X className="size-3 text-muted hover:text-foreground" />
                 </button>
               </Badge>
             )

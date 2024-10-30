@@ -71,7 +71,7 @@ const SectionVideos: FC<SectionVideosProps> = ({
             title={video.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="h-full w-full"
+            className="size-full"
           ></iframe>
         ) : (
           <>
@@ -84,7 +84,7 @@ const SectionVideos: FC<SectionVideosProps> = ({
 
             <Image
               fill
-              className="h-full w-full transform object-cover transition-transform duration-300 group-hover:scale-105 "
+              className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
               src={video.thumbnail}
               title={video.title}
               alt={video.title}
@@ -115,7 +115,7 @@ const SectionVideos: FC<SectionVideosProps> = ({
         </div>
         <Image
           fill
-          className="h-full w-full transform object-cover transition-transform duration-300 group-hover:scale-110 "
+          className="size-full object-cover transition-transform duration-300 group-hover:scale-110"
           src={video.thumbnail}
           title={video.title}
           alt={video.title}
@@ -139,11 +139,11 @@ const SectionVideos: FC<SectionVideosProps> = ({
       </div>
 
       <div className="relative flex flex-col py-4 sm:py-4 sm:pr-4  md:py-6 md:pr-6 lg:flex-row xl:py-14 xl:pr-14">
-        <div className="absolute -bottom-4 -right-4 -top-4 z-0 w-2/3 rounded-3xl bg-[#ecf1ff] dark:bg-neutral-800 dark:bg-opacity-40 sm:rounded-[50px] md:bottom-0 md:right-0 md:top-0 xl:w-1/2"></div>
-        <div className="relative flex-grow pb-2 sm:pb-4 lg:pb-0 lg:pr-5 xl:pr-6">
+        <div className="absolute -inset-y-4 -right-4 z-0 w-2/3 rounded-3xl bg-[#ecf1ff] dark:bg-neutral-800 dark:bg-opacity-40 sm:rounded-[50px] md:inset-y-0 md:right-0 xl:w-1/2"></div>
+        <div className="relative grow pb-2 sm:pb-4 lg:pb-0 lg:pr-5 xl:pr-6">
           {renderMainVideo()}
         </div>
-        <div className="grid flex-shrink-0 grid-cols-4 gap-2 sm:gap-6 lg:w-36 lg:grid-cols-1 xl:w-40">
+        <div className="grid shrink-0 grid-cols-4 gap-2 sm:gap-6 lg:w-36 lg:grid-cols-1 xl:w-40">
           {videos.map(renderSubVideo)}
         </div>
       </div>

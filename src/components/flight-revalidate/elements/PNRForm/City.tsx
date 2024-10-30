@@ -118,7 +118,7 @@ const City = ({
                   >
                     <Check
                       className={cn(
-                        "mr-2 h-4 w-4",
+                        "mr-2 size-4",
                         selectedCountry && selectedCountry.id === country.id
                           ? "opacity-100"
                           : "opacity-0"
@@ -162,7 +162,7 @@ const City = ({
                   >
                     <Check
                       className={cn(
-                        "mr-2 h-4 w-4",
+                        "mr-2 size-4",
                         selectedCity && selectedCity.id === city.id
                           ? "opacity-100"
                           : "opacity-0"

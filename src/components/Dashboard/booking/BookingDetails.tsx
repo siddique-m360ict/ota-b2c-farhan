@@ -23,7 +23,7 @@ const CommonTitle = ({ title }: { title: string }) => {
     <div className="mb-4 flex items-end gap-3">
       <div className="flex items-end gap-2">
         <div
-          className="h-[1px] w-10 "
+          className="h-px w-10 "
           style={{
             background: "rgba(5, 5, 5, 0.06)",
           }}
@@ -33,7 +33,7 @@ const CommonTitle = ({ title }: { title: string }) => {
         </h4>
       </div>
       <div
-        className=" h-[1px] w-[72%] "
+        className=" h-px w-[72%] "
         style={{
           background: "rgba(5, 5, 5, 0.06)",
         }}
@@ -132,7 +132,7 @@ const BookingDetails = ({ data, token }: Props) => {
             <table className="w-full text-left text-sm text-gray-700 rtl:text-right ">
               <thead className="  bg-[#ebf5ff] text-xs text-gray-700 dark:bg-[#222] dark:text-white ">
                 <tr>
-                  <th scope="col" className="px-2 py-2 text-xs md:px-6">
+                  <th scope="col" className="p-2 text-xs md:px-6">
                     Name
                   </th>
                   <th scope="col" className="px-3 py-2 text-xs md:px-6">
@@ -155,7 +155,7 @@ const BookingDetails = ({ data, token }: Props) => {
                     key={traveler.id}
                     className=" bg-white text-[11px] hover:bg-gray-50 dark:bg-transparent dark:text-white "
                   >
-                    <td className="border border-gray-100 px-2 py-2 md:px-6 ">{`${traveler.reference} ${traveler.mid_name} ${traveler.sur_name}`}</td>
+                    <td className="border border-gray-100 p-2 md:px-6 ">{`${traveler.reference} ${traveler.mid_name} ${traveler.sur_name}`}</td>
                     <td className="border border-gray-100 px-3 py-2 md:px-6">
                       {traveler.type}
                     </td>
@@ -214,7 +214,7 @@ const BookingDetails = ({ data, token }: Props) => {
                     key={segment.id}
                     className="border-b bg-white hover:bg-gray-50 dark:bg-transparent dark:text-white "
                   >
-                    <td className="border border-gray-100 px-4 py-4 ps-2 text-center md:px-0">
+                    <td className="border border-gray-100 p-4 ps-2 text-center md:px-0">
                       <div className="flex items-center justify-center gap-2">
                         <Image
                           src={hostedImage(`/${segment.airline_logo}`)}
@@ -272,7 +272,7 @@ const BookingDetails = ({ data, token }: Props) => {
             <table className="w-full text-left text-sm text-gray-700 rtl:text-right ">
               <thead className="bg-[#ebf5ff]  uppercase text-gray-700     ">
                 <tr>
-                  <th scope="col" className="px-2 py-2 text-xs md:px-6">
+                  <th scope="col" className="p-2 text-xs md:px-6">
                     Total Price
                   </th>
                   <th scope="col" className="px-3 text-xs md:px-6">
@@ -292,7 +292,7 @@ const BookingDetails = ({ data, token }: Props) => {
               </thead>
               <tbody>
                 <tr className="border-b bg-white hover:bg-gray-50 dark:bg-transparent dark:text-white ">
-                  <td className="border border-gray-100 px-2 py-2 text-[11px] md:px-6">
+                  <td className="border border-gray-100 p-2 text-[11px] md:px-6">
                     BDT {formatNumber(data?.ticket_price)}
                   </td>
                   <td className="border border-gray-100 px-3 text-[11px] md:px-6">

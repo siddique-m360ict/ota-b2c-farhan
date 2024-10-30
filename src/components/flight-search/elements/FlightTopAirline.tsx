@@ -91,7 +91,7 @@ const FlightTopAirline = () => {
                     {filterAirlines.includes(airline.airline_code) && (
                       <Separator
                         orientation="horizontal"
-                        className="absolute bottom-[0px] right-0 h-[2px] w-full bg-secondary "
+                        className="absolute bottom-0 right-0 h-[2px] w-full bg-secondary "
                       />
                     )}
                   </button>

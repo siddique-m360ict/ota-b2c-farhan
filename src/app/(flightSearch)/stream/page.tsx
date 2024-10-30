@@ -3,7 +3,7 @@ import { Child } from "./Child"
 
 function LoadingLocal() {
   return (
-    <div className="h-48 w-48 bg-pink-400 text-black">Suspense fallback</div>
+    <div className="size-48 bg-pink-400 text-black">Suspense fallback</div>
   )
 }
 

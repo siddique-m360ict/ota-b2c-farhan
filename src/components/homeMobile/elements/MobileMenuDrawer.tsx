@@ -28,7 +28,7 @@ const MobileMenuDrawer = () => {
       <div className="relative mt-2">
         <UserAvatar
           user={{ name: user?.username || null, image: user?.photo || null }}
-          className={cn("mx-auto h-28 w-28 object-cover")}
+          className={cn("mx-auto size-28 object-cover")}
         />
         {!user ? (
           <div className="mt-6 flex justify-center gap-4">
@@ -71,7 +71,7 @@ const MobileMenuDrawer = () => {
               <Link key={index} href={item.href}>
                 <div
                   className={cn(
-                    "group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2  text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                    "group flex w-full cursor-pointer items-center gap-2 rounded-md p-2 text-sm  font-medium hover:bg-accent hover:text-accent-foreground",
                     path === item.href ? "bg-accent" : "transparent"
                   )}
                 >
@@ -96,12 +96,12 @@ const MobileMenuDrawer = () => {
                 <Link key={index} href={item.disabled ? "" : item.href}>
                   <span
                     className={cn(
-                      "group flex w-full cursor-pointer items-center rounded-md px-2 py-2  text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                      "group flex w-full cursor-pointer items-center rounded-md p-2 text-sm  font-medium hover:bg-accent hover:text-accent-foreground",
                       path === item.href ? "bg-accent" : "transparent",
                       item.disabled && "cursor-not-allowed opacity-80"
                     )}
                   >
-                    <Icon className="mr-2 h-4 w-4" />
+                    <Icon className="mr-2 size-4" />
                     <span>{item.title}</span>
                   </span>
                 </Link>

@@ -78,7 +78,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header className="relative w-full pb-20  ">
-        <div className="bg-wrapper absolute left-0 top-0 z-0  h-full w-full">
+        <div className="bg-wrapper absolute left-0 top-0 z-0  size-full">
           <Image
             src={"/images/home/flight_home_bg.webp"}
             alt="home-image"

@@ -193,7 +193,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                   ? "0px 0px 0px 1px #E2E8F0"
                   : "0px 0px 0px 1px #222",
             }}
-            className="absolute top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-black dark:bg-transparent dark:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
+            className="absolute top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-black dark:bg-transparent dark:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
           />
 
           <Icons.ArrowDownUp
@@ -205,7 +205,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                   ? "0px 0px 0px 1px #E2E8F0"
                   : "0px 0px 0px 1px #222",
             }}
-            className="absolute right-[4%] top-[27%] z-50 block h-8 w-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:hidden"
+            className="absolute right-[4%] top-[27%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:hidden"
           />
           <SelectAirport
             airport={toAirport}
@@ -214,7 +214,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
           />
         </div>
         <div className="w-full justify-between gap-3 md:flex">
-          <div className="mb-4 mt-2 w-full md:mb-0 md:mt-0">
+          <div className="mb-4 mt-2 w-full md:my-0">
             <DatePickerRange date={date} setDate={setDate} />
           </div>
           {pathName !== "/flightsearch" ? (
@@ -258,7 +258,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
               onClick={() => startTransition(() => changeRoute())}
             >
               {loading && (
-                <Icons.spinner className="mr-2   h-4 w-4 animate-spin " />
+                <Icons.spinner className="mr-2   size-4 animate-spin " />
               )}
               Search
             </Button>

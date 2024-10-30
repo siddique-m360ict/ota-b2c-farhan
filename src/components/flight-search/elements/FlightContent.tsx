@@ -71,7 +71,7 @@ const FlightContent = ({ flights }: Props) => {
           <div>
             {tab.content?.map((item, index) => (
               <div className=" px-3" key={index}>
-                <div className="flex items-center justify-between border-b border-t">
+                <div className="flex items-center justify-between border-y">
                   <div className="flex items-center justify-between gap-3 pb-3 pt-4  ">
                     <Image
                       src={hostedImage(

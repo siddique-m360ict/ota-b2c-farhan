@@ -116,7 +116,7 @@ const VisaListView = ({ visa, searchParams }: Props) => {
                       </div>
                       <Separator
                         orientation="vertical"
-                        className="absolute right-[20%] top-0  hidden h-[100%] w-[1px] md:block"
+                        className="absolute right-[20%] top-0  hidden h-full w-px md:block"
                       />
                     </div>
                   ))}
@@ -192,7 +192,7 @@ const VisaListView = ({ visa, searchParams }: Props) => {
                 </div>
               </div>
             </CardContent>
-            <div className="mx-4 mt-2 h-[1px] w-[90%] border border-dashed bg-secondaryBg"></div>
+            <div className="mx-4 mt-2 h-px w-[90%] border border-dashed bg-secondaryBg"></div>
             <CardFooter className="my-6 flex flex-row justify-between text-xl font-bold ">
               <p>Total Amount</p>
               <p className="flex flex-col text-end text-primary">

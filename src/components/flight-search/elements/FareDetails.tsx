@@ -104,7 +104,7 @@ const FareDetails = ({ fare, className, passengers }: Props) => {
                 </div>
                 <Separator
                   orientation="horizontal"
-                  className="my-1 h-[1px] w-full dark:bg-gray-700"
+                  className="my-1 h-px w-full dark:bg-gray-700"
                 />
               </div>
             ))}

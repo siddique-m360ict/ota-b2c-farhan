@@ -8,6 +8,10 @@ import { getCookies } from "@/lib/token/getCookies"
 import { cookies } from "next/headers"
 import SectionVideos from "@/components/home/SectionVideos"
 import Offer from "@/components/home/Offer"
+import HotelRecommendation from '@/components/home/HotelRecommendation'
+import UpperFooter from '@/components/home/UpperFooter'
+
+
 
 export default async function IndexPage() {
   return (
@@ -18,15 +22,16 @@ export default async function IndexPage() {
         {/* <Offer /> */}
         <HomeCardCarousel />
         <PopularRoute />
-        <SectionVideos className="container" />
+        <HotelRecommendation/>
+        <UpperFooter/>
         <AppPromo />
       </div>
-
       {/* home for mobile devices */}
       <div className="block md:hidden">
         <MobileHome />
         <PopularRoute />
         <SectionVideos className="mx-2" />
+
         <AppPromo />
       </div>
       <SiteFooter />

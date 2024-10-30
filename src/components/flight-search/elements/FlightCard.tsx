@@ -230,7 +230,7 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
         </div>
       </div>
 
-      <div className="h-full w-full basis-10/12">
+      <div className="size-full basis-10/12">
         <AccordionTrigger
           className={cn(
             "top-0 flex-col py-0 pt-4 hover:no-underline md:flex [&>svg]:absolute [&>svg]:bottom-[17px] [&>svg]:left-[76%] [&>svg]:text-destructive [&>svg]:md:block md:[&>svg]:text-primary ",
@@ -281,9 +281,9 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
                     <p className="text-xs">
                       {minutesToHoursAndMinutes(flights?.elapsed_time)?.time}
                     </p>
-                    <div className="relative my-1 w-full border border-b md:w-[10vw]">
-                      <div className="absolute left-[-1px] top-[-3px] hidden h-[6px] w-[6px] bg-muted md:block"></div>
-                      <div className="absolute right-[-1px] top-[-3px] hidden h-[6px] w-[6px] bg-muted md:block"></div>
+                    <div className="relative my-1 w-full border md:w-[10vw]">
+                      <div className="absolute -left-px top-[-3px] hidden size-[6px] bg-muted md:block"></div>
+                      <div className="absolute -right-px top-[-3px] hidden size-[6px] bg-muted md:block"></div>
                     </div>
                     <p className="text-xs">
                       {flights?.stoppage + " Stop" || "Nonstop"}
@@ -377,7 +377,7 @@ const FlightCard = ({ flights: FlightData, fare }: Props) => {
       </div>
       <Separator
         orientation="vertical"
-        className="absolute right-[25%] top-0 hidden h-[100%]  w-[1px] md:block"
+        className="absolute right-1/4 top-0 hidden h-full  w-px md:block"
       />
     </div>
   )

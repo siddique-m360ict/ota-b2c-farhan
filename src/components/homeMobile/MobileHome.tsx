@@ -119,7 +119,7 @@ const MobileHome = () => {
         </section>
         <section className="relative z-50 mt-10">
           <MobileCardCarousel />
-          <div className="absolute bottom-[0px]  z-0 h-8 w-full bg-background md:h-10 "></div>
+          <div className="absolute bottom-0  z-0 h-8 w-full bg-background md:h-10 "></div>
         </section>
       </div>
     </>

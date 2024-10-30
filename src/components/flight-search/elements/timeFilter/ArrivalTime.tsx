@@ -127,7 +127,7 @@ const ArrivalTime = ({ route }) => {
                 )}
                 onClick={() => handleBox(index, content.id)}
               >
-                <div className="flex flex-col items-center gap-1 px-2 py-2">
+                <div className="flex flex-col items-center gap-1 p-2">
                   <p>
                     {activeBoxes[index] === content.id
                       ? content.activeIcon

@@ -18,7 +18,7 @@ const VisaDetailsSubNav = ({ countrySections, countryFaqs }: Props) => {
               className={cn(
                 "whitespace-nowrap",
                 active &&
-                  "visa-sub-tab-active relative border-b-[2px] border-b-[#2f3268] text-[#2f3268]"
+                  "visa-sub-tab-active relative border-b-2 border-b-[#2f3268] text-[#2f3268]"
               )}
             >
               <p>

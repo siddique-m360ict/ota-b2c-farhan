@@ -305,7 +305,7 @@ const InternationalRoutes = () => {
                   </p>
                 </div>
 
-                <Icons.ArrowLeftRight className="absolute left-[44%] z-50 hidden h-7 w-7 cursor-pointer rounded-full p-1.5 text-sm font-bold transition-all duration-150 md:block" />
+                <Icons.ArrowLeftRight className="absolute left-[44%] z-50 hidden size-7 cursor-pointer rounded-full p-1.5 text-sm font-bold transition-all duration-150 md:block" />
                 <div className="text-end">
                   <p className="my-1 text-xs xl:text-sm 2xl:text-[16px]">
                     {item.to.city}

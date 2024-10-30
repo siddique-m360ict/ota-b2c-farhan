@@ -9,7 +9,7 @@ export default function LoadingIndicator({ className }: Props) {
     <>
       <div
         className={cn(
-          "w-calc(100vw - 8%) fixed	 left-1/2 top-1/2 z-50 flex h-screen w-full -translate-x-1/2 -translate-y-1/2 transform items-center justify-center bg-white/30 backdrop-blur-[5px]",
+          "w-calc(100vw - 8%) fixed	 left-1/2 top-1/2 z-50 flex h-screen w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white/30 backdrop-blur-[5px]",
           className
         )}
         id="loader"

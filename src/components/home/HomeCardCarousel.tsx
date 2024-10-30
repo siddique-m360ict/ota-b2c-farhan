@@ -35,7 +35,11 @@ const HomeCardCarousel = () => {
         className="absolute top-[-20px] z-0  h-8 w-full bg-secondaryBg md:h-10"
         style={{ borderRadius: "24px 24px 0 0" }}
       ></div>
+  
       <div className="container">
+        <div className="items-left justify-left flex size-full py-5 font-sans text-2xl font-bold text-gray-600">
+          <h1>Unbeatable Promo Offer</h1>
+        </div>
         <Carousel
           opts={{
             align: "center",

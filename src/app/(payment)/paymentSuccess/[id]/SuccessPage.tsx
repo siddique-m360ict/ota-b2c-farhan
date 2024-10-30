@@ -59,7 +59,7 @@ const SuccessPage = ({ paymentData }: Props) => {
             <div>
               <Image src={"/be.png"} alt="logo" height={200} width={200} />
             </div>
-            <div className="mx-auto w-[13rem]">
+            <div className="mx-auto w-52">
               <Image
                 src={"/payment.png"}
                 alt="logo"

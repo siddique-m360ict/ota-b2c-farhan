@@ -273,7 +273,7 @@ const loading = () => {
           </div>
         </div>
       </div>
-      {<LoadingIndicator className="backdrop-blur-[4px]" />}
+      {<LoadingIndicator className="backdrop-blur-sm" />}
     </div>
   )
 }

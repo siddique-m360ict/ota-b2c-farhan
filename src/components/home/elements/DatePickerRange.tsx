@@ -38,7 +38,7 @@ function DatePickerRange({ className, date, setDate, visaPage }: Props) {
                   !date && "text-muted-foreground"
                 )}
               >
-                <CalendarIcon className="mr-2 h-4 w-4" />
+                <CalendarIcon className="mr-2 size-4" />
                 {date?.from ? (
                   format(date.from, "LLL dd, y")
                 ) : (
@@ -52,7 +52,7 @@ function DatePickerRange({ className, date, setDate, visaPage }: Props) {
                   !date && "text-muted-foreground"
                 )}
               >
-                <CalendarIcon className="mr-2 h-4 w-4" />
+                <CalendarIcon className="mr-2 size-4" />
                 {date?.to ? (
                   format(date.to, "LLL dd, y")
                 ) : (
@@ -78,7 +78,7 @@ function DatePickerRange({ className, date, setDate, visaPage }: Props) {
                     <p>{format(date.from, "LLL dd, y")} </p>{" "}
                     <Separator
                       orientation="vertical"
-                      className=" h-[1px] w-[3vw] translate-y-3"
+                      className=" h-px w-[3vw] translate-y-3"
                     />
                     <p>{format(date.to, "LLL dd, y")}</p>
                   </div>

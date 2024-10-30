@@ -87,13 +87,13 @@ const FlightLocationHeader = ({
           <div>
             <div className="flex items-center gap-2">
               {departureLocation}
-              <Separator className="h-[1px] w-6" />
+              <Separator className="h-px w-6" />
               {arrivalLocation}
             </div>
             <div className="flex items-center justify-center gap-2 leading-4">
               <div className="flex items-center gap-1 text-[10px]">
                 <p>{departureDate}</p>
-                <Separator className="h-[1px] w-2" />
+                <Separator className="h-px w-2" />
                 <p>{arrivalDate}</p>
               </div>
               <span className="text-xs text-destructive">|</span>
@@ -154,22 +154,22 @@ const FlightLocationHeader = ({
               <RefundableNonRefund />
               <Separator
                 orientation="horizontal"
-                className="my-4 h-[1px] w-full"
+                className="my-4 h-px w-full"
               />
               <FilterAirline Airlines={filterItem?.airlines} />
               <Separator
                 orientation="horizontal"
-                className="my-5 h-[1px] w-full"
+                className="my-5 h-px w-full"
               />
               <Stoppage filter={filterItem?.total_stoppage} />
               <Separator
                 orientation="horizontal"
-                className=" my-5 h-[1px] w-full"
+                className=" my-5 h-px w-full"
               />
               <PriceRangeFilter price={filterItem?.price_rage} />
               <Separator
                 orientation="horizontal"
-                className=" my-5 h-[1px] w-full"
+                className=" my-5 h-px w-full"
               />
             </div>
           </DrawerContent>

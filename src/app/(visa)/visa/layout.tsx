@@ -68,7 +68,7 @@ export default function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div>
       <header className="relative w-full pb-20  ">
-        <div className="bg-wrapper absolute left-0 top-0 z-0 h-full  w-full bg-primary"></div>
+        <div className="bg-wrapper absolute left-0 top-0 z-0 size-full  bg-primary"></div>
         <div className="z-50 hidden h-16  space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />
         </div>

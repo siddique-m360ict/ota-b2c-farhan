@@ -240,14 +240,14 @@ const MultiCity = ({ cabinClass, passenger }) => {
                 <div className="relative w-full">
                   <Separator
                     orientation="vertical"
-                    className="h-[1px] w-full bg-[#EBF0EB] dark:bg-gray-800"
+                    className="h-px w-full bg-[#EBF0EB] dark:bg-gray-800"
                   />
                   {index > 1 && (
                     <div
                       className="absolute bottom-[-9px] right-0 z-50 bg-transparent"
                       onClick={() => removeCity(key)}
                     >
-                      <Icons.close className="z-50 h-6 w-6 cursor-pointer rounded-full border p-1 font-bold text-primary transition-all duration-150 hover:bg-[#ff0000] hover:text-white dark:bg-transparent  " />
+                      <Icons.close className="z-50 size-6 cursor-pointer rounded-full border p-1 font-bold text-primary transition-all duration-150 hover:bg-[#ff0000] hover:text-white dark:bg-transparent  " />
                     </div>
                   )}
                 </div>
@@ -275,7 +275,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                       ? "0px 0px 0px 1px #E2E8F0"
                       : "0px 0px 0px 1px #222",
                 }}
-                className="absolute left-[31.3%] top-[20%] z-50 hidden h-8 w-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5  font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent  dark:text-white md:block"
+                className="absolute left-[31.3%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent dark:text-white  md:block"
               />
               <Icons.ArrowDownUp
                 onClick={() => handleSwap(index)}
@@ -286,7 +286,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                       ? "0px 0px 0px 1px #E2E8F0"
                       : "0px 0px 0px 1px #222",
                 }}
-                className="absolute right-[5%] top-[20%] z-50 block h-8 w-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white  dark:bg-transparent md:hidden"
+                className="absolute right-[5%] top-[20%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent  md:hidden"
               />
               <SelectAirport
                 airport={to}
@@ -350,7 +350,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
               onClick={() => startTransition(() => handleSearch())}
             >
               {loading && (
-                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                <Icons.spinner className="mr-2 size-4 animate-spin" />
               )}
               Search
             </Button>

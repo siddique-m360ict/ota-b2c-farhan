@@ -49,7 +49,7 @@ const WarningOTP = () => {
           "bg-yellow-600 px-4 shadow-xl dark:bg-primary"
         )}
       >
-        {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+        {loading && <Icons.spinner className="mr-2 size-4 animate-spin" />}
         Verify Email
       </button>
     </>

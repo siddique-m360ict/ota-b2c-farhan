@@ -10,7 +10,7 @@ const StepApplyingProcess = ({ countryPage, countryVisaSteps }: Props) => {
     <section className="my-4" id="country-applying-process">
       <div className="section_intro mb-[15px] text-left md:mb-[30px]">
         <h2
-          className="w-[80%] text-[30px] font-[600]"
+          className="w-4/5 text-[30px] font-[600]"
           dangerouslySetInnerHTML={{ __html: countryPage.visaStepSectionTitle }}
         />
         <div
@@ -32,7 +32,7 @@ const StepApplyingProcess = ({ countryPage, countryVisaSteps }: Props) => {
                   padding: "15px 20px 15px 30px",
                 }}
               >
-                <h3 className="bg-[#2e90fa] text-[20px] font-[600] text-[#fff]">
+                <h3 className="bg-[#2e90fa] text-[20px] font-[600] text-white">
                   {step.title}
                 </h3>
               </div>

@@ -31,11 +31,11 @@ const VisaPriceBox = () => {
               <div className="wave wave2" />
               <div className="header-content relative flex h-full flex-col justify-center p-[10px]">
                 <div className="title flex items-center justify-center gap-[15px]">
-                  <p className="text-[15px] font-[600] text-[#fff]">
+                  <p className="text-[15px] font-[600] text-white">
                     Business Visit
                   </p>
                 </div>
-                <div className="mt-0 text-center text-[38px] font-[700] text-[#fff]">
+                <div className="mt-0 text-center text-[38px] font-[700] text-white">
                   ৳ <span> 29800</span>
                 </div>
               </div>
