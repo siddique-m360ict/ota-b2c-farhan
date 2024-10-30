@@ -29,11 +29,11 @@ const fontHeading = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Booking Expert - Best Deals on Flight Tickets",
-    template: "%s | Booking Expert",
+    default: "Farhan Travels - Best Deals on Flight Tickets",
+    template: "%s | Farhan Travels",
   },
   description:
-    "Discover and book cheap flights with Booking Expert. Compare prices, find the best deals on airline tickets, and enjoy a hassle-free booking experience. Book your next flight now!",
+    "Discover and book cheap flights with Farhan Travels. Compare prices, find the best deals on airline tickets, and enjoy a hassle-free booking experience. Book your next flight now!",
   keywords: [
     "flight booking",
     "cheap flights",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "airline tickets",
     "best flight deals",
     "discount flights",
-    "Booking Expert",
+    "Farhan Travels",
     "cheap airfare",
     "last-minute flights",
     "international flights",
@@ -77,11 +77,11 @@ export const metadata: Metadata = {
   ],
   creator: "shadcn",
   openGraph: {
-    title: "Book Flights - Best Deals on Flight Tickets | Booking Expert",
+    title: "Book Flights - Best Deals on Flight Tickets | Farhan Travels",
     description:
-      "Find the best flight deals with Booking Expert. Compare airline tickets, enjoy cheap airfare, and book your next flight easily. Book now!",
+      "Find the best flight deals with Farhan Travels. Compare airline tickets, enjoy cheap airfare, and book your next flight easily. Book now!",
     type: "website",
-    url: "https://www.bookingexpert.world",
+    url: "https://www.farhantravels.world",
     images: [
       {
         url: "/og-image.PNG",
@@ -93,10 +93,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Book Flights - Best Deals on Flight Tickets | Booking Expert",
+    site: "@farhantravels",
+    title: "Book Flights - Best Deals on Flight Tickets | Farhan Travels",
     description:
-      "Discover the best deals on flights with Booking Expert. Compare prices, find cheap airfare, and book easily. Book your flight now!",
+      "Discover the best deals on flights with Farhan Travels. Compare prices, find cheap airfare, and book easily. Book your flight now!",
     images: ["/og-image.PNG"],
   },
   icons: {

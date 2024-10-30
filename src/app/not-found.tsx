@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 

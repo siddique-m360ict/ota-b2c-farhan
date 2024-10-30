@@ -7,9 +7,9 @@ interface FlightSearchLayoutProps {
 }
 
 export const metadata = {
-  title: "Visa Search - Find Visa Services Worldwide | Booking Expert",
+  title: "Visa Search - Find Visa Services Worldwide | Farhan Travels",
   description:
-    "Search and discover visa services worldwide with Booking Expert. Find the best visa options, compare services, and start your visa application process. Search for visas now!",
+    "Search and discover visa services worldwide with Farhan Travels. Find the best visa options, compare services, and start your visa application process. Search for visas now!",
   keywords: [
     "visa search",
     "find visas",
@@ -28,15 +28,15 @@ export const metadata = {
     "student visas",
     "business visas",
     "immigration services",
-    "Booking Expert world",
-    "bookingexpert.world",
+    "Farhan Travels world",
+    "farhantravels.world",
   ],
   openGraph: {
-    title: "Visa Search - Find Visa Services Worldwide | Booking Expert",
+    title: "Visa Search - Find Visa Services Worldwide | Farhan Travels",
     description:
-      "Discover visa services worldwide with Booking Expert. Search for visas, compare options, and start your visa application process easily. Search now!",
+      "Discover visa services worldwide with Farhan Travels. Search for visas, compare options, and start your visa application process easily. Search now!",
     type: "website",
-    url: "https://www.bookingexpert.world/searchVisa",
+    url: "https://www.farhantravels.world/searchVisa",
     images: [
       {
         url: "/og-image.PNG",
@@ -48,10 +48,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Visa Search - Find Visa Services Worldwide | Booking Expert",
+    site: "@farhantravels",
+    title: "Visa Search - Find Visa Services Worldwide | Farhan Travels",
     description:
-      "Search and discover visa services worldwide with Booking Expert. Find the best visa options, compare services, and start your visa application process. Search for visas now!",
+      "Search and discover visa services worldwide with Farhan Travels. Find the best visa options, compare services, and start your visa application process. Search for visas now!",
     images: ["/og-image.PNG"],
   },
 }

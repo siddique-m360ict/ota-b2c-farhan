@@ -1,6 +1,6 @@
 import FlightSearch from "@/components/home/FlightSearch"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -9,9 +9,9 @@ interface FlightLayoutProps {
 }
 
 export const metadata = {
-  title: "Search Results - Find the Best Flights | Booking Expert",
+  title: "Search Results - Find the Best Flights | Farhan Travels",
   description:
-    "Discover the best flight options and deals with our comprehensive search results. Compare prices, airlines, and book your ideal flight with Booking Expert.",
+    "Discover the best flight options and deals with our comprehensive search results. Compare prices, airlines, and book your ideal flight with Farhan Travels.",
   keywords: [
     "flight search",
     "flight results",
@@ -19,20 +19,20 @@ export const metadata = {
     "flight deals",
     "airline tickets",
     "book flights",
-    "Booking Expert",
+    "Farhan Travels",
     "compare flights",
     "best flight prices",
     "flight options",
   ],
   openGraph: {
-    title: "Search Results - Find the Best Flights | Booking Expert",
+    title: "Search Results - Find the Best Flights | Farhan Travels",
     description:
-      "Find and compare the best flight options available. Book your ideal flight with ease using Booking Expert's comprehensive search results.",
+      "Find and compare the best flight options available. Book your ideal flight with ease using Farhan Travels's comprehensive search results.",
     type: "website",
-    url: "https://www.bookingexpert.world/search",
+    url: "https://www.farhantravels.world/search",
     images: [
       {
-        url: "https://www.bookingexpert.world/og-image-search.jpg",
+        url: "https://www.farhantravels.world/og-image-search.jpg",
         width: 800,
         height: 600,
         alt: "Best Flight Search Results",
@@ -41,11 +41,11 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Search Results - Find the Best Flights | Booking Expert",
+    site: "@farhantravels",
+    title: "Search Results - Find the Best Flights | Farhan Travels",
     description:
       "Discover and book the best flights with our search results. Compare prices and airlines for your next trip.",
-    images: ["https://www.bookingexpert.world/twitter-image-search.jpg"],
+    images: ["https://www.farhantravels.world/twitter-image-search.jpg"],
   },
 }
 

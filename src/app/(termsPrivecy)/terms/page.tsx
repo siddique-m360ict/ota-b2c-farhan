@@ -5,10 +5,10 @@ const TermsAndConditionsPage = () => {
     <div className="container mx-auto p-4">
       <h1 className="mb-4 text-2xl font-bold">Terms and Conditions</h1>
       <p className="mb-6">
-        Welcome to Booking Expert. These terms and conditions outline the rules
+        Welcome to Farhan Travels. These terms and conditions outline the rules
         and regulations for the use of our website and services. By accessing
         this website, we assume you accept these terms and conditions. Do not
-        continue to use Booking Expert if you do not agree to all the terms and
+        continue to use Farhan Travels if you do not agree to all the terms and
         conditions stated on this page.
       </p>
 
@@ -16,7 +16,7 @@ const TermsAndConditionsPage = () => {
         <h2 className="mb-2 text-xl font-semibold">1. Definitions</h2>
         <p>
           &quot;Company&quot;, &quot;We&quot;, &quot;Our&quot;, or
-          &quot;Us&quot; refers to Booking Expert. <br />
+          &quot;Us&quot; refers to Farhan Travels. <br />
           &quot;User&quot;, &quot;You&quot;, or &quot;Your&quot; refers to the
           individual using our services or accessing our website. <br />
           &quot;Service&quot; refers to the booking services provided by Booking
@@ -37,7 +37,7 @@ const TermsAndConditionsPage = () => {
       <section className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Booking and Payment</h2>
         <p>
-          All bookings made through Booking Expert are subject to availability
+          All bookings made through Farhan Travels are subject to availability
           and acceptance by the service providers (airlines, hotels, etc.).
           Prices and availability are subject to change without notice. Payments
           must be made in full at the time of booking. We accept various payment
@@ -52,7 +52,7 @@ const TermsAndConditionsPage = () => {
         <p>
           Cancellation and refund policies vary depending on the service
           provider. Please review the specific terms and conditions provided at
-          the time of booking. Booking Expert will assist with the cancellation
+          the time of booking. Farhan Travels will assist with the cancellation
           process, but we are not responsible for the policies of airlines,
           hotels, or other service providers.
         </p>
@@ -82,7 +82,7 @@ const TermsAndConditionsPage = () => {
         <h2 className="mb-2 text-xl font-semibold">Intellectual Property</h2>
         <p>
           The content on our website, including text, graphics, logos, and
-          images, is the property of Booking Expert or its licensors and is
+          images, is the property of Farhan Travels or its licensors and is
           protected by intellectual property laws. You may not use any content
           from our website without our express written permission.
         </p>
@@ -91,7 +91,7 @@ const TermsAndConditionsPage = () => {
       <section className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Limitation of Liability</h2>
         <p>
-          Booking Expert will not be liable for any direct, indirect,
+          Farhan Travels will not be liable for any direct, indirect,
           incidental, special, or consequential damages arising from your use of
           the service or any booking made through the service. Our total
           liability to you in connection with any booking is limited to the
@@ -136,10 +136,10 @@ const TermsAndConditionsPage = () => {
         <p className="ml-4">
           Email:{" "}
           <a
-            href="mailto:support@bookingexpert.com"
+            href="mailto:support@farhantravels.com"
             className="text-blue-500 underline"
           >
-            support@bookingexpert.com
+            support@farhantravels.com
           </a>
           <br />
           Address: House# 74, Road# 7, Block# H, Banani, Dhaka-1213, Bangladesh

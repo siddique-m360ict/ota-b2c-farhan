@@ -3,9 +3,9 @@ interface AuthLayoutProps {
 }
 
 export const metadata = {
-  title: "Authentication - Secure Login and Registration | Booking Expert",
+  title: "Authentication - Secure Login and Registration | Farhan Travels",
   description:
-    "Securely log in or register with Booking Expert. Access your account, manage bookings, and enjoy a seamless authentication experience.",
+    "Securely log in or register with Farhan Travels. Access your account, manage bookings, and enjoy a seamless authentication experience.",
   keywords: [
     "authentication",
     "login",
@@ -15,25 +15,25 @@ export const metadata = {
     "account management",
     "user authentication",
     "secure authentication",
-    "Booking Expert",
+    "Farhan Travels",
     "authentication process",
     "login page",
     "registration page",
-    "bookingexpert auth",
-    "bookingexpert login",
-    "bookingexpert register",
-    "bookingexpert sign in",
-    "bookingexpert signip",
-    "bookingexpert.world auth",
-    "bookingexpert.world login",
-    "bookingexpert.world register",
+    "farhantravels auth",
+    "farhantravels login",
+    "farhantravels register",
+    "farhantravels sign in",
+    "farhantravels signip",
+    "farhantravels.world auth",
+    "farhantravels.world login",
+    "farhantravels.world register",
   ],
   openGraph: {
-    title: "Authentication - Secure Login and Registration | Booking Expert",
+    title: "Authentication - Secure Login and Registration | Farhan Travels",
     description:
-      "Securely log in or register with Booking Expert. Access your account, manage bookings, and enjoy a seamless authentication experience.",
+      "Securely log in or register with Farhan Travels. Access your account, manage bookings, and enjoy a seamless authentication experience.",
     type: "website",
-    url: "https://www.bookingexpert.world/login",
+    url: "https://www.farhantravels.world/login",
     images: [
       {
         url: "/og-image.PNG",
@@ -45,10 +45,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Authentication - Secure Login and Registration | Booking Expert",
+    site: "@farhantravels",
+    title: "Authentication - Secure Login and Registration | Farhan Travels",
     description:
-      "Securely log in or register with Booking Expert. Access your account, manage bookings, and enjoy a seamless authentication experience.",
+      "Securely log in or register with Farhan Travels. Access your account, manage bookings, and enjoy a seamless authentication experience.",
     images: ["/og-image.PNG"],
   },
 }

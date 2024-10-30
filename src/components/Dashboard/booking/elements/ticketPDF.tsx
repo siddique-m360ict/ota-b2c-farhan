@@ -34,11 +34,11 @@ const DownloadTicketPDFButton = ({
     // Add header
     doc.addImage("/be.png", "PNG", 7, 10, 50, 10)
     doc.setFontSize(18)
-    doc.text("Booking Expert", 160, 15)
+    doc.text("Farhan Travels", 160, 15)
     doc.setFontSize(10)
     doc.text("Road# 7, Block# H, Banani, Dhaka-1213", 140, 22)
     doc.text("Phone: +8809638336699", 165, 27)
-    doc.text("Email: reservation@bookingexpert.world", 142, 32)
+    doc.text("Email: reservation@farhantravels.world", 142, 32)
     doc.setLineWidth(0.1)
     doc.line(1, 36, doc.internal.pageSize.width - 1, 36)
 
@@ -185,10 +185,10 @@ const DownloadTicketPDFButton = ({
         doc.setFontSize(10)
         const footerText =
           i < 1
-            ? `Page ${i} of ${pageCount} | Booking Expert | Contact us: support@bookingexpert.world | +8809638336699`
-            : `Booking Expert | Contact us: support@bookingexpert.world | +8809638336699`
+            ? `Page ${i} of ${pageCount} | Farhan Travels | Contact us: support@farhantravels.world | +8809638336699`
+            : `Farhan Travels | Contact us: support@farhantravels.world | +8809638336699`
         const footerTagline =
-          "Thank you for trusting Booking Expert with your travel plans. We hope you have a smooth and happy journey."
+          "Thank you for trusting Farhan Travels with your travel plans. We hope you have a smooth and happy journey."
         doc.text(
           footerText,
           doc.internal.pageSize.width / 2,

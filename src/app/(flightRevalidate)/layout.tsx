@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getCookies } from "@/lib/token/getCookies"
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 import type { Metadata } from "next"
@@ -10,24 +10,24 @@ interface FlightRevalidateLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Revalidate Flight Information - Booking Expert",
+  title: "Revalidate Flight Information - Farhan Travels",
   description:
-    "Revalidate and get the latest updates on your flight bookings with Booking Expert. Ensure you have the most accurate and up-to-date flight information.",
+    "Revalidate and get the latest updates on your flight bookings with Farhan Travels. Ensure you have the most accurate and up-to-date flight information.",
   keywords: [
     "flight revalidate",
     "flight information",
     "flight updates",
-    "Booking Expert",
+    "Farhan Travels",
     "flight booking",
     "update flights",
     "latest flight info",
   ],
   openGraph: {
-    title: "Revalidate Flight Information - Booking Expert",
+    title: "Revalidate Flight Information - Farhan Travels",
     description:
-      "Stay updated with the latest flight information by revalidating your bookings with Booking Expert. Get accurate and timely updates on your flights.",
+      "Stay updated with the latest flight information by revalidating your bookings with Farhan Travels. Get accurate and timely updates on your flights.",
     type: "website",
-    url: "https://www.bookingexpert.world",
+    url: "https://www.farhantravels.world",
     images: [
       {
         url: "/og-image.PNG",
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Revalidate Flight Information - Booking Expert",
+    site: "@farhantravels",
+    title: "Revalidate Flight Information - Farhan Travels",
     description:
-      "Revalidate your flight bookings and get the latest updates with Booking Expert. Ensure you have the most accurate flight information.",
+      "Revalidate your flight bookings and get the latest updates with Farhan Travels. Ensure you have the most accurate flight information.",
     images: ["/og-image.PNG"],
   },
 }

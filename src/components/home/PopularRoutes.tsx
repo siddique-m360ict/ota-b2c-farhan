@@ -1,162 +1,119 @@
 "use client"
-
+import React, { useState } from "react"
+import { Card, CardContent, CardHeader } from "../ui/card"
 import Image from "next/image"
-import Link from "next/link"
-import { Plane, ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import { Icons } from "../icons"
+import BangladeshRoutes from "./elements/PopularRoutesElements/BangladeshRoutes"
+import { useTheme } from "next-themes"
+import InternationalRoutes from "./elements/PopularRoutesElements/InternationalRoutes"
 
-interface FlightRecommendation {
-  destination: string
-  price: string
-  imageUrl: string
-  from: string
-  depDate: string
-  depAirport: string
-  arrAirport: string
-}
+const PopularRoute = () => {
+  const headingTitle = [
+    { img: "/images/home/love.webp", name: "Flexible Booking" },
+    { img: "/images/home/check.webp", name: "Flight Booking Guarantee" },
+  ]
+  const { theme } = useTheme()
+  const [activeTab, setActiveTab] = useState("International")
+  const tabs = [
+    {
+      id: "Domestic",
+      label: "Domestic",
+      element: <BangladeshRoutes />,
+    },
+    {
+      id: "International",
+      label: "International",
+      element: <InternationalRoutes />,
+    },
+  ]
 
-const flightRecommendations: FlightRecommendation[] = [
-  {
-    destination: "Kuala Lumpur",
-    price: "Tk 2,143",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/kuala-lumpur.png",
-    from: "Langkawi",
-    depDate: "2024-11-14",
-    depAirport: "LGK",
-    arrAirport: "KUL",
-  },
-  {
-    destination: "Bangkok",
-    price: "Tk 25,600",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/bangkok.png",
-    from: "Dhaka",
-    depDate: "2024-11-05",
-    depAirport: "DAC",
-    arrAirport: "BKKA",
-  },
-  {
-    destination: "Dhaka",
-    price: "Tk 14,317",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/dhaka.png",
-    from: "Kuala Lumpur",
-    depDate: "2024-12-19",
-    depAirport: "KUL",
-    arrAirport: "DAC",
-  },
-  {
-    destination: "Phuket",
-    price: "Tk 3,788",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/phuket.png",
-    from: "Bangkok",
-    depDate: "2024-11-29",
-    depAirport: "BKKA",
-    arrAirport: "HKT",
-  },
-  {
-    destination: "Langkawi",
-    price: "Tk 2,143",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/langkawi.png",
-    from: "Kuala Lumpur",
-    depDate: "2024-11-06",
-    depAirport: "KUL",
-    arrAirport: "LGK",
-  },
-  {
-    destination: "Riyadh",
-    price: "Tk 39,596",
-    imageUrl:
-      "https://cdn.airpaz.com/cdn-cgi/image/f=webp/rel-0275/cities/320x180/riyadh.png",
-    from: "Dhaka",
-    depDate: "2024-11-15",
-    depAirport: "DAC",
-    arrAirport: "RUH",
-  },
-]
-
-export default function FlightRecommendations() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId)
+  }
 
   return (
-    <div className='my-20'>
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-8 text-left text-4xl font-semibold text-gray-600">
-          Exclusive Flight Recommendations
-        </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {flightRecommendations.map((flight, index) => (
-            <Link
-              key={index}
-              href={`/en/flight/search?depDate=${flight.depDate}&depAirport=${flight.depAirport}&arrAirport=${flight.arrAirport}&adult=1&cabin=economy`}
-              className="group relative block h-[250px] overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <Image
-                src={flight.imageUrl}
-                alt={flight.destination}
-                layout="fill"
-                objectFit="cover"
-                className={`transition-all duration-300 ${
-                  hoveredIndex === index ? "scale-110 blur-sm" : "scale-100 blur-0"
-                }`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
-                <div className="relative size-full" data-testid="recommended-card">
-                  <div className="flight-desc relative flex h-8 overflow-hidden">
-                    <p
-                      className={`absolute whitespace-nowrap transition-all duration-300 ease-in-out ${
-                        hoveredIndex === index
-                          ? "translate-y-full text-xl opacity-0"
-                          : "translate-y-0 text-lg opacity-100"
-                      }`}
-                    >
-                      Flight to
-                    </p>
-                    <p
-                      className={`absolute whitespace-nowrap transition-all duration-300 ease-in-out ${
-                        hoveredIndex === index
-                          ? "translate-y-0 text-xl opacity-100"
-                          : "translate-y-full text-lg opacity-0"
-                      }`}
-                    >
-                      Flight from {flight.from}
-                    </p>
-                  </div>
-                  <div className={`mt-3 font-bold transition-all duration-300 ${
-                    hoveredIndex === index ? "text-3xl" : "text-2xl"
-                  }`}>
-                    <Plane className="mr-2 inline size-6" />
-                    <span>{flight.destination}</span>
-                  </div>
-                  <div className={`mt-3 h-[2px] bg-white transition-all duration-300 ${
-                    hoveredIndex === index ? "w-full" : "w-0"
-                  }`}></div>
-                  <div className={`absolute bottom-4 right-4 flex items-end gap-x-2 font-bold transition-all duration-300 ${
-                    hoveredIndex === index ? "left-4 right-auto text-lg" : "text-base"
-                  }`}>
-                    <span className="opacity-100">Start from</span>
-                    <div className="text-lg">{flight.price}</div>
-                  </div>
+    <div className="mt-8 pb-8 md:container">
+      <Card
+        className="border-none"
+        style={{
+          background:
+            theme === "light"
+              ? "url(/images/home/populer1.png) no-repeat right 24px top 4px,radial-gradient(ellipse 30% 26% at 80% 0,rgba(204,230,255,.72),transparent),radial-gradient(ellipse 30% 26% at bottom left,rgba(204,230,255,.72),transparent),#f7fafc"
+              : "url(/images/home/populer1.png) right 24px top 4px no-repeat, radial-gradient(30% 26% at 80% 0px, rgb(240 128 128/ 72%), transparent), radial-gradient(30% 26% at left bottom, rgb(220 20 60 / 72%), transparent), rgb(139 0 0))",
+        }}
+      >
+        <CardHeader className="p-4 pb-2 md:p-6 md:pb-0">
+          <h1 className="ms-3 font-heading text-secondary md:text-[26px]">
+            Deals on Popular Routes
+          </h1>
+          <div className="hidden justify-start gap-4 md:flex">
+            {headingTitle.map((item, index) => (
+              <div
+                key={index}
+                className="box relative ms-6 flex gap-1 text-[14px] font-[400] text-destructive"
+              >
+                <Image
+                  src={item.img}
+                  alt={"secured image"}
+                  width={20}
+                  height={20}
+                />
+                <p className="relative">
+                  {item.name}
                   <span
-                    className={`absolute bottom-4 right-4 transition-all duration-300 ${
-                      hoveredIndex === index
-                        ? "translate-x-0 opacity-100"
-                        : "translate-x-full opacity-0"
-                    }`}
-                  >
-                    <ArrowRight className="size-6" />
-                  </span>
-                </div>
+                    className="absolute bottom-0 left-0"
+                    style={{
+                      border: "none",
+                      backgroundImage:
+                        "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 2px, transparent 0px, transparent 4px, rgba(255, 255, 255, 0.4) 0px)",
+                      height: "1px",
+                      width: "100%",
+                    }}
+                  ></span>
+                </p>
               </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+            ))}
+          </div>
+        </CardHeader>
+        <CardContent className="ms-4 px-3 md:p-6">
+          <div>
+            <Tabs defaultValue={activeTab}>
+              <div className="overflow-x-scroll md:overflow-x-hidden">
+                <TabsList
+                  aria-label="Select Your Services"
+                  className="mb-4 gap-2 bg-transparent md:gap-6"
+                >
+                  {tabs.map((tab) => (
+                    <TabsTrigger
+                      key={tab.id}
+                      value={tab.id}
+                      onClick={() => handleTabChange(tab.id)}
+                      className="text-sm shadow-md data-[state=active]:shadow-lg data-[state=active]:dark:bg-primary md:px-4 md:data-[state=active]:bg-red-600 md:data-[state=active]:text-white"
+                    >
+                      <p className="flex items-center gap-1 font-bold md:text-[16px]">
+                        {tab.label}
+                      </p>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
+
+              {tabs.map((tab) => (
+                <TabsContent
+                  key={tab.id}
+                  className="TabsContent"
+                  value={tab.id}
+                >
+                  {tab.element}
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
+
+export default PopularRoute

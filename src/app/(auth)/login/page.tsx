@@ -10,29 +10,29 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "Login - Secure Sign In to Your Account | Booking Expert",
+  title: "Login - Secure Sign In to Your Account | Farhan Travels",
   description:
-    "Login to your Booking Expert account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
+    "Login to your Farhan Travels account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
   keywords: [
     "login",
     "sign in",
     "secure login",
     "account login",
     "user login",
-    "Booking Expert",
+    "Farhan Travels",
     "secure sign in",
     "login page",
     "user authentication",
     "sign in page",
-    "booking expert world login",
-    "bookingexpert.world login",
+    "Farhan Travels world login",
+    "farhantravels.world login",
   ],
   openGraph: {
-    title: "Login - Secure Sign In to Your Account | Booking Expert",
+    title: "Login - Secure Sign In to Your Account | Farhan Travels",
     description:
-      "Login to your Booking Expert account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
+      "Login to your Farhan Travels account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
     type: "website",
-    url: "https://www.bookingexpert.world/login",
+    url: "https://www.farhantravels.world/login",
     images: [
       {
         url: "/og-image.PNG",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Login - Secure Sign In to Your Account | Booking Expert",
+    site: "@farhantravels",
+    title: "Login - Secure Sign In to Your Account | Farhan Travels",
     description:
-      "Login to your Booking Expert account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
+      "Login to your Farhan Travels account securely. Access your bookings, manage your profile, and enjoy a seamless sign-in experience.",
     images: ["/og-image.PNG"],
   },
 }
@@ -58,7 +58,7 @@ export default function SigninPage() {
       className="z-50 flex h-screen w-screen flex-col items-center justify-center px-4 md:px-0"
       style={{
         backgroundImage:
-          "linear-gradient(45deg, #0034d5, transparent), url(/images/bg/e-bg.webp)",
+          "linear-gradient(45deg, #ed5555, transparent), url(/images/home/login.jpg)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -68,7 +68,7 @@ export default function SigninPage() {
         href="/"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 text-primary md:left-8 md:top-8 md:border md:border-[#9cade2] md:text-white"
+          "absolute left-4 top-4 text-primary md:left-8 md:top-8 md:border md:border-[#ed5555] md:text-white"
         )}
       >
         <>

@@ -126,7 +126,7 @@ const AppPromo = () => {
                           />
                         </Link>
                         <Link
-                          href="https://play.google.com/store/apps/details?id=com.m360ict.bookingExpert"
+                          href="https://play.google.com/store/apps/details?id=com.m360ict.farhantravels"
                           target="_blank"
                         >
                           <Image
@@ -160,81 +160,6 @@ const AppPromo = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Feedback and Flights Section */}
-      <div className="mx-auto max-w-6xl space-y-16 p-8">
-        <Card className="p-8 text-center">
-          <CardContent className="space-y-6">
-            <h2 className="text-4xl font-semibold text-gray-800">Your Feedback Counts!</h2>
-            <p className="text-xl text-gray-600">We'd love to hear about your recent experience</p>
-            <Button
-              variant="outline"
-              className="border-red-500 px-8 py-6 text-lg text-red-500 hover:bg-red-500 hover:text-white"
-            >
-              Share Your Feedback
-            </Button>
-          </CardContent>
-        </Card>
-
-        <div className="space-y-4 text-center">
-          <h2 className="text-4xl font-semibold text-gray-800">Don't miss out!</h2>
-          <p className="text-xl text-gray-600">Explore the world and stay anywhere conveniently</p>
-        </div>
-
-        <Tabs defaultValue="flights" className="w-full">
-          <TabsList className="w-full">
-            <TabsTrigger
-              value="flights"
-              className="flex-1 py-6 text-lg data-[state=active]:text-red-500"
-            >
-              Top Popular Flights
-            </TabsTrigger>
-            <TabsTrigger
-              value="routes"
-              className="flex-1 py-6 text-lg data-[state=active]:text-red-500"
-            >
-              Top Popular Routes
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="flights" className="mt-8">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {popularFlights.map((flight, index) => (
-                <a
-                  key={index}
-                  href={`/flight-to-${flight.to.toLowerCase()}`}
-                  className="p-4 text-xl text-red-600 hover:underline"
-                >
-                  Flight to {flight.to}
-                </a>
-              ))}
-              {popularRoutes.map((route, index) => (
-                <a
-                  key={index}
-                  href={`/flight-to-${route.to.toLowerCase()}`}
-                  className="p-4 text-xl text-red-600 hover:underline"
-                >
-                  Flight to {route.to}
-                </a>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="routes" className="mt-8">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {additionalRoutes.map((route, index) => (
-                <a
-                  key={index}
-                  href={`/flight-to-${route.to.toLowerCase()}`}
-                  className="p-4 text-xl text-blue-600 hover:underline"
-                >
-                  Flight to {route.to}
-                </a>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ interface FlightLayoutProps {
 }
 
 export const metadata = {
-  title: "Find Visa Worldwide - Visa Services | Booking Expert",
+  title: "Find Visa Worldwide - Visa Services | Farhan Travels",
   description:
-    "Discover and apply for visas worldwide with Booking Expert. Compare visa services, find the best deals, and enjoy a hassle-free application experience. Apply for your next visa now!",
+    "Discover and apply for visas worldwide with Farhan Travels. Compare visa services, find the best deals, and enjoy a hassle-free application experience. Apply for your next visa now!",
   keywords: [
     "visa services",
     "visa application",
@@ -20,7 +20,7 @@ export const metadata = {
     "tourist visa",
     "work visa",
     "student visa",
-    "Booking Expert",
+    "Farhan Travels",
     "visa application services",
     "visa processing",
     "visa requirements",
@@ -36,15 +36,15 @@ export const metadata = {
     "visa appointment booking",
     "visa consultation",
     "visa agency",
-    "Booking Expert world",
-    "bookingexpert.world",
+    "Farhan Travels world",
+    "farhantravels.world",
   ],
   openGraph: {
-    title: "Find Visa Worldwide - Visa Services | Booking Expert",
+    title: "Find Visa Worldwide - Visa Services | Farhan Travels",
     description:
-      "Discover the best visa services with Booking Expert. Compare visa options, enjoy hassle-free visa application, and apply for your next visa easily. Apply now!",
+      "Discover the best visa services with Farhan Travels. Compare visa options, enjoy hassle-free visa application, and apply for your next visa easily. Apply now!",
     type: "website",
-    url: "https://www.bookingexpert.world",
+    url: "https://www.farhantravels.world",
     images: [
       {
         url: "/images/og-visa-image.PNG",
@@ -56,10 +56,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Find Visa Worldwide - Visa Services | Booking Expert",
+    site: "@farhantravels",
+    title: "Find Visa Worldwide - Visa Services | Farhan Travels",
     description:
-      "Discover the best visa deals with Booking Expert. Compare visa services, find the best deals, and apply easily. Apply for your visa now!",
+      "Discover the best visa deals with Farhan Travels. Compare visa services, find the best deals, and apply easily. Apply for your visa now!",
     images: ["/og-visa-image.PNG"],
   },
 }

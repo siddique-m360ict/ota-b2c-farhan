@@ -1,5 +1,5 @@
 import { DashboardNav } from "@/components/Dashboard/common/nav"
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 import { dashboardConfig } from "@/config/dashboard"

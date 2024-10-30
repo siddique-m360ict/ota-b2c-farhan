@@ -12,7 +12,7 @@ export default function TermsLayout({ children }: TermsLayoutProps) {
       <section className="modify relative hidden md:block">
         <div className="container z-50 mb-2 mt-[-135px] grid grid-cols-2 rounded-3xl">
           <h1 className="font-heading text-[45px] text-white">
-            Booking Expert Privacy Policy
+            Farhan Travels Privacy Policy
           </h1>
           <div className="mt-[-40px] flex w-full justify-end">
             <Image

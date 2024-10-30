@@ -68,7 +68,7 @@ const BookingDetails = ({ data, token }: Props) => {
           </div>
           <div className="flex items-center justify-between">
             <div className=" text-blue-gray-900 ml-1 mt-2 text-xs">
-              <h5 className="mb-2 text-[20px]">Booking Expert</h5>
+              <h5 className="mb-2 text-[20px]">Farhan Travels</h5>
               <h5>Road# 7, Block# H, Banani, Dhaka-1213</h5>
               <div className="flex justify-end gap-1 text-[#3E4957]">
                 <div className="flex items-center gap-[2px]">
@@ -80,7 +80,7 @@ const BookingDetails = ({ data, token }: Props) => {
 
               <div className="flex justify-end gap-1 text-[#3E4957]">
                 <Icons.Mail />
-                <p className="text-xs">reservation@bookingexpert.world</p>
+                <p className="text-xs">reservation@farhantravels.world</p>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getCookies } from "@/lib/token/getCookies"
-import { MainNav } from "@/components/common/main-nav"
+import MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 import type { Metadata } from "next"
@@ -10,7 +10,7 @@ interface FlightRevalidateLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Payment - Booking Expert",
+  title: "Payment - Farhan Travels",
 }
 
 export default async function PaymentLayout({

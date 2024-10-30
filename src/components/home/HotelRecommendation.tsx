@@ -19,7 +19,7 @@ const hotels = [
   {
     id: 2,
     name: 'Sindhorn Midtown Hotel Bangkok, Vignette Collection, an IHG Hotel',
-    image: 'https://lbcdn.airpaz.com/cdn-cgi/image/w=1024,h=902,f=webp,q=50,fit=scale-down/hotelimages/640116/sindhorn-midtown-bangkok-532dde846f524eea3a9287c78f9bb2f3.jpg',
+    image: '',
     rating: 9.1,
     stars: 5,
     price: 19624,
@@ -32,9 +32,9 @@ export default function HotelRecommendation() {
   return (
     <section className="container mb-40">
       <div>
-        <h2 className="mb-8 text-4xl font-bold">Exclusive Hotel Recommendations</h2>
+        <h2 className="mb-8 ms-10 text-4xl font-bold">Exclusive Hotel Recommendations</h2>
 
-        <div className="mb-20 flex gap-x-6 overflow-x-auto pb-4">
+        <div className="mb-20 ms-10 flex gap-x-6 overflow-x-auto pb-4">
           {cities.map((city) => (
             <Button
               key={city}
@@ -55,7 +55,7 @@ export default function HotelRecommendation() {
           {hotels.map((hotel) => (
             <Card
               key={hotel.id}
-              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl"
+              className="group ms-10 cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl"
             >
               <div className="relative h-[320px] overflow-hidden">
                 <div className="absolute right-0 top-0 z-10 rounded-bl bg-red-500 px-4 py-3 text-lg font-bold text-white">

@@ -9,10 +9,10 @@ const PrivacyPolicyPage = () => {
       <div className="mb-6">
         <h2 className="mb-2 text-2xl font-semibold">Introduction</h2>
         <p>
-          Booking Expert (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
+          Farhan Travels (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
           values your privacy. This Privacy Policy explains how we collect, use,
           disclose, and safeguard your information when you visit our website
-          https://www.bookingexpert.world. Please read this privacy policy
+          https://www.farhantravels.world. Please read this privacy policy
           carefully. If you do not agree with the terms of this privacy policy,
           please do not access the Site.
         </p>
@@ -325,7 +325,7 @@ const PrivacyPolicyPage = () => {
           information from a child under age 13 without verification of parental
           consent, we will delete that information as quickly as possible. If
           you believe we might have any information from or about a child under
-          13, please contact us at support@bookingexpert.world.
+          13, please contact us at support@farhantravels.world.
         </p>
       </section>
 
@@ -411,10 +411,10 @@ const PrivacyPolicyPage = () => {
           If you have any questions about this Privacy Policy, please contact
           us:
           <a
-            href="mailto:support@bookingexpert.com"
+            href="mailto:support@farhantravels.com"
             className="text-blue-500 underline"
           >
-            support@bookingexpert.world
+            support@farhantravels.world
           </a>
         </p>
       </section>

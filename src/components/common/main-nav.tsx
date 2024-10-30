@@ -26,15 +26,15 @@ const MainNav = () => {
       setIsScrolled(window.scrollY > 20)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const navItems = [
     {
       label: "Home",
-      href: "/stays",
-      id: "stays",
+      href: "/",
+      id: "dashboard",
     },
     {
       label: "Flights",
@@ -59,11 +59,11 @@ const MainNav = () => {
   ]
 
   return (
-    <div className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-      isScrolled
-        ? 'bg-black/80 shadow-lg backdrop-blur-sm'
-        : 'bg-transparent'
-    }`}>
+    <div
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/80 shadow-lg backdrop-blur-sm" : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
         {/* Logo */}
         <div className="flex items-center gap-8">
@@ -73,19 +73,18 @@ const MainNav = () => {
 
           {/* Navigation Items */}
           <nav className="hidden md:block">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-12">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-2 text-white transition-colors hover:text-gray-200
+                    className={`flex items-center gap-2 text-white transition-colors hover:text-gray-200 hover:underline
                       ${
                         item.href.startsWith(`/${segment}`)
                           ? "text-yellow-300"
                           : ""
                       }`}
                   >
-                    {item.icon}
                     <span>{item.label}</span>
                   </Link>
                 </li>
@@ -97,12 +96,12 @@ const MainNav = () => {
         {/* Right Side Controls */}
         <div className="flex items-center gap-4">
           <div className="flex gap-4 text-white">
-            <Link href="/login" className="flex items-center hover:text-gray-200">
+            <Link href="/login" className="flex items-center font-bold hover:text-gray-200 ">
               <CircleUserRound className="mx-1 size-4" /> Sign In
             </Link>
             <Link
               href="/register"
-              className="rounded bg-white/25 px-2 py-1 transition-colors hover:bg-white/30"
+              className="rounded bg-white/25 px-2 py-1 font-bold transition-colors hover:bg-white/30 "
             >
               Register
             </Link>

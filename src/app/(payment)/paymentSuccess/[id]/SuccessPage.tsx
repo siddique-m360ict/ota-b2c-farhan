@@ -140,7 +140,7 @@ const SuccessPage = ({ paymentData }: Props) => {
 
             <div className="relative mt-20 text-end">
               <h2 className="text-3xl font-bold text-[#0BA859] opacity-10">
-                Booking Expert World
+                Farhan Travels World
               </h2>
               <div className="absolute right-[-10px] top-[-30px]">
                 <Image src={"/star.png"} alt="logo" height={100} width={100} />

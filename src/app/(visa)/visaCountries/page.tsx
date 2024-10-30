@@ -122,7 +122,7 @@ const VisaCountryPage = () => {
                   <p className="text-[16px] leading-[28px]  text-[#eaeaf0]">
                     Discover everything you need to know about visa
                     requirements, application processes, and travel tips for
-                    visiting Bangladesh. Explore Booking Expert&apos;s detailed
+                    visiting Bangladesh. Explore Farhan Travels&apos;s detailed
                     guide to ensure a smooth and hassle-free travel experience
                     to this vibrant country.
                   </p>

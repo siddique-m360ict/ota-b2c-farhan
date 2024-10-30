@@ -7,45 +7,45 @@ import UserRegisterForm from "@/components/authentication/UserRegisterForm"
 import Image from "next/image"
 
 export const metadata = {
-  title: "Create an Account - Sign Up to Booking Expert | Booking Expert",
+  title: "Create an Account - Sign Up to Farhan Travels | Farhan Travels",
   description:
-    "Create an account with Booking Expert to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
+    "Create an account with Farhan Travels to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
   keywords: [
     "signup",
     "sign up",
     "create account",
     "register",
     "registration",
-    "Booking Expert",
+    "Farhan Travels",
     "user registration",
     "user signup",
     "sign up page",
     "registration page",
     "create account page",
-    "booking expert world signup",
-    "bookingexpert.world register",
+    "Farhan Travels world signup",
+    "farhantravels.world register",
   ],
   openGraph: {
-    title: "Create an Account - Sign Up to Booking Expert | Booking Expert",
+    title: "Create an Account - Sign Up to Farhan Travels | Farhan Travels",
     description:
-      "Create an account with Booking Expert to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
+      "Create an account with Farhan Travels to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
     type: "website",
-    url: "https://www.bookingexpert.world/register",
+    url: "https://www.farhantravels.world/register",
     images: [
       {
         url: "/og-image.PNG",
         width: 800,
         height: 600,
-        alt: "Sign Up to Booking Expert",
+        alt: "Sign Up to Farhan Travels",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bookingexpert",
-    title: "Create an Account - Sign Up to Booking Expert | Booking Expert",
+    site: "@farhantravels",
+    title: "Create an Account - Sign Up to Farhan Travels | Farhan Travels",
     description:
-      "Create an account with Booking Expert to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
+      "Create an account with Farhan Travels to get started. Join our platform, access exclusive deals, and enjoy a seamless registration experience.",
     images: ["/og-image.PNG"],
   },
 }
@@ -66,7 +66,7 @@ export default function SignUpPage() {
         href="/"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute left-4 top-4 text-primary md:left-8 md:top-8 md:text-white"
+          "absolute left-4 top-4 border border-[#ed5555] text-primary md:left-8 md:top-8 md:text-white"
         )}
       >
         <>
@@ -77,7 +77,7 @@ export default function SignUpPage() {
       <div
         className="hidden h-full bg-muted lg:block"
         style={{
-          backgroundImage: "url(/images/bg/bg.webp)",
+          backgroundImage: "url(/images/home/register.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -86,10 +86,10 @@ export default function SignUpPage() {
         <div className="flex h-full items-center justify-center">
           <div className="mb-[15vh] text-center">
             <h1 className="font-heading text-[40px] font-bold text-white">
-              WELCOME TO BOOKING EXPERT
+              WELCOME TO Farhan Travels
             </h1>
             <p className="text-white">
-              Booking Expert is part of M360ICT <br />
+              Farhan Travels is part of M360ICT <br />
               One of the worlds leading providers of travel services.
             </p>
           </div>

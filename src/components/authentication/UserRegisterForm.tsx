@@ -246,7 +246,7 @@ const UserRegisterForm = () => {
             </RadioGroup>
           </div>
 
-          <button className={cn("mt-1", buttonVariants())} type="submit">
+          <button className={cn("mt-1", buttonVariants(), "bg-red-500")} type="submit">
             {isLoading && (
               <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
