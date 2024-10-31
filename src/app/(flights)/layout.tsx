@@ -1,8 +1,9 @@
-import  MainNav  from "../../components/common/main-nav"
+import MainNav from "../../components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import FlightSearch from "@/components/home/FlightSearch"
 import Image from "next/image"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
+import UpperFooter from '@/components/home/UpperFooter'
 
 interface FlightLayoutProps {
   children: React.ReactNode
@@ -78,14 +79,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header className="relative w-full pb-20  ">
-        <div className="bg-wrapper absolute left-0 top-0 z-0  size-full">
-          <Image
-            src={"/images/home/flight_home_bg.webp"}
-            alt="home-image"
-            fill
-            className="object-contain object-left-top md:object-cover"
-          />
-        </div>
+        <div className="bg-wrapper absolute left-0 top-0 z-0  size-full bg-[#E31837]"></div>
         <div className="z-50 hidden h-16  space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />
         </div>
@@ -98,10 +92,10 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
         ></div>
         <section className="modify relative z-50 pt-4">
           <div className="z-50 mt-10  rounded-3xl px-2  md:container ">
-            <h1 className="mb-3 hidden text-[2vw] font-bold  text-white  md:block">
+            <h1 className="mb-3 ms-10 hidden text-[2vw] font-bold text-white  md:block">
               Find best flight. One simple search
             </h1>
-            <div className="mt-[-40px] md:mt-0">
+            <div className="ms-10 mt-[-rounded-lg] rounded-lg bg-white p-4 shadow-lg md:mt-0">
               <FlightSearch className="py-4" />
             </div>
           </div>
@@ -112,6 +106,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
         style={{ background: "linear-gradient(hsla(0,0%,100%,0),#f0f2f5)" }}
       ></div>
       <div className="container mt-2 flex-1">{children}</div>
+      <UpperFooter/>
       <SiteFooter />
     </div>
   )

@@ -185,28 +185,27 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
           />
           {/* Swap Route */}
           <Icons.Repeat
-            onClick={swapRoute}
-            style={{
-              transform: `rotate(${rotation}deg)`,
-              boxShadow:
-                theme === "light"
-                  ? "0px 0px 0px 1px #E2E8F0"
-                  : "0px 0px 0px 1px #222",
-            }}
-            className="absolute top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-black dark:bg-transparent dark:text-white md:block xl:left-[46%] xl:top-[13%] 2xl:left-[47.5%] 2xl:top-[20%]"
-          />
-
-          <Icons.ArrowDownUp
-            onClick={swapRoute}
-            style={{
-              transform: `rotate(${rotation}deg)`,
-              boxShadow:
-                theme === "light"
-                  ? "0px 0px 0px 1px #E2E8F0"
-                  : "0px 0px 0px 1px #222",
-            }}
-            className="absolute right-[4%] top-[27%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:hidden"
-          />
+          onClick={swapRoute}
+          style={{
+            transform: `rotate(${rotation}deg)`,
+            boxShadow:
+                    theme === "light"
+                      ? "0px 0px 0px 1px #E2E8F0"
+                      : "0px 0px 0px 1px #222",
+          }}
+          className="absolute left-[47%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent dark:text-white  md:block"
+        />
+        <Icons.ArrowDownUp
+          onClick={swapRoute}
+          style={{
+            transform: `rotate(${rotation}deg)`,
+            boxShadow:
+            theme === "light"
+            ? "0px 0px 0px 1px #E2E8F0"
+            : "0px 0px 0px 1px #222",
+          }}
+          className="absolute right-[5%] top-[20%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent  md:hidden"
+        />
           <SelectAirport
             airport={toAirport}
             setAirport={setToAirport}

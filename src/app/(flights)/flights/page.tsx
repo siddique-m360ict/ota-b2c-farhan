@@ -3,6 +3,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import InternationalRoutes from "@/components/home/elements/PopularRoutesElements/InternationalRoutes"
+import TopRecommendation from '@/components/home/TopRecommendation'
+
 
 const DEMO_CATS = [
   {
@@ -84,13 +86,16 @@ export const metadata = {
 const SectionGridCategoryBox = ({ categories = DEMO_CATS }) => {
   return (
     <div className={`relative `}>
-      <div className="text-center">
+      
+      <div className={`mb-10 ms-10 mt-6`}>
+        <TopRecommendation />,
+        <div className="text-center">
         <h1 className="font-heading text-[28px] font-bold">Explore nearby</h1>
-        <p className="text-sm">Discover great places near where you live</p>
+        <p className="pb-4 text-sm">Discover great places near where you live</p>
       </div>
-      <div className={`mb-10 mt-6`}>
         <InternationalRoutes />,
       </div>
+     
     </div>
   )
 }

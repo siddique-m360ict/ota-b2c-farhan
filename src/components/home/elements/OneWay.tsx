@@ -183,22 +183,22 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
           style={{
             transform: `rotate(${rotation}deg)`,
             boxShadow:
-              theme === "light"
-                ? "0px 0px 0px 1px #E2E8F0"
-                : "0px 0px 0px 1px #000",
+                    theme === "light"
+                      ? "0px 0px 0px 1px #E2E8F0"
+                      : "0px 0px 0px 1px #222",
           }}
-          className="dark:border-DEFAULT absolute right-[5%] top-[15%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-[#222] dark:bg-transparent dark:text-white md:block xl:left-[28.5%] xl:top-[14%] 2xl:left-[29%] 2xl:top-[20%]"
+          className="absolute left-[28.5%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent dark:text-white  md:block"
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
           style={{
             transform: `rotate(${rotation}deg)`,
             boxShadow:
-              theme === "light"
-                ? "0px 0px 0px 1px #E2E8F0"
-                : "0px 0px 0px 1px #000",
+            theme === "light"
+            ? "0px 0px 0px 1px #E2E8F0"
+            : "0px 0px 0px 1px #222",
           }}
-          className="absolute right-[5%] top-[15%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent md:left-[29%] md:top-[20%] md:hidden  "
+          className="absolute right-[5%] top-[20%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent  md:hidden"
         />
         <SelectAirport
           airport={toAirport}

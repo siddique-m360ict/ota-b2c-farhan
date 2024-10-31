@@ -4,7 +4,7 @@ import MainNav from "../common/main-nav"
 import Image from "next/image"
 import HomeSearchNavigation from "./elements/HomeSearchNavigation"
 import { Hotel, Plane } from "lucide-react"
-import FlightSearch from "./FlightSearch" // Import the FlightSearch component
+import FlightSearch from "./FlightSearch" 
 
 const HomeBanner = () => {
   const [activeTab, setActiveTab] = useState<"flight" | "hotel">("flight")

@@ -1,6 +1,6 @@
 import FlightSearch from "@/components/home/FlightSearch"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
-import  MainNav  from "@/components/common/main-nav"
+import MainNav from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -55,7 +55,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
       <header
         className="relative hidden w-full pb-0 md:block md:pb-20"
         style={{
-          backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
+          backgroundImage: "linear-gradient(-45deg,#3264ff,#DC143C)",
         }}
       >
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
@@ -69,9 +69,11 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
           style={{ borderRadius: "24px 24px 0 0" }}
         ></div>
       </header>
-      <section className="modify relative hidden md:block">
-        <div className="container z-50 mb-2 mt-[-75px] rounded-3xl">
-          <FlightSearch />
+      <section className="modify relative -mt-20 hidden md:block">
+        <div className="container mx-auto p-4">
+          <div className="mx-auto mt-[-rounded-lg] max-w-6xl rounded-lg bg-white p-4 shadow-lg md:mt-0">
+            <FlightSearch />
+          </div>
         </div>
       </section>
       <main className="flex-1 md:container md:mt-2">{children}</main>

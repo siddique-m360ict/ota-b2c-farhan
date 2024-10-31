@@ -75,14 +75,7 @@ const FlightSearch = ({ home, className }: Props) => {
             />
           </div>
 
-          {/* Order List Button */}
-          <div className="mb-5 hidden md:block">
-            <button className="flex items-center gap-2 text-[#E31837] transition-colors hover:text-[#c41530]">
-              <Clipboard className="size-5" />
-              Order List
-              <ChevronRight className="size-4" />
-            </button>
-          </div>
+          
         </div>
 
         {/* Route Content */}
