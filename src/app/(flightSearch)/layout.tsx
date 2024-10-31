@@ -55,7 +55,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
       <header
         className="relative hidden w-full pb-0 md:block md:pb-20"
         style={{
-          backgroundImage: "linear-gradient(-45deg,#3264ff,#DC143C)",
+          backgroundImage: "linear-gradient(-45deg,#DC143C,#DC143C)",
         }}
       >
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">

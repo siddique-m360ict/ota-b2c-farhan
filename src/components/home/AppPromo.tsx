@@ -30,7 +30,7 @@ const AppPromo = () => {
 
   return (
     <div className="w-full">
-      <div className="pb-24 pt-16">
+      <div>
         <div
           style={{
             width: "100%",
@@ -81,7 +81,7 @@ const AppPromo = () => {
                     </div>
                   </div>
                   <div className="mt-12 flex gap-8">
-                    <div className="hidden rounded bg-secondaryBg p-[3px] md:inline-block">
+                    <div className="hidden rounded p-[3px] md:inline-block">
                       <Image
                         src="/images/home/qr.png"
                         alt=""
@@ -147,7 +147,7 @@ const AppPromo = () => {
                 </div>
               </div>
               <div className="hidden md:block">
-                <div className="absolute top-[-120px] xl:left-[65%] 2xl:left-[59%]">
+                <div className="absolute top-[-90px] xl:left-[65%] 2xl:left-[59%]">
                   <Image
                     src="/images/home/phone.png"
                     alt=""

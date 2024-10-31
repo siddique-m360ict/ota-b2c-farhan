@@ -23,7 +23,7 @@ export default async function DashboardLayout({
       <header
         className="relative w-full pb-10"
         style={{
-          backgroundImage: "linear-gradient(-45deg,#1442cc,#3264ff)",
+          backgroundImage: "linear-gradient(-45deg,#DC143C,#DC143C)",
         }}
       >
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between  sm:space-x-0 md:flex">
