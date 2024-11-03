@@ -33,9 +33,9 @@ const PopularRoute = () => {
   }
 
   return (
-    <div className="mt-8 pb-8 md:container">
+    <div className="mt-8 pb-8 md:container  dark:text-gray-100">
       <Card
-        className="border-none"
+        className="border-none dark:bg-gray-900 dark:text-gray-100"
         style={{
           background:
             theme === "light"
@@ -43,11 +43,11 @@ const PopularRoute = () => {
               : "url(/images/home/populer1.png) right 24px top 4px no-repeat, radial-gradient(30% 26% at 80% 0px, rgb(240 128 128/ 72%), transparent), radial-gradient(30% 26% at left bottom, rgb(220 20 60 / 72%), transparent), rgb(139 0 0))",
         }}
       >
-        <CardHeader className="p-4 pb-2 md:p-6 md:pb-0">
-          <h1 className="ms-3 font-heading text-secondary md:text-[26px]">
+        <CardHeader className="p-4 pb-2 dark:bg-gray-900 dark:text-gray-100 md:p-6 md:pb-0">
+          <h1 className=" font-heading text-secondary md:text-[26px] ">
             Deals on Popular Routes
           </h1>
-          <div className="hidden justify-start gap-4 md:flex">
+          <div className="hidden justify-start gap-4 md:flex ">
             {headingTitle.map((item, index) => (
               <div
                 key={index}
@@ -75,8 +75,8 @@ const PopularRoute = () => {
               </div>
             ))}
           </div>
-        </CardHeader>
-        <CardContent className="ms-4 px-3 md:p-6">
+        </CardHeader >
+        <CardContent className=" px-3 dark:bg-gray-900 dark:text-gray-100 md:p-6">
           <div>
             <Tabs defaultValue={activeTab}>
               <div className="overflow-x-scroll md:overflow-x-hidden">
@@ -89,7 +89,7 @@ const PopularRoute = () => {
                       key={tab.id}
                       value={tab.id}
                       onClick={() => handleTabChange(tab.id)}
-                      className="text-sm shadow-md data-[state=active]:shadow-lg data-[state=active]:dark:bg-primary md:px-4 md:data-[state=active]:bg-red-600 md:data-[state=active]:text-white"
+                      className="text-sm shadow-md data-[state=active]:shadow-lg data-[state=active]:dark:bg-gray-900 md:px-4 md:data-[state=active]:bg-red-600 md:data-[state=active]:text-white"
                     >
                       <p className="flex items-center gap-1 font-bold md:text-[16px]">
                         {tab.label}

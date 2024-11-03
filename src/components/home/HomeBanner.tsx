@@ -4,7 +4,7 @@ import MainNav from "../common/main-nav"
 import Image from "next/image"
 import HomeSearchNavigation from "./elements/HomeSearchNavigation"
 import { Hotel, Plane } from "lucide-react"
-import FlightSearch from "./FlightSearch" 
+import FlightSearch from "./FlightSearch"
 
 const HomeBanner = () => {
   const [activeTab, setActiveTab] = useState<"flight" | "hotel">("flight")
@@ -13,7 +13,7 @@ const HomeBanner = () => {
     console.log("Flight search with params:", searchParams)
   }
   return (
-    <div className="relative  bg-[#E31837]">
+    <div className="relative  bg-[#E31837] dark:bg-gray-800 dark:text-gray-100">
       <header className="container z-40">
         <div className="flex h-[8vh] justify-between pt-5">
           <MainNav home={true} className="text-white" />
@@ -21,7 +21,7 @@ const HomeBanner = () => {
       </header>
 
       {/* Banner content */}
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:pb-7 lg:pt-10">
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:pb-7 lg:pt-10 ">
         <div className="container flex max-w-5xl flex-col items-center gap-4 text-center">
           <h1 className="font-roboto text-3xl font-bold tracking-wide text-white sm:text-5xl md:text-6xl lg:text-[42px]">
             Start Traveling Now
@@ -39,7 +39,7 @@ const HomeBanner = () => {
             <button
               onClick={() => setActiveTab("flight")}
               className={`flex items-center gap-2 rounded-md px-6 py-2 transition-colors ${
-                activeTab === "flight" ? "bg-white text-gray-600" : "bg-[#E31837] text-white"
+                activeTab === "flight" ? "bg-white text-gray-600" : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
               }`}
             >
               <Plane />
@@ -48,7 +48,7 @@ const HomeBanner = () => {
             <button
               onClick={() => setActiveTab("hotel")}
               className={`flex items-center gap-2 rounded-md px-6 py-2 transition-colors ${
-                activeTab === "hotel" ? "bg-white text-gray-600" : "bg-[#E31837] text-white"
+                activeTab === "hotel" ? "bg-white text-gray-600" : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
               }`}
             >
               <Hotel />
@@ -56,7 +56,7 @@ const HomeBanner = () => {
             </button>
           </div>
 
-          <div className="rounded-lg bg-white p-4 shadow-lg">
+          <div className="rounded-lg bg-white p-4 shadow-lg dark:bg-gray-900 dark:text-gray-100">
 
             {activeTab === "flight" ? (
 

@@ -13,7 +13,6 @@ const FlightTopHeader = ({ totalFlight, arrivalCity }: Props) => {
       style={{
         background:
           "url(/images/bg-theme.jpg) center bottom -140px / cover, rgb(220, 20, 60) ",
-        backgroundPosition: "center",
         backgroundSize: "cover",
         borderRadius: isDesktop ? "8px 8px 0 0" : "0",
       }}
@@ -21,7 +20,7 @@ const FlightTopHeader = ({ totalFlight, arrivalCity }: Props) => {
       <div
         className="flex items-center justify-between p-[16px] text-white"
         style={{
-          backgroundImage: "linear-gradient(90deg,rgba(220, 20 ,60.7),#DC143C)",
+          backgroundImage: "linear-gradient(90deg,#0f294d,rgba(220, 20, 60,.7))",
           borderRadius: isDesktop ? "8px 8px 0 0" : "0",
         }}
       >

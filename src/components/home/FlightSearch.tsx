@@ -75,7 +75,7 @@ const FlightSearch = ({ home, className }: Props) => {
             />
           </div>
 
-          
+
         </div>
 
         {/* Route Content */}

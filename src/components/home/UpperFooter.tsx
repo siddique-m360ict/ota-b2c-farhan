@@ -63,11 +63,11 @@ const UpperFooter = () => {
   ]
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full bg-gray-100 ">
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20 dark:bg-gray-900 dark:text-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="mb-16 text-center text-3xl font-bold text-gray-800">
+          <h2 className="mb-16 text-center text-3xl font-bold text-gray-800 dark:bg-gray-900 dark:text-gray-100 ">
             Why must travel with Farhan Travels
           </h2>
 
@@ -80,10 +80,10 @@ const UpperFooter = () => {
                 <div className="mb-4 rounded-full bg-red-50 p-4">
                   {feature.icon}
                 </div>
-                <h3 className="mb-2 text-xl font-bold text-gray-800">
+                <h3 className="mb-2 text-xl font-bold text-gray-800 dark:bg-gray-900 dark:text-gray-100">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 dark:bg-gray-900 dark:text-gray-100">{feature.description}</p>
               </div>
             ))}
           </div>

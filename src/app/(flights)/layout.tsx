@@ -79,7 +79,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header className="relative w-full pb-20  ">
-        <div className="bg-wrapper absolute left-0 top-0 z-0  size-full bg-[#E31837]"></div>
+        <div className="bg-wrapper absolute left-0 top-0 z-0  size-full bg-[#E31837] dark:bg-gray-800 dark:text-gray-100"></div>
         <div className="z-50 hidden h-16  space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />
         </div>
@@ -92,10 +92,10 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
         ></div>
         <section className="modify relative z-50 pt-4">
           <div className="z-50 mt-10  rounded-3xl px-2  md:container ">
-            <h1 className="mb-3 ms-10 hidden text-[2vw] font-bold text-white  md:block">
+            <h1 className="mb-3 ms-10 hidden text-[2vw] font-bold text-white  md:block ">
               Find best flight. One simple search
             </h1>
-            <div className="ms-10 mt-[-rounded-lg] rounded-lg bg-white p-4 shadow-lg md:mt-0">
+            <div className="ms-10 mt-[-rounded-lg] rounded-lg bg-white p-4 shadow-lg md:mt-0 dark:bg-gray-900 dark:text-gray-100">
               <FlightSearch className="py-4" />
             </div>
           </div>
@@ -111,3 +111,4 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
     </div>
   )
 }
+

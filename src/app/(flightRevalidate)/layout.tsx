@@ -53,10 +53,7 @@ export default async function FlightRevalidateLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <header
-        className="relative w-full pb-10"
-        style={{
-          backgroundImage: "linear-gradient(-45deg,#DC143C,#DC143C)",
-        }}
+        className="relative w-full pb-10 bg-primary dark:bg-gray-800"
       >
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />

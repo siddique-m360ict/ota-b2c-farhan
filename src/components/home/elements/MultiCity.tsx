@@ -275,7 +275,7 @@ const MultiCity = ({ cabinClass, passenger }) => {
                       ? "0px 0px 0px 1px #E2E8F0"
                       : "0px 0px 0px 1px #222",
                 }}
-                className="absolute left-[31.3%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent dark:text-white  md:block"
+                className="absolute left-[31.3%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-white dark:hover:bg-primary dark:text-black  md:block"
               />
               <Icons.ArrowDownUp
                 onClick={() => handleSwap(index)}

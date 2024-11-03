@@ -42,17 +42,17 @@ const MainNav = () => {
     },
     {
       label: "Hotel",
-      href: "/trains",
+      href: "/comingsoon",
       id: "trains",
     },
     {
       label: "Promo",
-      href: "/cars",
+      href: "/comingsoon",
       id: "cars",
     },
     {
       label: "Orders",
-      href: "/activities",
+      href: "/comingsoon",
       id: "activities",
     },
   ]

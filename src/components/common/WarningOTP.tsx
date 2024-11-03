@@ -46,7 +46,7 @@ const WarningOTP = () => {
         onClick={handleSendOTP}
         className={cn(
           buttonVariants({ variant: "danger", size: "sm" }),
-          "bg-yellow-600 px-4 shadow-xl dark:bg-primary"
+          "bg-red-600 px-4 shadow-xl dark:bg-gray-900 dark:text-gray-100 "
         )}
       >
         {loading && <Icons.spinner className="mr-2 size-4 animate-spin" />}

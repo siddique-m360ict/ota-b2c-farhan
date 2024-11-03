@@ -23,9 +23,8 @@ export function ModeToggle({ className }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="default"
           size="sm"
-          className={cn("size-[22px] px-0 md:size-8", className)}
+          className={cn("size-[22px] bg-primary px-0 text-white dark:bg-gray-900 dark:text-gray-100 md:size-8", className)}
         >
           <Icons.sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Icons.moon className="absolute w-[19px] rotate-90 scale-0 text-white transition-all dark:rotate-0 dark:scale-100  " />
@@ -34,11 +33,11 @@ export function ModeToggle({ className }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Icons.sun className="mr-2 size-4" />
+          <Icons.sun className="mr-2 size-4 " />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Icons.moon className="mr-2 size-4" />
+          <Icons.moon className="mr-2 size-4 " />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>

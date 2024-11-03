@@ -37,7 +37,7 @@ const HomeCardCarousel = () => {
       ></div>
 
       <div className="container">
-        <div className="items-left justify-left ms-8 flex size-full py-5 font-sans text-3xl font-bold text-gray-600">
+        <div className="items-left justify-left ms-8 flex size-full py-5 font-sans text-3xl font-bold text-gray-600 dark:text-gray-100">
           <h1>Unbeatable Promo Offer</h1>
         </div>
         <Carousel

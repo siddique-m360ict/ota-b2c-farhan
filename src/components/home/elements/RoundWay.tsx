@@ -193,7 +193,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
                       ? "0px 0px 0px 1px #E2E8F0"
                       : "0px 0px 0px 1px #222",
           }}
-          className="absolute left-[47%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:border-transparent dark:bg-transparent dark:text-white  md:block"
+          className="absolute left-[47%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150  hover:bg-primary
+          dark:hover:bg-grey-800 hover:text-white dark:border-transparent  dark:text-black  md:block"
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
@@ -212,8 +213,8 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
             name="To"
           />
         </div>
-        <div className="w-full justify-between gap-3 md:flex">
-          <div className="mb-4 mt-2 w-full md:my-0">
+        <div className="w-full justify-between gap-3 md:flex ">
+          <div className="mb-4 mt-2 w-full md:my-0 ">
             <DatePickerRange date={date} setDate={setDate} />
           </div>
           {pathName !== "/flightsearch" ? (

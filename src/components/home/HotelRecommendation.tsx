@@ -34,22 +34,23 @@ export default function HotelRecommendation() {
       <div>
         <h2 className="mb-8 ms-10 text-4xl font-bold">Exclusive Hotel Recommendations</h2>
 
-        <div className="mb-20 ms-10 flex gap-x-6 overflow-x-auto pb-4">
-          {cities.map((city) => (
-            <Button
-              key={city}
-              variant={selectedCity === city ? 'danger' : 'outline'}
-              onClick={() => setSelectedCity(city)}
-              className={`
-                min-w-[160px] whitespace-nowrap px-8 py-7 text-lg
-                transition-all duration-300 hover:scale-105
-                ${selectedCity === city ? 'shadow-lg' : 'hover:bg-gray-50'}
-              `}
-            >
-              {city}
-            </Button>
-          ))}
-        </div>
+        <div className="mb-20 ms-10 flex gap-x-6 overflow-x-auto pb-4 ">
+  {cities.map((city) => (
+    <Button
+      key={city}
+      onClick={() => setSelectedCity(city)}
+      className={`
+        min-w-[160px] whitespace-nowrap px-8 py-7 text-lg
+        transition-all duration-300 hover:scale-105
+        ${selectedCity === city
+          ? "bg-[#DC143C] text-white shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+          : "border border-input bg-transparent text-black hover:bg-gray-50  dark:text-white  dark:hover:bg-gray-800"}
+      `}
+    >
+      {city}
+    </Button>
+  ))}
+</div>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {hotels.map((hotel) => (
