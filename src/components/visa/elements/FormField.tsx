@@ -120,6 +120,7 @@ const FormField = ({
     if (selectedCountry) {
       setValue(`${passengerType}.country_id`, selectedCountry.id || "data nai")
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCity, selectedCountry, reference, passportType])
 
   // first default open

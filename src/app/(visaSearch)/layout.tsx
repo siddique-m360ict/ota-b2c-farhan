@@ -1,6 +1,6 @@
 import FlightSearch from "@/components/home/FlightSearch"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import { Skeleton } from "@/components/ui/skeleton"
 import VisaSearchBox from "@/components/visa/VisaSearchBox"

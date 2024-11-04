@@ -185,10 +185,10 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             boxShadow:
                     theme === "light"
                       ? "0px 0px 0px 1px #E2E8F0"
-                      : "0px 0px 0px 1px #ffffff",
+                      : "0px 0px 0px 2px #ffffff",
           }}
-          className="dark:bg-grey-800 absolute left-[28.5%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5  font-bold text-primary transition-all duration-150 hover:bg-primary
-          dark:hover:bg-grey-800 hover:text-white dark:border-transparent dark:text-black  md:block "
+          className="dark:bg-grey-800 dark:hover:bg-grey-800 absolute left-[28.5%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5]  p-1.5 font-bold text-primary transition-all duration-150
+          hover:bg-primary hover:text-white dark:border-transparent dark:text-black  md:block "
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
@@ -197,7 +197,7 @@ const OneWay = ({ cabinClass, passenger }: Props) => {
             boxShadow:
             theme === "light"
             ? "0px 0px 0px 1px #E2E8F0"
-            : "0px 0px 0px 1px #ffffff",
+            : "0px 0px 0px 2px #ffffff",
           }}
           className="absolute right-[5%] top-[20%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent  md:hidden"
         />

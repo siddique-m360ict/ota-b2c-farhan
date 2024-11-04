@@ -7,12 +7,15 @@ import { buttonVariants } from "@/components/ui/button"
 import  MainNav  from "@/components/common/main-nav"
 import { SiteFooter } from "@/components/common/site-footer"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
+interface MainNavProps {
+  home: boolean;
+}
 
 const Page404 = () => (
   <>
     <div className="bg-primary pb-10">
       <div className="container hidden h-[8vh] justify-between pt-5   md:flex ">
-        <MainNav home={true} />
+        <MainNav />
       </div>
       <div className="block md:hidden">
         <HomeMobileHeader />

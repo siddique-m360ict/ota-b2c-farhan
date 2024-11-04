@@ -16,7 +16,7 @@ const HomeBanner = () => {
     <div className="relative  bg-[#E31837] dark:bg-gray-800 dark:text-gray-100">
       <header className="container z-40">
         <div className="flex h-[8vh] justify-between pt-5">
-          <MainNav home={true} className="text-white" />
+          <MainNav />
         </div>
       </header>
 
@@ -39,7 +39,9 @@ const HomeBanner = () => {
             <button
               onClick={() => setActiveTab("flight")}
               className={`flex items-center gap-2 rounded-md px-6 py-2 transition-colors ${
-                activeTab === "flight" ? "bg-white text-gray-600" : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
+                activeTab === "flight"
+                  ? "bg-white text-gray-600"
+                  : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
               }`}
             >
               <Plane />
@@ -48,7 +50,9 @@ const HomeBanner = () => {
             <button
               onClick={() => setActiveTab("hotel")}
               className={`flex items-center gap-2 rounded-md px-6 py-2 transition-colors ${
-                activeTab === "hotel" ? "bg-white text-gray-600" : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
+                activeTab === "hotel"
+                  ? "bg-white text-gray-600"
+                  : "bg-[#E31837] text-white dark:bg-gray-900 dark:text-gray-100"
               }`}
             >
               <Hotel />
@@ -57,12 +61,9 @@ const HomeBanner = () => {
           </div>
 
           <div className="rounded-lg bg-white p-4 shadow-lg dark:bg-gray-900 dark:text-gray-100">
-
             {activeTab === "flight" ? (
-
-              <FlightSearch onSearch={handleFlightSearch} />
+              <FlightSearch/>
             ) : (
-
               <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
                 <div className="md:col-span-4">
                   <input
@@ -87,8 +88,7 @@ const HomeBanner = () => {
                     className="w-full rounded-md border p-3"
                   />
                 </div>
-                <div className="md:col-span-2">
-                </div>
+                <div className="md:col-span-2"></div>
               </div>
             )}
           </div>

@@ -1,4 +1,4 @@
-import { MainNav } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import HomeMobileHeader from "@/components/homeMobile/elements/HomeMobileHeader"
 import VisaSearchBox from "@/components/visa/VisaSearchBox"
 

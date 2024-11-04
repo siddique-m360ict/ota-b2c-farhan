@@ -1,4 +1,4 @@
-import { headerItems } from "@/components/common/main-nav"
+import  MainNav  from "@/components/common/main-nav"
 import { ModeToggle } from "@/components/common/mode-toggle"
 import { UserAvatar } from "@/components/common/user-avatar"
 import { Icons } from "@/components/icons"
@@ -23,6 +23,34 @@ const MobileMenuDrawer = () => {
     dispatch(logout())
     router.refresh()
   }
+  const navItems = [
+    {
+      label: "Home",
+      href: "/",
+      id: "dashboard",
+    },
+    {
+      label: "Flights",
+      href: "/flights",
+      id: "flights",
+    },
+    {
+      label: "Hotel",
+      href: "/comingsoon",
+      id: "trains",
+    },
+    {
+      label: "Promo",
+      href: "/comingsoon",
+      id: "cars",
+    },
+    {
+      label: "Orders",
+      href: "/comingsoon",
+      id: "activities",
+    },
+  ]
+
   return (
     <div className="mt-4 border-t p-4">
       <div className="relative mt-2">
@@ -65,7 +93,7 @@ const MobileMenuDrawer = () => {
         <p className="mb-1 ms-2 text-start text-sm text-destructive">
           Travel Options
         </p>
-        {headerItems.map((item, index) => {
+        {navItems.map((item, index) => {
           return (
             item.href && (
               <Link key={index} href={item.href}>
@@ -75,7 +103,7 @@ const MobileMenuDrawer = () => {
                     path === item.href ? "bg-accent" : "transparent"
                   )}
                 >
-                  <p>{item.icon}</p>
+
                   <span>{item.label}</span>
                 </div>
               </Link>

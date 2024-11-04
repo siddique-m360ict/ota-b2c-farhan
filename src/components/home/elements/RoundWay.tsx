@@ -191,10 +191,10 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
             boxShadow:
                     theme === "light"
                       ? "0px 0px 0px 1px #E2E8F0"
-                      : "0px 0px 0px 1px #222",
+                      : "0px 0px 0px 2px #FFFFFF",
           }}
-          className="absolute left-[47%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5 font-bold  text-primary transition-all duration-150  hover:bg-primary
-          dark:hover:bg-grey-800 hover:text-white dark:border-transparent  dark:text-black  md:block"
+          className="dark:hover:bg-grey-800 absolute left-[47%] top-[20%] z-50 hidden size-8 cursor-pointer rounded-full border-[3px] border-white bg-[#EBF0F5] p-1.5  font-bold text-primary transition-all  duration-150
+          hover:bg-primary hover:text-white dark:border-transparent  dark:text-black  md:block"
         />
         <Icons.ArrowDownUp
           onClick={swapRoute}
@@ -203,7 +203,7 @@ const RoundWay = ({ cabinClass, passenger }: Props) => {
             boxShadow:
             theme === "light"
             ? "0px 0px 0px 1px #E2E8F0"
-            : "0px 0px 0px 1px #222",
+            : "0px 0px 0px 2px #FFFFFF",
           }}
           className="absolute right-[5%] top-[20%] z-50 block size-8 cursor-pointer rounded-full border-[3px] bg-[#EBF0F5] p-1.5 font-bold text-primary transition-all duration-150 hover:bg-primary hover:text-white dark:bg-transparent  md:hidden"
         />

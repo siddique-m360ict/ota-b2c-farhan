@@ -95,7 +95,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
             <h1 className="mb-3 ms-10 hidden text-[2vw] font-bold text-white  md:block ">
               Find best flight. One simple search
             </h1>
-            <div className="ms-10 mt-[-rounded-lg] rounded-lg bg-white p-4 shadow-lg md:mt-0 dark:bg-gray-900 dark:text-gray-100">
+            <div className="ms-10 mt-[-rounded-lg] rounded-lg bg-white p-4 shadow-lg dark:bg-gray-900 dark:text-gray-100 md:mt-0">
               <FlightSearch className="py-4" />
             </div>
           </div>

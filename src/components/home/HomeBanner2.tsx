@@ -1,5 +1,5 @@
 import React from "react"
-import { MainNav } from "../common/main-nav"
+import  MainNav  from "../common/main-nav"
 import Image from "next/image"
 import HomeSearchNavigation from "./elements/HomeSearchNavigation"
 
@@ -10,7 +10,7 @@ const HomeBanner = () => {
       <div>
         <header className="container z-40">
           <div className="flex h-[8vh] justify-between pt-5 ">
-            <MainNav home={true} />
+            <MainNav  />
           </div>
         </header>
         {/* banner content */}

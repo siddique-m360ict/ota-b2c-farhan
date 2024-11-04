@@ -11,7 +11,6 @@ import Offer from "@/components/home/Offer"
 import HotelRecommendation from "@/components/home/HotelRecommendation"
 import UpperFooter from "@/components/home/UpperFooter"
 import TopRecommendation from "@/components/home/TopRecommendation"
-
 export default async function IndexPage() {
   return (
     <div>

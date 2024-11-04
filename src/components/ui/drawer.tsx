@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-unnecessary-arbitrary-value */
 "use client"
 
 import { cn } from "@/lib/utils"
@@ -25,6 +26,7 @@ const DrawerContent = React.forwardRef<
       )}
       {...props}
     >
+      
       <div className="absolute left-1/2 top-3 h-2 w-[100px] translate-x-[-50%] rounded-full bg-muted" />
       {children}
     </DrawerPrimitive.Content>

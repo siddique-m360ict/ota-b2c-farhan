@@ -34,6 +34,7 @@ const SelectCountry = ({ country, setSelectedCountry, label }: Props) => {
 
   useEffect(() => {
     fetchVisaCountryData(debouncedQuery)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedQuery])
 
   return (

@@ -29,7 +29,7 @@ const MainNav = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = [
+   const navItems = [
     {
       label: "Home",
       href: "/",
