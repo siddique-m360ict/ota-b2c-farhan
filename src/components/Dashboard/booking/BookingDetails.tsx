@@ -67,7 +67,7 @@ const BookingDetails = ({ data, token }: Props) => {
             />
           </div>
           <div className="flex items-center justify-between">
-            <div className=" text-blue-gray-900 ml-1 mt-2 text-xs">
+            <div className="ml-1 mt-2 text-xs text-[#1a1a1a]">
               <h5 className="mb-2 text-[20px]">Farhan Travels</h5>
               <h5>Road# 7, Block# H, Banani, Dhaka-1213</h5>
               <div className="flex justify-end gap-1 text-[#3E4957]">
@@ -88,12 +88,12 @@ const BookingDetails = ({ data, token }: Props) => {
 
         {/* ------------- body ---------------*/}
         <div className="text-center">
-          <h1 className="mt-8 inline-block rounded border border-black/60 px-6 py-[2px] text-center text-[15px] font-bold uppercase text-destructive">
+          <h1 className="mt-8 inline-block rounded border border-black/60 px-6 py-[2px] text-center text-[15px] font-bold uppercase text-[#E11D48]">
             E-Book
           </h1>
         </div>
 
-        <div className="mt-6 flex items-center justify-between">
+        <div className="mt-6 flex items-center justify-between text-[#1a1a1a]">
           <div>
             <div className="mb-[3px] flex items-center gap-1">
               <h1 className="font-bold">Booking Date :</h1>
@@ -126,11 +126,11 @@ const BookingDetails = ({ data, token }: Props) => {
         </div>
 
         {/* TRAVELER DETAILS */}
-        <div className="bg-bgMuted mt-8 py-4">
+        <div className="mt-8 bg-[#f8f9fa] py-4">
           <CommonTitle title="Passenger Details" />
           <div className="relative overflow-x-auto rounded-t-lg">
-            <table className="w-full text-left text-sm text-gray-700 rtl:text-right ">
-              <thead className="  bg-[#ebf5ff] text-xs text-gray-700 dark:bg-[#222] dark:text-white ">
+            <table className="w-full text-left text-sm text-[#1a1a1a]">
+              <thead className="bg-[#ebf5ff] text-xs text-[#1a1a1a]">
                 <tr>
                   <th scope="col" className="p-2 text-xs md:px-6">
                     Name
@@ -153,9 +153,9 @@ const BookingDetails = ({ data, token }: Props) => {
                 {data?.traveler?.map((traveler: Traveler) => (
                   <tr
                     key={traveler.id}
-                    className=" bg-white text-[11px] hover:bg-gray-50 dark:bg-transparent dark:text-white "
+                    className="bg-white text-[11px] hover:bg-[#f8f9fa]"
                   >
-                    <td className="border border-gray-100 p-2 md:px-6 ">{`${traveler.reference} ${traveler.mid_name} ${traveler.sur_name}`}</td>
+                    <td className="border border-gray-100 p-2 md:px-6">{`${traveler.reference} ${traveler.mid_name} ${traveler.sur_name}`}</td>
                     <td className="border border-gray-100 px-3 py-2 md:px-6">
                       {traveler.type}
                     </td>
@@ -178,9 +178,9 @@ const BookingDetails = ({ data, token }: Props) => {
         {/* TRAVEL SEGMENTS */}
         <div className="mt-6 py-4">
           <CommonTitle title="TRAVEL SEGMENTS" />
-          <div className="relative overflow-x-auto  rounded-t-lg">
-            <table className="w-full text-left text-sm text-gray-700 rtl:text-right ">
-              <thead className="bg-[#f1f8ff]  uppercase text-gray-700     ">
+          <div className="relative overflow-x-auto rounded-t-lg">
+            <table className="w-full text-left text-sm text-[#1a1a1a]">
+              <thead className="bg-[#f1f8ff] uppercase text-[#1a1a1a]">
                 <tr>
                   <th scope="col" className="py-2 text-[10px] md:ps-4">
                     Airline
@@ -191,16 +191,16 @@ const BookingDetails = ({ data, token }: Props) => {
                   <th scope="col" className="text-[10px] md:ps-4">
                     Departs
                   </th>
-                  <th scope="col" className=" text-[10px] leading-3 md:ps-2">
+                  <th scope="col" className="text-[10px] leading-3 md:ps-2">
                     Date/Time
                   </th>
-                  <th scope="col" className=" ps-3 text-[10px]">
+                  <th scope="col" className="ps-3 text-[10px]">
                     Arrives
                   </th>
-                  <th scope="col" className=" text-[10px] leading-3">
+                  <th scope="col" className="text-[10px] leading-3">
                     Date/Time
                   </th>
-                  <th scope="col" className=" px-4 text-[10px] md:px-0 md:ps-2">
+                  <th scope="col" className="px-4 text-[10px] md:px-0 md:ps-2">
                     Baggage
                   </th>
                   <th scope="col" className="text-[10px] md:ps-2">
@@ -212,7 +212,7 @@ const BookingDetails = ({ data, token }: Props) => {
                 {data?.segments?.map((segment: Segment) => (
                   <tr
                     key={segment.id}
-                    className="border-b bg-white hover:bg-gray-50 dark:bg-transparent dark:text-white "
+                    className="border-b bg-white hover:bg-[#f8f9fa]"
                   >
                     <td className="border border-gray-100 p-4 ps-2 text-center md:px-0">
                       <div className="flex items-center justify-center gap-2">
@@ -227,23 +227,19 @@ const BookingDetails = ({ data, token }: Props) => {
                         </p>
                       </div>
                     </td>
-
-                    <td className=" border border-gray-100 py-2 text-center text-[10px]  leading-3">
-                      <p> {segment.flight_number}</p>
+                    <td className="border border-gray-100 py-2 text-center text-[10px] leading-3">
+                      <p>{segment.flight_number}</p>
                     </td>
-
-                    <td className="w-[18%] border border-gray-100 py-2 text-center text-[10px]   leading-3">
+                    <td className="w-[18%] border border-gray-100 py-2 text-center text-[10px] leading-3">
                       <p>{segment?.origin}</p>
                     </td>
-                    <td className="gap-1 border border-gray-100 py-2 text-center text-[10px] leading-3 ">
+                    <td className="gap-1 border border-gray-100 py-2 text-center text-[10px] leading-3">
                       <p>{formatFlightDate(segment.departure_date)},</p>
                       <p>{timeSlice(segment?.departure_time)}</p>
                     </td>
-
-                    <td className="w-[18%] border border-gray-100 py-2 text-center text-[10px]  leading-3">
-                      <p> {segment?.destination}</p>
+                    <td className="w-[18%] border border-gray-100 py-2 text-center text-[10px] leading-3">
+                      <p>{segment?.destination}</p>
                     </td>
-
                     <td className="border border-gray-100 py-2 text-center text-[10px] leading-3">
                       <p>{formatFlightDate(segment.arrival_date)},</p>
                       <p>
@@ -268,9 +264,9 @@ const BookingDetails = ({ data, token }: Props) => {
         {/* FARE DETAILS */}
         <div className="mt-4 py-4">
           <CommonTitle title="FARE DETAILS" />
-          <div className="relative overflow-x-auto   rounded-t-lg">
-            <table className="w-full text-left text-sm text-gray-700 rtl:text-right ">
-              <thead className="bg-[#ebf5ff]  uppercase text-gray-700     ">
+          <div className="relative overflow-x-auto rounded-t-lg">
+            <table className="w-full text-left text-sm text-[#1a1a1a]">
+              <thead className="bg-[#ebf5ff] uppercase text-[#1a1a1a]">
                 <tr>
                   <th scope="col" className="p-2 text-xs md:px-6">
                     Total Price
@@ -284,14 +280,13 @@ const BookingDetails = ({ data, token }: Props) => {
                   <th scope="col" className="px-3 text-xs md:px-6">
                     AIT
                   </th>
-
                   <th scope="col" className="px-3 text-xs md:px-6">
                     Customer Price
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b bg-white hover:bg-gray-50 dark:bg-transparent dark:text-white ">
+                <tr className="border-b bg-white hover:bg-[#f8f9fa]">
                   <td className="border border-gray-100 p-2 text-[11px] md:px-6">
                     BDT {formatNumber(data?.ticket_price)}
                   </td>

@@ -53,7 +53,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col bg-[#E2E8F0] dark:bg-background md:bg-background">
       <header
-        className="relative hidden w-full pb-0 md:block bg-primary md:pb-20 dark:bg-background dark:text-gray-100"
+        className="relative hidden w-full bg-primary pb-0 dark:bg-background dark:text-gray-100 md:block md:pb-20"
       >
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between sm:space-x-0 md:flex">
           <MainNav />
@@ -68,7 +68,7 @@ export default async function FlightLayout({ children }: FlightLayoutProps) {
       </header>
       <section className="modify relative -mt-20 hidden md:block">
         <div className="container mx-auto p-4">
-          <div className="mx-auto mt-[-rounded-lg] max-w-6xl rounded-lg bg-white p-4 shadow-lg md:mt-0 dark:bg-gray-900 dark:text-gray-100">
+          <div className="mx-auto ms-4 mt-[-rounded-lg] max-w-full rounded-lg bg-white p-4 shadow-lg dark:bg-gray-900 dark:text-gray-100 md:mt-0">
             <FlightSearch />
           </div>
         </div>

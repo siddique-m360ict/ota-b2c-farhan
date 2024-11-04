@@ -21,11 +21,8 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-screen flex-col space-y-6 bg-secondaryBg">
       <header
-        className="relative w-full pb-10"
-        style={{
-          backgroundImage: "linear-gradient(-45deg,#DC143C,#DC143C)",
-        }}
-      >
+        className="relative w-full pb-10">
+          <div className="bg-wrapper absolute left-0 top-0 z-0  size-full bg-[#E31837] dark:bg-gray-800 dark:text-gray-100"></div>
         <div className="hidden h-16 space-x-4 px-6 sm:justify-between  sm:space-x-0 md:flex">
           <MainNav />
         </div>
